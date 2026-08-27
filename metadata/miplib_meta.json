@@ -1,8 +1,9 @@
 {
  "30n20b8": {
   "description": "Multi-mode resource leveling with availability constraints; precedence and resource constrained scheduling problem",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "E. Coughlan, M. Lübbecke, J. Schulz",
+  "submitter": "E. Coughlan, M. L\u00fcbbecke, J. Schulz",
   "tags": [
    "benchmark",
    "benchmark_suitable",
@@ -79,6 +80,7 @@
  "app1-2": {
   "description": "Undisclosed industrial application from Google",
   "group": "app",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Emilie Danna",
   "tags": [
@@ -93,8 +95,9 @@
  },
  "atlanta-ip": {
   "description": "Min-cost network dimensioning problems with a finite set of link capacities for each bidirected link, unsplittable shortest path routing, path restoration for single node failures, and routing path length restrictions",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "E-Plus, D. Bienstock, A. Bley, R. Wessäly",
+  "submitter": "E-Plus, D. Bienstock, A. Bley, R. Wess\u00e4ly",
   "tags": [
    "aggregations",
    "benchmark",
@@ -115,6 +118,7 @@
  "bab1": {
   "description": "Integrated vehicle routing and crew scheduling of toll inspectors on German highways",
   "group": "bab",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "hard",
   "submitter": "Elmar Swarat, Laura Traverso, Julia Buwaya",
   "tags": [
@@ -132,6 +136,7 @@
  "bab2": {
   "description": "Vehicle Routing with profits and an integrated crew scheduling formulated by two coupled multi-commodity flow problems.",
   "group": "bab",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "hard",
   "submitter": "Elmar Swarat",
   "tags": [
@@ -153,6 +158,7 @@
  "bab3": {
   "description": "Vehicle routing with profits and an integrated crew scheduling problem formulated by two coupled multi-commodity flow problems",
   "group": "bab",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "Elmar Swarat",
   "tags": [
@@ -172,6 +178,7 @@
  "bab5": {
   "description": "Vehicle routing with profits and an integrated crew scheduling problem formulated by two coupled multi-commodity flow problems",
   "group": "bab",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Elmar Swarat",
   "tags": [
@@ -190,8 +197,9 @@
   ]
  },
  "bab6": {
-  "description": "Vehicle routing with profit and an integrated crew scheduling like bab2 … bab5. Instances differ in multi-commodity-flow formulation (path oder arc formulation) or time discretization and some are quite easy to solve while others (bab2, bab3 and bab6) are very difficult.",
+  "description": "Vehicle routing with profit and an integrated crew scheduling like bab2 \u2026 bab5. Instances differ in multi-commodity-flow formulation (path oder arc formulation) or time discretization and some are quite easy to solve while others (bab2, bab3 and bab6) are very difficult.",
   "group": "bab",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Elmar Swarat",
   "tags": [
@@ -213,8 +221,9 @@
  "blp-ar98": {
   "description": "Railway line planning instance",
   "group": "blp",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "M. Lübbecke",
+  "submitter": "M. L\u00fcbbecke",
   "tags": [
    "benchmark",
    "benchmark_suitable",
@@ -229,8 +238,9 @@
  "blp-ic97": {
   "description": "Railway line planning instance. Solved using CPLEX 12.3 (12 threads) on an Intel Xeon X5650 @ 2.67GHz, 12MB cache, 24GB RAM in 4947.5 sec. Solved using Gurobi 4.6.1 (12 threads) in 1867.9 sec.",
   "group": "blp",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "M. Lübbecke",
+  "submitter": "M. L\u00fcbbecke",
   "tags": [
    "benchmark_suitable",
    "decomposition",
@@ -242,8 +252,9 @@
  "blp-ic98": {
   "description": "Railway line planning instance",
   "group": "blp",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
-  "submitter": "M. Lübbecke",
+  "submitter": "M. L\u00fcbbecke",
   "tags": [
    "benchmark",
    "benchmark_suitable",
@@ -254,7 +265,7 @@
   ]
  },
  "bppc6-02": {
-  "description": "The models that we attach solve the “bar-relaxation”, also known as the “Bin Packing Problem with Contiguity” or the “P||Cmax with contiguity”. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
+  "description": "The models that we attach solve the \u201cbar-relaxation\u201d, also known as the \u201cBin Packing Problem with Contiguity\u201d or the \u201cP||Cmax with contiguity\u201d. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
   "group": "bppc",
   "status": "hard",
   "submitter": "Manuel Iori",
@@ -264,7 +275,7 @@
   ]
  },
  "bppc6-06": {
-  "description": "The models that we attach solve the “bar-relaxation”, also known as the “Bin Packing Problem with Contiguity” or the “P||Cmax with contiguity”. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
+  "description": "The models that we attach solve the \u201cbar-relaxation\u201d, also known as the \u201cBin Packing Problem with Contiguity\u201d or the \u201cP||Cmax with contiguity\u201d. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
   "group": "bppc",
   "status": "open",
   "submitter": "Manuel Iori",
@@ -297,6 +308,7 @@
  },
  "circ10-3": {
   "description": "Instance from the 2010 SAT conference pseudo-Boolean competition",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "M. Winkler",
   "tags": [
@@ -359,6 +371,7 @@
  },
  "co-100": {
   "description": "Model from optical access network planning",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Axel Werner",
   "tags": [
@@ -373,7 +386,7 @@
   ]
  },
  "cryptanalysiskb128n5obj16": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "cryptanalysis",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -396,6 +409,7 @@
  },
  "d20200": {
   "description": "Instance coming from the COR@L test set with unknown origin",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "COR@L test set",
   "tags": [
@@ -408,6 +422,7 @@
  },
  "dc1l": {
   "description": "Crew scheduling instance",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "Double-Click SAS",
   "tags": [
@@ -416,6 +431,7 @@
   ]
  },
  "ds": {
+  "imported_from": "Imported from MIPLIB2003.",
   "status": "hard",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -484,6 +500,7 @@
  "eilA101-2": {
   "description": "Set partitioning problem approximation for capicated vehicle routing problem instance from TSPLIB",
   "group": "eil",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "J. Linderoth",
   "tags": [
@@ -496,6 +513,7 @@
  "eilC76-2": {
   "description": "Set partitioning problem approximation for capicated vehicle routing problem instance from TSPLIB",
   "group": "eil",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "J. Linderoth",
   "tags": [
@@ -518,6 +536,7 @@
  },
  "ex10": {
   "description": "Formulations of Boolean SAT instance",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Iulian Ober",
   "tags": [
@@ -531,6 +550,7 @@
  },
  "ex1010-pi": {
   "description": "Logic synthesis problem from the 2010 SAT conference pseudo-Boolean competition",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "M. Winkler",
   "tags": [
@@ -540,6 +560,7 @@
  },
  "ex9": {
   "description": "Formulations of Boolean SAT instance",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Iulian Ober",
   "tags": [
@@ -552,6 +573,7 @@
   ]
  },
  "fast0507": {
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -637,7 +659,7 @@
   ]
  },
  "fhnw-schedule-paira200": {
-  "description": "Continuous-time project scheduling and selection, inspired by an industry use-case. Each project has a value, the sum should be maximized. Each project has a deadline, and an earliest start date. Three formulations of the same problem (“Pair A”, “Pair B” and “Slot”) - we expect “Pair B” to be the best formulation.",
+  "description": "Continuous-time project scheduling and selection, inspired by an industry use-case. Each project has a value, the sum should be maximized. Each project has a deadline, and an earliest start date. Three formulations of the same problem (\u201cPair A\u201d, \u201cPair B\u201d and \u201cSlot\u201d) - we expect \u201cPair B\u201d to be the best formulation.",
   "group": "schedule",
   "status": "open",
   "submitter": "Simon Felix",
@@ -664,6 +686,7 @@
  "ger50-17-trans-dfn-3t": {
   "description": "Multi-layer network design problem using a link-flow formulation over a path-flow formulation.",
   "group": "ger50",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "C. Raack",
   "tags": [
@@ -674,6 +697,7 @@
  "ger50-17-trans-pop-3t": {
   "description": "Multi-layer network design problem using a link-flow formulation over a path-flow formulation.",
   "group": "ger50",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "C. Raack",
   "tags": [
@@ -683,6 +707,7 @@
  },
  "germanrr": {
   "description": "Model from a German railroad company. Solved in June 2013 by CPLEX 12.5.1 (24 threads) in about 5.2 hours.",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Q. Chen",
   "tags": [
@@ -696,7 +721,7 @@
   ]
  },
  "gfd-schedulen180f7d50m30k18": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "gfd-schedule",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -717,6 +742,7 @@
  "gmut-75-50": {
   "description": "Timber harvest scheduling model. Solved by ParaXpress in a 12288 core supercomputer run on HLRN III. These are harvest scheduling models of hypothetical forest planning problems where net timber revenues are maximized over a planning horizon subject to four sets of constraints: 1. Each management unit can be harvested only once over the planning horizon, 2. Volume harvested in one planning period should not be less or more than some portion of that in the preceding period, 3. Area-weighted average age of the forest by the end of the plan should notbe less than a certain target age. 4. Clearcut size in any planning period has to be below a specific limit. Decision variable are management units and generalized management units (group of management units with a combined area not exceeding the limit on clearcut size) and can be either fully harvested or left untouched in any planning period, therefore there is a binary restriction on the decision variables.",
   "group": "gmu",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "hard",
   "submitter": "Nora Konnyu",
   "tags": [
@@ -728,6 +754,7 @@
  "gmut-76-40": {
   "description": "Timber harvest scheduling model These are harvest scheduling models of hypothetical forest planning problems where net timber revenues are maximized over a planning horizon subject to four sets of constraints: 1. Each management unit can be harvested only once over the planning horizon, 2. Volume harvested in one planning period should not be less or more than some portion of that in the preceding period, 3. Area-weighted average age of the forest by the end of the plan should notbe less than a certain target age. 4. Clearcut size in any planning period has to be below a specific limit. Decision variable are management units and generalized management units (group of management units with a combined area not exceeding the limit on clearcut size) and can be either fully harvested or left untouched in any planning period, therefore there is a binary restriction on the decision variables.",
   "group": "gmu",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Nora Konnyu",
   "tags": [
@@ -739,6 +766,7 @@
  "gmut-76-50": {
   "description": "Timber harvest scheduling model These are harvest scheduling models of hypothetical forest planning problems where net timber revenues are maximized over a planning horizon subject to four sets of constraints: 1. Each management unit can be harvested only once over the planning horizon, 2. Volume harvested in one planning period should not be less or more than some portion of that in the preceding period, 3. Area-weighted average age of the forest by the end of the plan should notbe less than a certain target age. 4. Clearcut size in any planning period has to be below a specific limit. Decision variable are management units and generalized management units (group of management units with a combined area not exceeding the limit on clearcut size) and can be either fully harvested or left untouched in any planning period, therefore there is a binary restriction on the decision variables.",
   "group": "gmu",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Nora Konnyu",
   "tags": [
@@ -761,10 +789,10 @@
   ]
  },
  "graphdraw-opmanager": {
-  "description": "In the Graph Drawing problem a set of symbols must be placed in a plane and their connections routed. The objective is to produce aesthetically pleasant, easy to read diagrams. As a primary concern one usually tries to minimize edges crossing, edges’ length, waste of space and number of bents in the connections. When formulated with these constraints the problem becomes NP-Hard . In practice many additional complicating requirements can be included, such as non-uniform sizes for symbols. Thus, some heuristics such as the generalized force-direct method and Simulated Annealing have been proposed to tackle this problem. uses a grid structure to approach the Entity-Relationship (ER) drawing problem, emphasizing the differences between ER drawing and the more classical circuit drawing problems. presented different ways of producing graph layouts (e.g.: tree, orthogonal, visibility representations, hierarchic, among others) for general graphs with applications on different subjects. The ability to automatically produce high quality layouts is very important in many applications, one of these is Software Engineering: the availability of easy to understand ER diagrams, for instance, can improve the time needed for developers to master database models and increase their productivity. Our solution approach involves two phases: ( \\(i\\) ) firstly the optimal placement of entities is solved, i.e.: entities are positioned so as to minimize the distances between connected entities; and ( \\(ii\\) ) secondly, edges are routed minimizing bends and avoiding the inclusion of connectors too close. We present the model for the first phase of our problem.",
+  "description": "In the Graph Drawing problem a set of symbols must be placed in a plane and their connections routed. The objective is to produce aesthetically pleasant, easy to read diagrams. As a primary concern one usually tries to minimize edges crossing, edges\u2019 length, waste of space and number of bents in the connections. When formulated with these constraints the problem becomes NP-Hard . In practice many additional complicating requirements can be included, such as non-uniform sizes for symbols. Thus, some heuristics such as the generalized force-direct method and Simulated Annealing have been proposed to tackle this problem. uses a grid structure to approach the Entity-Relationship (ER) drawing problem, emphasizing the differences between ER drawing and the more classical circuit drawing problems. presented different ways of producing graph layouts (e.g.: tree, orthogonal, visibility representations, hierarchic, among others) for general graphs with applications on different subjects. The ability to automatically produce high quality layouts is very important in many applications, one of these is Software Engineering: the availability of easy to understand ER diagrams, for instance, can improve the time needed for developers to master database models and increase their productivity. Our solution approach involves two phases: ( \\(i\\) ) firstly the optimal placement of entities is solved, i.e.: entities are positioned so as to minimize the distances between connected entities; and ( \\(ii\\) ) secondly, edges are routed minimizing bends and avoiding the inclusion of connectors too close. We present the model for the first phase of our problem.",
   "group": "graphdraw",
   "status": "open",
-  "submitter": "Cézar Augusto Nascimento e Silva",
+  "submitter": "C\u00e9zar Augusto Nascimento e Silva",
   "tags": [
    "general_linear",
    "invariant_knapsack",
@@ -806,7 +834,7 @@
   ]
  },
  "hypothyroid-k1": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "hypothyroid",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -821,8 +849,9 @@
   ]
  },
  "iis-hc-cov": {
-  "description": "23 “middlehard” Set-Covering Instances for MIPLIB: they have a small number of variables compared to the number of constraints and CPLEX 12.1 needs about one hour to solve them.For more information, have a look into the readme file which explains how the instances can be created.",
+  "description": "23 \u201cmiddlehard\u201d Set-Covering Instances for MIPLIB: they have a small number of variables compared to the number of constraints and CPLEX 12.1 needs about one hour to solve them.For more information, have a look into the readme file which explains how the instances can be created.",
   "group": "iis",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Marc Pfetsch",
   "tags": [
@@ -832,7 +861,7 @@
   ]
  },
  "k1mushroom": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "k1mushroom",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -846,6 +875,7 @@
  },
  "leo1": {
   "description": "Instance coming from the COR@L test set with unknown origin",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "COR@L test set",
   "tags": [
@@ -859,6 +889,7 @@
  },
  "leo2": {
   "description": "Instance coming from the COR@L test set with unknown origin",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "COR@L test set",
   "tags": [
@@ -905,6 +936,7 @@
  "momentum1": {
   "description": "Snapshot based UMTS planning problem, having a very wide dynamic range in the matrix coefficients and tending to be numerically unstable. Solved with Gurobi 4.5.1 on a 12-core Linux system in 3590.41 sec.",
   "group": "momentum",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "T. Koch",
   "tags": [
@@ -919,6 +951,7 @@
  },
  "mzzv11": {
   "description": "Railway slot allocation problems",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "S. Lukac",
   "tags": [
@@ -934,6 +967,7 @@
   ]
  },
  "mzzv42z": {
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -950,6 +984,7 @@
  "n2seq36q": {
   "description": "Static line planning models on the Dutch IC network",
   "group": "nseq",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "R. Meirich",
   "tags": [
@@ -966,6 +1001,7 @@
  "n3div36": {
   "description": "Static line planning models on the Dutch IC network. Solved with Gurobi 4.5.1 on a 12-core Linux system in 1700.37 sec.",
   "group": "nseq",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "R. Meirich",
   "tags": [
@@ -980,6 +1016,7 @@
  },
  "neos-1122047": {
   "group": "neos-pseudoapplication-46",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -992,6 +1029,7 @@
  },
  "neos-1171448": {
   "group": "neos-pseudoapplication-8",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -1004,6 +1042,7 @@
  },
  "neos-1354092": {
   "group": "neos-pseudoapplication-47",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -1017,6 +1056,7 @@
  },
  "neos-1367061": {
   "group": "neos-pseudoapplication-76",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -1028,6 +1068,7 @@
  },
  "neos-1593097": {
   "group": "neos-pseudoapplication-77",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -1708,6 +1749,7 @@
  },
  "neos-498623": {
   "group": "neos-pseudoapplication-5",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -1969,6 +2011,7 @@
  },
  "neos-525149": {
   "group": "neos-pseudoapplication-110",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -1994,6 +2037,7 @@
  },
  "neos-578379": {
   "group": "neos-pseudoapplication-42",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2009,6 +2053,7 @@
  },
  "neos-662469": {
   "group": "neos-pseudoapplication-73",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2026,6 +2071,7 @@
  "neos-738098": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-15",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2044,6 +2090,7 @@
  },
  "neos-848589": {
   "group": "neos-pseudoapplication-77",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2055,6 +2102,7 @@
  },
  "neos-860300": {
   "group": "neos-pseudoapplication-23",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2068,8 +2116,9 @@
   ]
  },
  "neos-872648": {
-  "description": "Imported from the MIPLIB2010 submissions. The instance was solved using up to 48 threads in 4000 sec. using Gurobi 9.0. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "The instance was solved using up to 48 threads in 4000 sec. using Gurobi 9.0. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "neos-pseudoapplication-61",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2081,6 +2130,7 @@
  },
  "neos-873061": {
   "group": "neos-pseudoapplication-61",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2094,6 +2144,7 @@
  },
  "neos-876808": {
   "group": "neos-pseudoapplication-62",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2111,6 +2162,7 @@
  "neos-885086": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-8",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2123,6 +2175,7 @@
  "neos-885524": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-100",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2134,6 +2187,7 @@
  },
  "neos-948346": {
   "group": "neos-pseudoapplication-48",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2147,6 +2201,7 @@
  },
  "neos-950242": {
   "group": "neos-pseudoapplication-72",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2163,6 +2218,7 @@
  },
  "neos-953928": {
   "group": "neos-pseudoapplication-13",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2177,8 +2233,9 @@
   ]
  },
  "neos-954925": {
-  "description": "Imported from the MIPLIB2010 submissions. The instance was solved using up to 40 threads in 120 sec. using Gurobi 9.0",
+  "description": "The instance was solved using up to 40 threads in 120 sec. using Gurobi 9.0",
   "group": "neos-pseudoapplication-48",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2192,6 +2249,7 @@
  },
  "neos-956971": {
   "group": "neos-pseudoapplication-48",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2206,6 +2264,7 @@
  },
  "neos-957143": {
   "group": "neos-pseudoapplication-48",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2220,6 +2279,7 @@
  },
  "neos-957323": {
   "group": "neos-pseudoapplication-48",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2237,6 +2297,7 @@
  "neos6": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-47",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2250,6 +2311,7 @@
  },
  "neos8": {
   "group": "neos-pseudoapplication-15",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2265,6 +2327,7 @@
  },
  "neos9": {
   "group": "neos-pseudoapplication-5",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2277,6 +2340,7 @@
  },
  "netdiversion": {
   "description": "Directed network diversion problem",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Chris Cullenbine",
   "tags": [
@@ -2294,6 +2358,7 @@
  "ns1111636": {
   "description": "Network routing problem. Solved in June 2013 by CPLEX 12.5.1 with 32 threads in about 102 hours.",
   "group": "neos-pseudoapplication-67",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "hard",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2308,6 +2373,7 @@
  "ns1116954": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-51",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2326,6 +2392,7 @@
  "ns1430538": {
   "description": "Instance coming from the NEOS Server with unknown application.",
   "group": "neos-pseudoapplication-76",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "hard",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2338,6 +2405,7 @@
  "ns1456591": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-52",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2350,6 +2418,7 @@
  "ns1631475": {
   "description": "Traveling salesman problem model",
   "group": "neos-pseudoapplication-75",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2365,6 +2434,7 @@
  "ns1690781": {
   "description": "Instance coming from the NEOS Server with unknown application.",
   "group": "neos-pseudoapplication-8",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2376,6 +2446,7 @@
  "ns1760995": {
   "description": "Instance coming from the NEOS Server with unknown application.",
   "group": "neos-pseudoapplication-12",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2392,6 +2463,7 @@
  "ns1828997": {
   "description": "Instance coming from the NEOS Server with unknown application.",
   "group": "neos-pseudoapplication-13",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2405,6 +2477,7 @@
  "ns1830653": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-110",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2422,6 +2495,7 @@
  "ns1856153": {
   "description": "Sensor placement problem",
   "group": "neos-pseudoapplication-6",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2436,6 +2510,7 @@
  "ns1905797": {
   "description": "Vehicle routing problem",
   "group": "neos-pseudoapplication-102",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2452,6 +2527,7 @@
  "ns1952667": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-78",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2465,6 +2541,7 @@
  "ns2122698": {
   "description": "Instance coming from the NEOS Server with unknown application. Solved by SCIP-CPLEX in 9500 seconds.",
   "group": "neos-pseudoapplication-93",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Timo Berthold",
   "tags": [
@@ -2480,6 +2557,7 @@
  "ns2124243": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-93",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "Timo Berthold",
   "tags": [
@@ -2495,6 +2573,7 @@
  "ns930473": {
   "description": "Instance coming from the NEOS Server with unknown application",
   "group": "neos-pseudoapplication-46",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "NEOS Server Submission",
   "tags": [
@@ -2505,6 +2584,7 @@
   ]
  },
  "nsrand-ipx": {
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -2607,6 +2687,7 @@
   ]
  },
  "nw04": {
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -2619,6 +2700,7 @@
  "opm2-z8-s0": {
   "description": "Problems coming from precedence constrained knapsacks arising in mining applications. These are one-period problems with integer data but large root LP GAP",
   "group": "opm2",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -2629,8 +2711,9 @@
   ]
  },
  "pb-fit2d": {
-  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear –output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a –timeout 3 -D fIndConstr=true -D fMIPdomains=false –writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
+  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear \u2013output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a \u2013timeout 3 -D fIndConstr=true -D fMIPdomains=false \u2013writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
   "group": "pb-",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Gleb Belov",
   "tags": [
@@ -2643,8 +2726,9 @@
   ]
  },
  "pb-grow22": {
-  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear –output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a –timeout 3 -D fIndConstr=true -D fMIPdomains=false –writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
+  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear \u2013output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a \u2013timeout 3 -D fIndConstr=true -D fMIPdomains=false \u2013writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
   "group": "pb-",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Gleb Belov",
   "tags": [
@@ -2790,7 +2874,7 @@
   ]
  },
  "proteindesign121hz512p9": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 60 minutes.",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 60 minutes.",
   "group": "proteindesign",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2802,7 +2886,7 @@
   ]
  },
  "proteindesign121pgb11p9": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "proteindesign",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2813,7 +2897,7 @@
   ]
  },
  "proteindesign122trx11p8": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "proteindesign",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2825,7 +2909,7 @@
   ]
  },
  "radiationm40-10-02": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "radiation",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2844,6 +2928,7 @@
  "rail01": {
   "description": "Track allocation problem modeled as arc coupling problem",
   "group": "rail0",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Thomas Schlechte",
   "tags": [
@@ -2860,6 +2945,7 @@
  },
  "rail507": {
   "description": "Railway crew scheduling",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "A. Caprara, M. Fischetti, P. Toth",
   "tags": [
@@ -2872,6 +2958,7 @@
   ]
  },
  "rd-rplusc-21": {
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -2887,6 +2974,7 @@
  "reblock420": {
   "description": "Multi-period mine production scheduling instance",
   "group": "reblock",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "Andreas Bley",
   "tags": [
@@ -2899,6 +2987,7 @@
  "rmine11": {
   "description": "Set of instances comming from open pit minning over a cube and several time periods and two knapsack constraints per period",
   "group": "rmine",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -2910,6 +2999,7 @@
  "rmine13": {
   "description": "Set of instances comming from open pit minning over a cube and several time periods and two knapsack constraints per period",
   "group": "rmine",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -2921,6 +3011,7 @@
  "rmine15": {
   "description": "Set of instances comming from open pit minning over a cube and several time periods and two knapsack constraints per period",
   "group": "rmine",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -2930,8 +3021,9 @@
   ]
  },
  "rocII-10-11": {
-  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Imported from the MIPLIB2010 submissions. Rambau opinion control.",
+  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Rambau opinion control.",
   "group": "rocI",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Joerg Rambau",
   "tags": [
@@ -2944,8 +3036,9 @@
   ]
  },
  "rocII-5-11": {
-  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Imported from the MIPLIB2010 submissions. Rambau opinion control.",
+  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Rambau opinion control.",
   "group": "rocI",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Joerg Rambau",
   "tags": [
@@ -2960,8 +3053,9 @@
   ]
  },
  "rocII-8-11": {
-  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Imported from the MIPLIB2010 submissions. Rambau opinion control.",
+  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Rambau opinion control.",
   "group": "rocI",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Joerg Rambau",
   "tags": [
@@ -2988,6 +3082,7 @@
  },
  "rvb-sub": {
   "description": "Set partitioning instance resulting from a column generation algorithm used for duty scheduling in public transportation",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "hard",
   "submitter": "S. Weider",
   "tags": [
@@ -2999,6 +3094,7 @@
  "s100": {
   "description": "Wine Scheduling problem with 100 jobs and four processing machines",
   "group": "Spinoza",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "hard",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3016,6 +3112,7 @@
  "s250r10": {
   "description": "Wine Scheduling problem with 250 jobs (up to 10 alternatives for processing) and four processing machines",
   "group": "Spinoza",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3033,6 +3130,7 @@
  "s55": {
   "description": "Wine Scheduling problem with 55 jobs and four processing machines",
   "group": "Spinoza",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3049,6 +3147,7 @@
  "satellites2-25": {
   "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances.",
   "group": "satellites",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "He Renjie",
   "tags": [
@@ -3067,6 +3166,7 @@
  "satellites2-40": {
   "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances.",
   "group": "satellites",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "He Renjie",
   "tags": [
@@ -3086,6 +3186,7 @@
  "satellites2-60-fs": {
   "description": "Satellite scheduling instance",
   "group": "satellites",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "He Renjie",
   "tags": [
@@ -3102,8 +3203,9 @@
   ]
  },
  "satellites3-25": {
-  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances. Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "satellites",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "He Renjie",
   "tags": [
@@ -3120,8 +3222,9 @@
   ]
  },
  "satellites4-25": {
-  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances. Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "satellites",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "He Renjie",
   "tags": [
@@ -3139,6 +3242,7 @@
  "sct32": {
   "description": "Assembly line balancing for printed circuit board production. First solved by Gurobi 7.0 in 65 hours (32 threads).",
   "group": "sct",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "hard",
   "submitter": "Siemens",
   "tags": [
@@ -3156,6 +3260,7 @@
  "sct5": {
   "description": "Assembly line balancing for printed circuit board production",
   "group": "sct",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "Siemens",
   "tags": [
@@ -3169,7 +3274,7 @@
   ]
  },
  "seqsolve1": {
-  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "description": "The 3 problems in this group (seqsolve1\u2013seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
   "group": "seqsolve",
   "status": "open",
   "submitter": "Irv Lustig",
@@ -3185,7 +3290,7 @@
   ]
  },
  "seqsolve2short4288": {
-  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "description": "The 3 problems in this group (seqsolve1\u2013seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
   "group": "seqsolve",
   "status": "open",
   "submitter": "Irv Lustig",
@@ -3202,7 +3307,7 @@
   ]
  },
  "seqsolve3short4288excess384": {
-  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "description": "The 3 problems in this group (seqsolve1\u2013seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
   "group": "seqsolve",
   "status": "open",
   "submitter": "Irv Lustig",
@@ -3220,6 +3325,7 @@
  },
  "shipsched": {
   "description": "A ship scheduling problem on the Kiel Canal",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "Marco Luebbecke",
   "tags": [
@@ -3231,6 +3337,7 @@
  "shs1014": {
   "description": "Joint online truck scheduling and inventory management for multiple warehouses.",
   "group": "shs",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "Christoph Helmberg",
   "tags": [
@@ -3246,6 +3353,7 @@
  "shs1023": {
   "description": "Joint online truck scheduling and inventory management for multiple warehouses. The problem was solved by CPLEX 12.5 on a Intel Xeon E7540 @ 2.00 GHz, 1TB with 24 cores and 24 threads. The maximum memory requirements were 410GB. It took approximately 114.5 hours.",
   "group": "shs",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "hard",
   "submitter": "C. Helmberg",
   "tags": [
@@ -3261,6 +3369,7 @@
  "shs1042": {
   "description": "Joint online truck scheduling and inventory management for multiple warehouses.",
   "group": "shs",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
   "submitter": "C. Helmberg",
   "tags": [
@@ -3272,8 +3381,9 @@
   ]
  },
  "sing326": {
-  "description": "Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "sing",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3288,8 +3398,9 @@
   ]
  },
  "sing44": {
-  "description": "Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "sing",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3320,6 +3431,7 @@
  "sp97ar": {
   "description": "Railway line planning instance. Solved with Gurobi 4.5.1 on a 12-core Linux system in 2678.77 sec.",
   "group": "sp9",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
   "tags": [
@@ -3335,6 +3447,7 @@
  "sp97ic": {
   "description": "Railway line planning instance",
   "group": "sp9",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
   "tags": [
@@ -3350,6 +3463,7 @@
  "sp98ar": {
   "description": "Railway line planning instance",
   "group": "sp9",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
   "tags": [
@@ -3365,6 +3479,7 @@
  "sp98ic": {
   "description": "Railway line planning instance",
   "group": "sp9",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
   "tags": [
@@ -3378,7 +3493,7 @@
   ]
  },
  "splice1k1": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "splice",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -3449,6 +3564,7 @@
  },
  "stockholm": {
   "description": "Toll booth placement problem",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
   "submitter": "Paul Rubin",
   "tags": [
@@ -3555,18 +3671,20 @@
   ]
  },
  "t1717": {
-  "description": "Vehicle scheduling set partitioning problem from Berlin’s Telebus handicapped people’s transportation system Imported from MIPLIB2010. Solution was computed with 12 Threads in 20 hours, by giving highest priority to variables with most edges in conflict graph.",
+  "description": "Vehicle scheduling set partitioning problem from Berlin\u2019s Telebus handicapped people\u2019s transportation system Solution was computed with 12 Threads in 20 hours, by giving highest priority to variables with most edges in conflict graph.",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
-  "submitter": "R. Borndörfer",
+  "submitter": "R. Bornd\u00f6rfer",
   "tags": [
    "binary",
    "set_partitioning"
   ]
  },
  "t1722": {
-  "description": "Vehicle scheduling set partitioning problem from Berlin’s Telebus handicapped people’s transportation system",
+  "description": "Vehicle scheduling set partitioning problem from Berlin\u2019s Telebus handicapped people\u2019s transportation system",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
-  "submitter": "R. Borndörfer",
+  "submitter": "R. Bornd\u00f6rfer",
   "tags": [
    "binary",
    "set_partitioning"
@@ -3599,6 +3717,7 @@
  "triptim1": {
   "description": "Trip timetable optimization problem.",
   "group": "triptim",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -3615,8 +3734,9 @@
   ]
  },
  "triptim2": {
-  "description": "Trip timetable optimization problem. Imported from MIPLIB2010. First solved by Gurobi 6.5 (12 threads) in about 13 days (December 2015).",
+  "description": "Trip timetable optimization problem. First solved by Gurobi 6.5 (12 threads) in about 13 days (December 2015).",
   "group": "triptim",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "hard",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -3634,6 +3754,7 @@
  "triptim4": {
   "description": "Trip timetable optimization problem.",
   "group": "triptim",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "hard",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -3648,8 +3769,9 @@
   ]
  },
  "triptim7": {
-  "description": "Trip timetable optimization problem. Imported from the MIPLIB2010 submissions. Solved in 12470s on 4 cores using Gurobi 9.0. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Trip timetable optimization problem. Solved in 12470s on 4 cores using Gurobi 9.0. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "triptim",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -3666,6 +3788,7 @@
  "triptim8": {
   "description": "Trip timetable optimization problem.",
   "group": "triptim",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "hard",
   "submitter": "MIPLIB submission pool",
   "tags": [
@@ -3681,6 +3804,7 @@
  },
  "uccase7": {
   "group": "uccase",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3696,6 +3820,7 @@
  },
  "uccase8": {
   "group": "uccase",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3711,6 +3836,7 @@
  },
  "uccase9": {
   "group": "uccase",
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3728,8 +3854,9 @@
  },
  "unitcal_7": {
   "description": "California seven day unit commitment problem",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "R. O’Neill",
+  "submitter": "R. O\u2019Neill",
   "tags": [
    "benchmark",
    "benchmark_suitable",
@@ -3740,6 +3867,7 @@
   ]
  },
  "var-smallemery-m6j6": {
+  "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
   "submitter": "Daniel Espinoza",
   "tags": [
@@ -3752,6 +3880,7 @@
  },
  "vpphard": {
   "description": "Vehicle positioning problem instance",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "C. Cardonha",
   "tags": [
@@ -3765,6 +3894,7 @@
  },
  "vpphard2": {
   "description": "Vehicle positioning problem instance. Solved using CPLEX 12.4 in 43987 seconds (May 2012). Solved using Gurobi 5.6.2 in 124 seconds (May 2014).Solved using CPLEX 12.6 in 225 seconds (May 2014).",
+  "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
   "submitter": "C. Cardonha",
   "tags": [
