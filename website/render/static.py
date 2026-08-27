@@ -47,6 +47,12 @@ def render_guide() -> str:
         ("instance", "string",
          f"Name of the MIPLIB 2017 instance this one derives from. The published "
          f"file is that name plus {mono('_if')} or {mono('_ub')}."),
+        ("sample_kind", "string",
+         f"Which half the file belongs to: {mono('pruned_infeasible_sibling')} for "
+         f"the primal set, {mono('lp_unbounded_after_drop')} for the dual one. The "
+         f"first name is older than the wording on these pages and claims more than "
+         f"the file records: what it holds is the side of a branch the search did "
+         f"not explore."),
         ("n_vars, n_cons, nnz", "integer",
          f"Columns, rows and matrix nonzeros of the published file, counted from "
          f"the file itself rather than from the model that produced it. The "
@@ -95,7 +101,7 @@ def render_guide() -> str:
     ])
 
     internal = _dl([
-        ("sample_id, sample_kind, schema_version, size", "various",
+        ("sample_id, schema_version, size", "various",
          f"Left over from the mining pipeline. {mono('sample_id')} indexes the "
          f"candidate pool the published file was drawn from, not this collection; "
          f"{mono('size')} is MIPLIB's own difficulty class for the source and says "
@@ -203,8 +209,8 @@ def render_about() -> str:
     cuts, presolve, probing and primal heuristics switched off. A callback follows the
     search, infers the branch taken at each step from the one integral bound that changes
     on an integer variable, and re-solves the opposite side on a standalone LP template.
-    When that side has no feasible point, it is written out. The result is a node of the
-    tree the search actually built, not a synthetic one.</p>
+    When that side has no feasible point, it is written out. The bounds come from a
+    branch the run actually took, not from bounds tightened at random.</p>
   </div>
 </div>
 <div class="section">

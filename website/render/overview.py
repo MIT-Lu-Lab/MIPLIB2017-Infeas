@@ -25,8 +25,8 @@ def _dataset_jsonld(totals: dict, site_url: str, release_base_url: str | None) -
         "description": (
             f"{totals['n_samples']} linear programs with no optimal solution, each "
             "derived from a MIPLIB 2017 instance with its integrality dropped. "
-            f"{n.get('primal', 0)} have no feasible point, each one a node a "
-            "branch-and-bound search reached and pruned. The other "
+            f"{n.get('primal', 0)} have no feasible point, each the side of a branch "
+            "a branch-and-bound search did not explore. The other "
             f"{n.get('dual', 0)} are feasible with an unbounded objective, produced "
             "by removing a minimal set of bounds and constraints from a root "
             f"relaxation. They run up to {totals['max_vars']} variables and "

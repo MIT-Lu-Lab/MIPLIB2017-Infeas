@@ -23,8 +23,10 @@ def test_dark_overrides_exist_for_both_states():
 
 
 def test_body_paints_its_own_background():
-    m = re.search(r"body\{(.*?)\}", A.STYLESHEET, re.S)
-    assert "background:var(--paper)" in m.group(1)
+    # anchored to a line start, so a rule like `html,body{...}` earlier in the
+    # sheet is not mistaken for the body rule itself
+    m = re.search(r"^body\{(.*?)\}", A.STYLESHEET, re.S | re.M)
+    assert m and "background:var(--paper)" in m.group(1)
 
 
 def test_no_em_dash_anywhere_in_assets():
@@ -41,7 +43,6 @@ def test_filter_script_is_self_contained():
     assert "http" not in A.FILTER_SCRIPT
     assert "addEventListener" in A.FILTER_SCRIPT
     assert "data-f" in A.FILTER_SCRIPT and "data-k" in A.FILTER_SCRIPT
-
 
 def test_the_page_loads_nothing_from_a_third_party():
     """The fonts are served from the site, so an archived copy renders as published

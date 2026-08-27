@@ -80,9 +80,9 @@ COLUMNS = {
 }
 
 BROWSE_BLURB = {
-    "primal": "Linear programs with no feasible point. Each one is a node that a "
-              "branch-and-bound search reached and then pruned, on a distinct MIPLIB 2017 "
-              "instance.",
+    "primal": "Linear programs with no feasible point. Each is the side of a branch "
+              "that a branch-and-bound search did not explore, on a distinct MIPLIB "
+              "2017 instance.",
     "dual": "Linear programs whose objective is unbounded, from MIPLIB 2017 root "
             "relaxations with a minimal set of bounds and constraints removed.",
 }

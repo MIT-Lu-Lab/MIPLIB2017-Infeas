@@ -1,3 +1,5 @@
+import re
+
 from website import load as L, render as V
 
 
@@ -25,7 +27,7 @@ def test_active_nav_item_is_marked():
     # Scoped to <nav>: assets.STYLESHEET separately contains the literal
     # substring 'aria-current="page"' in a CSS attribute selector, which
     # would otherwise double-count against the whole page.
-    nav_html = html.split('<nav class="top">', 1)[1].split('</nav>', 1)[0]
+    nav_html = re.search(r"<nav [^>]*>(.*?)</nav>", html, re.S).group(1)
     assert 'aria-current="page"' in nav_html
     assert nav_html.count('aria-current="page"') == 1
 
