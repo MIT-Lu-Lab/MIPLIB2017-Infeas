@@ -171,12 +171,13 @@ one `meta.yml` per submission recording the licence its submitter chose.
   `owner`, `name` and `email` all empty.
 
   MIPLIB 2017 scoped its licensing requirement to what was newly submitted to
-  it. Gleixner et al. (§2.1) write that "all contributions were required to be
-  submitted under a license" and that "the default license was chosen to be the
-  Creative Commons CC BY-SA 4.0 license" of the 3,670 instances submitted to
-  MIPLIB 2017; the 2,051 older instances were added, in their words, "keeping
-  their original submission information intact". MIPLIB 2010 predates that
-  requirement, so no licence accompanied them and none was applied afterwards.
+  it. Gleixner et al. (§3.1, "The submission phase") write that "all
+  contributions were required to be submitted under a license" and that "the
+  default license was chosen to be the Creative Commons CC BY-SA 4.0 license"
+  of the 3,670 instances submitted to MIPLIB 2017; the 2,051 older instances
+  were added, in their words, "keeping their original submission information
+  intact". MIPLIB 2010 predates that requirement, so no licence accompanied
+  them and none was applied afterwards.
   Neither MIPLIB nor anyone else has placed these instances under CC BY-SA 4.0,
   and this project does not do so either.
 
