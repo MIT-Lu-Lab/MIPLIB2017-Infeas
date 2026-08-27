@@ -400,6 +400,12 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 .src-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;min-width:0;font-size:13px;padding:5px 0}
 .src-row span:first-child{flex:none;color:var(--muted)}
 .src-row span:last-child{min-width:0;text-align:right;overflow-wrap:anywhere;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+/* the Terms row's value: mono like the rest of the column, a link when the
+   licence has a canonical text to point at */
+.src-row>a:last-child{min-width:0;text-align:right;overflow-wrap:anywhere;font-family:var(--f-mono);font-size:13px;color:var(--view);text-decoration:none;border-bottom:1px solid var(--rule)}
+.src-row>a:last-child:hover{border-bottom-color:var(--view)}
+/* why an instance has no licence, in MIPLIB's own words, under the row it explains */
+.terms-note{margin-top:2px;padding-bottom:4px}
 .extlink{
   display:inline-block;margin-top:12px;font-size:12.5px;color:var(--view);
   text-decoration:none;border-bottom:1px solid var(--rule);

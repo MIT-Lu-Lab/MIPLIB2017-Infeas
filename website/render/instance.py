@@ -155,6 +155,23 @@ def _source_card(sample: Sample) -> Markup:
     parts = [el("div", el("span", k), el("span", v), class_="src-row")
              for k, v in rows]
 
+    # The terms are per instance because they differ per instance: 130 of the 262
+    # sources predate MIPLIB's submission licence and carry none. Saying so here,
+    # rather than only in LICENSE, keeps a page from implying the licence beside it
+    # covers what it does not.
+    terms, terms_url = sample.source_terms
+    value = el("a", terms, href=terms_url, class_="terms-link") if terms_url \
+        else el("span", terms)
+    parts.append(el("div", el("span", "Terms"), value, class_="src-row"))
+    if sample.imported_from:
+        parts.append(el("p", join((
+            sample.imported_from,
+            " It predates MIPLIB's submission form, and the licence that form "
+            "required. See ",
+            el("a", "LICENSE",
+               href=rel(sample.page_path + "index.html", "LICENSE.txt")), ".")),
+            class_="hint terms-note"))
+
     shown = [t for t in sample.tags if t not in NON_LP_TAGS]
     if shown:
         parts.append(el("div", join(el("span", t, class_="srctag") for t in shown),

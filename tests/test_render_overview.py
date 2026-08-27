@@ -133,17 +133,38 @@ def test_overview_carries_a_machine_readable_dataset_description(index):
     doc = json.loads(m.group(1))
     assert doc["@type"] == "Dataset"
     assert doc["url"] == "https://example.invalid/mi"
-    # No blanket "license": 141 source instances carry CC BY-SA 4.0, one carries
-    # BSD 3-Clause and 120 carry none, so one machine-readable licence for the
+    # No blanket "license": 131 source instances carry CC BY-SA 4.0, one carries
+    # BSD 3-Clause and 130 carry none, so one machine-readable licence for the
     # dataset would assert a grant nobody made. Consumers get the notice instead.
     assert "license" not in doc
-    assert doc["usageInfo"] == "LICENSE.txt"
+    assert doc["usageInfo"] == "https://example.invalid/mi/LICENSE.txt"
     assert {c["name"] for c in doc["creator"]} == {"Haihao Lu", "Bo Tang"}
     assert [d["contentUrl"] for d in doc["distribution"]] == [
         "https://e.invalid/dl/primal-infeasible.zip",
         "https://e.invalid/dl/dual-infeasible.zip"]
     # the counts in it have to be the real ones, not a number typed into a template
     assert "3 linear programs" in doc["description"]
+
+
+def test_the_dataset_description_points_at_the_notice_absolutely(index):
+    """A dataset catalogue reads this document off-site, where a relative path
+    resolves against nothing. Without an origin the field is absent rather than
+    a guess, as the canonical URL is."""
+    import json
+    import re
+    samples = L.load_index(index)
+
+    doc = json.loads(re.search(r'ld\+json">(.*?)</script>',
+                               V.render_overview(L.collection_totals(samples)),
+                               re.S).group(1))
+    assert "usageInfo" not in doc
+
+    doc = json.loads(re.search(r'ld\+json">(.*?)</script>',
+                               V.render_overview(L.collection_totals(samples),
+                                                 site_url="https://example.invalid/mi/"),
+                               re.S).group(1))
+    assert doc["usageInfo"] == "https://example.invalid/mi/LICENSE.txt"
+    assert "license" not in doc
 
 
 def test_the_dataset_description_omits_downloads_it_does_not_have(index):

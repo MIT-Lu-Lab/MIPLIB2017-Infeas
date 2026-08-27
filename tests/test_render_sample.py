@@ -132,6 +132,37 @@ def test_source_card_credits_the_miplib_submitter(index):
     assert "Source description quoted from MIPLIB 2017" in html
 
 
+def test_source_card_states_the_terms_of_this_instance_alone(index):
+    """The 262 sources do not share one licence, so a page cannot imply they do.
+
+    130 of them predate MIPLIB's submission form and carry no licence at all. A
+    page that showed CC BY-SA beside one of those would assert a grant nobody
+    made, which is the error this row exists to prevent.
+    """
+    s = _samples(index)[("primal", "aaa")]
+
+    licensed = V.render_sample(s, None)
+    assert "CC BY-SA 4.0" in licensed
+    assert "No licence of record" not in licensed
+
+    legacy = V.render_sample(R.Sample(**{
+        **s.__dict__, "imported_from": "Imported from MIPLIB2010."}), None)
+    assert "No licence of record" in legacy
+    assert "CC BY-SA 4.0" not in legacy
+    # MIPLIB's own wording is the evidence, so it is quoted rather than paraphrased
+    assert "Imported from MIPLIB2010." in legacy
+    assert 'href="../../LICENSE.txt"' in legacy
+
+
+def test_the_one_bsd_source_is_not_shown_as_cc_by_sa(index):
+    """Its contributor chose other terms; ZIB records `other-license: BSD`."""
+    s = _samples(index)[("primal", "aaa")]
+    bsd = V.render_sample(
+        R.Sample(**{**s.__dict__, "instance": R.BSD_LICENSED_SOURCE}), None)
+    assert "BSD 3-Clause" in bsd
+    assert "CC BY-SA 4.0" not in bsd
+
+
 def test_source_card_omits_absent_metadata(index):
     """The cache is optional; without it the page still renders."""
     s = _samples(index)[("primal", "aaa")]

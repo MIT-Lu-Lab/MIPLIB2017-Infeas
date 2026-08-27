@@ -1,6 +1,6 @@
 # MIPLIB-Infeas
 
-[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+[![Licence: see LICENSE](https://img.shields.io/badge/Licence-see%20LICENSE-lightgrey.svg)](LICENSE)
 
 Linear programs with no optimal solution, derived from
 [MIPLIB 2017](https://miplib.zib.de/) instances with their integrality dropped. One set has
@@ -38,7 +38,7 @@ website/    the generator, standard library only
 metadata/   site-index.json, what the pages render, projected from the sidecars
             miplib_meta.json, MIPLIB 2017's own entry for each source instance
 schema/     a JSON Schema for the .meta.json sidecars
-fonts/      the eight IBM Plex faces the site serves, under the OFL
+fonts/      the eight faces the site serves, OFL subsets of IBM Plex
 scripts/    tooling for the published set; only these read the instances
 ```
 
@@ -66,4 +66,20 @@ Please also cite [Gleixner et al., “MIPLIB 2017: Data-Driven Compilation of th
 
 ## Licence
 
-The collection is released under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). MIPLIB 2017 uses that licence by default; the source instance `adult-max5features` is the one documented BSD 3-Clause exception. Its notice and the complete terms for this adapted collection are reproduced in [LICENSE](LICENSE).
+The 262 MIPLIB 2017 instances adapted here do not all carry the same terms, and
+[LICENSE](LICENSE) sets out each case against MIPLIB's own submission records:
+
+| source instances | terms |
+| ---: | :--- |
+| 131 | CC BY-SA 4.0, the default of the MIPLIB 2017 submission form |
+| 1 | BSD 3-Clause, for `adult-max5features`, whose notice is reproduced in full |
+| 130 | no licence of record: MIPLIB's own instance pages record these as imported from an earlier edition, which predates its licensing requirement |
+
+To the extent this project holds copyright or related rights in them, its own
+work (the derivation, the sidecars, the indexes, and the site and the code that
+builds it) is released under
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), as are the
+linear programs derived from the 131 instances that carry it. That licence is
+**not** applied to the 130, because neither MIPLIB nor anyone else ever placed
+them under it; they are redistributed on the footing ZIB distributes them on,
+with their source named and their contributor credited.

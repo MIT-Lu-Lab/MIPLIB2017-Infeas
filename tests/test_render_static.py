@@ -76,14 +76,25 @@ def test_about_credits_miplib_and_states_the_licence():
 
 
 def test_about_does_not_claim_one_licence_for_every_source_instance():
-    """120 of the 262 sources came from MIPLIB 2010 with no licence recorded.
+    """130 of the 262 sources came from an earlier MIPLIB, with no licence recorded.
 
     Saying the collection is simply CC BY-SA, as this page once did, asserts a
     grant that neither MIPLIB nor its contributors ever made.
     """
     html = " ".join(V.render_about().split())   # the claim may wrap mid-phrase
-    assert "141" in html and "120" in html
+    assert "131" in html and "130" in html
     assert "no licence of record" in html
+
+
+def test_the_licence_grant_is_limited_to_rights_actually_held():
+    """A licence can only give away what the licensor has.
+
+    Much of what this project adds is fact rather than expression: a constraint
+    matrix, a row count, a checksum. Granting CC BY-SA over those outright would
+    claim a copyright that may not subsist, so the grant is qualified.
+    """
+    html = " ".join(V.render_about().split())
+    assert "To the extent this project holds copyright or related rights" in html
 
 
 def test_about_describes_both_mining_procedures():

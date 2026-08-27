@@ -16,7 +16,7 @@ from __future__ import annotations
 import posixpath
 from urllib.parse import urlsplit, urlunsplit
 
-__all__ = ["normalize_site_url", "page_url", "rel"]
+__all__ = ["normalize_site_url", "page_url", "rel", "site_file"]
 
 
 def rel(from_page: str, to: str) -> str:
@@ -62,9 +62,24 @@ def normalize_site_url(site_url: str | None) -> str | None:
     return urlunsplit((parts.scheme, parts.netloc, path, "", ""))
 
 
+def _origin(site_url: str) -> str:
+    """The public base, with exactly one trailing slash.
+
+    normalize_site_url guarantees that of what the CLI is given, but a renderer
+    can be called with a base directly, and one that ends without a slash used
+    to produce a URL with a path segment glued to the file after it.
+    """
+    return site_url.rstrip("/") + "/"
+
+
 def page_url(site_url: str, page_rel: str) -> str:
     """Map a generated ``index.html`` path to its public trailing-slash URL."""
     suffix = "index.html"
     if not page_rel.endswith(suffix):
         raise ValueError(f"not an HTML page path: {page_rel!r}")
-    return site_url + page_rel[:-len(suffix)]
+    return _origin(site_url) + page_rel[:-len(suffix)]
+
+
+def site_file(site_url: str, path: str) -> str:
+    """A file published at the site root, as an absolute URL."""
+    return _origin(site_url) + path.lstrip("/")

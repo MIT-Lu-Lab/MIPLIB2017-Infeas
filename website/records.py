@@ -4,10 +4,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass, replace
 
-__all__ = ["HEAD_LIMIT", "INDEX_VERSION", "NON_LP_TAGS", "OTHER_SUBSET",
-           "SUBSET_META", "DualProvenance",
+__all__ = ["BSD_LICENSED_SOURCE", "HEAD_LIMIT", "INDEX_VERSION", "NON_LP_TAGS",
+           "NOTICE_URL", "OTHER_SUBSET", "SUBSET_META", "DualProvenance",
            "PrimalProvenance", "Sample", "fmt_bytes", "fmt_int", "from_record",
-           "sample_from_meta", "subset_of", "to_record", "with_source_metadata"]
+           "sample_from_meta", "source_terms", "subset_of", "to_record",
+           "with_source_metadata"]
 
 # long provenance lists render only this many entries
 HEAD_LIMIT = 12
@@ -50,6 +51,39 @@ NON_LP_TAGS = frozenset({
     "benchmark", "benchmark_suitable",                # MIPLIB's benchmarking protocol
     "feasibility",                                    # source had no objective; ours do
 })
+
+# MIPLIB 2017's submission form defaulted to CC BY-SA 4.0 and one submitter chose
+# otherwise. ZIB's submission repository records it as `license: other` with
+# `other-license: BSD`; its notice is reproduced in LICENSE.
+BSD_LICENSED_SOURCE = "adult-max5features"
+
+# SPDX where terms exist to name, and where a licence has a canonical text, its URL.
+_SPDX_URL = {"CC-BY-SA-4.0": "https://creativecommons.org/licenses/by-sa/4.0/"}
+NOTICE_URL = "https://mit-lu-lab.github.io/MIPLIB-Infeas/LICENSE.txt"
+
+
+def source_terms(instance: str, imported_from: str | None) -> dict:
+    """The terms a source instance carries, as the sidecars record them.
+
+    One definition, because two would drift: the pages render this and
+    scripts/add_source_terms.py writes it into every published sidecar.
+
+    Three cases, and the collection cannot state one licence for all of them.
+    An instance MIPLIB records as imported came from an edition predating the
+    submission form, and so predates the licence that form required: nobody
+    placed it under CC BY-SA and neither does this collection, so `spdx` is
+    null rather than a guess. `adult-max5features` is the one contributor who
+    chose terms other than the default. Everything else was submitted to
+    MIPLIB 2017 under that default. LICENSE sets out all three at length.
+    """
+    if imported_from:
+        return {"spdx": None, "summary": "No licence of record",
+                "miplib_import": imported_from, "notice": NOTICE_URL}
+    if instance == BSD_LICENSED_SOURCE:
+        return {"spdx": "BSD-3-Clause", "summary": "BSD 3-Clause",
+                "notice": NOTICE_URL}
+    return {"spdx": "CC-BY-SA-4.0", "summary": "CC BY-SA 4.0",
+            "notice": NOTICE_URL}
 
 
 @dataclass(frozen=True)
@@ -107,6 +141,9 @@ class Sample:
     tags: tuple = ()
     source_description: str | None = None
     source_group: str | None = None
+    # MIPLIB's own note of which edition this instance came from, absent for one
+    # submitted to MIPLIB 2017 itself. It is what source_terms turns on.
+    imported_from: str | None = None
     sha256: str | None = None
     mps_url: str | None = None
     meta_url: str | None = None
@@ -156,6 +193,12 @@ class Sample:
     @property
     def miplib_url(self) -> str:
         return f"https://miplib.zib.de/instance_details_{self.instance}.html"
+
+    @property
+    def source_terms(self) -> tuple[str, str | None]:
+        """What the Terms row shows, as (summary, url), from source_terms()."""
+        terms = source_terms(self.instance, self.imported_from)
+        return (terms["summary"], _SPDX_URL.get(terms["spdx"]))
 
 
 def _provenance_from_meta(meta: dict, subset: str) -> PrimalProvenance | DualProvenance:
@@ -210,7 +253,8 @@ def with_source_metadata(sample: Sample, miplib: dict | None) -> Sample:
     """
     m = miplib or {}
     return replace(sample, submitter=m.get("submitter"), tags=tuple(m.get("tags", ())),
-                   source_description=m.get("description"), source_group=m.get("group"))
+                   source_description=m.get("description"), source_group=m.get("group"),
+                   imported_from=m.get("imported_from"))
 
 
 # The index is a committed file, reviewed in diffs, so the shape is written out
