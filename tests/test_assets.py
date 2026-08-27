@@ -43,6 +43,19 @@ def test_filter_script_is_self_contained():
     assert "http" not in A.FILTER_SCRIPT
     assert "addEventListener" in A.FILTER_SCRIPT
     assert "data-f" in A.FILTER_SCRIPT and "data-k" in A.FILTER_SCRIPT
+    assert "matchMedia('(max-width: 780px)')" in A.FILTER_SCRIPT
+    assert "facets.open = !compact" in A.FILTER_SCRIPT
+    assert "facet-selected" in A.FILTER_SCRIPT
+
+
+def test_mobile_layout_has_explicit_overflow_guards():
+    assert "grid-template-columns:196px minmax(0,1fr)" in A.STYLESHEET
+    assert ".detail{display:grid;grid-template-columns:minmax(0,1fr) 292px" in A.STYLESHEET
+    assert ".detail-head h1" in A.STYLESHEET and "overflow-wrap:anywhere" in A.STYLESHEET
+    assert ".btn-label{min-width:0;overflow-wrap:anywhere}" in A.STYLESHEET
+    assert "thead th{position:static}" in A.STYLESHEET
+    assert "height:auto;min-height:56px" in A.STYLESHEET
+
 
 def test_the_page_loads_nothing_from_a_third_party():
     """The fonts are served from the site, so an archived copy renders as published

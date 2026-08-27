@@ -121,7 +121,10 @@ def _facet_rail(groups: list[tuple], rows: list[Sample]) -> str:
             f'<span class="n">{sum(1 for s in rows if pred(s))}</span></label>'
             for opt, key, pred in options)
         rail.append(f'<div class="facet"><span class="eyebrow">{esc(label)}</span>{items}</div>')
-    return f'<div class="facets">{"".join(rail)}</div>'
+    return ('<details class="facets" open>'
+            '<summary><span>Filters</span><span class="facet-selected">None selected</span>'
+            '</summary><div class="facet-groups">'
+            + "".join(rail) + "</div></details>")
 
 
 def _header(cols: list[tuple]) -> str:

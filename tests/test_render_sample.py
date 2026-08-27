@@ -79,6 +79,7 @@ def test_download_button_is_disabled_without_a_url(index):
     s = _samples(index)[("primal", "aaa")]
     html = V.render_sample(s, None)
     assert 'aria-disabled="true"' in html
+    assert '<span class="btn-label">aaa_if.mps.gz</span>' in html
 
 
 def test_download_button_is_enabled_with_a_url(index):
@@ -89,6 +90,7 @@ def test_download_button_is_enabled_with_a_url(index):
     assert 'href="https://e.invalid/aaa_if.mps.gz"' in html
     assert 'href="https://e.invalid/aaa_if.meta.json"' in html
     assert 'aria-disabled="true"' not in html
+    assert html.count('class="btn-label"') == 2
 
 
 def test_cut_fields_never_appear(index):
