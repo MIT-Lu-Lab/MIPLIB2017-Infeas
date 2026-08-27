@@ -2,7 +2,8 @@ import json
 
 import pytest
 
-from website.records import INDEX_VERSION, sample_from_meta, to_record
+from website.records import (INDEX_VERSION, sample_from_meta, source_terms,
+                             to_record)
 
 # Sidecars as the miners write them. The fixture projects them the way
 # scripts/build_site_index.py does, so a test exercises the same path the
@@ -11,16 +12,19 @@ _SIDECARS = [
     ({"instance": "bbb", "sample_kind": "pruned_infeasible_sibling",
       "n_vars": 10, "n_cons": 4, "nnz": 20, "depth": 3,
       "branch_var": 1, "branch_sense": ">=", "branch_value": 2.0,
-      "path_entries": ["x1>=2"], "sha256": "ab" * 32}, 1024, 200),
+      "path_entries": ["x1>=2"], "sha256": "ab" * 32,
+      "source_terms": source_terms("bbb", None)}, 1024, 200),
     ({"instance": "aaa", "sample_kind": "pruned_infeasible_sibling",
       "n_vars": 7, "n_cons": 2, "nnz": 9, "depth": 1,
       "branch_var": 0, "branch_sense": "<=", "branch_value": 0.0,
-      "path_entries": [], "sha256": "cd" * 32}, 512, 180),
+      "path_entries": [], "sha256": "cd" * 32,
+      "source_terms": source_terms("aaa", "Imported from MIPLIB2010.")}, 512, 180),
     ({"instance": "aaa", "sample_kind": "lp_unbounded_after_drop",
       "n_vars": 7, "n_cons": 1, "nnz": 5, "natural_unbounded": False,
       "drops": [{"kind": "row", "row": 0, "name": "c0", "original_sense": "L",
                  "original_rhs": 12.0, "original_range": None}],
-      "sha256": "ef" * 32},
+      "sha256": "ef" * 32,
+      "source_terms": source_terms("aaa", "Imported from MIPLIB2010.")},
      256, 160),
 ]
 

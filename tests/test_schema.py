@@ -52,3 +52,29 @@ def test_the_schema_covers_every_field_the_fixture_sidecars_carry():
     named = set(schema["properties"])
     for meta, _, _ in _SIDECARS:
         assert set(meta) <= named, set(meta) - named
+
+
+def test_a_sidecar_may_record_that_no_licence_exists(validator):
+    """A null `spdx` is the honest value for 130 of the 262 source instances.
+
+    They were imported from an earlier MIPLIB, which predates the submission
+    form and the licence it required. The schema has to accept the null, or the
+    only way to pass validation would be to name a licence nobody granted.
+    """
+    meta = dict(_SIDECARS[0][0])
+    meta["source_terms"] = {"spdx": None, "summary": "No licence of record",
+                            "miplib_import": "Imported from MIPLIB2010."}
+    assert not list(validator.iter_errors(meta))
+
+
+def test_a_sidecar_cannot_invent_a_licence(validator):
+    """The enum is closed, so a plausible-looking identifier is still rejected."""
+    meta = dict(_SIDECARS[0][0])
+    meta["source_terms"] = {"spdx": "CC-BY-4.0", "summary": "CC BY 4.0"}
+    assert list(validator.iter_errors(meta))
+
+
+def test_source_terms_needs_both_the_identifier_and_the_words(validator):
+    meta = dict(_SIDECARS[0][0])
+    meta["source_terms"] = {"summary": "CC BY-SA 4.0"}
+    assert list(validator.iter_errors(meta))

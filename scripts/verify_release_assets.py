@@ -78,9 +78,13 @@ def main() -> None:
     samples = load_index(args.index)
     want = expected(samples)
     # the browse and download pages link these by name, so they are part of the
-    # contract even though no instance record mentions them
+    # contract even though no instance record mentions them. LICENSE.txt is here
+    # for a different reason: an archive is what a reader takes away, and the
+    # terms have to travel with it, so the notice is a release asset in its own
+    # right and an unexpected-asset failure must not be what says so.
     archives = ["primal-infeasible.zip", "dual-infeasible.zip",
-                "primal-infeasible.csv", "dual-infeasible.csv"]
+                "primal-infeasible.csv", "dual-infeasible.csv",
+                "LICENSE.txt"]
     have = fetch_assets(args.repo, args.tag, os.environ.get("GITHUB_TOKEN"))
     print(f"index: {len(samples)} instances, {len(want)} files, "
           f"plus {len(archives)} archives and indexes")
