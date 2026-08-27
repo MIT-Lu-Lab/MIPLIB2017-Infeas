@@ -37,6 +37,8 @@ def test_no_em_dash_anywhere_in_assets():
 def test_sort_script_is_self_contained():
     assert "http" not in A.SORT_SCRIPT
     assert "addEventListener" in A.SORT_SCRIPT
+    assert "button[data-sort]" in A.SORT_SCRIPT
+    assert "keydown" not in A.SORT_SCRIPT
 
 
 def test_filter_script_is_self_contained():
@@ -46,6 +48,8 @@ def test_filter_script_is_self_contained():
     assert "matchMedia('(max-width: 780px)')" in A.FILTER_SCRIPT
     assert "facets.open = !compact" in A.FILTER_SCRIPT
     assert "facet-selected" in A.FILTER_SCRIPT
+    assert "result-count" in A.FILTER_SCRIPT
+    assert "table-foot" not in A.FILTER_SCRIPT
 
 
 def test_mobile_layout_has_explicit_overflow_guards():
@@ -59,6 +63,16 @@ def test_mobile_layout_has_explicit_overflow_guards():
     assert ".nav-short{display:none}" in A.STYLESHEET
     assert "nav.top .nav-full{display:none}" in A.STYLESHEET
     assert "nav.top .nav-short{display:inline}" in A.STYLESHEET
+    # 200% zoom on common desktop widths produces a 640-720px CSS viewport.
+    assert "@media (max-width:780px)" in A.STYLESHEET
+    assert ".topbar{position:static}" in A.STYLESHEET
+
+
+def test_topbar_fallback_and_button_size_text_keep_their_contrast():
+    topbar = re.search(r"\.topbar\{(.*?)\}", A.STYLESHEET, re.S).group(1)
+    assert topbar.index("background:var(--paper)") < topbar.index("background:color-mix")
+    size = re.search(r"\.btn \.sz\{(.*?)\}", A.STYLESHEET, re.S).group(1)
+    assert "opacity" not in size
 
 
 def test_the_page_loads_nothing_from_a_third_party():

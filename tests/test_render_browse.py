@@ -43,6 +43,7 @@ def test_mobile_filters_use_a_native_disclosure(index):
     assert '<summary><span>Filters</span>' in html
     assert 'class="facet-selected">None selected</span>' in html
     assert '<div class="facet-groups">' in html
+    assert '<fieldset class="facet"><legend class="eyebrow">Variables</legend>' in html
 
 
 def test_row_data_f_matches_facet_predicates(index):
@@ -82,14 +83,35 @@ def test_no_size_class_and_no_em_dash(index):
 
 
 def test_sortable_headers_are_keyboard_reachable(index):
-    """Click-only sorting is unreachable for keyboard and screen-reader users."""
+    """Native buttons retain columnheader semantics and supply Enter/Space."""
     html = _browse(index, "primal")
-    heads = re.findall(r"<th[^>]*data-sort=[^>]*>", html)
-    assert heads
-    for h in heads:
-        assert 'tabindex="0"' in h, h
-        assert 'role="button"' in h, h
-        assert "aria-label=" in h, h
+    buttons = re.findall(r'<button[^>]*class="sort-button"[^>]*>', html)
+    assert buttons
+    for button in buttons:
+        assert 'type="button"' in button, button
+        assert "data-sort=" in button, button
+        assert "aria-label=" in button, button
+    assert '<th scope="col"><button' in html
+    assert not re.search(r'<th[^>]+role="button"', html)
+
+
+def test_table_has_headers_caption_and_a_named_scroll_region(index):
+    html = _browse(index, "primal")
+    assert ('class="table-wrap" tabindex="0" role="region" '
+            'aria-labelledby="primal-infeasible-table-caption"') in html
+    assert ('<caption id="primal-infeasible-table-caption" class="sr-only">'
+            'Primal-infeasible instances</caption>') in html
+    assert '<th scope="col">Download</th>' in html
+    assert '<th scope="row" class="name" data-v="aaa">' in html
+
+
+def test_download_names_and_filter_result_are_announced(index):
+    html = _browse(index, "primal")
+    assert 'aria-label="Download aaa as gzipped MPS: unavailable"' in html
+    assert re.search(
+        r'class="result-count" data-total="2"\s+role="status" '
+        r'aria-live="polite" aria-atomic="true">2 instances\.</span>', html)
+    assert "All data columns sort; Download does not." in html
 
 
 def test_tags_that_are_false_of_an_lp_are_not_offered(index):

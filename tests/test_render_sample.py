@@ -129,7 +129,7 @@ def test_source_card_credits_the_miplib_submitter(index):
     assert "set_partitioning" in html and "numerics" in html
     assert "A scheduling model." in html
     # MIPLIB's prose must be labelled as theirs, not passed off as ours
-    assert "Description from MIPLIB 2017." in html
+    assert "Source description quoted from MIPLIB 2017" in html
 
 
 def test_source_card_omits_absent_metadata(index):
@@ -137,5 +137,34 @@ def test_source_card_omits_absent_metadata(index):
     s = _samples(index)[("primal", "aaa")]
     html = V.render_sample(s, None)
     assert "Submitted by" not in html
-    assert "Description from MIPLIB" not in html
+    assert "Source description quoted from MIPLIB" not in html
     assert "miplib.zib.de/instance_details_aaa.html" in html
+
+
+def test_source_description_formats_links_and_known_math_safely(index):
+    s = _samples(index)[("primal", "aaa")]
+    described = replace(
+        s, source_description=("See https://example.test/model. Its matrix is "
+                               r"\(n\times n\); <b>upstream text</b>."))
+    html = V.render_sample(described, None)
+    assert '<a href="https://example.test/model">https://example.test/model</a>.' in html
+    assert "n \N{MULTIPLICATION SIGN} n" in html and r"\(n\times n\)" not in html
+    assert "&lt;b&gt;upstream text&lt;/b&gt;" in html
+
+
+def test_one_removed_element_uses_the_singular():
+    drop = {"kind": "bound", "side": "lb", "var": 0, "name": "x"}
+    s = R.Sample(instance="one-drop", n_vars=1, n_cons=1, nnz=1,
+                 file_bytes=1, meta_bytes=1,
+                 provenance=R.DualProvenance(
+                     bounds_dropped=1, rows_dropped=0, drops_head=(drop,)))
+    html = V.render_sample(s, None)
+    assert "1 entry" in html and "1 entries" not in html
+
+
+def test_detail_page_labels_breadcrumb_and_sidebar(index):
+    html = V.render_sample(_samples(index)[("primal", "aaa")], None)
+    assert '<nav class="crumb" aria-label="Breadcrumb">' in html
+    assert '<aside class="aside" aria-label="Downloads and source">' in html
+    assert '<h2 class="eyebrow">Download</h2>' in html
+    assert '<h2 class="eyebrow">Source instance</h2>' in html

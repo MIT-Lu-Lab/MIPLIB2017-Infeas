@@ -98,7 +98,7 @@ BROWSE = """
       <tbody>{rows}</tbody>
     </table></div>
     <p class="table-foot"><span class="result-count" data-total="{total}"
-      role="status" aria-live="polite" aria-atomic="true">{total_shown} instances.</span>
+      role="status" aria-live="polite" aria-atomic="true">{total_label}.</span>
       All data columns sort; Download does not.</p>
   </div>
 </div>
@@ -183,16 +183,23 @@ def _archive_link(subset: str, rows: list[Sample],
                   release_base_url: str | None) -> Markup:
     """The whole-subset download. Its size counts both files of every instance, so it
     is not the .mps.gz total the File column sums to."""
-    label = f"{fmt_int(len(rows))} instances, {fmt_bytes(sum(s.total_bytes for s in rows))}"
+    count = f"{fmt_int(len(rows))} {'instance' if len(rows) == 1 else 'instances'}"
+    label = f"{count}, {fmt_bytes(sum(s.total_bytes for s in rows))} unpacked"
     if not release_base_url:
-        return el("span", label, class_="dl", aria_disabled="true")
+        return el("span", label, class_="dl", role="link", aria_disabled="true",
+                  aria_label=f"{SUBSET_META[subset]['label']} archive: unavailable")
     href = f'{release_base_url.rstrip("/")}/{SUBSET_META[subset]["slug"]}.zip'
     return el("a", f"{label} ↓", class_="dl", href=href)
 
 
+def page_rel(subset: str) -> str:
+    """Where this subset's browse page goes, and what its links resolve from."""
+    return f"{SUBSET_META[subset]['slug']}/index.html"
+
+
 def render_browse(subset: str, samples: list[Sample],
                   release_base_url: str | None = None,
-                  canonical: str | None = None) -> str:
+                  site_url: str | None = None) -> str:
     """One subset's browse page: facet rail plus a sortable table."""
     info = SUBSET_META[subset]
     rows = [s for s in samples if s.subset == subset]
@@ -208,8 +215,13 @@ def render_browse(subset: str, samples: list[Sample],
         header=_header(cols),
         rows=join(_row(s, cols, groups) for s in rows),
         total=len(rows),
-        total_shown=fmt_int(len(rows)),
+        total_label=(f"{fmt_int(len(rows))} "
+                     f"{'instance' if len(rows) == 1 else 'instances'}"),
     )
-    return page(f"{info['label']} instances", body, active=subset, depth=1,
-                description=content.subset_description(subset, len(rows)),
-                canonical=canonical)
+    return page(f"{info['label']} instances", body, active=subset,
+                page_rel=page_rel(subset),
+                description=content.subset_description(
+                    subset, len(rows),
+                    sum(s.dual.natural_unbounded for s in rows)
+                    if subset == "dual" else 0),
+                site_url=site_url)

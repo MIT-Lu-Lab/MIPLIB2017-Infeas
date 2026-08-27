@@ -1,3 +1,5 @@
+import re
+
 from website import load as L, records as R, render as V
 
 
@@ -32,7 +34,8 @@ def test_download_page_states_no_size_when_it_has_none(index):
     assert "0 B" not in V.render_download(totals)
     assert "in all" not in V.render_download(totals)
     sizes = L.subset_bytes(samples)
-    assert f"{R.fmt_bytes(sum(sizes.values()))} in all" in V.render_download(totals, sizes=sizes)
+    assert (f"{R.fmt_bytes(sum(sizes.values()))} unpacked in all"
+            in V.render_download(totals, sizes=sizes))
 
 
 def test_download_page_does_not_mention_zenodo(index):
@@ -47,8 +50,10 @@ def test_download_page_does_not_mention_zenodo(index):
 def test_overview_citation_carries_no_doi(index):
     samples = L.load_index(index)
     html = V.render_overview(L.collection_totals(samples))
-    assert "doi" not in html.lower()
-    assert "howpublished" in html
+    citation = re.search(r'<div class="cite">(.*?)</div>', html, re.S).group(1)
+    assert "doi" not in citation.lower()
+    assert "howpublished" in citation
+    assert "https://doi.org/10.1007/s12532-020-00194-3" in html
 
 
 def test_overview_citation_uses_the_supplied_site_url(index):
@@ -65,6 +70,8 @@ def test_about_credits_miplib_and_states_the_licence():
     assert "CC BY-SA 4.0" in html
     # not plain CC-BY: the source instances are ShareAlike, so the adaptation must be too
     assert "CC-BY 4.0" not in html
+    assert "adult-max5features" in html and "BSD 3-Clause" in html
+    assert 'href="../LICENSE.txt"' in html
 
 
 def test_about_describes_both_mining_procedures():
@@ -84,3 +91,12 @@ def test_about_names_the_solver_that_produced_the_collection():
     # reproducing the tree requires knowing which solver built it
     assert "CPLEX" in html
     assert "HiGHS" in html and "Gurobi" in html
+
+
+def test_guide_explains_integrity_and_version_fields():
+    html = V.render_guide()
+    for field in ("file_bytes", "sha256", "sample_kind_version", "schema_version"):
+        assert field in html
+    assert "neither is an MPS-format version" in html
+    assert "x&lt;index&gt;&lt;sense&gt;&lt;value&gt;" in html
+    assert "lower bound" in html and "upper bound" in html

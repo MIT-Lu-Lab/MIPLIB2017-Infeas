@@ -65,6 +65,8 @@ def collection_totals(samples: list[Sample]) -> dict:
     return {
         "n_samples": len(samples),
         "counts": counts,
+        "natural_unbounded": sum(
+            s.subset == "dual" and s.dual.natural_unbounded for s in samples),
         "max_vars": max(s.n_vars for s in samples),
         "max_cons": max(s.n_cons for s in samples),
     }

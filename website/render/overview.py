@@ -39,16 +39,19 @@ OVERVIEW = """
       <p>The linear program, gzipped MPS, continuous variables only. Nothing to
       reconstruct before handing it to a solver.</p></div>
     <div class="file"><div class="fn">&lt;name&gt;.meta.json</div>
-      <p>How that program was derived from its source instance: the branch the search
-      took, or the bounds and constraints that were removed.</p></div>
+      <p>How that program was derived from its source instance: the recorded branch
+      for a primal-infeasible file; for a dual-infeasible file, either the bounds and
+      constraints removed or that the source relaxation was already unbounded.</p></div>
   </div>
 </div>
 <div class="section">
   <span class="eyebrow">Citing</span>
   <h2>How to cite</h2>
   <div class="cite">{citation}</div>
-  <p class="cite-note">Every instance
-  derives from the MIPLIB 2017 collection, which should be cited alongside this one.</p>
+  <p class="cite-note">Every instance derives from MIPLIB 2017. Please also cite
+  <a href="https://doi.org/10.1007/s12532-020-00194-3">Gleixner et al.,
+  “MIPLIB 2017: Data-Driven Compilation of the 6th Mixed-Integer Programming
+  Library”</a>.</p>
 </div>
 <div class="section">
   <h2>Contact</h2>
@@ -63,7 +66,7 @@ OVERVIEW = """
 """
 
 
-def _dataset_jsonld(totals: dict, site_url: str,
+def _dataset_jsonld(totals: dict, site_url: str | None,
                     release_base_url: str | None) -> Markup:
     """A schema.org/Dataset description of the collection.
 
@@ -78,7 +81,6 @@ def _dataset_jsonld(totals: dict, site_url: str,
         "alternateName": ("Primal- and Dual-Infeasible Linear Programs "
                           "from MIPLIB 2017"),
         "description": content.collection_summary(totals),
-        "url": site_url,
         "license": "https://creativecommons.org/licenses/by-sa/4.0/",
         "keywords": ["linear programming", "infeasibility detection",
                      "unbounded linear programs", "benchmark", "MIPLIB",
@@ -88,6 +90,8 @@ def _dataset_jsonld(totals: dict, site_url: str,
         "isBasedOn": "https://miplib.zib.de/",
         "encodingFormat": ["application/gzip", "application/json"],
     }
+    if site_url:
+        doc["url"] = site_url
     if release_base_url:
         base = release_base_url.rstrip("/")
         doc["distribution"] = [
@@ -103,9 +107,11 @@ def _dataset_jsonld(totals: dict, site_url: str,
               type="application/ld+json")
 
 
+PAGE = "index.html"
+
+
 def render_overview(totals: dict, site_url: str | None = None,
-                    release_base_url: str | None = None,
-                    canonical: str | None = None) -> str:
+                    release_base_url: str | None = None) -> str:
     """The site root.
 
     Args:
@@ -115,7 +121,7 @@ def render_overview(totals: dict, site_url: str | None = None,
         release_base_url (str | None): the release prefix, which the
             machine-readable description points at for the archives.
     """
-    site_url = site_url or "https://REPLACE-WITH-THE-PUBLISHED-SITE-URL"
+    citation_url = site_url or content.PUBLIC_SITE_URL
     n = totals["counts"]
     cards = join(
         fmt(CARD, tone=info["tone"], slug=info["slug"], label=info["label"],
@@ -129,8 +135,9 @@ def render_overview(totals: dict, site_url: str | None = None,
         n_dual=fmt_int(n.get("dual", 0)),
         max_vars=fmt_int(totals["max_vars"]),
         max_cons=fmt_int(totals["max_cons"]),
-        miplib=el("a", "MIPLIB 2017", href="https://miplib.zib.de/",
-                  target="_blank", rel="noopener"),
+        primal_verb="has" if n.get("primal", 0) == 1 else "have",
+        dual_verb="is" if n.get("dual", 0) == 1 else "are",
+        miplib=el("a", "MIPLIB 2017", href="https://miplib.zib.de/"),
     )
     body = fmt(
         OVERVIEW,
@@ -138,10 +145,10 @@ def render_overview(totals: dict, site_url: str | None = None,
         name=content.NAME,
         summary=summary,
         cards=cards,
-        citation=Markup(CITATION.substitute(url=esc(site_url))),
+        citation=Markup(CITATION.substitute(url=esc(citation_url))),
     )
     return page(content.NAME,
                 join((_dataset_jsonld(totals, site_url, release_base_url), body)),
-                active="overview", depth=0, narrow=True,
+                active="overview", page_rel=PAGE, narrow=True,
                 description=content.overview_description(totals),
-                canonical=canonical)
+                site_url=site_url)

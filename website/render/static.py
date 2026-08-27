@@ -4,13 +4,14 @@ from __future__ import annotations
 
 from .. import content
 from ..records import SUBSET_META, fmt_bytes, fmt_int
+from ..urls import rel
 from .shell import Markup, el, fmt, join, page
 
 CARD = """<div class="card {tone}">
-  <header><span class="eyebrow">{label}</span></header>
+  <header><h2 class="eyebrow">{label}</h2></header>
   <div class="body">
     {zip_btn}
-    <a class="btn ghost" href="../{slug}.csv">{slug}.csv<span class="sz">index</span></a>
+    <a class="btn ghost" href="{csv_href}">{slug}.csv<span class="sz">index</span></a>
     <p class="hint">The archive unpacks to <span class="mono">instances/{d}/</span>. The
     index lists every instance in this subset with its dimensions and the filename to
     fetch.</p>
@@ -23,7 +24,7 @@ GUIDE = """
   <h1>Reading a file</h1>
   <p class="sub">Every published instance is a gzipped MPS beside a
   <span class="mono">.meta.json</span> sidecar recording how it was derived. The reference
-  below explains each field; the <a href="../schema/meta.schema.json">JSON Schema</a>
+  below explains each field; the <a href="{schema_href}">JSON Schema</a>
   is the machine-readable contract.</p>
 </div>
 
@@ -43,11 +44,11 @@ GUIDE = """
 </div>
 
 <div class="section">
-  <h2>Fields you can ignore</h2>
+  <h2>Pipeline and versioning fields</h2>
   <div class="prose">
-    <p class="muted">These are artefacts of the pipeline that produced the collection.
-    They are kept so a file can be traced back to the run that made it, and are not
-    properties of the linear program.</p>
+    <p class="muted">These fields identify record formats or trace a file back to the
+    run that made it. They are useful for reproducibility, but are not numerical
+    properties of the linear program or versions of the MPS format.</p>
   </div>
   {internal}
 </div>
@@ -57,7 +58,7 @@ DOWNLOAD = """
 <div class="masthead">
   <span class="eyebrow">Files</span>
   <h1>Download</h1>
-  <p class="sub">{n_samples} instances. The archives below carry both
+  <p class="sub">{instance_count}. The archives below carry both
   files of every instance{in_all}.</p>
 </div>
 <div class="pair">{cards}</div>
@@ -85,12 +86,12 @@ ABOUT = """
 <div class="section">
   <h2>Dual-infeasible instances</h2>
   <div class="prose">
-    <p>Where the source instance's LP relaxation is feasible with a
-    bounded optimum, bounds and constraints are removed one at a time, each drawn from the optimal
-    dual support, until the objective becomes unbounded. A second pass then restores every
-    removal that turns out not to be needed, so the published set is minimal: put any one
-    element back and the LP is bounded again. Because relaxing a feasible problem cannot
-    make it infeasible, every one of these is genuinely unbounded rather than empty.</p>
+    <p>For 103 instances, the source LP relaxation is feasible with a bounded optimum.
+    Bounds and constraints are removed one at a time from the optimal dual support until
+    the objective becomes unbounded; a second pass restores every unnecessary removal,
+    leaving an inclusion-minimal set. The other two source relaxations are unbounded as
+    given, so nothing is removed. Because relaxing a feasible problem cannot make it
+    infeasible, every constructed instance is genuinely unbounded rather than empty.</p>
   </div>
 </div>
 <div class="section">
@@ -107,8 +108,9 @@ ABOUT = """
   <div class="prose">
     <p>CPLEX produced the collection. It ran the branch-and-bound search
     behind the primal-infeasible set, and it solved every LP in the drop-and-restore loop
-    behind the dual-infeasible set. Which nodes a tree contains depends on the solver that
-    built it, so reproducing this collection means reproducing that run.</p>
+    behind the 103 constructed dual-infeasible instances. Which nodes a tree contains
+    depends on the solver that built it, so reproducing this collection means reproducing
+    that run.</p>
     <p>HiGHS and Gurobi supply the presolve gates described above. Neither
     contributes an instance; they only reject the ones their presolve settles unaided.</p>
   </div>
@@ -116,16 +118,16 @@ ABOUT = """
 <div class="section">
   <h2>Source and licence</h2>
   <div class="prose">
-    <p>Every instance derives from the MIPLIB 2017 collection at
-    <a href="https://miplib.zib.de/">miplib.zib.de</a>, which should be cited alongside
-    this collection.</p>
-    <p>MIPLIB 2017 requires every contributed instance to carry a licence
-    granting redistribution, by default CC BY-SA 4.0. The instances here are adapted material
-    under that licence: each keeps its source instance's constraint matrix, objective and
-    right-hand side, and changes the variable bounds, the integrality, and in the dual set the
-    rows.
-    ShareAlike therefore carries over, and this collection is released under
-    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> as well.</p>
+    <p>Every instance derives from MIPLIB 2017. Please also cite
+    <a href="https://doi.org/10.1007/s12532-020-00194-3">Gleixner et al.,
+    “MIPLIB 2017: Data-Driven Compilation of the 6th Mixed-Integer Programming
+    Library”</a>.</p>
+    <p>The collection is released under
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+    MIPLIB 2017 uses that licence by default; <span class="mono">adult-max5features</span>
+    is the one documented BSD 3-Clause exception. Its notice, the required attribution,
+    and the complete terms for this adapted collection are reproduced in
+    <a href="{licence_href}">LICENSE</a>.</p>
   </div>
 </div>
 """
@@ -149,7 +151,12 @@ def _dl(rows) -> Markup:
         for name, kind, body in rows), class_="fields")
 
 
-def render_guide(canonical: str | None = None) -> str:
+GUIDE_PAGE = "guide/index.html"
+DOWNLOAD_PAGE = "download/index.html"
+ABOUT_PAGE = "about/index.html"
+
+
+def render_guide(site_url: str | None = None) -> str:
     """Reference for every field in a sidecar and every figure on a page.
 
     Without this a reader cannot tell that `drops[].var` is a 0-based column
@@ -171,6 +178,12 @@ def render_guide(canonical: str | None = None) -> str:
          fmt("Columns, rows and matrix nonzeros of the published file, counted from "
              "the file itself rather than from the model that produced it. The "
              "objective row is not counted in {n_cons}.", n_cons=mono("n_cons"))),
+        ("file_bytes", "integer",
+         fmt("Exact byte length of the published {mps} file.", mps=mono(".mps.gz"))),
+        ("sha256", "string",
+         fmt("Lowercase SHA-256 digest of the published {mps} file. Use it with "
+             "{size} to detect a truncated or corrupted download.",
+             mps=mono(".mps.gz"), size=mono("file_bytes"))),
     ])
 
     primal = _dl([
@@ -187,10 +200,12 @@ def render_guide(canonical: str | None = None) -> str:
              ours=mono(">=" + NBSP + "29"), taken=mono("<=" + NBSP + "28"))),
         ("path_entries", "list of strings",
          fmt("Every bound the node tightens relative to the source instance, written "
-             "{form}. The index is 0-based into the published file, which {flag} "
+             "{form}, where {sense} is {le} or {ge}. The index is 0-based into the "
+             "published file, which {flag} "
              "records. This is the node's whole bound box, not only the branch "
              "decisions on the path to it, so it is usually far longer than the "
-             "depth.", form=mono("x<index><=<value>"),
+             "depth.", form=mono("x<index><sense><value>"), sense=mono("sense"),
+             le=mono("<="), ge=mono(">="),
              flag=mono("path_entries_are_column_indices"))),
         ("path_head_named", "list of strings",
          "The first twelve entries with the column names resolved, which is what "
@@ -204,13 +219,15 @@ def render_guide(canonical: str | None = None) -> str:
              natural=mono("natural_unbounded"))),
         ("drops[]", "list of objects",
          fmt("One entry per removal. A bound drop carries {kb}, the column as {var} "
-             "(0-based index) and {name}, which {side} was relaxed, and the {value} "
-             "it held. A row drop carries {kr}, the row index and name, and the "
+             "(0-based index) and {name}, which {side} was relaxed ({lb} for the "
+             "lower bound or {ub} for the upper bound), and the {value} it held. "
+             "A row drop carries {kr}, the row index and name, and the "
              "{sense}, {rhs} and {rng} it had. <b>A dropped row's coefficients are "
              "not recorded</b>: restoring one means taking the row from the source "
              "instance.",
              kb=mono("kind: bound"), var=mono("var"), name=mono("name"),
-             side=mono("side"), value=mono("original_value"), kr=mono("kind: row"),
+             side=mono("side"), lb=mono("lb"), ub=mono("ub"),
+             value=mono("original_value"), kr=mono("kind: row"),
              sense=mono("original_sense"), rhs=mono("original_rhs"),
              rng=mono("original_range"))),
         ("natural_unbounded", "boolean",
@@ -219,11 +236,14 @@ def render_guide(canonical: str | None = None) -> str:
     ])
 
     internal = _dl([
-        ("sample_id, schema_version, size", "various",
+        ("sample_id, sample_kind_version, schema_version, size", "various",
          fmt("Left over from the mining pipeline. {sid} indexes the candidate pool "
-             "the published file was drawn from, not this collection; {size} is "
-             "MIPLIB's own difficulty class for the source and says nothing about "
-             "the published file.", sid=mono("sample_id"), size=mono("size"))),
+             "the published file was drawn from, not this collection. {kindv} and "
+             "{schemav} identify mining-pipeline record formats; neither is an "
+             "MPS-format version. {size} is MIPLIB's own difficulty class for the "
+             "source and says nothing about the published file.", sid=mono("sample_id"),
+             kindv=mono("sample_kind_version"), schemav=mono("schema_version"),
+             size=mono("size"))),
         ("parent_uid, parent_depth", "integer",
          fmt("Solver-internal node identifiers from the run that produced the file. "
              "{pd} is always {expr}.", pd=mono("parent_depth"),
@@ -236,14 +256,16 @@ def render_guide(canonical: str | None = None) -> str:
              picks=mono("picks"), drops=mono("drops"))),
     ])
 
-    body = fmt(GUIDE, common=common, primal=primal, dual=dual, internal=internal)
-    return page("Reading a file", body, active="guide", depth=1, narrow=True,
-                description=content.GUIDE_DESCRIPTION, canonical=canonical)
+    body = fmt(GUIDE, common=common, primal=primal, dual=dual, internal=internal,
+               schema_href=rel(GUIDE_PAGE, "schema/meta.schema.json"))
+    return page("Reading a file", body, active="guide", page_rel=GUIDE_PAGE,
+                narrow=True, description=content.GUIDE_DESCRIPTION,
+                site_url=site_url)
 
 
 def render_download(totals: dict, release_base_url: str | None = None,
                     sizes: dict[str, int] | None = None,
-                    canonical: str | None = None) -> str:
+                    site_url: str | None = None) -> str:
     """Download page: the links themselves.
 
     Args:
@@ -258,21 +280,31 @@ def render_download(totals: dict, release_base_url: str | None = None,
     cards = []
     for subset, info in SUBSET_META.items():
         slug = info["slug"]
-        size = fmt_bytes(sizes[subset]) if subset in sizes else ""
+        size = f"{fmt_bytes(sizes[subset])} unpacked" if subset in sizes else ""
         label = join((f"{slug}.zip", el("span", size, class_="sz")))
         zip_btn = (el("a", label, class_="btn", href=f"{base}/{slug}.zip") if base
-                   else el("span", label, class_="btn", aria_disabled="true"))
+                   else el("span", label, class_="btn", role="link",
+                           aria_disabled="true",
+                           aria_label=f"{info['label']} archive: unavailable"))
         cards.append(fmt(CARD, label=info["label"], slug=slug, tone=info["tone"],
-                         d=info["dir"], zip_btn=zip_btn))
+                         d=info["dir"], zip_btn=zip_btn,
+                         csv_href=rel(DOWNLOAD_PAGE, f"{slug}.csv")))
 
-    in_all = f", {fmt_bytes(sum(sizes.values()))} in all" if sizes else ""
-    body = fmt(DOWNLOAD, n_samples=fmt_int(totals["n_samples"]), in_all=in_all,
+    in_all = f", {fmt_bytes(sum(sizes.values()))} unpacked in all" if sizes else ""
+    n_samples = totals["n_samples"]
+    body = fmt(DOWNLOAD,
+               instance_count=(f"{fmt_int(n_samples)} "
+                               f"{'instance' if n_samples == 1 else 'instances'}"),
+               in_all=in_all,
                cards=join(cards))
-    return page("Download", body, active="download", depth=1, narrow=True,
-                description=content.DOWNLOAD_DESCRIPTION, canonical=canonical)
+    return page("Download", body, active="download", page_rel=DOWNLOAD_PAGE,
+                narrow=True, description=content.DOWNLOAD_DESCRIPTION,
+                site_url=site_url)
 
 
-def render_about(canonical: str | None = None) -> str:
+def render_about(site_url: str | None = None) -> str:
     """About page: how the instances were produced, provenance, licence, citation."""
-    return page("About", Markup(ABOUT), active="about", depth=1, narrow=True,
-                description=content.ABOUT_DESCRIPTION, canonical=canonical)
+    body = fmt(ABOUT, licence_href=rel(ABOUT_PAGE, "LICENSE.txt"))
+    return page("About", body, active="about", page_rel=ABOUT_PAGE,
+                narrow=True, description=content.ABOUT_DESCRIPTION,
+                site_url=site_url)

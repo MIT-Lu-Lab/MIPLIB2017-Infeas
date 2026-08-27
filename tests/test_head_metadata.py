@@ -62,8 +62,9 @@ def test_the_canonical_url_is_absent_until_the_build_knows_the_origin(index):
     assert "canonical" not in head
     assert 'property="og:url"' not in head
 
-    url = "https://example.invalid/mi/primal-infeasible/aaa/"
-    head = _head(V.render_sample(samples[0], None, url))
+    site = "https://example.invalid/mi/"
+    head = _head(V.render_sample(samples[0], None, site))
+    url = site + samples[0].page_path
     assert f'<link rel="canonical" href="{url}">' in head
     assert _meta(head, "og:url", attr="property") == url
 
@@ -78,6 +79,6 @@ def test_the_description_of_an_instance_leads_with_its_name(index):
 
 def test_a_description_is_escaped_for_its_attribute():
     hostile = 'x" onload="alert(1)'
-    html = V.page("t", V.Markup(""), active="about", depth=0, description=hostile)
+    html = V.page("t", V.Markup(""), active="about", page_rel="index.html", description=hostile)
     assert 'onload=' not in _head(html).replace('content="x&quot; onload=&quot;', "")
     assert "&quot; onload=&quot;alert(1)" in html

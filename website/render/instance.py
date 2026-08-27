@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
+import re
+
 from .. import content
 from ..records import (NON_LP_TAGS, SUBSET_META, DualProvenance,
                        PrimalProvenance, Sample, fmt_bytes, fmt_int)
+from ..urls import rel
 from .shell import Markup, el, fmt, join, page
 
 DOWNLOAD_CARD = """<div class="card">
-  <header><span class="eyebrow">Download</span></header>
+  <header><h2 class="eyebrow">Download</h2></header>
   <div class="body">
     {mps}
     {meta}
@@ -18,10 +21,10 @@ DOWNLOAD_CARD = """<div class="card">
 </div>"""
 
 SOURCE_CARD = """<div class="card">
-  <header><span class="eyebrow">Source instance</span></header>
+  <header><h2 class="eyebrow">Source instance</h2></header>
   <div class="body">
     {body}
-    <a class="extlink" href="{url}" target="_blank" rel="noopener">
+    <a class="extlink" href="{url}">
       View on MIPLIB 2017 →</a>
   </div>
 </div>"""
@@ -54,7 +57,8 @@ DUAL_LEDE = """
 
 DETAIL = """
 <div class="detail-head">
-  <div class="crumb"><a href="../">{subset}</a> / {instance}</div>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="{up}">{subset}</a>
+    <span aria-hidden="true"> / </span><span aria-current="page">{instance}</span></nav>
   <h1>{instance}</h1>
   <div class="badges">{badges}</div>
 </div>
@@ -64,7 +68,7 @@ DETAIL = """
     {panels}
     {crosslink}
   </div>
-  <div class="aside">{aside}</div>
+  <aside class="aside" aria-label="Downloads and source">{aside}</aside>
 </div>
 """
 
@@ -91,13 +95,18 @@ def _shown_of(shown: int, total: int) -> Markup:
                    "The complete list is in the sidecar.", class_="more")
 
 
+def _entry_count(total: int) -> str:
+    return f"{fmt_int(total)} {'entry' if total == 1 else 'entries'}"
+
+
 def _download_card(sample: Sample) -> Markup:
     def btn(url: str | None, name: str, size: str, ghost: bool = False) -> Markup:
         cls = "btn ghost" if ghost else "btn"
         label = join((el("span", name, class_="btn-label"),
                       el("span", size, class_="sz")))
         if not url:
-            return el("span", label, class_=cls, aria_disabled="true")
+            return el("span", label, class_=cls, role="link", aria_disabled="true",
+                      aria_label=f"{name}: unavailable")
         return el("a", label, class_=cls, href=url)
 
     return fmt(
@@ -108,12 +117,35 @@ def _download_card(sample: Sample) -> Markup:
     )
 
 
+_URL = re.compile("https?://[^\\s<>\"']+")
+
+
+def _source_prose(text: str) -> Markup:
+    """Format MIPLIB prose for the web without trusting it as markup."""
+    for source, replacement in ((r"\(i\)", "(i)"),
+                                (r"\(ii\)", "(ii)"),
+                                (r"\(n\times n\)",
+                                 "n \N{MULTIPLICATION SIGN} n"),
+                                (r"\(n \le 61\)", "n ≤ 61")):
+        text = text.replace(source, replacement)
+    parts: list[object] = []
+    start = 0
+    for match in _URL.finditer(text):
+        raw = match.group(0)
+        url = raw.rstrip(".,;:!?)]")
+        parts.extend((text[start:match.start()], el("a", url, href=url)))
+        parts.append(raw[len(url):])
+        start = match.end()
+    parts.append(text[start:])
+    return join(parts)
+
+
 def _source_card(sample: Sample) -> Markup:
     """The MIPLIB instance this one derives from, and who contributed it.
 
-    CC BY-SA 4.0 requires adapted material to identify the creator of the
-    original, so the submitter is an attribution obligation rather than a
-    convenience. The description is MIPLIB's own prose and is labelled as such.
+    The collection's provenance and licensing require the original creator to
+    remain identifiable. The description is MIPLIB's own prose and is labelled
+    as such.
     """
     rows = [("Name", sample.instance)]
     if sample.submitter:
@@ -128,8 +160,12 @@ def _source_card(sample: Sample) -> Markup:
         parts.append(el("div", join(el("span", t, class_="srctag") for t in shown),
                         class_="srctags"))
     if sample.source_description:
-        parts.append(el("p", sample.source_description, class_="hint"))
-        parts.append(el("p", "Description from MIPLIB 2017.", class_="hint credit"))
+        parts.append(el("p", _source_prose(sample.source_description), class_="hint"))
+        parts.append(el(
+            "p",
+            "Source description quoted from MIPLIB 2017; links and mathematical "
+            "notation formatted for the web.",
+            class_="hint credit"))
 
     return fmt(SOURCE_CARD, body=join(parts), url=sample.miplib_url)
 
@@ -150,7 +186,7 @@ def _primal_panels(p: PrimalProvenance) -> Markup:
                    ("Depth in the tree", fmt_int(p.depth)),
                    ("Bounds tightened vs. source", fmt_int(p.bound_changes)),
                    ("Branch variable", p.branch_label)]))),
-        _panel("Tightened bounds", f"{fmt_int(p.bound_changes)} entries",
+        _panel("Tightened bounds", _entry_count(p.bound_changes),
                join((_entries(p.path_head),
                      _shown_of(len(p.path_head), p.bound_changes)))),
     ))
@@ -174,16 +210,17 @@ def _dual_panels(p: DualProvenance) -> Markup:
         _panel("Where it comes from", "provenance",
                fmt(DUAL_LEDE, kv=_kv([("Bounds dropped", fmt_int(p.bounds_dropped)),
                                       ("Rows dropped", fmt_int(p.rows_dropped))]))),
-        _panel("What was removed", f"{fmt_int(p.total_dropped)} entries",
+        _panel("What was removed", _entry_count(p.total_dropped),
                join((_entries(_drop_label(d) for d in p.drops_head),
                      _shown_of(len(p.drops_head), p.total_dropped)))),
     ))
 
 
 def render_sample(sample: Sample, cross: Sample | None,
-                  canonical: str | None = None) -> str:
+                  site_url: str | None = None) -> str:
     """One sample page. `cross` is the same instance in the other subset, or None."""
     info = SUBSET_META[sample.subset]
+    here = sample.page_path + "index.html"
     provenance = sample.provenance
     badges = [el("span", info["label"].lower(), class_=f'badge {info["tone"]}')]
     if isinstance(provenance, DualProvenance):
@@ -202,10 +239,11 @@ def render_sample(sample: Sample, cross: Sample | None,
                el("b", other["label"].lower()), " set"),
             el("span", "view →", class_="mono"),
             class_=f'crosslink {other["tone"]}',
-            href=f"../../{cross.page_path}")
+            href=rel(here, cross.page_path))
 
     body = fmt(
         DETAIL,
+        up=rel(here, SUBSET_META[sample.subset]["slug"] + "/"),
         subset=info["label"],
         instance=sample.instance,
         badges=join(badges),
@@ -219,7 +257,7 @@ def render_sample(sample: Sample, cross: Sample | None,
         aside=join((_download_card(sample), _source_card(sample))),
     )
     return page(f"{sample.instance} ({info['label'].lower()})", body,
-                active=sample.subset, depth=2,
+                active=sample.subset, page_rel=here,
                 description=content.instance_description(
                     sample.instance, info["label"], sample.n_vars, sample.n_cons),
-                canonical=canonical)
+                site_url=site_url)

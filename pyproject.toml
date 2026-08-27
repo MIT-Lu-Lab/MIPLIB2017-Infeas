@@ -18,7 +18,7 @@ extend-exclude = ["fonts"]
 select = ["E", "F", "W", "B", "SIM", "C4", "UP", "RET", "ARG", "PIE", "RUF"]
 # The en dash is typography, not a mistyped hyphen: it is what a numeric range
 # takes, and these labels are rendered text. Em dashes remain banned, by a test.
-allowed-confusables = ["–", "≤", "≥"]
+allowed-confusables = ["–", "≤", "≥", "×"]
 
 [tool.ruff.lint.per-file-ignores]
 # The stylesheet and the client-side scripts are emitted verbatim; breaking a CSS

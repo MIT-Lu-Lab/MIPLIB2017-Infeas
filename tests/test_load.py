@@ -61,6 +61,7 @@ def test_collection_totals(index):
     t = L.collection_totals(L.load_index(index))
     assert t["n_samples"] == 3
     assert t["counts"] == {"primal": 2, "dual": 1}
+    assert t["natural_unbounded"] == 0
     assert t["max_vars"] == 10 and t["max_cons"] == 4
 
 

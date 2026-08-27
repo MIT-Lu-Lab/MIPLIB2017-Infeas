@@ -5,7 +5,7 @@ from website import load as L, render as V
 
 def test_page_shell_has_lang_title_and_the_shared_assets():
     from website.assets import CSS_NAME, JS_NAME
-    html = V.page("Example", "<p>hi</p>", active="overview", depth=0)
+    html = V.page("Example", "<p>hi</p>", active="overview", page_rel="index.html")
     assert html.startswith("<!doctype html>")
     assert '<html lang="en">' in html
     assert "<title>Example</title>" in html
@@ -15,15 +15,37 @@ def test_page_shell_has_lang_title_and_the_shared_assets():
     assert "--primal:#3B4CC0" not in html
 
 
+def test_page_shell_has_skip_link_and_landmarks():
+    html = V.page("Example", V.Markup("<h1>Example</h1>"),
+                  active="overview", page_rel="index.html", description="Example page")
+    assert '<a class="skip-link" href="#main-content">Skip to main content</a>' in html
+    assert '<header class="topbar">' in html and '</header>' in html
+    assert '<nav class="top" aria-label="Primary navigation">' in html
+    assert '<main id="main-content" tabindex="-1">' in html
+
+
+def test_short_nav_labels_keep_the_full_accessible_name():
+    html = V.page("Example", V.Markup(""), active="overview", page_rel="index.html",
+                  description="Example page")
+    assert 'aria-label="Primal-infeasible"' in html
+    assert 'aria-label="Dual-infeasible"' in html
+
+
 def test_page_shell_links_resolve_by_depth():
-    root = V.page("A", "", active="overview", depth=0)
-    deep = V.page("A", "", active="overview", depth=2)
+    root = V.page("A", "", active="overview", page_rel="index.html")
+    deep = V.page("A", "", active="overview",
+                  page_rel="dual-infeasible/aaa/index.html")
     assert 'href="primal-infeasible/"' in root
     assert 'href="../../primal-infeasible/"' in deep
+    # a link takes the direct route rather than going to the root and back
+    own = V.page("A", "", active="primal",
+                 page_rel="primal-infeasible/aaa/index.html")
+    assert 'href="../"' in own
+    assert "../../primal-infeasible/" not in own
 
 
 def test_active_nav_item_is_marked():
-    html = V.page("A", "", active="dual", depth=0)
+    html = V.page("A", "", active="dual", page_rel="index.html")
     # Scoped to <nav>: assets.STYLESHEET separately contains the literal
     # substring 'aria-current="page"' in a CSS attribute selector, which
     # would otherwise double-count against the whole page.
@@ -36,7 +58,7 @@ def test_only_the_long_nav_labels_carry_a_short_form():
     """Both forms ship and the stylesheet hides one, so a name that outgrows a
     phone cell is shortened rather than overlapping its neighbour."""
     nav_html = re.search(r"<nav [^>]*>(.*?)</nav>",
-                         V.page("A", "", active="overview", depth=0), re.S).group(1)
+                         V.page("A", "", active="overview", page_rel="index.html"), re.S).group(1)
     assert '<span class="nav-full">Primal-infeasible</span>' in nav_html
     assert '<span class="nav-short">Primal</span>' in nav_html
     assert '<span class="nav-short">Dual</span>' in nav_html
@@ -49,8 +71,7 @@ def test_overview_reports_real_counts_and_ranges(index):
     html = V.render_overview(L.collection_totals(samples))
     text = " ".join(html.split())          # the prose wraps, so normalise whitespace
     assert "3 linear programs" in text     # total
-    assert "2 have no feasible point" in text
-    assert "other 1 are unbounded" in text
+    assert "2 have no feasible point; 1 is unbounded" in text
     assert "up to 10 variables and 4 constraints" in text
 
 
@@ -127,3 +148,5 @@ def test_the_dataset_description_omits_downloads_it_does_not_have(index):
     html = V.render_overview(L.collection_totals(L.load_index(index)))
     doc = json.loads(re.search(r'ld\+json">(.*?)</script>', html, re.S).group(1))
     assert "distribution" not in doc
+    assert "url" not in doc
+    assert "REPLACE-WITH" not in html

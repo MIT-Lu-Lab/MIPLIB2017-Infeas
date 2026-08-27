@@ -10,12 +10,12 @@ import csv
 import shutil
 from dataclasses import replace
 from pathlib import Path
-from urllib.parse import urlsplit, urlunsplit
 from xml.sax.saxutils import escape as xml_escape
 
 from . import load, render
 from .assets import CSS_NAME, JS_NAME, SITE_CSS, SITE_JS
 from .records import OTHER_SUBSET, SUBSET_META, Sample
+from .urls import normalize_site_url, page_url
 
 DEFAULT_OUT = Path(__file__).resolve().parent / "_out"
 _ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +23,7 @@ DEFAULT_INDEX = _ROOT / "metadata" / "site-index.json"
 DEFAULT_MIPLIB = _ROOT / "metadata" / "miplib_meta.json"
 FONT_DIR = _ROOT / "fonts"
 SCHEMA_FILE = _ROOT / "schema" / "meta.schema.json"
+LICENSE_FILE = _ROOT / "LICENSE"
 
 # Published index columns, per subset, as (header, accessor). The headers ship as
 # release assets, so renaming one breaks whatever is reading the CSVs.
@@ -87,35 +88,6 @@ def release_urls(samples: list[Sample], base_url: str | None) -> dict[str, str]:
     return urls
 
 
-def normalize_site_url(site_url: str | None) -> str | None:
-    """Return an absolute public base URL with exactly one trailing slash."""
-    if site_url is None:
-        return None
-    if not site_url or any(c.isspace() for c in site_url):
-        raise SystemExit(f"--site-url must be an absolute HTTP(S) URL, got {site_url!r}")
-    parts = urlsplit(site_url)
-    try:
-        _ = parts.port  # force validation of a malformed port
-    except ValueError as exc:
-        raise SystemExit(f"--site-url is invalid: {exc}") from exc
-    if (parts.scheme not in {"http", "https"} or not parts.netloc
-            or parts.username is not None or parts.password is not None
-            or parts.query or parts.fragment):
-        raise SystemExit(
-            f"--site-url must be an absolute HTTP(S) base URL without credentials, "
-            f"a query, or a fragment; got {site_url!r}")
-    path = parts.path.rstrip("/") + "/"
-    return urlunsplit((parts.scheme, parts.netloc, path, "", ""))
-
-
-def page_url(site_url: str, page_rel: str) -> str:
-    """Map a generated ``index.html`` path to its public trailing-slash URL."""
-    suffix = "index.html"
-    if not page_rel.endswith(suffix):
-        raise ValueError(f"not an HTML page path: {page_rel!r}")
-    return site_url + page_rel[:-len(suffix)]
-
-
 def _write_sitemap(out_dir: Path, site_url: str,
                    page_rels: set[str]) -> str:
     """Publish the canonical URL of every HTML page emitted by this build."""
@@ -138,8 +110,8 @@ def _write_assets(out_dir: Path) -> set[str]:
     """
     d = out_dir / "assets"
     d.mkdir(parents=True, exist_ok=True)
-    (d / CSS_NAME).write_text(SITE_CSS, encoding="utf-8")
-    (d / JS_NAME).write_text(SITE_JS, encoding="utf-8")
+    _write_text(d / CSS_NAME, SITE_CSS)
+    _write_text(d / JS_NAME, SITE_JS)
     return {f"assets/{CSS_NAME}", f"assets/{JS_NAME}"}
 
 
@@ -150,7 +122,7 @@ def _write_nojekyll(out_dir: Path) -> str:
     to the build rather than to whoever set the output directory up: the site is
     deployed from a fresh artifact, so nothing carries a stray file across.
     """
-    (out_dir / ".nojekyll").write_text("", encoding="utf-8")
+    _write_text(out_dir / ".nojekyll", "")
     return ".nojekyll"
 
 
@@ -179,10 +151,27 @@ def _copy_schema(out_dir: Path) -> str:
     return rel.as_posix()
 
 
+def _copy_license(out_dir: Path) -> str:
+    """Publish the attribution notices linked from the About page."""
+    rel = Path("LICENSE.txt")
+    shutil.copyfile(LICENSE_FILE, out_dir / rel)
+    return rel.as_posix()
+
+
+def _write_text(path: Path, text: str) -> None:
+    """Write a generated text file.
+
+    An explicit LF, because the default translates on Windows: a local build
+    would differ from CI byte for byte, and a hashed asset would carry a name
+    that is not the digest of the file under it.
+    """
+    path.write_text(text, encoding="utf-8", newline="\n")
+
+
 def _write(out_dir: Path, rel: str, html: str) -> None:
     path = out_dir / rel
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(html, encoding="utf-8")
+    _write_text(path, html)
 
 
 def _prune(out_dir: Path, keep_rels: set[str]) -> None:
@@ -190,16 +179,17 @@ def _prune(out_dir: Path, keep_rels: set[str]) -> None:
     leave empty.
 
     Only files the build itself produces are candidates: pages, the sitemap, the
-    CSV indexes, the fonts and the hashed stylesheet and scripts. Anything else
-    in the output directory belongs to whoever put it there, a CNAME for a custom
-    domain being the usual case.
+    published licence, the CSV indexes, the fonts and the hashed stylesheet and
+    scripts. Anything else in the output directory belongs to whoever put it
+    there, a CNAME for a custom domain being the usual case.
     """
     # materialise the walk before deleting: rglob is a generator over the tree it
     # is walking, and removing entries mid-iteration is undefined
     generated = (list(out_dir.rglob("index.html")) + list(out_dir.glob("*.csv"))
                  + list((out_dir / "fonts").glob("*"))
                  + list((out_dir / "assets").glob("*"))
-                 + [p for p in (out_dir / "sitemap.xml",) if p.exists()])
+                 + [p for p in (out_dir / "sitemap.xml", out_dir / "LICENSE.txt")
+                    if p.exists()])
     for path in generated:
         rel = path.relative_to(out_dir).as_posix()
         if rel in keep_rels:
@@ -243,37 +233,31 @@ def build(index_path: Path | str, out_dir: Path | str,
     written = 0
     rels = set()
 
-    def canonical(rel: str) -> str | None:
-        """A page's public URL, when this build was told the site's origin."""
-        return page_url(site_url, rel) if site_url else None
-
     def _emit(rel: str, html: str) -> None:
         nonlocal written
         _write(out_dir, rel, html)
         rels.add(rel)
         written += 1
 
-    _emit("index.html", render.render_overview(totals, site_url, release_base_url,
-                                               canonical("index.html")))
+    _emit("index.html", render.render_overview(totals, site_url, release_base_url))
     _emit("download/index.html",
-          render.render_download(totals, release_base_url, sizes,
-                                 canonical("download/index.html")))
-    _emit("about/index.html", render.render_about(canonical("about/index.html")))
-    _emit("guide/index.html", render.render_guide(canonical("guide/index.html")))
+          render.render_download(totals, release_base_url, sizes, site_url))
+    _emit("about/index.html", render.render_about(site_url))
+    _emit("guide/index.html", render.render_guide(site_url))
 
     for subset, info in SUBSET_META.items():
-        rel = f"{info['slug']}/index.html"
-        _emit(rel, render.render_browse(subset, samples, release_base_url,
-                                        canonical(rel)))
+        _emit(render.browse_page_rel(subset),
+              render.render_browse(subset, samples, release_base_url, site_url))
         for s in (x for x in samples if x.subset == subset):
             cross = by_key.get((OTHER_SUBSET[subset], s.instance))
-            page_rel = s.page_path + "index.html"
-            _emit(page_rel, render.render_sample(s, cross, canonical(page_rel)))
+            _emit(s.page_path + "index.html",
+                  render.render_sample(s, cross, site_url))
         rels.add(_write_manifest(out_dir, subset, info, samples))
 
     rels |= _copy_fonts(out_dir)
     rels |= _write_assets(out_dir)
     rels.add(_copy_schema(out_dir))
+    rels.add(_copy_license(out_dir))
     rels.add(_write_nojekyll(out_dir))
     if site_url:
         page_rels = {rel for rel in rels if rel.endswith("index.html")}

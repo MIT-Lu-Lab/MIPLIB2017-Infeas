@@ -20,6 +20,7 @@ def test_build_writes_the_expected_tree(tmp_path, index):
                 "download/index.html",
                 "about/index.html",
                 "guide/index.html",
+                "LICENSE.txt",
                 "schema/meta.schema.json"):
         assert (out / rel).is_file(), rel
     assert n == 9
@@ -29,7 +30,9 @@ def test_relative_links_resolve_from_a_sample_page(tmp_path, index):
     out = tmp_path / "out"
     B.build(index, out)
     html = (out / "primal-infeasible/aaa/index.html").read_text(encoding="utf-8")
-    assert 'href="../../primal-infeasible/"' in html
+    # its own subset is one level up, the other one two levels and across
+    assert 'href="../"' in html
+    assert 'href="../../dual-infeasible/"' in html
     assert 'href="../../dual-infeasible/aaa/"' in html
 
 
@@ -50,6 +53,12 @@ def test_build_publishes_the_canonical_sidecar_schema(tmp_path, index):
     schema = json.loads(published.read_text(encoding="utf-8"))
     assert schema["$id"] == \
         "https://mit-lu-lab.github.io/MIPLIB-Infeas/schema/meta.schema.json"
+
+
+def test_build_publishes_the_licence_linked_from_about(tmp_path, index):
+    out = tmp_path / "out"
+    B.build(index, out)
+    assert (out / "LICENSE.txt").read_bytes() == B.LICENSE_FILE.read_bytes()
 
 
 def test_build_fails_loudly_when_the_index_is_missing(tmp_path):
@@ -246,6 +255,10 @@ def test_public_build_emits_only_canonical_page_urls_in_sitemap(index, tmp_path)
     "https:///MIPLIB-Infeas",
     "https://example.test/MIPLIB-Infeas?preview=1",
     "https://user:secret@example.test/MIPLIB-Infeas",
+    "https://[bad/MIPLIB-Infeas",
+    "https://:443/MIPLIB-Infeas",
+    "https://example.test\\evil/MIPLIB-Infeas",
+    "https://example.test/MI\x00PLIB-Infeas",
 ])
 def test_site_url_must_be_a_clean_absolute_http_url(index, tmp_path, site_url):
     with pytest.raises(SystemExit, match="--site-url"):

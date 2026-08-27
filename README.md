@@ -4,14 +4,15 @@
 
 Linear programs with no optimal solution, derived from
 [MIPLIB 2017](https://miplib.zib.de/) instances with their integrality dropped. One set has
-no feasible point and the other is unbounded, forming a large-scale benchmark for detection.
+no feasible point and the other is unbounded, forming a large-scale benchmark for detecting
+infeasibility and unboundedness.
 
 **Browse the collection:** https://mit-lu-lab.github.io/MIPLIB-Infeas
 
-| | instances | variables | constraints | size |
+| | instances | variables | constraints | ZIP download |
 | :--- | ---: | :--- | :--- | ---: |
-| Primal-infeasible | 229 | 622 to 20,682,487 | 36 to 19,912,111 | 1.54 GB |
-| Dual-infeasible | 105 | 297 to 550,539 | 27 to 19,335,696 | 0.73 GB |
+| Primal-infeasible | 229 | 622 to 20,682,487 | 36 to 19,912,111 | 1.55 GiB |
+| Dual-infeasible | 105 | 297 to 550,539 | 27 to 19,335,696 | 686.9 MiB |
 
 Each instance is a gzipped MPS file holding continuous variables only. Beside it sits a `.meta.json` sidecar that records how the program was derived from its source instance.
 
@@ -60,7 +61,8 @@ python -m http.server -d _site
 }
 ```
 
-Please cite MIPLIB 2017 as well.
+Please also cite [Gleixner et al., “MIPLIB 2017: Data-Driven Compilation of the
+6th Mixed-Integer Programming Library”](https://doi.org/10.1007/s12532-020-00194-3).
 
 ## Licence
 

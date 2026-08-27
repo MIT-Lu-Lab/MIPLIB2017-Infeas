@@ -107,17 +107,29 @@ body[data-view="dual"]{--view:var(--dual);--view-wash:var(--dual-wash)}
 h1,h2,h3{font-family:var(--f-serif);text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.01em}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0;
+}
+html{scroll-padding-top:72px}
 :focus-visible{outline:2px solid var(--view);outline-offset:2px;border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 /* ---------- chrome ---------- */
 .topbar{
   position:sticky;top:0;z-index:20;
+  background:var(--paper);
   background:color-mix(in srgb,var(--paper) 88%,transparent);
   backdrop-filter:blur(8px);
   border-bottom:1px solid var(--rule);
   min-width:0;
 }
+.skip-link{
+  position:fixed;z-index:100;top:8px;left:8px;padding:8px 12px;border-radius:5px;
+  background:var(--ink);color:var(--paper);font-weight:600;text-decoration:none;
+  transform:translateY(calc(-100% - 16px));
+}
+.skip-link:focus{transform:none}
 .topbar-inner{
   max-width:1180px;margin:0 auto;padding:0 24px;
   height:56px;display:flex;align-items:center;gap:28px;min-width:0;
@@ -155,6 +167,7 @@ main.narrow{--measure:none;max-width:900px}
 .muted{color:var(--muted)}
 .note{font-size:13px;color:var(--muted);margin-top:26px}
 .cite-note{font-size:13px;color:var(--muted);margin-top:12px}
+.cite-note a,.hint a{color:var(--view);overflow-wrap:anywhere}
 
 .eyebrow{
   font-family:var(--f-mono);font-size:11px;font-weight:500;
@@ -184,7 +197,7 @@ main.narrow{--measure:none;max-width:900px}
 .subset:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
 .subset.p{--accent:var(--primal)}
 .subset.d{--accent:var(--dual)}
-.subset h3{font-size:20px}
+.subset h2,.subset h3{font-size:20px}
 .subset .count{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--accent);font-weight:500}
 .subset p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
 .subset .go{font-size:13px;color:var(--accent);font-weight:500;margin-top:auto}
@@ -203,7 +216,7 @@ main.narrow{--measure:none;max-width:900px}
   margin-top:20px;border:1px solid var(--rule);border-left:3px solid var(--muted);
   border-radius:0 6px 6px 0;background:var(--raise);padding:15px 18px;
   font-family:var(--f-mono);font-size:12.5px;line-height:1.7;color:var(--muted);
-  overflow-x:auto;
+  overflow-wrap:anywhere;
 }
 
 /* ---------- browse ---------- */
@@ -221,6 +234,7 @@ main.narrow{--measure:none;max-width:900px}
 .facets{position:sticky;top:78px;min-width:0}
 .facets > summary{display:none}
 .facet-groups{display:flex;flex-direction:column;gap:22px;min-width:0}
+.facet{border:0;margin:0;padding:0;min-inline-size:0}
 .facet-selected{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);font-weight:400}
 .facet .eyebrow{margin-bottom:8px;display:block}
 .facet label{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:3px 0;cursor:pointer;color:var(--muted)}
@@ -229,6 +243,7 @@ main.narrow{--measure:none;max-width:900px}
 .facet .n{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;font-variant-numeric:tabular-nums}
 
 .table-wrap{min-width:0;max-width:100%;border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow-x:auto}
+.table-wrap:focus-visible{outline-offset:3px}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
 thead th{
   position:sticky;top:56px;z-index:5;background:var(--raise);
@@ -237,21 +252,28 @@ thead th{
   padding:11px 13px;border-bottom:1px solid var(--rule);white-space:nowrap;
 }
 thead th.r{text-align:right}
-thead th[data-sort]{cursor:pointer;user-select:none}
-thead th[data-sort]:focus-visible{outline:2px solid var(--view);outline-offset:-2px}
-thead th[data-sort]:hover{color:var(--ink)}
-thead th[aria-sort="ascending"]::after{content:" \\2191"}
-thead th[aria-sort="descending"]::after{content:" \\2193"}
-tbody td{padding:9px 13px;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
-tbody tr:last-child td{border-bottom:0}
-tbody tr:hover td{background:var(--rule-soft)}
-td.name a{font-family:var(--f-mono);font-size:13px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--rule)}
-td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
+.sort-button{
+  display:block;margin:0;padding:0;border:0;background:none;color:inherit;
+  font:inherit;letter-spacing:inherit;text-transform:inherit;white-space:nowrap;cursor:pointer;
+}
+thead th.r .sort-button{margin-left:auto}
+.sort-button:hover{color:var(--ink)}
+.sort-button:focus-visible{outline-offset:3px}
+thead th[aria-sort="ascending"] .sort-button::after{content:" \\2191"}
+thead th[aria-sort="descending"] .sort-button::after{content:" \\2193"}
+tbody th,tbody td{padding:9px 13px;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+tbody th{font-weight:400;text-align:left}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+tbody tr:hover th,tbody tr:hover td{background:var(--rule-soft)}
+th.name a{font-family:var(--f-mono);font-size:13px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--rule)}
+th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .dl{
   font-family:var(--f-mono);font-size:12px;text-decoration:none;color:var(--view);
   border:1px solid var(--rule);border-radius:4px;padding:3px 8px;white-space:nowrap;
 }
 .dl:hover{background:var(--view-wash);border-color:var(--view)}
+.dl[aria-disabled="true"]{color:var(--muted);border-style:dashed;cursor:not-allowed}
+.dl[aria-disabled="true"]:hover{background:transparent;border-color:var(--rule)}
 .table-foot{font-size:12.5px;color:var(--muted);margin-top:11px}
 
 /* ---------- detail ---------- */
@@ -292,7 +314,7 @@ td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .recipe{
   font-family:var(--f-mono);font-size:13px;line-height:1.85;
   background:var(--view-wash);border:1px solid var(--rule);border-radius:6px;
-  padding:13px 15px;margin-bottom:14px;overflow-x:auto;
+  padding:13px 15px;margin-bottom:14px;overflow-wrap:anywhere;
 }
 .recipe .k{color:var(--muted)}
 .recipe b{font-weight:600}
@@ -318,7 +340,12 @@ td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 }
 .btn-label{min-width:0;overflow-wrap:anywhere}
 .btn:hover{filter:brightness(1.08)}
-.btn .sz{flex:none;font-family:var(--f-mono);font-size:12px;opacity:.82;font-weight:400}
+.btn .sz{flex:none;font-family:var(--f-mono);font-size:12px;font-weight:400}
+.btn[aria-disabled="true"]{
+  color:var(--muted-strong);background:var(--rule-soft);border-color:var(--rule);
+  cursor:not-allowed;
+}
+.btn[aria-disabled="true"]:hover{filter:none}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule);margin-top:9px}
 .btn.ghost:hover{background:var(--rule-soft);filter:none}
 .card .hint{font-size:12px;color:var(--muted);margin-top:11px;line-height:1.5;overflow-wrap:anywhere}
@@ -383,11 +410,13 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   .facet label{min-height:44px;padding:0}
   .facet input{width:18px;height:18px}
   .dl{display:inline-flex;align-items:center;min-height:40px;padding:0 12px}
-  tbody td{padding:13px}
-  td.name a{display:inline-block;padding:6px 0}
+  tbody th,tbody td{padding:13px}
+  th.name a{display:inline-block;padding:6px 0}
   .extlink{display:inline-flex;align-items:center;min-height:44px}
 }
-@media (max-width:600px){
+@media (max-width:780px){
+  html{scroll-padding-top:0}
+  .topbar{position:static}
   .topbar-inner{
     height:auto;min-height:56px;padding:8px 16px 7px;
     display:grid;grid-template-columns:minmax(0,1fr);gap:4px;
@@ -413,12 +442,13 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 """
 
 SORT_SCRIPT = """
-function sortByHeader(th){
-  if(!th) return;
+function sortByButton(button){
+  if(!button) return;
+  var th = button.closest('th');
   var table = th.closest('table');
   var idx = Array.prototype.indexOf.call(th.parentNode.children, th);
   var asc = th.getAttribute('aria-sort') !== 'ascending';
-  var numeric = th.dataset.sort === 'num';
+  var numeric = button.dataset.sort === 'num';
   var rows = Array.prototype.slice.call(table.tBodies[0].rows);
   rows.sort(function(a,b){
     var x = a.cells[idx].dataset.v, y = b.cells[idx].dataset.v;
@@ -432,16 +462,9 @@ function sortByHeader(th){
 }
 
 document.addEventListener('click', function(ev){
-  sortByHeader(ev.target.closest('th[data-sort]'));
-});
-
-// keyboard: sortable headers are focusable, and Enter or Space sorts them
-document.addEventListener('keydown', function(ev){
-  if(ev.key !== 'Enter' && ev.key !== ' ') return;
-  var th = ev.target.closest('th[data-sort]');
-  if(!th) return;
-  ev.preventDefault();
-  sortByHeader(th);
+  // A native button supplies Enter and Space without a second key handler that
+  // would fire once here and once again through the button's synthetic click.
+  sortByButton(ev.target.closest('button[data-sort]'));
 });
 """
 
@@ -454,6 +477,10 @@ var compactFacets = window.matchMedia('(max-width: 780px)');
 
 function setFacetDisclosure(compact){
   Array.prototype.forEach.call(document.querySelectorAll('.facets'), function(facets){
+    if(compact && facets.contains(document.activeElement)){
+      var summary = facets.querySelector('summary');
+      if(summary) summary.focus();
+    }
     facets.open = !compact;
   });
 }
@@ -492,12 +519,14 @@ function applyFacets(facets){
     row.hidden = !ok;
     if(ok) shown++;
   });
-  var foot = wrap.querySelector('.table-foot');
-  if(!foot) return;
-  var total = foot.dataset.total;
-  foot.textContent = groups.length
-    ? (shown + ' of ' + total + ' instances shown. Every column sorts.')
-    : (total + ' instances. Every column sorts.');
+  var result = wrap.querySelector('.result-count');
+  if(!result) return;
+  var total = result.dataset.total;
+  result.textContent = groups.length && shown === 0
+    ? 'No instances match these filters.'
+    : groups.length
+      ? (shown + ' of ' + total + ' instances shown.')
+      : (total + (total === '1' ? ' instance.' : ' instances.'));
 }
 
 document.addEventListener('change', function(ev){
