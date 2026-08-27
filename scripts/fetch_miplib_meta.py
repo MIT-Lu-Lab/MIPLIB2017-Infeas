@@ -71,11 +71,21 @@ def parse(page):
                                   "Available nonzero", "Nonzero entries",
                                   "The following instances")):
             continue
-        # MIPLIB appends its own provenance note to many descriptions. It records
-        # their collection's history, says nothing about the model, and runs into
-        # the preceding sentence without punctuation in their source.
-        t = re.sub(r"\s*Imported from (the )?MIPLIB\s*\d*( submissions)?\.?\s*$",
-                   "", t, flags=re.I).strip()
+        # MIPLIB appends its own provenance note to many descriptions. It says
+        # nothing about the model and runs into the preceding sentence without
+        # punctuation, so it is lifted out of the description rather than shown
+        # with it. It is kept, not dropped: this note is MIPLIB's own statement
+        # of which edition an instance came from, and it is the only per-instance
+        # evidence of that. An instance it names as imported predates MIPLIB
+        # 2017's submission form, and so predates the licence that form required,
+        # which is what LICENSE turns on.
+        # It is not always last. MIPLIB puts it at the front of some entries and
+        # in the middle of others, so this cannot be anchored to the end.
+        m = re.search(r"Imported from (?:the )?MIPLIB\s*\d*(?: submissions)?\.",
+                      t, flags=re.I)
+        if m:
+            out["imported_from"] = m.group(0).strip()
+            t = " ".join((t[: m.start()] + " " + t[m.end():]).split())
         if t:
             out["description"] = t
         break

@@ -156,22 +156,12 @@ def test_the_page_loads_nothing_from_a_third_party():
     and a reader is not announced to a font CDN."""
     assert "http" not in A.font_face()
     for family, style, weight in A.FONT_FACES:
-        assert f"fonts/IBMPlex{family}-{style}.woff2" in A.font_face()
+        assert f"fonts/{A.font_file(family, style)}" in A.font_face()
         assert f"font-weight:{weight}" in A.font_face()
 
 
 def test_font_paths_are_relative_to_the_page_that_carries_them():
     """The stylesheet is inlined into pages at three different depths, so a path
     that worked at the root would 404 two levels down."""
-    assert "url(fonts/IBMPlexSans-Regular.woff2)" in A.font_face()
-    assert "url(../../fonts/IBMPlexSans-Regular.woff2)" in A.font_face("../../")
-
-
-def test_the_shipped_faces_cover_the_glyphs_the_pages_set():
-    """The arrows and inequalities are outside the Latin subset a CDN serves, and
-    they appear in the branch recipe on every primal page."""
-    import pathlib
-    names = {p.name for p in (pathlib.Path(__file__).parents[1]
-                              / "fonts").glob("*.woff2")}
-    for family, style, _ in A.FONT_FACES:
-        assert f"IBMPlex{family}-{style}.woff2" in names
+    assert "url(fonts/InfeasSans-Regular.woff2)" in A.font_face()
+    assert "url(../../fonts/InfeasSans-Regular.woff2)" in A.font_face("../../")

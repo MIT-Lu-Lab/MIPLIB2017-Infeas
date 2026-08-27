@@ -6,10 +6,19 @@ import hashlib
 # fonts/ into the output, so a build is self-contained and a reader loads
 # nothing from a third party.
 #
-# These are the complete faces rather than the Latin subsets a font CDN serves:
-# the pages set U+2192, U+2264 and U+2265, which that subset drops, so the arrows
-# and the inequalities in every branch recipe used to fall back to whatever the
-# reader happened to have installed.
+# These are subsets of IBM Plex, cut to the 191 glyphs the pages set, by
+# scripts/subset_fonts.py. They are not named "IBM Plex": the OFL counts
+# removing glyphs as a Modified Version, and the Reserved Font Name "Plex" may
+# not be used for one. The stacks below still name IBM Plex after this family,
+# which asks for an unmodified copy if the reader has one installed.
+#
+# The subset is not a font CDN's Latin one: the pages set U+2192, U+2193,
+# U+2264 and U+2265, which that subset drops, so the arrows and the
+# inequalities in every branch recipe used to fall back to whatever the reader
+# happened to have installed. A test holds every character the pages set
+# against what these files carry.
+FONT_FAMILY = "Infeas"
+
 FONT_FACES = (
     ("Mono", "Regular", 400), ("Mono", "Medium", 500), ("Mono", "SemiBold", 600),
     ("Sans", "Regular", 400), ("Sans", "Medium", 500), ("Sans", "SemiBold", 600),
@@ -17,13 +26,19 @@ FONT_FACES = (
 )
 
 
+def font_file(family: str, style: str) -> str:
+    """The shipped file for one face, relative to fonts/."""
+    return f"{FONT_FAMILY}{family}-{style}.woff2"
+
+
 def font_face(up=""):
     """The @font-face rules, with paths relative to a page `up` levels down."""
     return "".join(
-        f"@font-face{{font-family:'IBM Plex {family}';font-style:normal;"
+        f"@font-face{{font-family:'{FONT_FAMILY} {family}';font-style:normal;"
         f"font-weight:{weight};font-display:swap;"
-        f"src:url({up}fonts/IBMPlex{family}-{style}.woff2) format('woff2')}}"
+        f"src:url({up}fonts/{font_file(family, style)}) format('woff2')}}"
         for family, style, weight in FONT_FACES)
+
 
 STYLESHEET = """
 /* One value per token, not three. The dark palette was written out twice, once
@@ -69,9 +84,11 @@ STYLESHEET = """
      narrower column of their own inside the same bar. */
   --page:1320px;
 
-  --f-serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
-  --f-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --f-serif:"Infeas Serif","IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --f-sans:"Infeas Sans","IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",
+    Roboto,sans-serif;
+  --f-mono:"Infeas Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,
+    monospace;
 }
 :root[data-theme="light"]{color-scheme:light}
 :root[data-theme="dark"]{color-scheme:dark}
@@ -254,22 +271,30 @@ main.narrow{--measure:none;--page:900px}
 .table-wrap{max-width:100%;overflow-x:auto}
 .table-wrap:focus-visible{outline-offset:3px}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
+/* A heading wraps; the numbers under it do not. "Bounds tightened" held its
+   column open to 149px while the widest count in it wanted 83, and the two
+   dual headings did the same, so a table 990px wide carried about a hundred
+   pixels of heading and its last column fell off a 1280px screen. Bottom
+   aligned, so a heading that takes two lines still sits on the line its
+   neighbours sit on. */
 thead th{
   position:sticky;top:var(--topbar-h);z-index:5;background:var(--raise);
   font-family:var(--f-sans);font-weight:500;font-size:11.5px;letter-spacing:.05em;
-  text-transform:uppercase;color:var(--muted);text-align:left;
-  padding:11px 13px;border-bottom:1px solid var(--rule);white-space:nowrap;
+  text-transform:uppercase;color:var(--muted);text-align:left;vertical-align:bottom;
+  padding:11px 13px;border-bottom:1px solid var(--rule);
 }
 thead th.r{text-align:right}
 .sort-button{
   display:block;margin:0;padding:0;border:0;background:none;color:inherit;
-  font:inherit;letter-spacing:inherit;text-transform:inherit;white-space:nowrap;cursor:pointer;
+  font:inherit;letter-spacing:inherit;text-transform:inherit;text-align:inherit;cursor:pointer;
 }
 thead th.r .sort-button{margin-left:auto}
 .sort-button:hover{color:var(--ink)}
 .sort-button:focus-visible{outline-offset:3px}
-thead th[aria-sort="ascending"] .sort-button::after{content:" \\2191"}
-thead th[aria-sort="descending"] .sort-button::after{content:" \\2193"}
+/* a no-break space, so the arrow cannot come to rest alone on a heading's
+   second line, now that a heading has one */
+thead th[aria-sort="ascending"] .sort-button::after{content:"\\00a0\\2191"}
+thead th[aria-sort="descending"] .sort-button::after{content:"\\00a0\\2193"}
 tbody th,tbody td{padding:9px 13px;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
 tbody th{font-weight:400;text-align:left}
 tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}

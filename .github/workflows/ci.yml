@@ -35,7 +35,10 @@ jobs:
           # regression that only shows up on the version the project claims
           python-version: "3.10"
 
+      # fonttools reads the shipped subsets: what a face leaves out is a
+      # question now, and the answer has to come from the files themselves
       - run: pip install "pytest>=7" "ruff>=0.5" "pyright>=1.1" "jsonschema>=4"
+                         "fonttools>=4.50" "brotli>=1.1"
 
       - name: Lint
         run: ruff check .
