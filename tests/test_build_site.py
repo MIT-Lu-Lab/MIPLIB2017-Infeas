@@ -1,4 +1,5 @@
 import csv
+import json
 import re
 
 import pytest
@@ -17,7 +18,8 @@ def test_build_writes_the_expected_tree(tmp_path, index):
                 "dual-infeasible/aaa/index.html",
                 "download/index.html",
                 "about/index.html",
-                "guide/index.html"):
+                "guide/index.html",
+                "schema/meta.schema.json"):
         assert (out / rel).is_file(), rel
     assert n == 9
 
@@ -36,6 +38,17 @@ def test_rebuild_is_idempotent(tmp_path, index):
     first = (out / "index.html").read_text(encoding="utf-8")
     B.build(index, out)
     assert (out / "index.html").read_text(encoding="utf-8") == first
+
+
+def test_build_publishes_the_canonical_sidecar_schema(tmp_path, index):
+    out = tmp_path / "out"
+    B.build(index, out)
+
+    published = out / "schema" / "meta.schema.json"
+    assert published.read_bytes() == B.SCHEMA_FILE.read_bytes()
+    schema = json.loads(published.read_text(encoding="utf-8"))
+    assert schema["$id"] == \
+        "https://mit-lu-lab.github.io/MIPLIB-Infeas/schema/meta.schema.json"
 
 
 def test_build_fails_loudly_when_the_index_is_missing(tmp_path):

@@ -32,6 +32,12 @@ def test_page_count_matches_the_collection(built):
     assert len(pages) == 340
 
 
+def test_published_schema_matches_the_repository_source(built):
+    published = built / "schema" / "meta.schema.json"
+    source = ROOT / "schema" / "meta.schema.json"
+    assert published.read_bytes() == source.read_bytes()
+
+
 def test_no_page_contains_an_em_dash(built):
     for page in built.rglob("index.html"):
         text = page.read_text(encoding="utf-8")

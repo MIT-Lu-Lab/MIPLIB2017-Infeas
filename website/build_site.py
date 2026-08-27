@@ -20,6 +20,7 @@ _ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INDEX = _ROOT / "metadata" / "site-index.json"
 DEFAULT_MIPLIB = _ROOT / "metadata" / "miplib_meta.json"
 FONT_DIR = _ROOT / "fonts"
+SCHEMA_FILE = _ROOT / "schema" / "meta.schema.json"
 
 # Published index columns, per subset, as (header, accessor). The headers ship as
 # release assets, so renaming one breaks whatever is reading the CSVs.
@@ -125,6 +126,15 @@ def _copy_fonts(out_dir: Path) -> set[str]:
     return rels
 
 
+def _copy_schema(out_dir: Path) -> str:
+    """Publish the machine-readable contract at the stable URL in its ``$id``."""
+    rel = Path("schema/meta.schema.json")
+    dest = out_dir / rel
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(SCHEMA_FILE, dest)
+    return rel.as_posix()
+
+
 def _write(out_dir: Path, rel: str, html: str) -> None:
     path = out_dir / rel
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -209,6 +219,7 @@ def build(index_path: Path | str, out_dir: Path | str,
 
     rels |= _copy_fonts(out_dir)
     rels |= _write_assets(out_dir)
+    rels.add(_copy_schema(out_dir))
     rels.add(_write_nojekyll(out_dir))
     _prune(out_dir, rels)
     return written

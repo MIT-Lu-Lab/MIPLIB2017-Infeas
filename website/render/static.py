@@ -121,8 +121,9 @@ def render_guide() -> str:
   <span class="eyebrow">Reference</span>
   <h1>Reading a file</h1>
   <p class="sub">Every published instance is a gzipped MPS beside a
-  <span class="mono">.meta.json</span> sidecar recording how it was derived. This page
-  says what each field means and how to check the collection's claims yourself.</p>
+  <span class="mono">.meta.json</span> sidecar recording how it was derived. The reference
+  below explains each field; the <a href="../schema/meta.schema.json">JSON Schema</a>
+  is the machine-readable contract.</p>
 </div>
 
 <div class="section">

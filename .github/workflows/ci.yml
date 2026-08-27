@@ -11,18 +11,21 @@ permissions:
 
 # The release the download links point at. The site names a specific release
 # rather than following the newest one, so cutting a new one is a deliberate
-# edit here and in pages.yml.
+# edit here.
 env:
   RELEASE_TAG: v1.0
-
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: read
+    # Supersede an obsolete check, but do not cancel a deployment that has
+    # already started in the separate `pages` concurrency group below.
+    concurrency:
+      group: site-check-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
 
@@ -51,11 +54,16 @@ jobs:
             echo "::error::a test skipped in CI; install what it needs"; exit 1
           fi
 
+      - name: Resolve the published URL
+        id: pages
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+
       - name: Build the site
         run: |
           python -m website.build_site --out-dir _site \
             --release-base-url "https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_TAG }}" \
-            --site-url "https://example.invalid/probe"
+            --site-url "${{ steps.pages.outputs.base_url || 'https://example.invalid/probe' }}"
 
       - name: The build has to stand on its own
         # every asset a page asks for must come out of the same build: the site is
@@ -65,6 +73,8 @@ jobs:
           test "$(find _site -name index.html | wc -l)" -eq 340
           test -f _site/primal-infeasible.csv
           test -f _site/dual-infeasible.csv
+          test -f _site/schema/meta.schema.json
+          cmp schema/meta.schema.json _site/schema/meta.schema.json
           test "$(find _site/fonts -name '*.woff2' | wc -l)" -eq 8
           # a reader must not be announced to a third party to read a page. Links
           # in the prose are the point of the site and are not what this looks at:
@@ -85,6 +95,52 @@ jobs:
           find _site -type f | sort | xargs sha256sum > /tmp/first.sha
           python -m website.build_site --out-dir _site \
             --release-base-url "https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_TAG }}" \
-            --site-url "https://example.invalid/probe"
+            --site-url "${{ steps.pages.outputs.base_url || 'https://example.invalid/probe' }}"
           find _site -type f | sort | xargs sha256sum > /tmp/second.sha
           diff /tmp/first.sha /tmp/second.sha
+
+      - name: Package the verified Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          # The current upload-pages-artifact@v4 release excludes dotfiles,
+          # including .nojekyll. Build the Pages tar explicitly so the deployed
+          # tree is exactly the tree checked above. Reject any unreviewed hidden
+          # entry or symbolic link.
+          unexpected="$(find _site -mindepth 1 -name '.*' ! -path '_site/.nojekyll' -print)"
+          if [[ -n "$unexpected" ]]; then
+            echo "::error::unexpected hidden path in the site artifact"
+            printf '%s\n' "$unexpected"
+            exit 1
+          fi
+          if find _site -type l -print -quit | grep -q .; then
+            echo "::error::the Pages artifact contains a symbolic link"
+            exit 1
+          fi
+          tar --dereference --hard-dereference \
+            --directory _site \
+            -cf "$RUNNER_TEMP/artifact.tar" \
+            .
+          tar -tf "$RUNNER_TEMP/artifact.tar" > "$RUNNER_TEMP/artifact-files.txt"
+          grep -Fxq './.nojekyll' "$RUNNER_TEMP/artifact-files.txt"
+          grep -Fxq './schema/meta.schema.json' "$RUNNER_TEMP/artifact-files.txt"
+
+      - name: Upload the verified Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy:
+    needs: check
+    if: >-
+      ${{ needs.check.result == 'success' &&
+          github.ref == 'refs/heads/main' &&
+          github.event_name != 'pull_request' }}
+    permissions:
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml

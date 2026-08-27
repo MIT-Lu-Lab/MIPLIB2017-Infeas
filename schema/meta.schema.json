@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mit-lu-lab.github.io/MIPLIB-Infeas/schema/meta.schema.json",
   "title": "MIPLIB-Infeas sidecar",
-  "description": "The .meta.json published beside each .mps.gz, recording how that linear program was derived from its MIPLIB 2017 source instance. The guide at /guide/ explains the fields in prose; this says which are required and what shape they take, so a consumer can check a file rather than trust the page.",
+  "description": "The .meta.json published beside each .mps.gz, recording how that linear program was derived from its MIPLIB 2017 source instance. The site's Reading a file guide explains the fields in prose; this says which are required and what shape they take, so a consumer can check a file rather than trust the page.",
   "type": "object",
   "required": ["instance", "sample_kind", "n_vars", "n_cons", "nnz"],
   "properties": {

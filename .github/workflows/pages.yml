@@ -1,62 +1,27 @@
 name: Deploy the site
 
-# The published site is a build artifact, not a committed tree: what is in this
-# repository is the generator and the index it reads. Set Pages to "GitHub
-# Actions" as its source, or this workflow deploys nothing.
-
+# This workflow has no independent trigger. CI calls it only after its `check`
+# job has built, verified and uploaded the one artifact deployed below.
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# The release the download links point at. The site names a specific release
-# rather than following the newest one, so cutting a new one is a deliberate
-# edit here and in ci.yml.
-env:
-  RELEASE_TAG: v1.0
-
-
-# a queued deploy should wait for the running one rather than cancel it: a
-# half-finished deploy is a half-published site
-concurrency:
-  group: pages
-  cancel-in-progress: false
+  workflow_call:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Resolve the published URL
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - name: Build
-        run: |
-          python -m website.build_site --out-dir _site \
-            --release-base-url "https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_TAG }}" \
-            --site-url "${{ steps.pages.outputs.base_url }}"
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    # A queued deploy waits for the running one. Never interrupt a publication
+    # halfway through because a newer commit reached this gate.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy the verified artifact
+        id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages

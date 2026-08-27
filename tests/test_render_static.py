@@ -1,6 +1,10 @@
 from website import load as L, records as R, render as V
 
 
+def test_guide_links_the_machine_readable_schema():
+    assert 'href="../schema/meta.schema.json"' in V.render_guide()
+
+
 def test_download_page_links_the_archives_and_indexes(index):
     samples = L.load_index(index)
     html = V.render_download(L.collection_totals(samples),
