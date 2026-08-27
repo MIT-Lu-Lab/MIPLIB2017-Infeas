@@ -25,16 +25,7 @@ These start from a root LP relaxation that is feasible and bounded. Bounds and c
 
 ## Download
 
-The files are release assets rather than part of the git tree.
-
-For the whole set, `primal-infeasible.zip` and `dual-infeasible.zip` hold every file of that subset, laid out as `instances/infeasible/` and `instances/unbounded/`:
-
-```bash
-unzip primal-infeasible.zip
-unzip dual-infeasible.zip
-```
-
-For a subset, `primal-infeasible.csv` and `dual-infeasible.csv` list the instances with their dimensions and filenames. Filter one and build the URLs from its `mps_filename` column; every asset sits directly under the release download prefix.
+Everything is on the [release](https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/tag/v1.0): [`primal-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/primal-infeasible.zip) and [`dual-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/dual-infeasible.zip) each hold a whole subset, laid out as `instances/infeasible/` and `instances/unbounded/`.
 
 ## This repository
 
@@ -57,8 +48,6 @@ is committed. To build it yourself:
 python -m website.build_site --out-dir _site
 python -m http.server -d _site
 ```
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the rest.
 
 ## Citation
 
