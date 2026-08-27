@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>pb-fit2d (primal-infeasible)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap">
+<style>
+:root{
+  --paper:#FAFAFB;
+  --raise:#FFFFFF;
+  --ink:#14161D;
+  --muted:#676C7C;
+  --rule:#DEE0E7;
+  --rule-soft:#EBECF1;
+  --primal:#3B4CC0;
+  --primal-wash:#EEF0FC;
+  --dual:#B45309;
+  --dual-wash:#FBF1E5;
+  --shadow:0 1px 2px rgba(20,22,29,.05),0 8px 24px -16px rgba(20,22,29,.25);
+
+  --f-serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --f-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F1116;
+    --raise:#161922;
+    --ink:#E6E8EF;
+    --muted:#959BAC;
+    --rule:#272B37;
+    --rule-soft:#1E222C;
+    --primal:#8B99EC;
+    --primal-wash:#1B1F35;
+    --dual:#E0A458;
+    --dual-wash:#2A2015;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F1116;
+  --raise:#161922;
+  --ink:#E6E8EF;
+  --muted:#959BAC;
+  --rule:#272B37;
+  --rule-soft:#1E222C;
+  --primal:#8B99EC;
+  --primal-wash:#1B1F35;
+  --dual:#E0A458;
+  --dual-wash:#2A2015;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-sans);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-serif);text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.01em}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
+:focus-visible{outline:2px solid var(--primal);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- chrome ---------- */
+.topbar{
+  position:sticky;top:0;z-index:20;
+  background:color-mix(in srgb,var(--paper) 88%,transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+}
+.topbar-inner{
+  max-width:1180px;margin:0 auto;padding:0 24px;
+  height:56px;display:flex;align-items:center;gap:28px;
+}
+.wordmark{font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
+.wordmark .dash{color:var(--muted)}
+nav.top{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+nav.top a{
+  font:inherit;font-size:13.5px;color:var(--muted);text-decoration:none;
+  background:none;border:0;cursor:pointer;
+  padding:7px 11px;border-radius:5px;transition:color .12s,background .12s;
+}
+nav.top a:hover{color:var(--ink);background:var(--rule-soft)}
+nav.top a[aria-current="page"]{color:var(--ink);font-weight:500}
+/* the duality hairline: which side of the pair you are looking at */
+.hairline{height:2px;display:flex}
+.hairline span{flex:1;background:var(--rule);transition:background .2s}
+body[data-view="primal"] .hairline span:first-child{background:var(--primal)}
+body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
+
+main{max-width:1180px;margin:0 auto;padding:44px 24px 96px}
+.prose{max-width:66ch}
+.prose p{margin:0 0 14px}
+.muted{color:var(--muted)}
+
+.eyebrow{
+  font-family:var(--f-mono);font-size:11px;font-weight:500;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+}
+
+/* ---------- home ---------- */
+.masthead{display:flex;flex-direction:column;gap:14px;padding-bottom:34px}
+.masthead h1{font-size:40px;line-height:1.12}
+.masthead .sub{font-size:18px;color:var(--muted);font-family:var(--f-serif);max-width:62ch}
+.masthead .sub a{color:var(--primal);text-decoration:none;border-bottom:1px solid var(--rule)}
+.masthead .sub a:hover{border-bottom-color:var(--primal)}
+
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(162px,1fr));
+  border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--raise);
+}
+.stat{padding:16px 18px;border-right:1px solid var(--rule-soft)}
+.stat:last-child{border-right:0}
+.stat .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:20px;font-weight:500;line-height:1.2}
+.stat .k{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0}
+.subset{
+  border:1px solid var(--rule);border-radius:8px;background:var(--raise);
+  padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;
+  border-top:3px solid var(--accent);text-align:left;font:inherit;color:var(--ink);cursor:pointer;
+  text-decoration:none;transition:box-shadow .14s,transform .14s;
+}
+.subset:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.subset.p{--accent:var(--primal)}
+.subset.d{--accent:var(--dual)}
+.subset h3{font-size:20px}
+.subset .count{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--accent);font-weight:500}
+.subset p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
+.subset .go{font-size:13px;color:var(--accent);font-weight:500;margin-top:auto}
+
+.section{margin-top:52px}
+.section > h2{font-size:24px;margin-bottom:6px}
+.section > .eyebrow{margin-bottom:10px}
+
+/* file cards */
+.files{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.file{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:16px 18px}
+.file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--primal);margin-bottom:9px;overflow-wrap:anywhere}
+.file p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
+
+.cite{
+  margin-top:20px;border:1px solid var(--rule);border-left:3px solid var(--muted);
+  border-radius:0 6px 6px 0;background:var(--raise);padding:15px 18px;
+  font-family:var(--f-mono);font-size:12.5px;line-height:1.7;color:var(--muted);
+  overflow-x:auto;
+}
+
+/* ---------- browse ---------- */
+.browse-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.browse-head h1{font-size:29px}
+.browse-head .desc{font-size:14px;color:var(--muted);margin-top:5px;max-width:62ch}
+.browse{display:grid;grid-template-columns:196px 1fr;gap:28px;align-items:start}
+.facets{position:sticky;top:78px;display:flex;flex-direction:column;gap:22px}
+.facet .eyebrow{margin-bottom:8px;display:block}
+.facet label{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:3px 0;cursor:pointer;color:var(--muted)}
+.facet label:hover{color:var(--ink)}
+.facet input{accent-color:var(--primal);margin:0}
+.facet .n{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;font-variant-numeric:tabular-nums}
+
+.table-wrap{border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+thead th{
+  position:sticky;top:56px;z-index:5;background:var(--raise);
+  font-family:var(--f-sans);font-weight:500;font-size:11.5px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--muted);text-align:left;
+  padding:11px 13px;border-bottom:1px solid var(--rule);white-space:nowrap;
+}
+thead th.r{text-align:right}
+thead th[data-sort]{cursor:pointer;user-select:none}
+thead th[data-sort]:hover{color:var(--ink)}
+thead th[aria-sort="ascending"]::after{content:" \2191"}
+thead th[aria-sort="descending"]::after{content:" \2193"}
+tbody td{padding:9px 13px;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--rule-soft)}
+td.name a{font-family:var(--f-mono);font-size:13px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--rule)}
+td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
+.tag{
+  display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.03em;
+  padding:2px 6px;border-radius:3px;background:var(--rule-soft);color:var(--muted);
+}
+.size-s{color:var(--muted)}
+.dl{
+  font-family:var(--f-mono);font-size:12px;text-decoration:none;color:var(--primal);
+  border:1px solid var(--rule);border-radius:4px;padding:3px 8px;white-space:nowrap;
+}
+.dl:hover{background:var(--primal-wash);border-color:var(--primal)}
+.table-foot{font-size:12.5px;color:var(--muted);margin-top:11px}
+
+/* ---------- detail ---------- */
+.detail-head{border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:26px}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:9px}
+.crumb a{color:var(--muted)}
+.detail-head h1{font-family:var(--f-mono);font-size:30px;font-weight:600;letter-spacing:-.02em}
+.badges{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
+.badge{
+  font-family:var(--f-mono);font-size:11.5px;padding:3px 9px;border-radius:11px;
+  border:1px solid var(--accent);color:var(--accent);background:var(--wash);
+}
+.badge.p{--accent:var(--primal);--wash:var(--primal-wash)}
+.badge.d{--accent:var(--dual);--wash:var(--dual-wash)}
+.badge.n{--accent:var(--rule);--wash:transparent;color:var(--muted)}
+
+.detail{display:grid;grid-template-columns:1fr 292px;gap:30px;align-items:start}
+.panel{border:1px solid var(--rule);border-radius:8px;background:var(--raise);margin-bottom:18px;overflow:hidden}
+.panel > header{
+  padding:13px 18px;border-bottom:1px solid var(--rule-soft);
+  display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+}
+.panel > header h2{font-size:15px;font-family:var(--f-sans);font-weight:600}
+.panel .body{padding:16px 18px}
+
+.kv{display:grid;grid-template-columns:auto 1fr;gap:0}
+.kv dt{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--rule-soft)}
+.kv dd{
+  margin:0;padding:7px 0;text-align:right;border-bottom:1px solid var(--rule-soft);
+  font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px;
+}
+.kv dt:last-of-type,.kv dd:last-of-type{border-bottom:0}
+.delta{color:var(--muted);font-size:11.5px;margin-left:7px}
+
+.recipe{
+  font-family:var(--f-mono);font-size:13px;line-height:1.85;
+  background:var(--primal-wash);border:1px solid var(--rule);border-radius:6px;
+  padding:13px 15px;margin-bottom:14px;overflow-x:auto;
+}
+.recipe.d{background:var(--dual-wash)}
+.recipe .k{color:var(--muted)}
+.recipe b{font-weight:600}
+
+.path{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;columns:3;column-gap:22px}
+.path span{display:block;color:var(--muted)}
+.path span b{color:var(--ink);font-weight:500}
+.more{font-size:12.5px;color:var(--muted);margin-top:12px;border-top:1px solid var(--rule-soft);padding-top:11px}
+.more a{color:var(--primal)}
+
+.aside{position:sticky;top:78px;display:flex;flex-direction:column;gap:18px}
+.card{border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow:hidden}
+.card > header{padding:12px 16px;border-bottom:1px solid var(--rule-soft)}
+.card > header .eyebrow{display:block}
+.card .body{padding:14px 16px}
+.btn{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  text-decoration:none;font-size:13.5px;font-weight:500;
+  padding:11px 14px;border-radius:6px;border:1px solid var(--primal);
+  color:#fff;background:var(--primal);transition:filter .12s;
+}
+.btn:hover{filter:brightness(1.08)}
+.btn .sz{font-family:var(--f-mono);font-size:12px;opacity:.82;font-weight:400}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule);margin-top:9px}
+.btn.ghost:hover{background:var(--rule-soft);filter:none}
+.card .hint{font-size:12px;color:var(--muted);margin-top:11px;line-height:1.5}
+.src-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:5px 0}
+.src-row span:first-child{color:var(--muted)}
+.src-row span:last-child{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.extlink{
+  display:inline-block;margin-top:12px;font-size:12.5px;color:var(--primal);
+  text-decoration:none;border-bottom:1px solid var(--rule);
+}
+.extlink:hover{border-bottom-color:var(--primal)}
+.crosslink{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+  border:1px solid var(--rule);border-left:3px solid var(--dual);border-radius:0 6px 6px 0;
+  background:var(--raise);padding:12px 15px;font-size:13.5px;
+}
+.crosslink:hover{background:var(--dual-wash)}
+.crosslink .mono{font-size:12.5px;color:var(--muted)}
+
+@media (max-width:900px){
+  .pair,.detail,.browse,.files{grid-template-columns:1fr}
+  .facets,.aside{position:static}
+  .path{columns:2}
+  .masthead h1{font-size:32px}
+}
+@media (max-width:560px){.path{columns:1}}
+</style>
+</head>
+<body data-view="primal">
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="../../">MIPLIB<span class="dash">-</span>Infeas</a>
+    <nav class="top"><a href="../../">Overview</a><a href="../../primal-infeasible/" aria-current="page">Primal-infeasible</a><a href="../../dual-infeasible/">Dual-infeasible</a><a href="../../download/">Download</a><a href="../../about/">About</a></nav>
+  </div>
+  <div class="hairline"><span></span><span></span></div>
+</div>
+<main>
+<div class="detail-head">
+  <div class="crumb"><a href="../">Primal-infeasible</a> / pb-fit2d</div>
+  <h1>pb-fit2d</h1>
+  <div class="badges"><span class="badge p">primal-infeasible</span></div>
+</div>
+<div class="detail">
+  <div>
+    <div class="panel"><header><h2>The instance</h2>
+      <span class="eyebrow">as written</span></header>
+      <div class="body"><dl class="kv"><dt>Variables</dt><dd>118,500</dd><dt>Constraints</dt><dd>10,525</dd><dt>Nonzeros</dt><dd>1,575,578</dd><dt>Format</dt><dd>MPS, gzipped</dd></dl></div>
+    </div>
+    
+<div class="panel"><header><h2>Where it comes from</h2>
+  <span class="eyebrow">provenance</span></header>
+  <div class="body">
+    <p class="muted" style="margin:0 0 13px;font-size:13.5px">A branch-and-bound run
+    reached this node's parent and split on a variable. This instance is the side the
+    search did not explore, and it has no feasible point.</p>
+    <div class="recipe">
+<span class="k">branch taken by the search</span><br>
+x101697 &le; 0<br>
+<span class="k">this instance, the other side</span><br>
+<b>x101697 &ge; 1</b>
+<span class="k">at depth 54,505</span></div>
+    <dl class="kv"><dt>Depth in the tree</dt><dd>54,505</dd><dt>Bound changes vs. root</dt><dd>54,505</dd><dt>Branch variable</dt><dd>x101697</dd></dl>
+  </div>
+</div>
+<div class="panel"><header><h2>Accumulated bounds</h2>
+  <span class="eyebrow">54,505 entries</span></header>
+  <div class="body"><div class="path"><span>x0&lt;=0</span><span>x1&lt;=0</span><span>x2&lt;=0</span><span>x3&lt;=0</span><span>x4&lt;=0</span><span>x11&gt;=1</span><span>x12&gt;=1</span><span>x13&gt;=1</span><span>x14&gt;=1</span><span>x15&gt;=1</span><span>x16&gt;=1</span><span>x19&lt;=0</span></div>
+    <p class="more">12 of 54,505 shown.
+    The complete list is in the sidecar.</p>
+  </div>
+</div>
+    <a class="crosslink" href="../../dual-infeasible/pb-fit2d/"><span>Also published in the <b>dual-infeasible</b> set</span><span class="mono" style="margin-left:auto">view &rarr;</span></a>
+  </div>
+  <div class="aside"><div class="card">
+  <header><span class="eyebrow">Download</span></header>
+  <div class="body">
+    <a class="btn" href="https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/pb-fit2d_if.mps.gz">pb-fit2d_if.mps.gz<span class="sz">6.62 MB</span></a>
+    <a class="btn ghost" href="https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/pb-fit2d_if.meta.json">pb-fit2d_if.meta.json<span class="sz">0.89 MB</span></a>
+    <p class="hint">The sidecar carries the full provenance, including the fields this
+    page truncates.</p>
+  </div>
+</div><div class="card">
+  <header><span class="eyebrow">Source instance</span></header>
+  <div class="body">
+    <div class="src-row"><span>Name</span><span>pb-fit2d</span></div>
+    <a class="extlink" href="https://miplib.zib.de/instance_details_pb-fit2d.html" target="_blank" rel="noopener">
+      View on MIPLIB 2017 &rarr;</a>
+  </div>
+</div></div>
+</div>
+</main>
+<script>
+document.addEventListener('click', function(ev){
+  var th = ev.target.closest('th[data-sort]');
+  if(!th) return;
+  var table = th.closest('table');
+  var idx = Array.prototype.indexOf.call(th.parentNode.children, th);
+  var asc = th.getAttribute('aria-sort') !== 'ascending';
+  var numeric = th.dataset.sort === 'num';
+  var rows = Array.prototype.slice.call(table.tBodies[0].rows);
+  rows.sort(function(a,b){
+    var x = a.cells[idx].dataset.v, y = b.cells[idx].dataset.v;
+    if(numeric){ x = parseFloat(x); y = parseFloat(y); }
+    return (x<y?-1:x>y?1:0) * (asc?1:-1);
+  });
+  rows.forEach(function(r){ table.tBodies[0].appendChild(r) });
+  Array.prototype.forEach.call(table.tHead.rows[0].cells, function(c){
+    c.removeAttribute('aria-sort') });
+  th.setAttribute('aria-sort', asc?'ascending':'descending');
+});
+
+document.addEventListener('change', function(ev){
+  var cb = ev.target.closest('.facets input[data-k]');
+  if(!cb) return;
+  var facets = cb.closest('.facets');
+  var wrap = facets.parentNode;
+  var table = wrap.querySelector('table');
+  if(!table) return;
+  var groups = Array.prototype.map.call(facets.querySelectorAll('.facet'), function(g){
+    return Array.prototype.map.call(
+      g.querySelectorAll('input[data-k]:checked'), function(i){ return i.dataset.k; });
+  }).filter(function(keys){ return keys.length > 0; });
+  var rows = Array.prototype.slice.call(table.tBodies[0].rows);
+  var shown = 0;
+  rows.forEach(function(row){
+    var have = (row.getAttribute('data-f') || '').split(' ');
+    var ok = groups.every(function(keys){
+      return keys.some(function(k){ return have.indexOf(k) !== -1; });
+    });
+    row.hidden = !ok;
+    if(ok) shown++;
+  });
+  var foot = wrap.querySelector('.table-foot');
+  if(!foot) return;
+  var total = foot.dataset.total;
+  foot.textContent = groups.length
+    ? (shown + ' of ' + total + ' instances shown. Every column sorts.')
+    : (total + ' instances. Every column sorts.');
+});
+</script>
+</body>
+</html>
