@@ -132,6 +132,8 @@ nav.top a{
 }
 nav.top a:hover{color:var(--ink);background:var(--rule-soft)}
 nav.top a[aria-current="page"]{color:var(--ink);font-weight:500}
+/* both labels ship on every link that has two; only one is ever displayed */
+.nav-short{display:none}
 /* the duality hairline: which side of the pair you are looking at */
 .hairline{height:2px;display:flex}
 .hairline span{flex:1;background:var(--rule);transition:background .2s}
@@ -146,8 +148,9 @@ body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
    a narrow page. The citation note never got one, and wrapped short. */
 main{--measure:34rem;width:100%;min-width:0;max-width:1180px;margin:0 auto;padding:44px 24px 96px}
 main.narrow{--measure:none;max-width:900px}
-.prose,.note,.cite-note,.masthead .sub,.browse-head .desc{max-width:var(--measure)}
-.prose,.note,.cite-note,.masthead .sub,.browse-head .desc{overflow-wrap:break-word}
+.prose,.note,.cite-note,.masthead .sub,.browse-head .desc{
+  max-width:var(--measure);overflow-wrap:break-word;
+}
 .prose p{margin:0 0 14px}
 .muted{color:var(--muted)}
 .note{font-size:13px;color:var(--muted);margin-top:26px}
@@ -389,13 +392,18 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
     height:auto;min-height:56px;padding:8px 16px 7px;
     display:grid;grid-template-columns:minmax(0,1fr);gap:4px;
   }
-  .wordmark{justify-self:start}
-  nav.top{width:100%;margin:0;flex-wrap:nowrap;gap:0}
+  .wordmark{display:block;width:max-content;max-width:100%;justify-self:start}
+  nav.top{
+    width:100%;margin:0;display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;
+  }
   nav.top a{
-    flex:1 1 0;min-width:0;min-height:44px;padding:10px 2px;
+    min-width:0;min-height:44px;padding:10px 2px;
     display:flex;align-items:center;justify-content:center;
     font-size:clamp(11px,3.2vw,12.5px);line-height:1.2;white-space:nowrap;
   }
+  nav.top .nav-full{display:none}
+  nav.top .nav-short{display:inline}
   main{padding:32px 16px 72px}
 }
 @media (max-width:560px){.path{columns:1}}
@@ -450,9 +458,9 @@ function setFacetDisclosure(compact){
   });
 }
 
-// The desktop rail stays open. On a phone it becomes a native disclosure before
-// first paint, leaving the table in the first viewport without making filtering
-// dependent on a custom button implementation.
+// The desktop rail stays open. On a phone it collapses into a native disclosure
+// as soon as the deferred script runs, leaving the table in the first viewport
+// without making filtering depend on a custom button implementation.
 setFacetDisclosure(compactFacets.matches);
 if(compactFacets.addEventListener){
   compactFacets.addEventListener('change', function(ev){ setFacetDisclosure(ev.matches); });
