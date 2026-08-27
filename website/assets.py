@@ -26,64 +26,51 @@ def font_face(up=""):
         for family, style, weight in FONT_FACES)
 
 STYLESHEET = """
+/* One value per token, not three. The dark palette was written out twice, once
+   under prefers-color-scheme and once under [data-theme="dark"], and the light
+   one had to be repeated in the guard between them. light-dark() resolves
+   against the used colour scheme, so a manual override is the scheme itself.
+   Nothing sets data-theme today; the two lines below are what a toggle would
+   need, instead of a third copy of the palette. */
 :root{
-  --paper:#FAFAFB;
-  --raise:#FFFFFF;
-  --ink:#14161D;
-  --muted:#676C7C;
-  --rule:#DEE0E7;
-  --rule-soft:#EBECF1;
-  --primal:#3B4CC0;
-  --primal-wash:#EEF0FC;
-  --dual:#B45309;
-  --dual-wash:#FBF1E5;
-  --shared:#166534;
-  --shared-wash:#E8F3EB;
-  --on-view:#FFFFFF;
-  --muted-strong:#4E5361;
-  --shadow:0 1px 2px rgba(20,22,29,.05),0 8px 24px -16px rgba(20,22,29,.25);
+  color-scheme:light dark;
+
+  --paper:light-dark(#FAFAFB,#0F1116);
+  --raise:light-dark(#FFFFFF,#161922);
+  --ink:light-dark(#14161D,#E6E8EF);
+  --muted:light-dark(#676C7C,#959BAC);
+  --muted-strong:light-dark(#4E5361,#B2B8C7);
+  --rule:light-dark(#DEE0E7,#272B37);
+  --rule-soft:light-dark(#EBECF1,#1E222C);
+  --primal:light-dark(#3B4CC0,#8B99EC);
+  --primal-wash:light-dark(#EEF0FC,#1B1F35);
+  --dual:light-dark(#B45309,#E0A458);
+  --dual-wash:light-dark(#FBF1E5,#2A2015);
+  --shared:light-dark(#166534,#6BD48F);
+  --shared-wash:light-dark(#E8F3EB,#13251A);
+  --on-view:light-dark(#FFFFFF,#0F1116);
+
+  /* light-dark() takes a colour, and a shadow is a list, so the two colours in
+     it are the tokens and the geometry is stated once */
+  --shadow-near:light-dark(rgba(20,22,29,.05),rgba(0,0,0,.4));
+  --shadow-far:light-dark(rgba(20,22,29,.25),rgba(0,0,0,.8));
+  --shadow:0 1px 2px var(--shadow-near),0 8px 24px -16px var(--shadow-far);
+
+  /* the top bar's height, which the sticky offsets below are measured from */
+  --topbar-h:56px;
 
   --f-serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
   --f-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --paper:#0F1116;
-    --raise:#161922;
-    --ink:#E6E8EF;
-    --muted:#959BAC;
-    --rule:#272B37;
-    --rule-soft:#1E222C;
-    --primal:#8B99EC;
-    --primal-wash:#1B1F35;
-    --dual:#E0A458;
-    --dual-wash:#2A2015;
-    --shared:#6BD48F;
-    --shared-wash:#13251A;
-    --on-view:#0F1116;
-    --muted-strong:#B2B8C7;
-    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#0F1116;
-  --raise:#161922;
-  --ink:#E6E8EF;
-  --muted:#959BAC;
-  --rule:#272B37;
-  --rule-soft:#1E222C;
-  --primal:#8B99EC;
-  --primal-wash:#1B1F35;
-  --dual:#E0A458;
-  --dual-wash:#2A2015;
-  --shared:#6BD48F;
-  --shared-wash:#13251A;
-  --on-view:#0F1116;
-  --muted-strong:#B2B8C7;
-  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
-}
+:root[data-theme="light"]{color-scheme:light}
+:root[data-theme="dark"]{color-scheme:dark}
 
+/* min-width:0 below is on flex and grid items only. A grid or flex item's
+   automatic minimum is its content's min-content, which is what kept the browse
+   column from shrinking under a 970px table and pushed the whole page sideways.
+   On anything that is not such an item the property does nothing, and ten of
+   them were doing nothing. */
 *{box-sizing:border-box}
 html,body{max-width:100%}
 body{
@@ -122,7 +109,6 @@ html{scroll-padding-top:72px}
   background:color-mix(in srgb,var(--paper) 88%,transparent);
   backdrop-filter:blur(8px);
   border-bottom:1px solid var(--rule);
-  min-width:0;
 }
 .skip-link{
   position:fixed;z-index:100;top:8px;left:8px;padding:8px 12px;border-radius:5px;
@@ -132,7 +118,7 @@ html{scroll-padding-top:72px}
 .skip-link:focus{transform:none}
 .topbar-inner{
   max-width:1180px;margin:0 auto;padding:0 24px;
-  height:56px;display:flex;align-items:center;gap:28px;min-width:0;
+  height:var(--topbar-h);display:flex;align-items:center;gap:28px;min-width:0;
 }
 .wordmark{font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
 .wordmark .dash{color:var(--muted)}
@@ -158,7 +144,7 @@ body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
    resolves against the element's own font, so the same 66ch handed each text
    size a different width, and every block needed its own opt-out of the cap on
    a narrow page. The citation note never got one, and wrapped short. */
-main{--measure:34rem;width:100%;min-width:0;max-width:1180px;margin:0 auto;padding:44px 24px 96px}
+main{--measure:34rem;width:100%;max-width:1180px;margin:0 auto;padding:44px 24px 96px}
 main.narrow{--measure:none;max-width:900px}
 .prose,.note,.cite-note,.masthead .sub,.browse-head .desc{
   max-width:var(--measure);overflow-wrap:break-word;
@@ -185,11 +171,17 @@ main.narrow{--measure:none;max-width:900px}
 .masthead .sub a:hover{border-bottom-color:var(--view)}
 
 
+/* The raised surface: a bordered, rounded panel on the page's ground. Five
+   blocks carried these three declarations verbatim; each still adds its own
+   padding, radius override or overflow below. */
+.subset,.file,.table-wrap,.panel,.card{
+  border:1px solid var(--rule);border-radius:8px;background:var(--raise);
+}
+
 /* intrinsic, so the pair holds two columns until the cards genuinely stop
    fitting rather than at whatever width the other grids happen to need */
-.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;margin:34px 0;min-width:0}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;margin:34px 0}
 .subset{
-  border:1px solid var(--rule);border-radius:8px;background:var(--raise);
   padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;
   border-top:3px solid var(--accent);text-align:left;font:inherit;color:var(--ink);cursor:pointer;
   text-decoration:none;transition:box-shadow .14s,transform .14s;min-width:0;
@@ -207,8 +199,8 @@ main.narrow{--measure:none;max-width:900px}
 .section > .eyebrow{margin-bottom:10px}
 
 /* file cards */
-.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:18px;min-width:0}
-.file{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:16px 18px;min-width:0}
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:18px}
+.file{padding:16px 18px;min-width:0}
 .file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--view);margin-bottom:9px;overflow-wrap:anywhere}
 .file p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
 
@@ -220,7 +212,7 @@ main.narrow{--measure:none;max-width:900px}
 }
 
 /* ---------- browse ---------- */
-.browse-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px;min-width:0}
+.browse-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
 .browse-head > *{min-width:0}
 .browse-head h1{font-size:29px}
 .browse-head .desc{font-size:14px;color:var(--muted);margin-top:5px}
@@ -229,11 +221,11 @@ main.narrow{--measure:none;max-width:900px}
    shrink below that and pushed the whole page into a horizontal scroll. The
    table is meant to scroll inside .table-wrap instead, taking neither the
    sticky facets nor the header out of view with it. */
-.browse{display:grid;grid-template-columns:196px minmax(0,1fr);gap:28px;align-items:start;min-width:0}
+.browse{display:grid;grid-template-columns:196px minmax(0,1fr);gap:28px;align-items:start}
 .browse > *{min-width:0}
-.facets{position:sticky;top:78px;min-width:0}
+.facets{position:sticky;top:calc(var(--topbar-h) + 22px);min-width:0}
 .facets > summary{display:none}
-.facet-groups{display:flex;flex-direction:column;gap:22px;min-width:0}
+.facet-groups{display:flex;flex-direction:column;gap:22px}
 .facet{border:0;margin:0;padding:0;min-inline-size:0}
 .facet-selected{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);font-weight:400}
 .facet .eyebrow{margin-bottom:8px;display:block}
@@ -242,11 +234,11 @@ main.narrow{--measure:none;max-width:900px}
 .facet input{accent-color:var(--view);margin:0}
 .facet .n{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;font-variant-numeric:tabular-nums}
 
-.table-wrap{min-width:0;max-width:100%;border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow-x:auto}
+.table-wrap{max-width:100%;overflow-x:auto}
 .table-wrap:focus-visible{outline-offset:3px}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
 thead th{
-  position:sticky;top:56px;z-index:5;background:var(--raise);
+  position:sticky;top:var(--topbar-h);z-index:5;background:var(--raise);
   font-family:var(--f-sans);font-weight:500;font-size:11.5px;letter-spacing:.05em;
   text-transform:uppercase;color:var(--muted);text-align:left;
   padding:11px 13px;border-bottom:1px solid var(--rule);white-space:nowrap;
@@ -277,7 +269,7 @@ th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .table-foot{font-size:12.5px;color:var(--muted);margin-top:11px}
 
 /* ---------- detail ---------- */
-.detail-head{min-width:0;border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:26px}
+.detail-head{border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:26px}
 .crumb{font-size:12.5px;color:var(--muted);margin-bottom:9px;overflow-wrap:anywhere}
 .crumb a{color:var(--muted)}
 .detail-head h1{font-family:var(--f-mono);font-size:30px;font-weight:600;letter-spacing:-.02em;overflow-wrap:anywhere}
@@ -290,9 +282,9 @@ th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .badge.d{--accent:var(--dual);--wash:var(--dual-wash)}
 .badge.n{--accent:var(--rule);--wash:transparent;color:var(--muted)}
 
-.detail{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start;min-width:0}
+.detail{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start}
 .detail > *,.aside{min-width:0}
-.panel{min-width:0;border:1px solid var(--rule);border-radius:8px;background:var(--raise);margin-bottom:18px;overflow:hidden}
+.panel{min-width:0;margin-bottom:18px;overflow:hidden}
 .panel > header{
   padding:13px 18px;border-bottom:1px solid var(--rule-soft);
   display:flex;align-items:baseline;justify-content:space-between;gap:12px;
@@ -319,14 +311,16 @@ th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .recipe .k{color:var(--muted)}
 .recipe b{font-weight:600}
 
-.path{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;columns:3;column-gap:22px}
+/* intrinsic: at most three columns, none narrower than a bound entry, so
+   the count follows the space instead of three viewport breakpoints */
+.path{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;columns:11rem 3;column-gap:22px}
 .path span{display:block;color:var(--muted);overflow-wrap:anywhere;break-inside:avoid}
 .path span b{color:var(--ink);font-weight:500}
 .more{font-size:12.5px;color:var(--muted);margin-top:12px;border-top:1px solid var(--rule-soft);padding-top:11px}
 .more a{color:var(--view)}
 
-.aside{position:sticky;top:78px;display:flex;flex-direction:column;gap:18px}
-.card{min-width:0;border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow:hidden}
+.aside{position:sticky;top:calc(var(--topbar-h) + 22px);display:flex;flex-direction:column;gap:18px}
+.card{min-width:0;overflow:hidden}
 .card.p{--view:var(--primal);--view-wash:var(--primal-wash)}
 .card.d{--view:var(--dual);--view-wash:var(--dual-wash)}
 .card > header{padding:12px 16px;border-bottom:1px solid var(--rule-soft)}
@@ -381,11 +375,22 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 .crosslink .mono{flex:none;font-size:12.5px;color:var(--muted);margin-left:auto}
 
 /* .pair and .files size themselves, so they are not listed here */
+/* Touch targets. The desktop density is deliberate, so the taller hit areas are
+   scoped to pointers that cannot land on a 25px row. */
+@media (pointer:coarse){
+  nav.top a{padding:12px 13px}
+  .facet label{min-height:44px;padding:0}
+  .facet input{width:18px;height:18px}
+  .dl{display:inline-flex;align-items:center;min-height:40px;padding:0 12px}
+  tbody th,tbody td{padding:13px}
+  th.name a{display:inline-block;padding:6px 0}
+  .extlink{display:inline-flex;align-items:center;min-height:44px}
+}
 @media (max-width:880px){
   .detail{grid-template-columns:minmax(0,1fr)}
   .aside{position:static}
 }
-@media (max-width:780px){
+@media (max-width:COMPACT_PX){
   .browse{grid-template-columns:minmax(0,1fr)}
   .facets{position:static;border:1px solid var(--rule);border-radius:8px;background:var(--raise)}
   .facets > summary{
@@ -398,27 +403,10 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   .facets[open] > summary::after{content:"-"}
   .facet-groups{gap:18px;padding:14px 16px 16px}
   thead th{position:static}
-}
-@media (max-width:700px){.path{columns:2}}
-@media (max-width:640px){.masthead h1{font-size:32px}}
-@media (max-width:460px){.path{columns:1}}
-
-/* Touch targets. The desktop density is deliberate, so the taller hit areas are
-   scoped to pointers that cannot land on a 25px row. */
-@media (pointer:coarse){
-  nav.top a{padding:12px 13px}
-  .facet label{min-height:44px;padding:0}
-  .facet input{width:18px;height:18px}
-  .dl{display:inline-flex;align-items:center;min-height:40px;padding:0 12px}
-  tbody th,tbody td{padding:13px}
-  th.name a{display:inline-block;padding:6px 0}
-  .extlink{display:inline-flex;align-items:center;min-height:44px}
-}
-@media (max-width:780px){
   html{scroll-padding-top:0}
   .topbar{position:static}
   .topbar-inner{
-    height:auto;min-height:56px;padding:8px 16px 7px;
+    height:auto;min-height:var(--topbar-h);padding:8px 16px 7px;
     display:grid;grid-template-columns:minmax(0,1fr);gap:4px;
   }
   .wordmark{display:block;width:max-content;max-width:100%;justify-self:start}
@@ -435,7 +423,7 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   nav.top .nav-short{display:inline}
   main{padding:32px 16px 72px}
 }
-@media (max-width:560px){.path{columns:1}}
+@media (max-width:640px){.masthead h1{font-size:32px}}
 @media (max-width:460px){
   .kv{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 }
@@ -444,112 +432,111 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 SORT_SCRIPT = """
 function sortByButton(button){
   if(!button) return;
-  var th = button.closest('th');
-  var table = th.closest('table');
-  var idx = Array.prototype.indexOf.call(th.parentNode.children, th);
-  var asc = th.getAttribute('aria-sort') !== 'ascending';
-  var numeric = button.dataset.sort === 'num';
-  var rows = Array.prototype.slice.call(table.tBodies[0].rows);
-  rows.sort(function(a,b){
-    var x = a.cells[idx].dataset.v, y = b.cells[idx].dataset.v;
+  const th = button.closest('th');
+  const body = th.closest('table').tBodies[0];
+  const index = th.cellIndex;
+  const ascending = th.getAttribute('aria-sort') !== 'ascending';
+  const numeric = button.dataset.sort === 'num';
+  const rows = [...body.rows].sort((a, b) => {
+    let x = a.cells[index].dataset.v, y = b.cells[index].dataset.v;
     if(numeric){ x = parseFloat(x); y = parseFloat(y); }
-    return (x<y?-1:x>y?1:0) * (asc?1:-1);
+    return (x < y ? -1 : x > y ? 1 : 0) * (ascending ? 1 : -1);
   });
-  rows.forEach(function(r){ table.tBodies[0].appendChild(r) });
-  Array.prototype.forEach.call(table.tHead.rows[0].cells, function(c){
-    c.removeAttribute('aria-sort') });
-  th.setAttribute('aria-sort', asc?'ascending':'descending');
+  // one mutation, not one per row: the table is reordered in a single insertion
+  // rather than reflowed once for each of 334 rows
+  body.append(...rows);
+  for(const cell of th.parentNode.cells) cell.removeAttribute('aria-sort');
+  th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
 }
 
-document.addEventListener('click', function(ev){
+document.addEventListener('click', (event) => {
   // A native button supplies Enter and Space without a second key handler that
   // would fire once here and once again through the button's synthetic click.
-  sortByButton(ev.target.closest('button[data-sort]'));
+  sortByButton(event.target.closest('button[data-sort]'));
 });
 """
 
-# Facet filtering: a row's `data-f` (from render_browse) lists the facet keys it
-# satisfies; each checkbox carries the key it stands for as `data-k`. Every `.facet`
-# group in the rail imposes its own constraint only when at least one of its boxes is
-# checked; a row must then satisfy at least one checked key per active group.
+# The rail is a plain list on a wide screen and a disclosure on a narrow one. The
+# width at which that changes is COMPACT_PX, filled in below: a media query cannot
+# read a custom property, so the stylesheet and this script each name the same
+# placeholder instead of each carrying the number.
 FILTER_SCRIPT = """
-var compactFacets = window.matchMedia('(max-width: 780px)');
+const compactFacets = matchMedia('(max-width: COMPACT_PX)');
 
 function setFacetDisclosure(compact){
-  Array.prototype.forEach.call(document.querySelectorAll('.facets'), function(facets){
+  for(const facets of document.querySelectorAll('.facets')){
+    // collapsing the rail with the focus inside it would drop the caret on a
+    // hidden control, so the summary that replaces it takes the focus first
     if(compact && facets.contains(document.activeElement)){
-      var summary = facets.querySelector('summary');
-      if(summary) summary.focus();
+      facets.querySelector('summary')?.focus();
     }
     facets.open = !compact;
-  });
+  }
 }
 
 // The desktop rail stays open. On a phone it collapses into a native disclosure
 // as soon as the deferred script runs, leaving the table in the first viewport
 // without making filtering depend on a custom button implementation.
 setFacetDisclosure(compactFacets.matches);
-if(compactFacets.addEventListener){
-  compactFacets.addEventListener('change', function(ev){ setFacetDisclosure(ev.matches); });
-}else if(compactFacets.addListener){
-  compactFacets.addListener(function(ev){ setFacetDisclosure(ev.matches); });
-}
+compactFacets.addEventListener('change', (event) => setFacetDisclosure(event.matches));
 
 function applyFacets(facets){
-  var wrap = facets.parentNode;
-  var table = wrap.querySelector('table');
+  const wrap = facets.parentNode;
+  const table = wrap.querySelector('table');
   if(!table) return;
-  var selected = facets.querySelectorAll('input[data-k]:checked').length;
-  var selectedLabel = facets.querySelector('.facet-selected');
+  const selectedLabel = facets.querySelector('.facet-selected');
   if(selectedLabel){
-    selectedLabel.textContent = selected
-      ? (selected + ' selected')
-      : 'None selected';
+    const selected = facets.querySelectorAll('input[data-k]:checked').length;
+    selectedLabel.textContent = selected ? `${selected} selected` : 'None selected';
   }
-  var groups = Array.prototype.map.call(facets.querySelectorAll('.facet'), function(g){
-    return Array.prototype.map.call(
-      g.querySelectorAll('input[data-k]:checked'), function(i){ return i.dataset.k; });
-  }).filter(function(keys){ return keys.length > 0; });
-  var shown = 0;
-  Array.prototype.forEach.call(table.tBodies[0].rows, function(row){
-    var have = (row.getAttribute('data-f') || '').split(' ');
-    var ok = groups.every(function(keys){
-      return keys.some(function(k){ return have.indexOf(k) !== -1; });
-    });
+  const groups = [...facets.querySelectorAll('.facet')]
+    .map((group) => [...group.querySelectorAll('input[data-k]:checked')]
+      .map((box) => box.dataset.k))
+    .filter((keys) => keys.length > 0);
+  let shown = 0;
+  for(const row of table.tBodies[0].rows){
+    const have = (row.getAttribute('data-f') || '').split(' ');
+    const ok = groups.every((keys) => keys.some((key) => have.includes(key)));
     row.hidden = !ok;
     if(ok) shown++;
-  });
-  var result = wrap.querySelector('.result-count');
+  }
+  const result = wrap.querySelector('.result-count');
   if(!result) return;
-  var total = result.dataset.total;
-  result.textContent = groups.length && shown === 0
-    ? 'No instances match these filters.'
-    : groups.length
-      ? (shown + ' of ' + total + ' instances shown.')
-      : (total + (total === '1' ? ' instance.' : ' instances.'));
+  const total = result.dataset.total;
+  if(!groups.length){
+    result.textContent = `${total} ${total === '1' ? 'instance' : 'instances'}.`;
+  }else if(shown === 0){
+    result.textContent = 'No instances match these filters.';
+  }else{
+    result.textContent = `${shown} of ${total} instances shown.`;
+  }
 }
 
-document.addEventListener('change', function(ev){
-  var cb = ev.target.closest('.facets input[data-k]');
-  if(cb) applyFacets(cb.closest('.facets'));
+document.addEventListener('change', (event) => {
+  const box = event.target.closest('.facets input[data-k]');
+  if(box) applyFacets(box.closest('.facets'));
 });
 
 // Browsers restore checkbox state on reload and when the page comes back from the
 // back/forward cache, so the table has to be brought in line with the boxes before
 // the first change event. pageshow covers both; DOMContentLoaded misses the cache.
-window.addEventListener('pageshow', function(){
-  Array.prototype.forEach.call(document.querySelectorAll('.facets'), applyFacets);
+window.addEventListener('pageshow', () => {
+  document.querySelectorAll('.facets').forEach(applyFacets);
 });
 """
 
+# The one width at which the layout stops being a desktop layout. Both the
+# stylesheet and the script have to know it and neither can read the other's
+# copy, so each writes COMPACT_PX and it is filled in once, here.
+COMPACT_WIDTH = 780
 
-# The stylesheet and the scripts used to be inlined into every page: 18 KB carried
-# 340 times, 78% of the site's HTML, and re-downloaded on every navigation. As two
-# files the browser fetches them once. The name carries a digest of the contents so
-# a changed stylesheet cannot be served from a cache of the old one, and so the
-# pruner can tell last build's file from this one's.
-SITE_CSS = font_face("../") + STYLESHEET
-SITE_JS = SORT_SCRIPT + FILTER_SCRIPT
+
+def _fill(text: str) -> str:
+    return text.replace("COMPACT_PX", f"{COMPACT_WIDTH}px")
+
+
+SITE_CSS = _fill(font_face("../") + STYLESHEET)
+SITE_JS = _fill(SORT_SCRIPT + FILTER_SCRIPT)
 
 
 def _digest(text: str) -> str:

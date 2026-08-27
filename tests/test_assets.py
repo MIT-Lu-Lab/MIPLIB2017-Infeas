@@ -17,9 +17,34 @@ def test_every_token_is_defined_on_bare_root():
         assert f"{t}:" in block, f"{t} missing from bare :root"
 
 
-def test_dark_overrides_exist_for_both_states():
-    assert ":root:not([data-theme=\"light\"])" in A.STYLESHEET
-    assert ":root[data-theme=\"dark\"]" in A.STYLESHEET
+def test_each_colour_is_defined_once_and_carries_both_schemes():
+    """The dark palette used to be written out twice, under prefers-color-scheme
+    and under [data-theme="dark"], with the light one repeated in the guard
+    between them: three places to keep in step for every colour on the site."""
+    block = _root_block(A.STYLESHEET)
+    for t in TOKENS:
+        assert A.STYLESHEET.count(f"{t}:") == 1, f"{t} is defined more than once"
+        light_dark = re.search(rf"{re.escape(t)}:light-dark\(([^)]*)\)", block)
+        assert light_dark, f"{t} names no dark value"
+        light, dark = (v.strip() for v in light_dark.group(1).split(","))
+        assert light and dark and light != dark, f"{t}: {light} / {dark}"
+
+
+def test_a_manual_theme_switches_the_scheme_rather_than_the_palette():
+    """What a toggle would set. Two lines, because light-dark() resolves against
+    the used colour scheme rather than against a second copy of the colours."""
+    assert "color-scheme:light dark" in A.STYLESHEET
+    assert ':root[data-theme="light"]{color-scheme:light}' in A.STYLESHEET
+    assert ':root[data-theme="dark"]{color-scheme:dark}' in A.STYLESHEET
+
+
+def test_the_sticky_offsets_are_measured_from_the_bar_they_clear():
+    """56 and 78 were four literals derived from one height."""
+    assert "--topbar-h:56px" in A.STYLESHEET
+    assert "height:var(--topbar-h)" in A.STYLESHEET
+    assert "top:var(--topbar-h)" in A.STYLESHEET
+    assert A.STYLESHEET.count("top:calc(var(--topbar-h) + 22px)") == 2
+    assert "78px" not in A.STYLESHEET
 
 
 def test_body_paints_its_own_background():
@@ -45,7 +70,7 @@ def test_filter_script_is_self_contained():
     assert "http" not in A.FILTER_SCRIPT
     assert "addEventListener" in A.FILTER_SCRIPT
     assert "data-f" in A.FILTER_SCRIPT and "data-k" in A.FILTER_SCRIPT
-    assert "matchMedia('(max-width: 780px)')" in A.FILTER_SCRIPT
+    assert f"matchMedia('(max-width: {A.COMPACT_WIDTH}px)')" in A.SITE_JS
     assert "facets.open = !compact" in A.FILTER_SCRIPT
     assert "facet-selected" in A.FILTER_SCRIPT
     assert "result-count" in A.FILTER_SCRIPT
@@ -58,13 +83,13 @@ def test_mobile_layout_has_explicit_overflow_guards():
     assert ".detail-head h1" in A.STYLESHEET and "overflow-wrap:anywhere" in A.STYLESHEET
     assert ".btn-label{min-width:0;overflow-wrap:anywhere}" in A.STYLESHEET
     assert "thead th{position:static}" in A.STYLESHEET
-    assert "height:auto;min-height:56px" in A.STYLESHEET
+    assert "height:auto;min-height:var(--topbar-h)" in A.STYLESHEET
     # the two subset names do not fit six equal cells on a phone
     assert ".nav-short{display:none}" in A.STYLESHEET
     assert "nav.top .nav-full{display:none}" in A.STYLESHEET
     assert "nav.top .nav-short{display:inline}" in A.STYLESHEET
     # 200% zoom on common desktop widths produces a 640-720px CSS viewport.
-    assert "@media (max-width:780px)" in A.STYLESHEET
+    assert f"@media (max-width:{A.COMPACT_WIDTH}px)" in A.SITE_CSS
     assert ".topbar{position:static}" in A.STYLESHEET
 
 
@@ -73,6 +98,23 @@ def test_topbar_fallback_and_button_size_text_keep_their_contrast():
     assert topbar.index("background:var(--paper)") < topbar.index("background:color-mix")
     size = re.search(r"\.btn \.sz\{(.*?)\}", A.STYLESHEET, re.S).group(1)
     assert "opacity" not in size
+
+
+def test_the_compact_breakpoint_is_one_number():
+    """A media query cannot read a custom property, so the stylesheet and the
+    script each carried 780 with nothing keeping the two in step."""
+    assert f"@media (max-width:{A.COMPACT_WIDTH}px)" in A.SITE_CSS
+    assert f"matchMedia('(max-width: {A.COMPACT_WIDTH}px)')" in A.SITE_JS
+    assert "COMPACT_PX" not in A.SITE_CSS and "COMPACT_PX" not in A.SITE_JS
+
+
+def test_the_script_targets_the_browsers_the_stylesheet_does():
+    """light-dark(), color-mix() and overflow:clip put the floor at 2024. The
+    script was written against 2018: var, Array.prototype.forEach.call on a
+    NodeList, and a MediaQueryList.addListener fallback for Safari 13."""
+    assert "var " not in A.SITE_JS
+    assert "Array.prototype" not in A.SITE_JS
+    assert ".addListener(" not in A.SITE_JS
 
 
 def test_the_page_loads_nothing_from_a_third_party():
