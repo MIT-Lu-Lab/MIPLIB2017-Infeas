@@ -429,38 +429,11 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 }
 """
 
-SORT_SCRIPT = """
-function sortByButton(button){
-  if(!button) return;
-  const th = button.closest('th');
-  const body = th.closest('table').tBodies[0];
-  const index = th.cellIndex;
-  const ascending = th.getAttribute('aria-sort') !== 'ascending';
-  const numeric = button.dataset.sort === 'num';
-  const rows = [...body.rows].sort((a, b) => {
-    let x = a.cells[index].dataset.v, y = b.cells[index].dataset.v;
-    if(numeric){ x = parseFloat(x); y = parseFloat(y); }
-    return (x < y ? -1 : x > y ? 1 : 0) * (ascending ? 1 : -1);
-  });
-  // one mutation, not one per row: the table is reordered in a single insertion
-  // rather than reflowed once for each of 334 rows
-  body.append(...rows);
-  for(const cell of th.parentNode.cells) cell.removeAttribute('aria-sort');
-  th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
-}
-
-document.addEventListener('click', (event) => {
-  // A native button supplies Enter and Space without a second key handler that
-  // would fire once here and once again through the button's synthetic click.
-  sortByButton(event.target.closest('button[data-sort]'));
-});
-"""
-
 # The rail is a plain list on a wide screen and a disclosure on a narrow one. The
 # width at which that changes is COMPACT_PX, filled in below: a media query cannot
 # read a custom property, so the stylesheet and this script each name the same
 # placeholder instead of each carrying the number.
-FILTER_SCRIPT = """
+DISCLOSURE_SCRIPT = """
 const compactFacets = matchMedia('(max-width: COMPACT_PX)');
 
 function setFacetDisclosure(compact){
@@ -479,50 +452,167 @@ function setFacetDisclosure(compact){
 // without making filtering depend on a custom button implementation.
 setFacetDisclosure(compactFacets.matches);
 compactFacets.addEventListener('change', (event) => setFacetDisclosure(event.matches));
+"""
 
-function applyFacets(facets){
-  const wrap = facets.parentNode;
-  const table = wrap.querySelector('table');
-  if(!table) return;
-  const selectedLabel = facets.querySelector('.facet-selected');
-  if(selectedLabel){
-    const selected = facets.querySelectorAll('input[data-k]:checked').length;
-    selectedLabel.textContent = selected ? `${selected} selected` : 'None selected';
+# The table is rendered by the build and is never re-rendered here. The page
+# ships the values behind its rows and the facet declaration they are filtered
+# by; this decides which rows to show and in what order, and moves the elements
+# the build produced. One renderer, and it is in Python.
+BROWSE_SCRIPT = """
+// The mirror of Range.holds and Term.holds in website/facets.py. A bucket is
+// that declaration serialised: a range carries lo and hi, a term the value it
+// selects, and a field holding a list is held by any term the list contains.
+function bucketHolds(bucket, value){
+  if(value === undefined || value === null) return false;
+  if(bucket.kind === 'term'){
+    return Array.isArray(value) ? value.includes(bucket.value) : value === bucket.value;
   }
-  const groups = [...facets.querySelectorAll('.facet')]
-    .map((group) => [...group.querySelectorAll('input[data-k]:checked')]
-      .map((box) => box.dataset.k))
-    .filter((keys) => keys.length > 0);
-  let shown = 0;
-  for(const row of table.tBodies[0].rows){
-    const have = (row.getAttribute('data-f') || '').split(' ');
-    const ok = groups.every((keys) => keys.some((key) => have.includes(key)));
-    row.hidden = !ok;
-    if(ok) shown++;
-  }
-  const result = wrap.querySelector('.result-count');
-  if(!result) return;
-  const total = result.dataset.total;
-  if(!groups.length){
-    result.textContent = `${total} ${total === '1' ? 'instance' : 'instances'}.`;
-  }else if(shown === 0){
-    result.textContent = 'No instances match these filters.';
-  }else{
-    result.textContent = `${shown} of ${total} instances shown.`;
-  }
+  return (bucket.lo === undefined || value >= bucket.lo)
+      && (bucket.hi === undefined || value < bucket.hi);
 }
 
-document.addEventListener('change', (event) => {
-  const box = event.target.closest('.facets input[data-k]');
-  if(box) applyFacets(box.closest('.facets'));
-});
+function setUpBrowseTable(payload){
+  const rail = document.querySelector('.facets');
+  const table = document.querySelector('.table-wrap table');
+  const body = table.tBodies[0];
+  // the build emits one row per entry, in this order; the pairing is made once
+  // and after that the elements are only hidden and moved
+  const rows = [...body.rows].map((element, index) => ({
+    element, values: payload.rows[index],
+  }));
+  // a checkbox's data-k is its facet and its bucket, which is also how the two
+  // appear in the query string; both are carried here so neither has to be
+  // parsed back out of the key
+  const selectable = new Map();
+  for(const facet of payload.facets){
+    for(const bucket of facet.buckets){
+      selectable.set(`${facet.param}-${bucket.value}`,
+                     {param: facet.param, value: bucket.value, field: facet.field, bucket});
+    }
+  }
+  const result = document.querySelector('.result-count');
+  const selectedLabel = rail?.querySelector('.facet-selected');
+  let sortedBy = null;
+  let ascending = true;
 
-// Browsers restore checkbox state on reload and when the page comes back from the
-// back/forward cache, so the table has to be brought in line with the boxes before
-// the first change event. pageshow covers both; DOMContentLoaded misses the cache.
-window.addEventListener('pageshow', () => {
-  document.querySelectorAll('.facets').forEach(applyFacets);
-});
+  function checkedByParam(){
+    const chosen = new Map();
+    for(const box of rail.querySelectorAll('input[data-k]:checked')){
+      const entry = selectable.get(box.dataset.k);
+      if(!entry) continue;
+      if(!chosen.has(entry.param)) chosen.set(entry.param, []);
+      chosen.get(entry.param).push(entry.value);
+    }
+    return chosen;
+  }
+
+  /* A filtered, sorted table is a view worth sending to someone, so it has an
+     address. replaceState rather than pushState: Back should leave the page
+     rather than undo a checkbox, and what a reader wants to keep is the link. */
+  function writeUrl(){
+    const params = new URLSearchParams();
+    for(const [param, values] of checkedByParam()) params.set(param, values.join(','));
+    if(sortedBy){
+      params.set('sort', sortedBy);
+      if(!ascending) params.set('dir', 'desc');
+    }
+    const query = params.toString();
+    history.replaceState(null, '', query ? `?${query}` : location.pathname);
+  }
+
+  // The address is what the page opens as, so a box the query does not name is
+  // cleared rather than left as the browser restored it.
+  function readUrl(){
+    const params = new URLSearchParams(location.search);
+    const wanted = new Set();
+    for(const [param, value] of params){
+      if(param === 'sort' || param === 'dir') continue;
+      for(const one of value.split(',')) wanted.add(`${param}-${one}`);
+    }
+    for(const box of rail.querySelectorAll('input[data-k]')){
+      box.checked = wanted.has(box.dataset.k);
+    }
+    const field = params.get('sort');
+    return field ? {field, ascending: params.get('dir') !== 'desc'} : null;
+  }
+
+  function checkedIn(group){
+    return [...group.querySelectorAll('input[data-k]:checked')]
+      .map((box) => selectable.get(box.dataset.k))
+      .filter(Boolean);
+  }
+
+  function apply(){
+    const groups = rail
+      ? [...rail.querySelectorAll('.facet')].map(checkedIn)
+          .filter((selected) => selected.length > 0)
+      : [];
+    let shown = 0;
+    for(const row of rows){
+      // a row has to satisfy every group that has a box checked, by any one of
+      // that group's checked buckets
+      const ok = groups.every((selected) =>
+        selected.some(({field, bucket}) => bucketHolds(bucket, row.values[field])));
+      row.element.hidden = !ok;
+      if(ok) shown++;
+    }
+    if(selectedLabel){
+      const count = rail.querySelectorAll('input[data-k]:checked').length;
+      selectedLabel.textContent = count ? `${count} selected` : 'None selected';
+    }
+    if(!result) return;
+    const total = result.dataset.total;
+    if(!groups.length){
+      result.textContent = `${total} ${total === '1' ? 'instance' : 'instances'}.`;
+    }else if(shown === 0){
+      result.textContent = 'No instances match these filters.';
+    }else{
+      result.textContent = `${shown} of ${total} instances shown.`;
+    }
+  }
+
+  function sortTo(field, ascendingNow){
+    const button = table.querySelector(`button[data-sort="${CSS.escape(field)}"]`);
+    if(!button) return;
+    sortedBy = field;
+    ascending = ascendingNow;
+    rows.sort((a, b) => {
+      const x = a.values[field], y = b.values[field];
+      return (x < y ? -1 : x > y ? 1 : 0) * (ascending ? 1 : -1);
+    });
+    // one mutation, not one per row
+    body.append(...rows.map((row) => row.element));
+    const th = button.closest('th');
+    for(const cell of th.parentNode.cells) cell.removeAttribute('aria-sort');
+    th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
+  }
+
+  table.addEventListener('click', (event) => {
+    // A native button supplies Enter and Space without a second key handler that
+    // would fire once here and once again through the button's synthetic click.
+    const button = event.target.closest('button[data-sort]');
+    if(!button) return;
+    const field = button.dataset.sort;
+    sortTo(field, field === sortedBy ? !ascending : true);
+    writeUrl();
+  });
+  rail?.addEventListener('change', () => {
+    apply();
+    writeUrl();
+  });
+  // Browsers restore checkbox state on reload and when the page comes back from
+  // the back/forward cache, so the table has to be brought in line with the boxes
+  // before the first change event. pageshow covers both; DOMContentLoaded misses
+  // the cache.
+  window.addEventListener('pageshow', apply);
+
+  const opening = rail ? readUrl() : null;
+  apply();
+  if(opening) sortTo(opening.field, opening.ascending);
+}
+
+const browseData = document.getElementById('browse-data');
+if(browseData) setUpBrowseTable(JSON.parse(browseData.textContent));
 """
 
 # The one width at which the layout stops being a desktop layout. Both the
@@ -536,7 +626,7 @@ def _fill(text: str) -> str:
 
 
 SITE_CSS = _fill(font_face("../") + STYLESHEET)
-SITE_JS = _fill(SORT_SCRIPT + FILTER_SCRIPT)
+SITE_JS = _fill(DISCLOSURE_SCRIPT + BROWSE_SCRIPT)
 
 
 def _digest(text: str) -> str:

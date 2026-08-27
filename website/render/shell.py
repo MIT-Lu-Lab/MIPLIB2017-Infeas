@@ -6,9 +6,9 @@ from ..assets import CSS_NAME, JS_NAME
 from ..content import NAME
 from ..records import SUBSET_META
 from ..urls import page_url, rel
-from .markup import Markup, el, esc, fmt, join
+from .markup import Markup, el, esc, fmt, join, json_script
 
-__all__ = ["NAV", "Markup", "el", "esc", "fmt", "join", "page"]
+__all__ = ["NAV", "Markup", "el", "esc", "fmt", "join", "json_script", "page"]
 
 
 # (key, href, label, short label). A short label is given only where the full one

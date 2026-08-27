@@ -15,8 +15,9 @@ renderer can do by accident.
 from __future__ import annotations
 
 import html
+import json
 
-__all__ = ["Markup", "attr", "el", "esc", "fmt", "join"]
+__all__ = ["Markup", "attr", "el", "esc", "fmt", "join", "json_script"]
 
 # Elements with no closing tag. The generator emits no others.
 _VOID = frozenset({"br", "hr", "img", "input", "link", "meta"})
@@ -90,3 +91,13 @@ def fmt(template: str, /, **values: object) -> Markup:
     is no way to make that fail.
     """
     return Markup(template.format_map({k: esc(v) for k, v in values.items()}))
+
+
+def json_script(payload: object, **attrs: object) -> Markup:
+    """A JSON payload in a <script>, for the page to read back.
+
+    Script content is not HTML and must not be escaped as if it were; the one
+    sequence that would end the element early is, and nothing else is touched.
+    """
+    text = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+    return el("script", Markup(text.replace("</", r"<\/")), **attrs)

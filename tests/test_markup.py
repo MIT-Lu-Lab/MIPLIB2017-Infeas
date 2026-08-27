@@ -60,10 +60,13 @@ def test_a_facet_option_from_miplib_data_cannot_inject_markup(index):
     the label and the `data-k` key went to the page raw."""
     from website import load as L
 
+    from website.facets import Facet, Term, row_values
+
     samples = L.load_index(index)
-    rows = [s for s in samples if s.subset == "primal"]
-    hostile = ('<img src=x onerror=alert(1)>', 'tag-"><script>', lambda _s: True)
-    rail = B._facet_rail([("Structure (MIPLIB)", [hostile])], rows)
+    rows = [row_values(s) for s in samples if s.subset == "primal"]
+    hostile = Facet("Structure (MIPLIB)", "tag", "tags",
+                    (Term('<img src=x onerror=alert(1)>', '"><script>'),))
+    rail = B._facet_rail([hostile], rows)
     assert "<img" not in rail
     assert "<script>" not in rail
     assert "&lt;img src=x onerror=alert(1)&gt;" in rail

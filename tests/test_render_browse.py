@@ -1,3 +1,4 @@
+import json
 import re
 
 from website import load as L, render as V
@@ -8,9 +9,17 @@ def _browse(index, subset):
     return V.render_browse(subset, samples)
 
 
+def payload(html: str) -> dict:
+    """What the page ships for the client to filter and sort by."""
+    m = re.search(r'<script id="browse-data" type="application/json">(.*?)</script>',
+                  html, re.S)
+    assert m, "the page ships no browse data"
+    return json.loads(m.group(1).replace(r"<\/", "</"))
+
+
 def test_primal_table_lists_only_primal_rows(index):
     html = _browse(index, "primal")
-    assert html.count('<tr data-f="') == 2
+    assert len(payload(html)["rows"]) == 2
     assert ">aaa<" in html and ">bbb<" in html
 
 
@@ -26,9 +35,27 @@ def test_primal_table_has_depth_and_bound_changes(index):
     assert "Bounds dropped" not in html
 
 
-def test_numeric_cells_carry_a_sort_value(index):
+def test_the_payload_describes_the_rendered_rows_in_order(index):
+    """The client pairs the two by position and then only hides and moves the
+    elements the build produced, so the order is the contract between them."""
     html = _browse(index, "primal")
-    assert 'data-v="10"' in html      # n_vars of bbb
+    body = re.search(r"<tbody>(.*?)</tbody>", html, re.S).group(1)
+    rendered = re.findall(r'<th scope="row" class="name"><a href="[^"]*">([^<]*)<', body)
+    assert rendered == [row["instance"] for row in payload(html)["rows"]]
+
+
+def test_a_row_ships_the_values_it_is_filtered_and_sorted_by(index):
+    row = next(r for r in payload(_browse(index, "primal"))["rows"]
+               if r["instance"] == "bbb")
+    assert row["n_vars"] == 10
+    assert set(row) >= {"n_vars", "n_cons", "nnz", "file_bytes", "depth", "tags"}
+
+
+def test_a_row_carries_no_derived_filter_token(index):
+    """The bucket a row falls in is a conclusion about a value the page already
+    ships. It used to be computed at build time and written onto every row."""
+    for subset in ("primal", "dual"):
+        assert "data-f=" not in _browse(index, subset)
 
 
 def test_facet_counts_are_computed_not_hardcoded(index):
@@ -46,17 +73,23 @@ def test_mobile_filters_use_a_native_disclosure(index):
     assert '<fieldset class="facet"><legend class="eyebrow">Variables</legend>' in html
 
 
-def test_row_data_f_matches_facet_predicates(index):
-    # cannot execute the client-side filter from pytest; this pins the markup contract
-    # it depends on instead -- see FILTER_SCRIPT in website/assets.py.
-    html = _browse(index, "primal")
-    assert '<tr data-f="vars-lt50k cons-lt10k depth-lt50">' in html   # aaa: also dual
-    assert '<tr data-f="vars-lt50k cons-lt10k depth-lt50">' in html        # bbb: primal only
+def test_every_checkbox_is_selectable_from_the_payload(index):
+    """A checkbox the client cannot resolve to a bucket filters nothing."""
+    for subset in ("primal", "dual"):
+        html = _browse(index, subset)
+        selectable = {f"{facet['param']}-{bucket['value']}"
+                      for facet in payload(html)["facets"]
+                      for bucket in facet["buckets"]}
+        offered = set(re.findall(r'data-k="([^"]+)"', html))
+        assert offered == selectable
 
 
-def test_dual_row_data_f_matches_facet_predicates(index):
-    html = _browse(index, "dual")
-    assert '<tr data-f="vars-lt50k cons-lt10k relax-bounds-rows size-1-5">' in html
+def test_every_sortable_header_names_a_field_a_row_carries(index):
+    for subset in ("primal", "dual"):
+        html = _browse(index, subset)
+        carried = set(payload(html)["rows"][0])
+        for field in re.findall(r'data-sort="([^"]+)"', html):
+            assert field in carried, field
 
 
 def test_facet_checkbox_data_k_matches_the_row_keys(index):
@@ -102,7 +135,7 @@ def test_table_has_headers_caption_and_a_named_scroll_region(index):
     assert ('<caption id="primal-infeasible-table-caption" class="sr-only">'
             'Primal-infeasible instances</caption>') in html
     assert '<th scope="col">Download</th>' in html
-    assert '<th scope="row" class="name" data-v="aaa">' in html
+    assert '<th scope="row" class="name"><a href="aaa/">aaa</a></th>' in html
 
 
 def test_download_names_and_filter_result_are_announced(index):

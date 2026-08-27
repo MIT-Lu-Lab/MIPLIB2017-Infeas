@@ -55,26 +55,49 @@ def test_body_paints_its_own_background():
 
 
 def test_no_em_dash_anywhere_in_assets():
-    for text in (A.STYLESHEET, A.SORT_SCRIPT, A.FILTER_SCRIPT, A.font_face()):
+    for text in (A.STYLESHEET, A.SITE_JS, A.font_face()):
         assert "—" not in text and "&mdash;" not in text
 
 
-def test_sort_script_is_self_contained():
-    assert "http" not in A.SORT_SCRIPT
-    assert "addEventListener" in A.SORT_SCRIPT
-    assert "button[data-sort]" in A.SORT_SCRIPT
-    assert "keydown" not in A.SORT_SCRIPT
-
-
-def test_filter_script_is_self_contained():
-    assert "http" not in A.FILTER_SCRIPT
-    assert "addEventListener" in A.FILTER_SCRIPT
-    assert "data-f" in A.FILTER_SCRIPT and "data-k" in A.FILTER_SCRIPT
+def test_the_disclosure_script_only_opens_and_closes_the_rail():
+    assert "http" not in A.DISCLOSURE_SCRIPT
     assert f"matchMedia('(max-width: {A.COMPACT_WIDTH}px)')" in A.SITE_JS
-    assert "facets.open = !compact" in A.FILTER_SCRIPT
-    assert "facet-selected" in A.FILTER_SCRIPT
-    assert "result-count" in A.FILTER_SCRIPT
-    assert "table-foot" not in A.FILTER_SCRIPT
+    assert "facets.open = !compact" in A.DISCLOSURE_SCRIPT
+    # what the rail contains is the table script's business, not this one's
+    assert "data-k" not in A.DISCLOSURE_SCRIPT
+    assert "result-count" not in A.DISCLOSURE_SCRIPT
+
+
+def test_the_browse_script_reads_the_page_rather_than_the_markup():
+    """It evaluates the facet declaration the page ships. The bucket a row falls
+    in used to be decided by the build and written onto the row as data-f."""
+    assert "http" not in A.BROWSE_SCRIPT
+    assert "browse-data" in A.BROWSE_SCRIPT
+    assert "data-f" not in A.BROWSE_SCRIPT
+    assert "bucket.kind === 'term'" in A.BROWSE_SCRIPT
+    assert "bucket.lo" in A.BROWSE_SCRIPT and "bucket.hi" in A.BROWSE_SCRIPT
+    assert "data-k" in A.BROWSE_SCRIPT          # which bucket a checkbox selects
+    assert "button[data-sort]" in A.BROWSE_SCRIPT
+    assert "keydown" not in A.BROWSE_SCRIPT     # a native button supplies it
+    assert "result-count" in A.BROWSE_SCRIPT
+    assert "table-foot" not in A.BROWSE_SCRIPT
+
+
+def test_a_filtered_view_has_an_address():
+    """A filtered, sorted table is worth sending to someone, and a reload used
+    to lose it. replaceState, so Back leaves the page rather than undoing a
+    checkbox at a time."""
+    assert "URLSearchParams" in A.BROWSE_SCRIPT
+    assert "location.search" in A.BROWSE_SCRIPT
+    assert "history.replaceState" in A.BROWSE_SCRIPT
+    assert "pushState" not in A.BROWSE_SCRIPT
+    assert "params.set('sort'" in A.BROWSE_SCRIPT
+
+
+def test_the_browse_script_never_renders_a_row():
+    """One renderer, in Python. This moves and hides the elements it was given."""
+    for creating in ("createElement", "innerHTML", "insertAdjacentHTML"):
+        assert creating not in A.BROWSE_SCRIPT
 
 
 def test_mobile_layout_has_explicit_overflow_guards():

@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-import json
 from string import Template
 
 from .. import content
 from ..records import SUBSET_META, fmt_int
-from .shell import Markup, el, esc, fmt, join, page
+from .shell import Markup, el, esc, fmt, join, json_script, page
 
 CARD = """<a class="subset {tone}" href="{slug}/">
       <h2>{label}</h2>
@@ -100,11 +99,7 @@ def _dataset_jsonld(totals: dict, site_url: str | None,
              "contentUrl": f"{base}/{info['slug']}.zip"}
             for info in SUBSET_META.values()
         ]
-    # JSON inside <script> is not HTML: the one sequence that would end the
-    # element early is escaped, and nothing else may be.
-    payload = json.dumps(doc, ensure_ascii=False, separators=(",", ":"))
-    return el("script", Markup(payload.replace("</", "<\\/")),
-              type="application/ld+json")
+    return json_script(doc, type="application/ld+json")
 
 
 PAGE = "index.html"
