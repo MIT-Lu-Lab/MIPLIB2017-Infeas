@@ -99,6 +99,8 @@ body[data-view="primal"] .hairline span:first-child{background:var(--primal)}
 body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
 
 main{max-width:1180px;margin:0 auto;padding:44px 24px 96px}
+main.narrow{max-width:900px}
+main.narrow .prose{max-width:none}
 .prose{max-width:66ch}
 .prose p{margin:0 0 14px}
 .muted{color:var(--muted)}
@@ -112,17 +114,10 @@ main{max-width:1180px;margin:0 auto;padding:44px 24px 96px}
 .masthead{display:flex;flex-direction:column;gap:14px;padding-bottom:34px}
 .masthead h1{font-size:40px;line-height:1.12}
 .masthead .sub{font-size:18px;color:var(--muted);font-family:var(--f-serif);max-width:62ch}
+main.narrow .masthead .sub{max-width:none}
 .masthead .sub a{color:var(--primal);text-decoration:none;border-bottom:1px solid var(--rule)}
 .masthead .sub a:hover{border-bottom-color:var(--primal)}
 
-.stats{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(162px,1fr));
-  border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--raise);
-}
-.stat{padding:16px 18px;border-right:1px solid var(--rule-soft)}
-.stat:last-child{border-right:0}
-.stat .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:20px;font-weight:500;line-height:1.2}
-.stat .k{font-size:12.5px;color:var(--muted);margin-top:3px}
 
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0}
 .subset{
@@ -144,7 +139,7 @@ main{max-width:1180px;margin:0 auto;padding:44px 24px 96px}
 .section > .eyebrow{margin-bottom:10px}
 
 /* file cards */
-.files{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
 .file{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:16px 18px}
 .file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--primal);margin-bottom:9px;overflow-wrap:anywhere}
 .file p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
@@ -186,11 +181,6 @@ tbody tr:last-child td{border-bottom:0}
 tbody tr:hover td{background:var(--rule-soft)}
 td.name a{font-family:var(--f-mono);font-size:13px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--rule)}
 td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
-.tag{
-  display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.03em;
-  padding:2px 6px;border-radius:3px;background:var(--rule-soft);color:var(--muted);
-}
-.size-s{color:var(--muted)}
 .dl{
   font-family:var(--f-mono);font-size:12px;text-decoration:none;color:var(--primal);
   border:1px solid var(--rule);border-radius:4px;padding:3px 8px;white-space:nowrap;
@@ -228,7 +218,6 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
   font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px;
 }
 .kv dt:last-of-type,.kv dd:last-of-type{border-bottom:0}
-.delta{color:var(--muted);font-size:11.5px;margin-left:7px}
 
 .recipe{
   font-family:var(--f-mono);font-size:13px;line-height:1.85;
@@ -315,16 +304,16 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
     search did not explore, and it has no feasible point.</p>
     <div class="recipe">
 <span class="k">branch taken by the search</span><br>
-x157579 &le; 0<br>
+pairday[QTA0000000146YSVFJ,UXE0000000462CWZJN,Tu] &le; 0<br>
 <span class="k">this instance, the other side</span><br>
-<b>x157579 &ge; 1</b>
+<b>pairday[QTA0000000146YSVFJ,UXE0000000462CWZJN,Tu] &ge; 1</b>
 <span class="k">at depth 978</span></div>
-    <dl class="kv"><dt>Depth in the tree</dt><dd>978</dd><dt>Bound changes vs. root</dt><dd>16,032</dd><dt>Branch variable</dt><dd>x157579</dd></dl>
+    <dl class="kv"><dt>Depth in the tree</dt><dd>978</dd><dt>Bounds tightened vs. source</dt><dd>16,032</dd><dt>Branch variable</dt><dd>pairday[QTA0000000146YSVFJ,UXE0000000462CWZJN,Tu]</dd></dl>
   </div>
 </div>
-<div class="panel"><header><h2>Accumulated bounds</h2>
+<div class="panel"><header><h2>Tightened bounds</h2>
   <span class="eyebrow">16,032 entries</span></header>
-  <div class="body"><div class="path"><span>x157&lt;=0</span><span>x169&gt;=2</span><span>x258&lt;=0</span><span>x653&lt;=0</span><span>x752&lt;=9</span><span>x871&lt;=0</span><span>x874&lt;=0</span><span>x1809&lt;=3</span><span>x2286&gt;=2</span><span>x2286&lt;=2</span><span>x2506&lt;=4</span><span>x3011&gt;=3</span></div>
+  <div class="body"><div class="path"><span>h[JMT0000000243RLOYC,ADK0000000390ICFPT,Mo]&lt;=0</span><span>h[KNU0000000036SMPZD,ADK0000000390ICFPT,We]&gt;=2</span><span>h[PSZ0000000093XRUEI,ADK0000000390ICFPT,Mo]&lt;=0</span><span>h[ADK0000000078ICFPT,ADK0000000442ICFPT,Th]&lt;=0</span><span>h[TWD0000000149BVYIM,ADK0000000442ICFPT,We]&lt;=9</span><span>h[ADK0000000286ICFPT,ADK0000000520ICFPT,Mo]&lt;=0</span><span>h[ADK0000000286ICFPT,ADK0000000520ICFPT,Th]&lt;=0</span><span>h[GJQ0000000058OILVZ,ADK0000000624ICFPT,Tu]&lt;=3</span><span>h[TWD0000000227BVYIM,ADK0000000702ICFPT,Fr]&gt;=2</span><span>h[TWD0000000227BVYIM,ADK0000000702ICFPT,Fr]&lt;=2</span><span>h[EHO0000000056MGJTX,ADK0000000858ICFPT,Fr]&lt;=4</span><span>h[ORY0000000092WQTDH,BEL0000000365JDGQU,We]&gt;=3</span></div>
     <p class="more">12 of 16,032 shown.
     The complete list is in the sidecar.</p>
   </div>
@@ -335,7 +324,7 @@ x157579 &le; 0<br>
   <header><span class="eyebrow">Download</span></header>
   <div class="body">
     <a class="btn" href="https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/seqsolve2short4288_if.mps.gz">seqsolve2short4288_if.mps.gz<span class="sz">8.26 MB</span></a>
-    <a class="btn ghost" href="https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/seqsolve2short4288_if.meta.json">seqsolve2short4288_if.meta.json<span class="sz">0.27 MB</span></a>
+    <a class="btn ghost" href="https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/seqsolve2short4288_if.meta.json">seqsolve2short4288_if.meta.json<span class="sz">0.29 MB</span></a>
     <p class="hint">The sidecar carries the full provenance, including the fields this
     page truncates.</p>
   </div>
