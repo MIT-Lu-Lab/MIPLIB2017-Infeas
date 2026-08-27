@@ -102,7 +102,18 @@ def _wait_for_target(port: int) -> dict:
 
 class _DevTools:
     def __init__(self, url: str) -> None:
-        from websocket import create_connection
+        # The only third-party import in this repository, and only in this
+        # script, which is run by hand and whose result is committed. CI never
+        # runs it and so does not install it, which is why the type checker is
+        # told not to look for it here rather than the package being added to a
+        # build that is otherwise standard library only.
+        try:
+            from websocket import (  # pyright: ignore[reportMissingImports]
+                create_connection,
+            )
+        except ImportError:
+            raise SystemExit("this script needs websocket-client: "
+                             "pip install websocket-client") from None
 
         self.socket = create_connection(url, timeout=20, suppress_origin=True)
         self.count = 0
