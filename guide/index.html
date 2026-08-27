@@ -251,11 +251,11 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
 .btn.ghost:hover{background:var(--rule-soft);filter:none}
 .card .hint{font-size:12px;color:var(--muted);margin-top:11px;line-height:1.5}
 .fields{display:grid;grid-template-columns:1fr;gap:0;margin-top:16px}
-.fields dt{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;
+.fields dt{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
 padding:14px 0 5px;border-top:1px solid var(--rule-soft)}
 .fields dt .mono{font-size:13px;color:var(--ink);font-weight:500}
 .fields .ftype{font-size:11px;color:var(--muted);letter-spacing:.04em}
-.fields dd{margin:0 0 4px;font-size:13.5px;color:var(--muted);line-height:1.6;max-width:68ch}
+.fields dd{margin:0 0 16px;font-size:13.5px;color:var(--muted);line-height:1.65}
 .srctags{display:flex;flex-wrap:wrap;gap:5px;margin:11px 0 4px}
 .srctag{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.02em;
 padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)}
@@ -314,7 +314,7 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
 
 <div class="section">
   <h2>Dual-infeasible</h2>
-  <dl class="fields"><dt><span class="mono">n_dropped</span><span class="ftype">integer</span></dt><dd>How many elements were removed from the source relaxation. <span class='mono'>natural_unbounded</span> instances have zero: their relaxation was already unbounded.</dd><dt><span class="mono">drops[]</span><span class="ftype">list of objects</span></dt><dd>One entry per removal. A bound drop carries <span class='mono'>kind: bound</span>, the column as <span class='mono'>var</span> (0-based index) and <span class='mono'>name</span>, which <span class='mono'>side</span> was relaxed, and the <span class='mono'>original_value</span> it held. A row drop carries <span class='mono'>kind: row</span>, the row index and name, and the <span class='mono'>original_sense</span>, <span class='mono'>original_rhs</span> and <span class='mono'>original_range</span> it had. <b>A dropped row's coefficients are not recorded</b>: restoring one means taking the row from the source instance, which is why the check below needs it.</dd><dt><span class="mono">natural_unbounded</span><span class="ftype">boolean</span></dt><dd>True when the source relaxation was already unbounded and nothing was removed.</dd></dl>
+  <dl class="fields"><dt><span class="mono">n_dropped</span><span class="ftype">integer</span></dt><dd>How many elements were removed from the source relaxation. <span class='mono'>natural_unbounded</span> instances have zero: their relaxation was already unbounded.</dd><dt><span class="mono">drops[]</span><span class="ftype">list of objects</span></dt><dd>One entry per removal. A bound drop carries <span class='mono'>kind: bound</span>, the column as <span class='mono'>var</span> (0-based index) and <span class='mono'>name</span>, which <span class='mono'>side</span> was relaxed, and the <span class='mono'>original_value</span> it held. A row drop carries <span class='mono'>kind: row</span>, the row index and name, and the <span class='mono'>original_sense</span>, <span class='mono'>original_rhs</span> and <span class='mono'>original_range</span> it had. <b>A dropped row's coefficients are not recorded</b>: restoring one means taking the row from the source instance.</dd><dt><span class="mono">natural_unbounded</span><span class="ftype">boolean</span></dt><dd>True when the source relaxation was already unbounded and nothing was removed.</dd></dl>
 </div>
 
 <div class="section">
