@@ -1,4 +1,4 @@
-# MIPLIB-Infeas
+# MIPLIB2017-Infeas
 
 [![Licence: see LICENSE](https://img.shields.io/badge/Licence-see%20LICENSE-lightgrey.svg)](LICENSE)
 
@@ -7,7 +7,7 @@ Linear programs with no optimal solution, derived from
 no feasible point and the other is unbounded, forming a large-scale benchmark for detecting
 infeasibility and unboundedness.
 
-**Browse the collection:** https://mit-lu-lab.github.io/MIPLIB-Infeas
+**Browse the collection:** https://mit-lu-lab.github.io/MIPLIB2017-Infeas
 
 | | instances | variables | constraints | ZIP download |
 | :--- | ---: | :--- | :--- | ---: |
@@ -26,7 +26,14 @@ For 103 instances, bounds and constraints were dropped from a feasible, bounded 
 
 ## Download
 
-Everything is on the [release](https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/tag/v1.0): [`primal-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/primal-infeasible.zip) and [`dual-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/releases/download/v1.0/dual-infeasible.zip) each hold a whole subset, laid out as `instances/infeasible/` and `instances/unbounded/`.
+Everything is on the [release](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/tag/v1.0): [`primal-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/download/v1.0/primal-infeasible.zip) and [`dual-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/download/v1.0/dual-infeasible.zip) each hold a whole subset, laid out as `instances/infeasible/` and `instances/unbounded/`.
+
+To script against it, the site publishes the same catalogue as JSON.
+[`index.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/index.json) names both subsets and the release prefix;
+[`primal-infeasible.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/primal-infeasible.json) and
+[`dual-infeasible.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/dual-infeasible.json) list every instance with its
+dimensions, its SHA-256 and its filename. Join the prefix and a filename for a
+download URL. The `.csv` beside each one carries the same rows.
 
 ## This repository
 
@@ -53,10 +60,10 @@ python -m http.server -d _site
 ## Citation
 
 ```bibtex
-@misc{miplib_infeas,
+@misc{miplib2017_infeas,
   author       = {Haihao Lu and Bo Tang},
-  title        = {MIPLIB-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},
-  howpublished = {\url{https://mit-lu-lab.github.io/MIPLIB-Infeas}},
+  title        = {MIPLIB2017-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},
+  howpublished = {\url{https://mit-lu-lab.github.io/MIPLIB2017-Infeas}},
   year         = {2026}
 }
 ```

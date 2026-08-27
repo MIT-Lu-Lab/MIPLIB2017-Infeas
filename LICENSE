@@ -1,5 +1,5 @@
-MIPLIB-Infeas
-=============
+MIPLIB2017-Infeas
+=================
 
 WHAT THIS NOTICE COVERS
 
@@ -184,7 +184,7 @@ one `meta.yml` per submission recording the licence its submitter chose.
   source instance is named, its contributor is credited, the changes made are
   recorded, and no licence is asserted over them. Anyone holding rights in one
   of these instances who would rather it were not republished should open an
-  issue at https://github.com/MIT-Lu-Lab/MIPLIB-Infeas and it will be withdrawn.
+  issue at https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas and it will be withdrawn.
 
   The 130 source instances concerned, from which 172 of the 334 published
   linear programs derive:

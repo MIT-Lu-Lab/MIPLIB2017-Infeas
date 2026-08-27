@@ -52,7 +52,7 @@ def test_build_publishes_the_canonical_sidecar_schema(tmp_path, index):
     assert published.read_bytes() == B.SCHEMA_FILE.read_bytes()
     schema = json.loads(published.read_text(encoding="utf-8"))
     assert schema["$id"] == \
-        "https://mit-lu-lab.github.io/MIPLIB-Infeas/schema/meta.schema.json"
+        "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/schema/meta.schema.json"
 
 
 def test_build_publishes_the_licence_linked_from_about(tmp_path, index):
@@ -230,7 +230,7 @@ def test_build_emits_nojekyll(index, tmp_path):
 
 def test_public_build_emits_only_canonical_page_urls_in_sitemap(index, tmp_path):
     out = tmp_path / "out"
-    base = "https://example.test/MIPLIB-Infeas/"
+    base = "https://example.test/MIPLIB2017-Infeas/"
     B.build(index, out, site_url=base[:-1])
 
     root = ET.parse(out / "sitemap.xml").getroot()
@@ -250,14 +250,14 @@ def test_public_build_emits_only_canonical_page_urls_in_sitemap(index, tmp_path)
 
 
 @pytest.mark.parametrize("site_url", [
-    "example.test/MIPLIB-Infeas",
-    "ftp://example.test/MIPLIB-Infeas",
-    "https:///MIPLIB-Infeas",
-    "https://example.test/MIPLIB-Infeas?preview=1",
-    "https://user:secret@example.test/MIPLIB-Infeas",
-    "https://[bad/MIPLIB-Infeas",
-    "https://:443/MIPLIB-Infeas",
-    "https://example.test\\evil/MIPLIB-Infeas",
+    "example.test/MIPLIB2017-Infeas",
+    "ftp://example.test/MIPLIB2017-Infeas",
+    "https:///MIPLIB2017-Infeas",
+    "https://example.test/MIPLIB2017-Infeas?preview=1",
+    "https://user:secret@example.test/MIPLIB2017-Infeas",
+    "https://[bad/MIPLIB2017-Infeas",
+    "https://:443/MIPLIB2017-Infeas",
+    "https://example.test\\evil/MIPLIB2017-Infeas",
     "https://example.test/MI\x00PLIB-Infeas",
 ])
 def test_site_url_must_be_a_clean_absolute_http_url(index, tmp_path, site_url):
@@ -267,7 +267,7 @@ def test_site_url_must_be_a_clean_absolute_http_url(index, tmp_path, site_url):
 
 def test_rebuild_without_site_url_prunes_an_old_sitemap(index, tmp_path):
     out = tmp_path / "out"
-    B.build(index, out, site_url="https://example.test/MIPLIB-Infeas")
+    B.build(index, out, site_url="https://example.test/MIPLIB2017-Infeas")
     assert (out / "sitemap.xml").is_file()
 
     B.build(index, out)

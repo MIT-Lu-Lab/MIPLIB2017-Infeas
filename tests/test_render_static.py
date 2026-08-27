@@ -59,8 +59,8 @@ def test_overview_citation_carries_no_doi(index):
 def test_overview_citation_uses_the_supplied_site_url(index):
     samples = L.load_index(index)
     html = V.render_overview(L.collection_totals(samples),
-                             site_url="https://example.invalid/miplib-infeas")
-    assert "https://example.invalid/miplib-infeas" in html
+                             site_url="https://example.invalid/miplib2017-infeas")
+    assert "https://example.invalid/miplib2017-infeas" in html
     assert "REPLACE-WITH" not in html
 
 

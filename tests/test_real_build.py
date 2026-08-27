@@ -17,7 +17,7 @@ from website import build_site as B
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / "metadata" / "site-index.json"
 MIPLIB = ROOT / "metadata" / "miplib_meta.json"
-PUBLIC_BASE = "https://example.test/MIPLIB-Infeas/"
+PUBLIC_BASE = "https://example.test/MIPLIB2017-Infeas/"
 
 pytestmark = pytest.mark.skipif(not INDEX.is_file(), reason="site index not present")
 

@@ -18,9 +18,9 @@ CARD = """<a class="subset {tone}" href="{slug}/">
 
 # $-substitution, not braces: the entry is full of them and doubling every one to
 # please a formatter is how the block became unreadable in the first place.
-CITATION = Template("""@misc{miplib_infeas,<br>
+CITATION = Template("""@misc{miplib2017_infeas,<br>
     &nbsp;&nbsp;author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Haihao Lu and Bo Tang},<br>
-    &nbsp;&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {MIPLIB-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},<br>
+    &nbsp;&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {MIPLIB2017-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},<br>
     &nbsp;&nbsp;howpublished = {\\url{$url}},<br>
     &nbsp;&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = {2026}<br>}""")
 
@@ -59,7 +59,7 @@ OVERVIEW = """
     <p class="muted">This collection is maintained by Haihao Lu and Bo Tang. If a
     published file does not have the status it claims, or a source instance carries terms
     other than the default, please
-    <a href="https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/issues">open an issue</a> and
+    <a href="https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/issues">open an issue</a> and
     the affected file will be corrected or withdrawn.</p>
   </div>
 </div>

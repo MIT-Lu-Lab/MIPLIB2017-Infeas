@@ -1,6 +1,6 @@
 """Check the release still carries exactly what the site index promises.
 
-    python scripts/verify_release_assets.py --repo MIT-Lu-Lab/MIPLIB-Infeas --tag v1.0
+    python scripts/verify_release_assets.py --repo MIT-Lu-Lab/MIPLIB2017-Infeas --tag v1.0
 
 Every download link on the site is derived from one release prefix, so a renamed,
 missing or re-uploaded asset turns into a dead link on a page that says nothing is

@@ -76,6 +76,10 @@ jobs:
           test "$(find _site -name index.html | wc -l)" -eq 340
           test -f _site/primal-infeasible.csv
           test -f _site/dual-infeasible.csv
+          # the same catalogue a script reads, and the document that finds it
+          test -f _site/primal-infeasible.json
+          test -f _site/dual-infeasible.json
+          test -f _site/index.json
           test -f _site/sitemap.xml
           test "$(grep -c '<url>' _site/sitemap.xml)" -eq 340
           test -f _site/schema/meta.schema.json

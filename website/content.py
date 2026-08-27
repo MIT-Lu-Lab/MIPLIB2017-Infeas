@@ -28,8 +28,8 @@ __all__ = ["ABOUT_DESCRIPTION", "DOWNLOAD_DESCRIPTION", "GUIDE_DESCRIPTION",
 # to it rather than leaving it to whoever writes the next one.
 META_LIMIT = 160
 
-NAME = "MIPLIB-Infeas"
-PUBLIC_SITE_URL = "https://mit-lu-lab.github.io/MIPLIB-Infeas/"
+NAME = "MIPLIB2017-Infeas"
+PUBLIC_SITE_URL = "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/"
 TAGLINE = "A benchmark of primal- and dual-infeasible linear programs"
 
 # One sentence each, the shortest true statement of what a subset holds. The

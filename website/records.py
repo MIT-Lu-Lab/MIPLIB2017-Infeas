@@ -59,7 +59,7 @@ BSD_LICENSED_SOURCE = "adult-max5features"
 
 # SPDX where terms exist to name, and where a licence has a canonical text, its URL.
 _SPDX_URL = {"CC-BY-SA-4.0": "https://creativecommons.org/licenses/by-sa/4.0/"}
-NOTICE_URL = "https://mit-lu-lab.github.io/MIPLIB-Infeas/LICENSE.txt"
+NOTICE_URL = "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/LICENSE.txt"
 
 
 def source_terms(instance: str, imported_from: str | None) -> dict:

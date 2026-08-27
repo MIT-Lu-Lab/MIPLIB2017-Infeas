@@ -7,12 +7,13 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import shutil
 from dataclasses import replace
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
-from . import load, render
+from . import content, load, render
 from .assets import CSS_NAME, JS_NAME, SITE_CSS, SITE_JS
 from .records import OTHER_SUBSET, SUBSET_META, Sample
 from .urls import normalize_site_url, page_url
@@ -25,45 +26,99 @@ FONT_DIR = _ROOT / "fonts"
 SCHEMA_FILE = _ROOT / "schema" / "meta.schema.json"
 LICENSE_FILE = _ROOT / "LICENSE"
 
-# Published index columns, per subset, as (header, accessor). The headers ship as
-# release assets, so renaming one breaks whatever is reading the CSVs.
-_CSV_HEAD = (
+# The published catalogue, per subset, as (name, accessor). It goes out twice, as
+# CSV for a spreadsheet and as JSON for a script, from this one definition: two
+# formats of one catalogue rather than two catalogues. The names ship as release
+# assets, so renaming one breaks whatever is reading them.
+_INDEX_HEAD = (
     ("instance", lambda s: s.instance),
     ("n_vars", lambda s: s.n_vars),
     ("n_cons", lambda s: s.n_cons),
     ("nnz", lambda s: s.nnz),
 )
-_CSV_TAIL = (
+_INDEX_TAIL = (
     ("file_bytes", lambda s: s.file_bytes),
     ("sha256", lambda s: s.sha256),
     ("mps_filename", lambda s: s.stem + ".mps.gz"),
 )
-_CSV_COLUMNS = {
-    "primal": (*_CSV_HEAD,
+_INDEX_COLUMNS = {
+    "primal": (*_INDEX_HEAD,
                ("depth", lambda s: s.primal.depth),
                ("bound_changes", lambda s: s.primal.bound_changes),
-               *_CSV_TAIL),
-    "dual": (*_CSV_HEAD,
+               *_INDEX_TAIL),
+    "dual": (*_INDEX_HEAD,
              ("bounds_dropped", lambda s: s.dual.bounds_dropped),
              ("rows_dropped", lambda s: s.dual.rows_dropped),
-             *_CSV_TAIL),
+             *_INDEX_TAIL),
 }
+
+
+def _index_rows(subset: str, samples: list[Sample]) -> list[dict]:
+    """One row per published instance of a subset, in catalogue order."""
+    columns = _INDEX_COLUMNS[subset]
+    return [{name: get(sample) for name, get in columns}
+            for sample in samples if sample.subset == subset]
 
 
 def _write_manifest(out_dir: Path, subset: str, info: dict,
                     samples: list[Sample]) -> str:
     """Write <slug>.csv, one row per published instance. Returns its relative path
     so the pruner counts it as generated rather than stale."""
-    cols = _CSV_COLUMNS[subset]
-    rows = [s for s in samples if s.subset == subset]
+    rows = _index_rows(subset, samples)
     path = out_dir / f"{info['slug']}.csv"
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="") as f:
         writer = csv.writer(f)
-        writer.writerow([header for header, _ in cols])
-        for s in rows:
-            writer.writerow([get(s) for _, get in cols])
+        writer.writerow([name for name, _ in _INDEX_COLUMNS[subset]])
+        for row in rows:
+            writer.writerow(list(row.values()))
     return path.relative_to(out_dir).as_posix()
+
+
+def _write_index_json(out_dir: Path, subset: str, info: dict,
+                      samples: list[Sample], release_base_url: str | None) -> str:
+    """Write <slug>.json: the catalogue the CSV carries, typed.
+
+    A count is a number here rather than a field to parse, and a script reading
+    the collection needs neither a CSV parser nor a checkout. The columns come
+    from the definition above, so the two files cannot describe different
+    things.
+    """
+    doc: dict = {"subset": subset, "label": info["label"]}
+    if release_base_url:
+        doc["release_base_url"] = release_base_url.rstrip("/") + "/"
+    rows = _index_rows(subset, samples)
+    doc["count"] = len(rows)
+    doc["instances"] = rows
+    rel = f"{info['slug']}.json"
+    _write(out_dir, rel, json.dumps(doc, ensure_ascii=False, indent=1) + "\n")
+    return rel
+
+
+def _write_collection_json(out_dir: Path, totals: dict, site_url: str | None,
+                           release_base_url: str | None) -> str:
+    """Write index.json: what the collection holds and where the rest of it is.
+
+    The paths in it are relative, as a document's own references are, and a
+    consumer resolves them against the URL it fetched this from.
+    """
+    doc: dict = {"name": content.NAME,
+                 "description": content.collection_summary(totals)}
+    if site_url:
+        doc["url"] = site_url
+    if release_base_url:
+        doc["release_base_url"] = release_base_url.rstrip("/") + "/"
+    doc["instances"] = totals["n_samples"]
+    doc["subsets"] = [
+        {"subset": key, "label": info["label"],
+         "count": totals["counts"].get(key, 0),
+         "index": f"{info['slug']}.json", "csv": f"{info['slug']}.csv"}
+        for key, info in SUBSET_META.items()
+    ]
+    doc["sidecar_schema"] = "schema/meta.schema.json"
+    doc["notice"] = "LICENSE.txt"
+    _write(out_dir, "index.json", json.dumps(doc, ensure_ascii=False, indent=1) + "\n")
+    return "index.json"
 
 
 def release_urls(samples: list[Sample], base_url: str | None) -> dict[str, str]:
@@ -186,6 +241,7 @@ def _prune(out_dir: Path, keep_rels: set[str]) -> None:
     # materialise the walk before deleting: rglob is a generator over the tree it
     # is walking, and removing entries mid-iteration is undefined
     generated = (list(out_dir.rglob("index.html")) + list(out_dir.glob("*.csv"))
+                 + list(out_dir.glob("*.json"))
                  + list((out_dir / "fonts").glob("*"))
                  + list((out_dir / "assets").glob("*"))
                  + [p for p in (out_dir / "sitemap.xml", out_dir / "LICENSE.txt")
@@ -253,7 +309,11 @@ def build(index_path: Path | str, out_dir: Path | str,
             _emit(s.page_path + "index.html",
                   render.render_sample(s, cross, site_url))
         rels.add(_write_manifest(out_dir, subset, info, samples))
+        rels.add(_write_index_json(out_dir, subset, info, samples,
+                                   release_base_url))
 
+    rels.add(_write_collection_json(out_dir, totals, site_url,
+                                    release_base_url))
     rels |= _copy_fonts(out_dir)
     rels |= _write_assets(out_dir)
     rels.add(_copy_schema(out_dir))

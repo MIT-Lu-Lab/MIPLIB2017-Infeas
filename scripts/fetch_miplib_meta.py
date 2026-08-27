@@ -26,7 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 BASE = "https://miplib.zib.de/instance_details_{name}.html"
-UA = "miplib-infeas-metadata/1.0 (one-off attribution fetch)"
+UA = "miplib2017-infeas-metadata/1.0 (one-off attribution fetch)"
 
 
 

@@ -32,6 +32,15 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from website.records import SUBSET_META, source_terms
 
 
+def dumps(sidecar: dict) -> str:
+    """Serialise a sidecar the way the miners wrote it.
+
+    Byte-identical to the published files, so a re-upload carries the new field
+    and nothing else.
+    """
+    return json.dumps(sidecar, indent=2, sort_keys=True) + "\n"
+
+
 def sidecars(dataset_dir: Path):
     """Every published sidecar, with the subset it belongs to."""
     for info in SUBSET_META.values():
@@ -59,7 +68,8 @@ def main() -> None:
     counts: dict[str, int] = {}
     unknown = []
     for path in sidecars(args.dataset_dir):
-        sidecar = json.loads(path.read_text(encoding="utf-8"))
+        raw = path.read_text(encoding="utf-8")
+        sidecar = json.loads(raw)
         instance = sidecar["instance"]
         entry = meta.get(instance)
         if entry is None:
@@ -72,10 +82,17 @@ def main() -> None:
         if sidecar.get("source_terms") == terms:
             unchanged += 1
             continue
+        # Re-serialising the file unchanged has to reproduce it byte for byte. If
+        # it does not, this script's formatting differs from the miners' and a
+        # write would reflow all 334 published files instead of adding one field.
+        if dumps(sidecar) != raw:
+            raise SystemExit(
+                f"{path}: re-serialising it changes bytes beyond the new field, so "
+                "writing would reflow every sidecar. Match the miners' formatting "
+                "before publishing anything.")
         sidecar["source_terms"] = terms
         if not args.dry_run:
-            path.write_text(json.dumps(sidecar, indent=1, sort_keys=True) + "\n",
-                            encoding="utf-8")
+            path.write_text(dumps(sidecar), encoding="utf-8")
         written += 1
 
     verb = "would write" if args.dry_run else "wrote"

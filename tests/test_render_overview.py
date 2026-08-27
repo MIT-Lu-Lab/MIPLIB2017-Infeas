@@ -108,7 +108,7 @@ def test_overview_names_the_maintainers_and_authors(index):
     samples = L.load_index(index)
     html = V.render_overview(L.collection_totals(samples))
     assert "Bo Tang" in html and "Haihao Lu" in html
-    assert "MIT-Lu-Lab/MIPLIB-Infeas/issues" in html
+    assert "MIT-Lu-Lab/MIPLIB2017-Infeas/issues" in html
     assert "author" in html          # the citation must be attributable
 
 
