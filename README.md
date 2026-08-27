@@ -1,0 +1,51 @@
+# MIPLIB-Infeas
+
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
+
+Linear programs that have no solution, derived from [MIPLIB 2017](https://miplib.zib.de/) instances. One set has no feasible point. The other is feasible, but its objective is unbounded. They are meant for testing how a solver detects infeasibility and unboundedness at a scale that small classical test sets do not reach.
+
+**Browse the collection:** https://mit-lu-lab.github.io/MIPLIB-Infeas
+
+| | samples | variables | constraints | size |
+| :--- | ---: | :--- | :--- | ---: |
+| Primal-infeasible | 229 | 622 to 20,682,487 | 36 to 19,912,111 | 1.54 GB |
+| Dual-infeasible | 105 | 297 to 550,539 | 27 to 19,335,696 | 0.73 GB |
+
+Each sample is a gzipped MPS file holding continuous variables only. Beside it sits a `.meta.json` sidecar that records how the program was derived from its source instance.
+
+### Primal-infeasible
+
+A branch-and-bound search splits on a variable and explores one side of the split. These samples are the other side, taken at nodes where that side turns out to have no feasible point. The bounds the search accumulated on the way down are all included.
+
+### Dual-infeasible
+
+These start from a root LP relaxation that is feasible and bounded. Bounds and constraints were dropped until the objective became unbounded, then any drop that proved unnecessary was restored. Put back a single one of those that remain and the LP is bounded again.
+
+## Download
+
+The files are release assets rather than part of the git tree.
+
+`primal-infeasible.csv` and `dual-infeasible.csv` list the samples with their dimensions and filenames. The matching `.urls.txt` files hold the download URLs, one per line:
+
+```bash
+wget -i primal-infeasible.urls.txt -P primal/
+wget -i dual-infeasible.urls.txt -P dual/
+```
+
+For a subset, filter a CSV and build the URLs from its `mps_filename` column.
+
+## Citation
+
+```bibtex
+@misc{miplib_infeas,
+  title        = {MIPLIB-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},
+  howpublished = {\url{https://mit-lu-lab.github.io/MIPLIB-Infeas}},
+  year         = {2026}
+}
+```
+
+Please cite MIPLIB 2017 as well.
+
+## Licence
+
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), the same licence the source instances carry. MIPLIB 2017 requires each contributed instance to be submitted under a licence granting redistribution, by default CC BY-SA 4.0. These samples are adapted material, so ShareAlike carries over.
