@@ -14,6 +14,13 @@ permissions:
   pages: write
   id-token: write
 
+# The release the download links point at. The site names a specific release
+# rather than following the newest one, so cutting a new one is a deliberate
+# edit here and in ci.yml.
+env:
+  RELEASE_TAG: v1.0
+
+
 # a queued deploy should wait for the running one rather than cancel it: a
 # half-finished deploy is a half-published site
 concurrency:
@@ -37,7 +44,7 @@ jobs:
       - name: Build
         run: |
           python -m website.build_site --out-dir _site \
-            --release-base-url "https://github.com/${{ github.repository }}/releases/download/v1.0" \
+            --release-base-url "https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_TAG }}" \
             --site-url "${{ steps.pages.outputs.base_url }}"
 
       - uses: actions/upload-pages-artifact@v3

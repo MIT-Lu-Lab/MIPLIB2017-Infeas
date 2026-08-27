@@ -41,7 +41,11 @@ def classify(mps_path, time_limit):
     Returns one of 'infeasible', 'unbounded', 'optimal', 'other:<status>', or
     'error:<message>'. A fresh Highs object per call keeps workers independent.
     """
-    import highspy
+    # highspy comes with a licensed HiGHS install rather than from PyPI alone, and
+    # nothing else in the repository needs a solver, so CI has none to resolve it
+    # against. The import is local for the same reason: importing this module
+    # must not require one.
+    import highspy  # pyright: ignore[reportMissingImports]
 
     # HiGHS cannot read gzipped MPS, so decompress to a scratch file first.
     # The largest published file is 362 MB compressed, so this is deliberately
