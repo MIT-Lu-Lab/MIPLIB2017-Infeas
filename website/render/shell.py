@@ -58,7 +58,7 @@ def page(title: str, body: str, active: str, depth: int, narrow: bool = False) -
 <div class="topbar">
   <div class="topbar-inner">
     <a class="wordmark" href="{up}">MIPLIB<span class="dash">-</span>Infeas</a>
-    <nav class="top">{nav}</nav>
+    <nav class="top" aria-label="Primary navigation">{nav}</nav>
   </div>
   <div class="hairline"><span></span><span></span></div>
 </div>

@@ -33,9 +33,11 @@ def _download_card(sample: Sample) -> str:
     def btn(url: str | None, name: str, size: str, ghost: bool = False) -> str:
         cls = "btn ghost" if ghost else "btn"
         if not url:
-            return (f'<span class="{cls}" aria-disabled="true">{esc(name)}'
+            return (f'<span class="{cls}" aria-disabled="true">'
+                    f'<span class="btn-label">{esc(name)}</span>'
                     f'<span class="sz">{size}</span></span>')
-        return (f'<a class="{cls}" href="{esc(url)}">{esc(name)}'
+        return (f'<a class="{cls}" href="{esc(url)}">'
+                f'<span class="btn-label">{esc(name)}</span>'
                 f'<span class="sz">{size}</span></a>')
     return f"""<div class="card">
   <header><span class="eyebrow">Download</span></header>

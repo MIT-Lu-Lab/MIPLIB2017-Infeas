@@ -85,6 +85,7 @@ STYLESHEET = """
 }
 
 *{box-sizing:border-box}
+html,body{max-width:100%}
 body{
   margin:0;
   background:var(--paper);
@@ -93,6 +94,7 @@ body{
   font-size:15px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
 }
 a{color:inherit}
 
@@ -114,14 +116,15 @@ h1,h2,h3{font-family:var(--f-serif);text-wrap:balance;margin:0;font-weight:600;l
   background:color-mix(in srgb,var(--paper) 88%,transparent);
   backdrop-filter:blur(8px);
   border-bottom:1px solid var(--rule);
+  min-width:0;
 }
 .topbar-inner{
   max-width:1180px;margin:0 auto;padding:0 24px;
-  height:56px;display:flex;align-items:center;gap:28px;
+  height:56px;display:flex;align-items:center;gap:28px;min-width:0;
 }
 .wordmark{font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
 .wordmark .dash{color:var(--muted)}
-nav.top{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap}
+nav.top{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap;min-width:0}
 nav.top a{
   font:inherit;font-size:13.5px;color:var(--muted);text-decoration:none;
   background:none;border:0;cursor:pointer;
@@ -141,9 +144,10 @@ body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
    resolves against the element's own font, so the same 66ch handed each text
    size a different width, and every block needed its own opt-out of the cap on
    a narrow page. The citation note never got one, and wrapped short. */
-main{--measure:34rem;max-width:1180px;margin:0 auto;padding:44px 24px 96px}
+main{--measure:34rem;width:100%;min-width:0;max-width:1180px;margin:0 auto;padding:44px 24px 96px}
 main.narrow{--measure:none;max-width:900px}
 .prose,.note,.cite-note,.masthead .sub,.browse-head .desc{max-width:var(--measure)}
+.prose,.note,.cite-note,.masthead .sub,.browse-head .desc{overflow-wrap:break-word}
 .prose p{margin:0 0 14px}
 .muted{color:var(--muted)}
 .note{font-size:13px;color:var(--muted);margin-top:26px}
@@ -167,12 +171,12 @@ main.narrow{--measure:none;max-width:900px}
 
 /* intrinsic, so the pair holds two columns until the cards genuinely stop
    fitting rather than at whatever width the other grids happen to need */
-.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin:34px 0}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;margin:34px 0;min-width:0}
 .subset{
   border:1px solid var(--rule);border-radius:8px;background:var(--raise);
   padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;
   border-top:3px solid var(--accent);text-align:left;font:inherit;color:var(--ink);cursor:pointer;
-  text-decoration:none;transition:box-shadow .14s,transform .14s;
+  text-decoration:none;transition:box-shadow .14s,transform .14s;min-width:0;
 }
 .subset:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
 .subset.p{--accent:var(--primal)}
@@ -187,8 +191,8 @@ main.narrow{--measure:none;max-width:900px}
 .section > .eyebrow{margin-bottom:10px}
 
 /* file cards */
-.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
-.file{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:16px 18px}
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:18px;min-width:0}
+.file{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:16px 18px;min-width:0}
 .file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--view);margin-bottom:9px;overflow-wrap:anywhere}
 .file p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
 
@@ -200,18 +204,28 @@ main.narrow{--measure:none;max-width:900px}
 }
 
 /* ---------- browse ---------- */
-.browse-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
+.browse-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px;min-width:0}
+.browse-head > *{min-width:0}
 .browse-head h1{font-size:29px}
 .browse-head .desc{font-size:14px;color:var(--muted);margin-top:5px}
-.browse{display:grid;grid-template-columns:196px 1fr;gap:28px;align-items:start}
-.facets{position:sticky;top:78px;display:flex;flex-direction:column;gap:22px}
+/* minmax(0,...), not a bare 1fr: a track's automatic minimum is its content's
+   min-content, and the widest table here is 970px, so the column refused to
+   shrink below that and pushed the whole page into a horizontal scroll. The
+   table is meant to scroll inside .table-wrap instead, taking neither the
+   sticky facets nor the header out of view with it. */
+.browse{display:grid;grid-template-columns:196px minmax(0,1fr);gap:28px;align-items:start;min-width:0}
+.browse > *{min-width:0}
+.facets{position:sticky;top:78px;min-width:0}
+.facets > summary{display:none}
+.facet-groups{display:flex;flex-direction:column;gap:22px;min-width:0}
+.facet-selected{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);font-weight:400}
 .facet .eyebrow{margin-bottom:8px;display:block}
 .facet label{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:3px 0;cursor:pointer;color:var(--muted)}
 .facet label:hover{color:var(--ink)}
 .facet input{accent-color:var(--view);margin:0}
 .facet .n{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;font-variant-numeric:tabular-nums}
 
-.table-wrap{border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow-x:auto}
+.table-wrap{min-width:0;max-width:100%;border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow-x:auto}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
 thead th{
   position:sticky;top:56px;z-index:5;background:var(--raise);
@@ -238,10 +252,10 @@ td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .table-foot{font-size:12.5px;color:var(--muted);margin-top:11px}
 
 /* ---------- detail ---------- */
-.detail-head{border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:26px}
-.crumb{font-size:12.5px;color:var(--muted);margin-bottom:9px}
+.detail-head{min-width:0;border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:26px}
+.crumb{font-size:12.5px;color:var(--muted);margin-bottom:9px;overflow-wrap:anywhere}
 .crumb a{color:var(--muted)}
-.detail-head h1{font-family:var(--f-mono);font-size:30px;font-weight:600;letter-spacing:-.02em}
+.detail-head h1{font-family:var(--f-mono);font-size:30px;font-weight:600;letter-spacing:-.02em;overflow-wrap:anywhere}
 .badges{display:flex;gap:7px;margin-top:11px;flex-wrap:wrap}
 .badge{
   font-family:var(--f-mono);font-size:11.5px;padding:3px 9px;border-radius:11px;
@@ -251,21 +265,24 @@ td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .badge.d{--accent:var(--dual);--wash:var(--dual-wash)}
 .badge.n{--accent:var(--rule);--wash:transparent;color:var(--muted)}
 
-.detail{display:grid;grid-template-columns:1fr 292px;gap:30px;align-items:start}
-.panel{border:1px solid var(--rule);border-radius:8px;background:var(--raise);margin-bottom:18px;overflow:hidden}
+.detail{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start;min-width:0}
+.detail > *,.aside{min-width:0}
+.panel{min-width:0;border:1px solid var(--rule);border-radius:8px;background:var(--raise);margin-bottom:18px;overflow:hidden}
 .panel > header{
   padding:13px 18px;border-bottom:1px solid var(--rule-soft);
   display:flex;align-items:baseline;justify-content:space-between;gap:12px;
 }
-.panel > header h2{font-size:15px;font-family:var(--f-sans);font-weight:600}
+.panel > header h2{min-width:0;font-size:15px;font-family:var(--f-sans);font-weight:600;overflow-wrap:anywhere}
+.panel > header .eyebrow{flex:none}
 .panel .body{padding:16px 18px}
 .lede{margin:0 0 13px;font-size:13.5px;color:var(--muted)}
 
-.kv{display:grid;grid-template-columns:auto 1fr;gap:0}
+.kv{display:grid;grid-template-columns:minmax(0,max-content) minmax(0,1fr);gap:0;min-width:0}
 .kv dt{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--rule-soft)}
 .kv dd{
   margin:0;padding:7px 0;text-align:right;border-bottom:1px solid var(--rule-soft);
-  font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px;
+  min-width:0;font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px;
+  overflow-wrap:anywhere;
 }
 .kv dt:last-of-type,.kv dd:last-of-type{border-bottom:0}
 
@@ -278,13 +295,13 @@ td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .recipe b{font-weight:600}
 
 .path{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;columns:3;column-gap:22px}
-.path span{display:block;color:var(--muted)}
+.path span{display:block;color:var(--muted);overflow-wrap:anywhere;break-inside:avoid}
 .path span b{color:var(--ink);font-weight:500}
 .more{font-size:12.5px;color:var(--muted);margin-top:12px;border-top:1px solid var(--rule-soft);padding-top:11px}
 .more a{color:var(--view)}
 
 .aside{position:sticky;top:78px;display:flex;flex-direction:column;gap:18px}
-.card{border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow:hidden}
+.card{min-width:0;border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow:hidden}
 .card.p{--view:var(--primal);--view-wash:var(--primal-wash)}
 .card.d{--view:var(--dual);--view-wash:var(--dual-wash)}
 .card > header{padding:12px 16px;border-bottom:1px solid var(--rule-soft)}
@@ -294,13 +311,14 @@ td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
   display:flex;align-items:center;justify-content:space-between;gap:10px;
   text-decoration:none;font-size:13.5px;font-weight:500;
   padding:11px 14px;border-radius:6px;border:1px solid var(--view);
-  color:var(--on-view);background:var(--view);transition:filter .12s;
+  min-width:0;color:var(--on-view);background:var(--view);transition:filter .12s;
 }
+.btn-label{min-width:0;overflow-wrap:anywhere}
 .btn:hover{filter:brightness(1.08)}
-.btn .sz{font-family:var(--f-mono);font-size:12px;opacity:.82;font-weight:400}
+.btn .sz{flex:none;font-family:var(--f-mono);font-size:12px;opacity:.82;font-weight:400}
 .btn.ghost{background:transparent;color:var(--ink);border-color:var(--rule);margin-top:9px}
 .btn.ghost:hover{background:var(--rule-soft);filter:none}
-.card .hint{font-size:12px;color:var(--muted);margin-top:11px;line-height:1.5}
+.card .hint{font-size:12px;color:var(--muted);margin-top:11px;line-height:1.5;overflow-wrap:anywhere}
 .fields{display:grid;grid-template-columns:1fr;gap:0;margin-top:16px}
 .fields dt{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
 padding:14px 0 5px;border-top:1px solid var(--rule-soft)}
@@ -313,32 +331,43 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 /* no opacity here: muted already carries the de-emphasis, and multiplying the
    two put this below the contrast floor */
 .credit{font-size:11.5px;font-style:italic;color:var(--muted-strong);margin-top:6px}
-.src-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:5px 0}
-.src-row span:first-child{color:var(--muted)}
-.src-row span:last-child{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.src-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;min-width:0;font-size:13px;padding:5px 0}
+.src-row span:first-child{flex:none;color:var(--muted)}
+.src-row span:last-child{min-width:0;text-align:right;overflow-wrap:anywhere;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .extlink{
   display:inline-block;margin-top:12px;font-size:12.5px;color:var(--view);
   text-decoration:none;border-bottom:1px solid var(--rule);
 }
 .extlink:hover{border-bottom-color:var(--view)}
 .crosslink{
-  display:flex;align-items:center;gap:10px;text-decoration:none;
+  display:flex;align-items:center;flex-wrap:wrap;gap:10px;min-width:0;text-decoration:none;
   border:1px solid var(--rule);border-left:3px solid var(--to);border-radius:0 6px 6px 0;
   background:var(--raise);padding:12px 15px;font-size:13.5px;
 }
+.crosslink > span:first-child{min-width:0;overflow-wrap:anywhere}
 .crosslink.p{--to:var(--primal);--to-wash:var(--primal-wash)}
 .crosslink.d{--to:var(--dual);--to-wash:var(--dual-wash)}
 .crosslink:hover{background:var(--to-wash)}
-.crosslink .mono{font-size:12.5px;color:var(--muted);margin-left:auto}
+.crosslink .mono{flex:none;font-size:12.5px;color:var(--muted);margin-left:auto}
 
 /* .pair and .files size themselves, so they are not listed here */
 @media (max-width:880px){
-  .detail{grid-template-columns:1fr}
+  .detail{grid-template-columns:minmax(0,1fr)}
   .aside{position:static}
 }
 @media (max-width:780px){
-  .browse{grid-template-columns:1fr}
-  .facets{position:static}
+  .browse{grid-template-columns:minmax(0,1fr)}
+  .facets{position:static;border:1px solid var(--rule);border-radius:8px;background:var(--raise)}
+  .facets > summary{
+    display:flex;align-items:center;gap:10px;min-height:46px;padding:10px 14px;
+    cursor:pointer;list-style:none;font-weight:500;
+  }
+  .facets > summary::-webkit-details-marker{display:none}
+  .facets > summary::after{content:"+";margin-left:2px;font-family:var(--f-mono);color:var(--view)}
+  .facets[open] > summary{border-bottom:1px solid var(--rule-soft)}
+  .facets[open] > summary::after{content:"-"}
+  .facet-groups{gap:18px;padding:14px 16px 16px}
+  thead th{position:static}
 }
 @media (max-width:700px){.path{columns:2}}
 @media (max-width:640px){.masthead h1{font-size:32px}}
@@ -355,7 +384,24 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   td.name a{display:inline-block;padding:6px 0}
   .extlink{display:inline-flex;align-items:center;min-height:44px}
 }
+@media (max-width:600px){
+  .topbar-inner{
+    height:auto;min-height:56px;padding:8px 16px 7px;
+    display:grid;grid-template-columns:minmax(0,1fr);gap:4px;
+  }
+  .wordmark{justify-self:start}
+  nav.top{width:100%;margin:0;flex-wrap:nowrap;gap:0}
+  nav.top a{
+    flex:1 1 0;min-width:0;min-height:44px;padding:10px 2px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:clamp(11px,3.2vw,12.5px);line-height:1.2;white-space:nowrap;
+  }
+  main{padding:32px 16px 72px}
+}
 @media (max-width:560px){.path{columns:1}}
+@media (max-width:460px){
+  .kv{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+}
 """
 
 SORT_SCRIPT = """
@@ -396,10 +442,35 @@ document.addEventListener('keydown', function(ev){
 # group in the rail imposes its own constraint only when at least one of its boxes is
 # checked; a row must then satisfy at least one checked key per active group.
 FILTER_SCRIPT = """
+var compactFacets = window.matchMedia('(max-width: 780px)');
+
+function setFacetDisclosure(compact){
+  Array.prototype.forEach.call(document.querySelectorAll('.facets'), function(facets){
+    facets.open = !compact;
+  });
+}
+
+// The desktop rail stays open. On a phone it becomes a native disclosure before
+// first paint, leaving the table in the first viewport without making filtering
+// dependent on a custom button implementation.
+setFacetDisclosure(compactFacets.matches);
+if(compactFacets.addEventListener){
+  compactFacets.addEventListener('change', function(ev){ setFacetDisclosure(ev.matches); });
+}else if(compactFacets.addListener){
+  compactFacets.addListener(function(ev){ setFacetDisclosure(ev.matches); });
+}
+
 function applyFacets(facets){
   var wrap = facets.parentNode;
   var table = wrap.querySelector('table');
   if(!table) return;
+  var selected = facets.querySelectorAll('input[data-k]:checked').length;
+  var selectedLabel = facets.querySelector('.facet-selected');
+  if(selectedLabel){
+    selectedLabel.textContent = selected
+      ? (selected + ' selected')
+      : 'None selected';
+  }
   var groups = Array.prototype.map.call(facets.querySelectorAll('.facet'), function(g){
     return Array.prototype.map.call(
       g.querySelectorAll('input[data-k]:checked'), function(i){ return i.dataset.k; });

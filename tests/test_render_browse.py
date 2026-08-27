@@ -37,6 +37,14 @@ def test_facet_counts_are_computed_not_hardcoded(index):
     assert '<span class="n">2</span>' in html
 
 
+def test_mobile_filters_use_a_native_disclosure(index):
+    html = _browse(index, "primal")
+    assert '<details class="facets" open>' in html
+    assert '<summary><span>Filters</span>' in html
+    assert 'class="facet-selected">None selected</span>' in html
+    assert '<div class="facet-groups">' in html
+
+
 def test_row_data_f_matches_facet_predicates(index):
     # cannot execute the client-side filter from pytest; this pins the markup contract
     # it depends on instead -- see FILTER_SCRIPT in website/assets.py.
