@@ -3,7 +3,7 @@
   "description": "Multi-mode resource leveling with availability constraints; precedence and resource constrained scheduling problem",
   "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "E. Coughlan, M. L\u00fcbbecke, J. Schulz",
+  "submitter": "E. Coughlan, M. Lübbecke, J. Schulz",
   "tags": [
    "benchmark",
    "benchmark_suitable",
@@ -97,7 +97,7 @@
   "description": "Min-cost network dimensioning problems with a finite set of link capacities for each bidirected link, unsplittable shortest path routing, path restoration for single node failures, and routing path length restrictions",
   "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "E-Plus, D. Bienstock, A. Bley, R. Wess\u00e4ly",
+  "submitter": "E-Plus, D. Bienstock, A. Bley, R. Wessäly",
   "tags": [
    "aggregations",
    "benchmark",
@@ -197,7 +197,7 @@
   ]
  },
  "bab6": {
-  "description": "Vehicle routing with profit and an integrated crew scheduling like bab2 \u2026 bab5. Instances differ in multi-commodity-flow formulation (path oder arc formulation) or time discretization and some are quite easy to solve while others (bab2, bab3 and bab6) are very difficult.",
+  "description": "Vehicle routing with profit and an integrated crew scheduling like bab2 … bab5. Instances differ in multi-commodity-flow formulation (path oder arc formulation) or time discretization and some are quite easy to solve while others (bab2, bab3 and bab6) are very difficult.",
   "group": "bab",
   "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
@@ -223,7 +223,7 @@
   "group": "blp",
   "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "M. L\u00fcbbecke",
+  "submitter": "M. Lübbecke",
   "tags": [
    "benchmark",
    "benchmark_suitable",
@@ -240,7 +240,7 @@
   "group": "blp",
   "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "M. L\u00fcbbecke",
+  "submitter": "M. Lübbecke",
   "tags": [
    "benchmark_suitable",
    "decomposition",
@@ -254,7 +254,7 @@
   "group": "blp",
   "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
-  "submitter": "M. L\u00fcbbecke",
+  "submitter": "M. Lübbecke",
   "tags": [
    "benchmark",
    "benchmark_suitable",
@@ -265,7 +265,7 @@
   ]
  },
  "bppc6-02": {
-  "description": "The models that we attach solve the \u201cbar-relaxation\u201d, also known as the \u201cBin Packing Problem with Contiguity\u201d or the \u201cP||Cmax with contiguity\u201d. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
+  "description": "The models that we attach solve the “bar-relaxation”, also known as the “Bin Packing Problem with Contiguity” or the “P||Cmax with contiguity”. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
   "group": "bppc",
   "status": "hard",
   "submitter": "Manuel Iori",
@@ -275,7 +275,7 @@
   ]
  },
  "bppc6-06": {
-  "description": "The models that we attach solve the \u201cbar-relaxation\u201d, also known as the \u201cBin Packing Problem with Contiguity\u201d or the \u201cP||Cmax with contiguity\u201d. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
+  "description": "The models that we attach solve the “bar-relaxation”, also known as the “Bin Packing Problem with Contiguity” or the “P||Cmax with contiguity”. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
   "group": "bppc",
   "status": "open",
   "submitter": "Manuel Iori",
@@ -386,7 +386,7 @@
   ]
  },
  "cryptanalysiskb128n5obj16": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "cryptanalysis",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -659,7 +659,7 @@
   ]
  },
  "fhnw-schedule-paira200": {
-  "description": "Continuous-time project scheduling and selection, inspired by an industry use-case. Each project has a value, the sum should be maximized. Each project has a deadline, and an earliest start date. Three formulations of the same problem (\u201cPair A\u201d, \u201cPair B\u201d and \u201cSlot\u201d) - we expect \u201cPair B\u201d to be the best formulation.",
+  "description": "Continuous-time project scheduling and selection, inspired by an industry use-case. Each project has a value, the sum should be maximized. Each project has a deadline, and an earliest start date. Three formulations of the same problem (“Pair A”, “Pair B” and “Slot”) - we expect “Pair B” to be the best formulation.",
   "group": "schedule",
   "status": "open",
   "submitter": "Simon Felix",
@@ -721,7 +721,7 @@
   ]
  },
  "gfd-schedulen180f7d50m30k18": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "gfd-schedule",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -789,10 +789,10 @@
   ]
  },
  "graphdraw-opmanager": {
-  "description": "In the Graph Drawing problem a set of symbols must be placed in a plane and their connections routed. The objective is to produce aesthetically pleasant, easy to read diagrams. As a primary concern one usually tries to minimize edges crossing, edges\u2019 length, waste of space and number of bents in the connections. When formulated with these constraints the problem becomes NP-Hard . In practice many additional complicating requirements can be included, such as non-uniform sizes for symbols. Thus, some heuristics such as the generalized force-direct method and Simulated Annealing have been proposed to tackle this problem. uses a grid structure to approach the Entity-Relationship (ER) drawing problem, emphasizing the differences between ER drawing and the more classical circuit drawing problems. presented different ways of producing graph layouts (e.g.: tree, orthogonal, visibility representations, hierarchic, among others) for general graphs with applications on different subjects. The ability to automatically produce high quality layouts is very important in many applications, one of these is Software Engineering: the availability of easy to understand ER diagrams, for instance, can improve the time needed for developers to master database models and increase their productivity. Our solution approach involves two phases: ( \\(i\\) ) firstly the optimal placement of entities is solved, i.e.: entities are positioned so as to minimize the distances between connected entities; and ( \\(ii\\) ) secondly, edges are routed minimizing bends and avoiding the inclusion of connectors too close. We present the model for the first phase of our problem.",
+  "description": "In the Graph Drawing problem a set of symbols must be placed in a plane and their connections routed. The objective is to produce aesthetically pleasant, easy to read diagrams. As a primary concern one usually tries to minimize edges crossing, edges’ length, waste of space and number of bents in the connections. When formulated with these constraints the problem becomes NP-Hard . In practice many additional complicating requirements can be included, such as non-uniform sizes for symbols. Thus, some heuristics such as the generalized force-direct method and Simulated Annealing have been proposed to tackle this problem. uses a grid structure to approach the Entity-Relationship (ER) drawing problem, emphasizing the differences between ER drawing and the more classical circuit drawing problems. presented different ways of producing graph layouts (e.g.: tree, orthogonal, visibility representations, hierarchic, among others) for general graphs with applications on different subjects. The ability to automatically produce high quality layouts is very important in many applications, one of these is Software Engineering: the availability of easy to understand ER diagrams, for instance, can improve the time needed for developers to master database models and increase their productivity. Our solution approach involves two phases: ( \\(i\\) ) firstly the optimal placement of entities is solved, i.e.: entities are positioned so as to minimize the distances between connected entities; and ( \\(ii\\) ) secondly, edges are routed minimizing bends and avoiding the inclusion of connectors too close. We present the model for the first phase of our problem.",
   "group": "graphdraw",
   "status": "open",
-  "submitter": "C\u00e9zar Augusto Nascimento e Silva",
+  "submitter": "Cézar Augusto Nascimento e Silva",
   "tags": [
    "general_linear",
    "invariant_knapsack",
@@ -834,7 +834,7 @@
   ]
  },
  "hypothyroid-k1": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "hypothyroid",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -849,7 +849,7 @@
   ]
  },
  "iis-hc-cov": {
-  "description": "23 \u201cmiddlehard\u201d Set-Covering Instances for MIPLIB: they have a small number of variables compared to the number of constraints and CPLEX 12.1 needs about one hour to solve them.For more information, have a look into the readme file which explains how the instances can be created.",
+  "description": "23 “middlehard” Set-Covering Instances for MIPLIB: they have a small number of variables compared to the number of constraints and CPLEX 12.1 needs about one hour to solve them.For more information, have a look into the readme file which explains how the instances can be created.",
   "group": "iis",
   "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
@@ -861,7 +861,7 @@
   ]
  },
  "k1mushroom": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "k1mushroom",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2711,7 +2711,7 @@
   ]
  },
  "pb-fit2d": {
-  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear \u2013output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a \u2013timeout 3 -D fIndConstr=true -D fMIPdomains=false \u2013writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
+  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear –output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a –timeout 3 -D fIndConstr=true -D fMIPdomains=false –writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
   "group": "pb-",
   "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "easy",
@@ -2726,7 +2726,7 @@
   ]
  },
  "pb-grow22": {
-  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear \u2013output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a \u2013timeout 3 -D fIndConstr=true -D fMIPdomains=false \u2013writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
+  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear –output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a –timeout 3 -D fIndConstr=true -D fMIPdomains=false –writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
   "group": "pb-",
   "imported_from": "Imported from the MIPLIB2010 submissions.",
   "status": "open",
@@ -2874,7 +2874,7 @@
   ]
  },
  "proteindesign121hz512p9": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 60 minutes.",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 60 minutes.",
   "group": "proteindesign",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2886,7 +2886,7 @@
   ]
  },
  "proteindesign121pgb11p9": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "proteindesign",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2897,7 +2897,7 @@
   ]
  },
  "proteindesign122trx11p8": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "proteindesign",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -2909,7 +2909,7 @@
   ]
  },
  "radiationm40-10-02": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
   "group": "radiation",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -3274,7 +3274,7 @@
   ]
  },
  "seqsolve1": {
-  "description": "The 3 problems in this group (seqsolve1\u2013seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
   "group": "seqsolve",
   "status": "open",
   "submitter": "Irv Lustig",
@@ -3290,7 +3290,7 @@
   ]
  },
  "seqsolve2short4288": {
-  "description": "The 3 problems in this group (seqsolve1\u2013seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
   "group": "seqsolve",
   "status": "open",
   "submitter": "Irv Lustig",
@@ -3307,7 +3307,7 @@
   ]
  },
  "seqsolve3short4288excess384": {
-  "description": "The 3 problems in this group (seqsolve1\u2013seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
   "group": "seqsolve",
   "status": "open",
   "submitter": "Irv Lustig",
@@ -3493,7 +3493,7 @@
   ]
  },
  "splice1k1": {
-  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don\u2019t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
   "group": "splice",
   "status": "easy",
   "submitter": "Gleb Belov",
@@ -3671,20 +3671,20 @@
   ]
  },
  "t1717": {
-  "description": "Vehicle scheduling set partitioning problem from Berlin\u2019s Telebus handicapped people\u2019s transportation system Solution was computed with 12 Threads in 20 hours, by giving highest priority to variables with most edges in conflict graph.",
+  "description": "Vehicle scheduling set partitioning problem from Berlin’s Telebus handicapped people’s transportation system Solution was computed with 12 Threads in 20 hours, by giving highest priority to variables with most edges in conflict graph.",
   "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
-  "submitter": "R. Bornd\u00f6rfer",
+  "submitter": "R. Borndörfer",
   "tags": [
    "binary",
    "set_partitioning"
   ]
  },
  "t1722": {
-  "description": "Vehicle scheduling set partitioning problem from Berlin\u2019s Telebus handicapped people\u2019s transportation system",
+  "description": "Vehicle scheduling set partitioning problem from Berlin’s Telebus handicapped people’s transportation system",
   "imported_from": "Imported from MIPLIB2010.",
   "status": "open",
-  "submitter": "R. Bornd\u00f6rfer",
+  "submitter": "R. Borndörfer",
   "tags": [
    "binary",
    "set_partitioning"
@@ -3856,7 +3856,7 @@
   "description": "California seven day unit commitment problem",
   "imported_from": "Imported from MIPLIB2010.",
   "status": "easy",
-  "submitter": "R. O\u2019Neill",
+  "submitter": "R. O’Neill",
   "tags": [
    "benchmark",
    "benchmark_suitable",

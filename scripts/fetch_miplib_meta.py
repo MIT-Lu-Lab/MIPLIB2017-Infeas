@@ -138,14 +138,16 @@ def main():
             cache[name] = parse(page)
         if n % 20 == 0 or n == len(names):
             args.out.parent.mkdir(parents=True, exist_ok=True)
-            args.out.write_text(json.dumps(cache, indent=1, sort_keys=True) + "\n",
-                                encoding="utf-8")
+            args.out.write_text(
+                json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False) + "\n",
+                encoding="utf-8")
             print(f"  {n}/{len(names)}", flush=True)
         time.sleep(args.delay)
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(json.dumps(cache, indent=1, sort_keys=True) + "\n",
-                        encoding="utf-8")
+    args.out.write_text(
+        json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8")
 
     def have(k):
         return sum(1 for v in cache.values() if v.get(k))

@@ -38,7 +38,7 @@ def dumps(sidecar: dict) -> str:
     Byte-identical to the published files, so a re-upload carries the new field
     and nothing else.
     """
-    return json.dumps(sidecar, indent=2, sort_keys=True) + "\n"
+    return json.dumps(sidecar, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
 
 
 def sidecars(dataset_dir: Path):

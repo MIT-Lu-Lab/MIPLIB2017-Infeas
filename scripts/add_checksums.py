@@ -44,7 +44,7 @@ def main():
         meta = json.loads(meta_path.read_text(encoding="utf-8"))
         meta["sha256"] = sha256(mps)
         meta["file_bytes"] = mps.stat().st_size
-        meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n",
+        meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
                              encoding="utf-8")
         if n % 25 == 0 or n == len(files):
             print(f"  {n}/{len(files)}  ({time.time() - t0:.0f}s)", flush=True)

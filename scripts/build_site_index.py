@@ -69,7 +69,8 @@ def main() -> None:
     # one record per line is unreadable at 334 records and one key per line is
     # 30k lines; indent=1 keeps a changed field to a one-line diff
     args.out.write_text(
-        json.dumps({"version": INDEX_VERSION, "records": records}, indent=1) + "\n",
+        json.dumps({"version": INDEX_VERSION, "records": records},
+                   indent=1, ensure_ascii=False) + "\n",
         encoding="utf-8")
     counts = {}
     for r in records:

@@ -14,6 +14,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
 from . import content, load, render
+from . import assets
 from .assets import CSS_NAME, JS_NAME, SITE_CSS, SITE_JS
 from .records import OTHER_SUBSET, SUBSET_META, Sample
 from .urls import normalize_site_url, page_url
@@ -25,6 +26,7 @@ DEFAULT_MIPLIB = _ROOT / "metadata" / "miplib_meta.json"
 FONT_DIR = _ROOT / "fonts"
 SCHEMA_FILE = _ROOT / "schema" / "meta.schema.json"
 LICENSE_FILE = _ROOT / "LICENSE"
+OG_IMAGE_FILE = _ROOT / "og.png"
 
 # The published catalogue, per subset, as (name, accessor). It goes out twice, as
 # CSV for a spreadsheet and as JSON for a script, from this one definition: two
@@ -213,6 +215,17 @@ def _copy_license(out_dir: Path) -> str:
     return rel.as_posix()
 
 
+def _copy_og_image(out_dir: Path) -> str:
+    """Publish the card a shared link shows.
+
+    Drawn offline by scripts/make_og_image.py, from the site's own stylesheet,
+    and committed. The build copies it and takes no dependency on that.
+    """
+    rel = assets.OG_IMAGE
+    shutil.copyfile(OG_IMAGE_FILE, out_dir / rel)
+    return rel
+
+
 def _write_text(path: Path, text: str) -> None:
     """Write a generated text file.
 
@@ -244,7 +257,8 @@ def _prune(out_dir: Path, keep_rels: set[str]) -> None:
                  + list(out_dir.glob("*.json"))
                  + list((out_dir / "fonts").glob("*"))
                  + list((out_dir / "assets").glob("*"))
-                 + [p for p in (out_dir / "sitemap.xml", out_dir / "LICENSE.txt")
+                 + [p for p in (out_dir / "sitemap.xml", out_dir / "LICENSE.txt",
+                             out_dir / assets.OG_IMAGE)
                     if p.exists()])
     for path in generated:
         rel = path.relative_to(out_dir).as_posix()
@@ -318,6 +332,7 @@ def build(index_path: Path | str, out_dir: Path | str,
     rels |= _write_assets(out_dir)
     rels.add(_copy_schema(out_dir))
     rels.add(_copy_license(out_dir))
+    rels.add(_copy_og_image(out_dir))
     rels.add(_write_nojekyll(out_dir))
     if site_url:
         page_rels = {rel for rel in rels if rel.endswith("index.html")}

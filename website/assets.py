@@ -19,6 +19,12 @@ import hashlib
 # against what these files carry.
 FONT_FAMILY = "Infeas"
 
+# The card a shared link shows, drawn by scripts/make_og_image.py and published
+# at the site root. Its size is what the platforms crop to, and is declared in
+# the head so they need not fetch it to lay out the card.
+OG_IMAGE = "og.png"
+OG_IMAGE_SIZE = (1200, 630)
+
 FONT_FACES = (
     ("Mono", "Regular", 400), ("Mono", "Medium", 500), ("Mono", "SemiBold", 600),
     ("Sans", "Regular", 400), ("Sans", "Medium", 500), ("Sans", "SemiBold", 600),

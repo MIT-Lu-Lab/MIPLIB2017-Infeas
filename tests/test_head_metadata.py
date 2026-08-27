@@ -7,7 +7,7 @@ of what a reader sees before deciding whether to open it.
 
 import re
 
-from website import content, load as L, render as V
+from website import assets as A, content, load as L, render as V
 
 
 def _head(html: str) -> str:
@@ -67,6 +67,41 @@ def test_the_canonical_url_is_absent_until_the_build_knows_the_origin(index):
     url = site + samples[0].page_path
     assert f'<link rel="canonical" href="{url}">' in head
     assert _meta(head, "og:url", attr="property") == url
+
+
+def test_the_card_a_shared_link_shows(index):
+    """Slack, X and the rest draw og:image above the title. Without one, a link
+    to a published dataset looks like a pasted URL."""
+    samples = L.load_index(index)
+    totals = L.collection_totals(samples)
+
+    head = _head(V.render_overview(totals))
+    assert "og:image" not in head
+    assert _meta(head, "twitter:card") == "summary"
+
+    head = _head(V.render_overview(totals, site_url="https://example.invalid/mi/"))
+    assert _meta(head, "og:image", attr="property") ==         "https://example.invalid/mi/og.png"
+    width, height = A.OG_IMAGE_SIZE
+    assert _meta(head, "og:image:width", attr="property") == str(width)
+    assert _meta(head, "og:image:height", attr="property") == str(height)
+    assert _meta(head, "og:image:alt", attr="property")
+    # a picture is what makes it the large card rather than the thin one
+    assert _meta(head, "twitter:card") == "summary_large_image"
+
+
+def test_the_committed_card_is_a_png_of_the_declared_shape():
+    """The size is declared in the head so a platform need not fetch the image
+    to lay the card out. If the two disagree the card is drawn wrong."""
+    import struct
+    from pathlib import Path
+
+    data = (Path(__file__).parents[1] / A.OG_IMAGE).read_bytes()
+    # the signature, written as hex so the escape survives an editor
+    assert data[:8] == bytes.fromhex("89504e470d0a1a0a")
+    width, height = struct.unpack(">II", data[16:24])
+    declared_width, declared_height = A.OG_IMAGE_SIZE
+    assert width % declared_width == 0 and height % declared_height == 0
+    assert width // declared_width == height // declared_height
 
 
 def test_the_description_of_an_instance_leads_with_its_name(index):

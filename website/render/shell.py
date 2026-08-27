@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from ..assets import CSS_NAME, JS_NAME
-from ..content import NAME
+from ..assets import CSS_NAME, JS_NAME, OG_IMAGE, OG_IMAGE_SIZE
+from ..content import NAME, TAGLINE
 from ..records import SUBSET_META
-from ..urls import page_url, rel
+from ..urls import page_url, rel, site_file
 from .markup import Markup, el, esc, fmt, join, json_script
 
 __all__ = ["NAV", "Markup", "el", "esc", "fmt", "join", "json_script", "page"]
@@ -48,24 +48,36 @@ DOCUMENT = """<!doctype html>
 """
 
 
-def _head_meta(title: str, description: str, canonical: str | None) -> Markup:
+def _head_meta(title: str, description: str, canonical: str | None,
+               image: str | None) -> Markup:
     """What a search result and a shared link show.
 
     Without these a page is a bare URL in a chat window and an untitled row in a
     result list, which for a collection meant to be cited is most of what a
     reader sees before deciding whether to open it.
     """
+    width, height = OG_IMAGE_SIZE
     tags = [el("meta", name="description", content=description),
             el("meta", property="og:type", content="website"),
             el("meta", property="og:site_name", content=NAME),
             el("meta", property="og:title", content=title),
-            el("meta", property="og:description", content=description),
-            el("meta", name="twitter:card", content="summary")]
+            el("meta", property="og:description", content=description)]
     if canonical:
         # only the build knows the public origin, so a build without --site-url
         # says nothing rather than pointing at a guess
         tags.insert(1, el("link", rel="canonical", href=canonical))
         tags.insert(5, el("meta", property="og:url", content=canonical))
+    if image:
+        # the size is declared so a platform can lay the card out without
+        # fetching the image first
+        tags += [el("meta", property="og:image", content=image),
+                 el("meta", property="og:image:width", content=width),
+                 el("meta", property="og:image:height", content=height),
+                 el("meta", property="og:image:alt",
+                    content=f"{NAME}: {TAGLINE}")]
+    # a card with no picture is a thinner card, not a broken one
+    tags.append(el("meta", name="twitter:card",
+                   content="summary_large_image" if image else "summary"))
     return Markup(chr(10).join(tags))
 
 
@@ -104,10 +116,11 @@ def page(title: str, body: Markup, active: str, page_rel: str,
         for key, href, label, short in NAV
     )
     canonical = page_url(site_url, page_rel) if site_url else None
+    image = site_file(site_url, OG_IMAGE) if site_url else None
     return fmt(
         DOCUMENT,
         title=title,
-        head=_head_meta(title, description, canonical),
+        head=_head_meta(title, description, canonical, image),
         root=rel(page_rel, ""),
         css_href=rel(page_rel, f"assets/{CSS_NAME}"),
         js_src=rel(page_rel, f"assets/{JS_NAME}"),

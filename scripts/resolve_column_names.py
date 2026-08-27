@@ -104,7 +104,7 @@ def main():
                     if isinstance(j, int) and j < len(names):
                         drop["name"] = names[j]
 
-        meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True) + "\n",
+        meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
                              encoding="utf-8")
         if n % 25 == 0 or n == len(jobs):
             print(f"  {n}/{len(jobs)}  ({time.time() - t0:.0f}s)", flush=True)
