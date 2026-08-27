@@ -86,6 +86,8 @@ jobs:
           cmp schema/meta.schema.json _site/schema/meta.schema.json
           test -f _site/LICENSE.txt
           cmp LICENSE _site/LICENSE.txt
+          test -f _site/og.png
+          cmp og.png _site/og.png
           test "$(find _site/fonts -name '*.woff2' | wc -l)" -eq 8
           # A reader must not be announced to a third party to read a page. Links
           # in the prose are the point of the site and are not what this looks at:
