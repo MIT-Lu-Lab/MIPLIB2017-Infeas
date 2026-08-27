@@ -2,7 +2,9 @@
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-Linear programs that no solver can solve to optimality, derived from [MIPLIB 2017](https://miplib.zib.de/) instances. One set has no feasible point. The other is feasible, but its objective is unbounded. A large-scale benchmark for detection.
+Linear programs with no optimal solution, derived from
+[MIPLIB 2017](https://miplib.zib.de/) instances with their integrality dropped. One set has
+no feasible point and the other is unbounded. A large-scale benchmark for detection.
 
 **Browse the collection:** https://mit-lu-lab.github.io/MIPLIB-Infeas
 

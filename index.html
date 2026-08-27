@@ -104,6 +104,8 @@ main.narrow .prose{max-width:none}
 .prose{max-width:66ch}
 .prose p{margin:0 0 14px}
 .muted{color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin-top:26px}
+.cite-note{font-size:13px;color:var(--muted);margin-top:12px;max-width:66ch}
 
 .eyebrow{
   font-family:var(--f-mono);font-size:11px;font-weight:500;
@@ -173,6 +175,7 @@ thead th{
 }
 thead th.r{text-align:right}
 thead th[data-sort]{cursor:pointer;user-select:none}
+thead th[data-sort]:focus-visible{outline:2px solid var(--primal);outline-offset:-2px}
 thead th[data-sort]:hover{color:var(--ink)}
 thead th[aria-sort="ascending"]::after{content:" \2191"}
 thead th[aria-sort="descending"]::after{content:" \2193"}
@@ -210,6 +213,7 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
 }
 .panel > header h2{font-size:15px;font-family:var(--f-sans);font-weight:600}
 .panel .body{padding:16px 18px}
+.lede{margin:0 0 13px;font-size:13.5px;color:var(--muted)}
 
 .kv{display:grid;grid-template-columns:auto 1fr;gap:0}
 .kv dt{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--rule-soft)}
@@ -274,7 +278,7 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
   background:var(--raise);padding:12px 15px;font-size:13.5px;
 }
 .crosslink:hover{background:var(--dual-wash)}
-.crosslink .mono{font-size:12.5px;color:var(--muted)}
+.crosslink .mono{font-size:12.5px;color:var(--muted);margin-left:auto}
 
 @media (max-width:900px){
   .pair,.detail,.browse,.files{grid-template-columns:1fr}
@@ -297,25 +301,23 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
 <div class="masthead">
   <span class="eyebrow">A large-scale detection benchmark</span>
   <h1>Primal- and dual-infeasible linear programs</h1>
-  <p class="sub">334 linear programs that no solver can solve to optimality, each
+  <p class="sub">334 linear programs with no optimal solution, each
     derived from a <a href="https://miplib.zib.de/" target="_blank" rel="noopener">MIPLIB
-    2017</a> instance. 229 have no feasible point. The other
-    105 are feasible, but their objective is unbounded. They run up
+    2017</a> instance with its integrality dropped. 229 have no feasible point and the other
+    105 are unbounded. They run up
     to 20,682,487 variables and 19,912,111
-    constraints. The primal-infeasible ones are nodes a real branch-and-bound search
-    reached and pruned; the dual-infeasible ones are built from a root relaxation of the
-    same instances.</p>
+    constraints.</p>
 </div>
 <div class="pair"><a class="subset p" href="primal-infeasible/">
       <h3>Primal-infeasible</h3>
       <div class="count">229 instances</div>
       <p>A branch-and-bound run splits on a variable and explores one side of the split. This set collects the other side, at nodes where that side has no feasible point.</p>
-      <span class="go">Browse the 229 &rarr;</span>
+      <span class="go">Browse them all &rarr;</span>
     </a><a class="subset d" href="dual-infeasible/">
       <h3>Dual-infeasible</h3>
       <div class="count">105 instances</div>
-      <p>Bounds and constraints are removed from a MIPLIB relaxation until the objective becomes unbounded, then every removal that proves unnecessary is restored. What remains is minimal: put any one of it back and the LP is bounded again.</p>
-      <span class="go">Browse the 105 &rarr;</span>
+      <p>Bounds and constraints are removed from a MIPLIB relaxation until the objective becomes unbounded, then every removal that proves unnecessary is restored.</p>
+      <span class="go">Browse them all &rarr;</span>
     </a></div>
 <div class="section">
   <span class="eyebrow">Every instance</span>
@@ -337,13 +339,13 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
     &nbsp;&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {MIPLIB-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},<br>
     &nbsp;&nbsp;howpublished = {\url{https://mit-lu-lab.github.io/MIPLIB-Infeas}},<br>
     &nbsp;&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = {2026}<br>}</div>
-  <p class="muted" style="font-size:13px;margin-top:12px;max-width:66ch">Every instance
+  <p class="cite-note">Every instance
   derives from the MIPLIB 2017 collection, which should be cited alongside this one.</p>
 </div>
 <div class="section">
   <h2>Contact</h2>
   <div class="prose">
-    <p class="muted">This collection is maintained by Bo Tang and Haihao Lu. If a
+    <p class="muted">This collection is maintained by Haihao Lu and Bo Tang. If a
     published file does not have the status it claims, or a source instance carries terms
     other than the default, please
     <a href="https://github.com/MIT-Lu-Lab/MIPLIB-Infeas/issues">open an issue</a> and
@@ -352,8 +354,7 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
 </div>
 </main>
 <script>
-document.addEventListener('click', function(ev){
-  var th = ev.target.closest('th[data-sort]');
+function sortByHeader(th){
   if(!th) return;
   var table = th.closest('table');
   var idx = Array.prototype.indexOf.call(th.parentNode.children, th);
@@ -369,12 +370,22 @@ document.addEventListener('click', function(ev){
   Array.prototype.forEach.call(table.tHead.rows[0].cells, function(c){
     c.removeAttribute('aria-sort') });
   th.setAttribute('aria-sort', asc?'ascending':'descending');
+}
+
+document.addEventListener('click', function(ev){
+  sortByHeader(ev.target.closest('th[data-sort]'));
 });
 
-document.addEventListener('change', function(ev){
-  var cb = ev.target.closest('.facets input[data-k]');
-  if(!cb) return;
-  var facets = cb.closest('.facets');
+// keyboard: sortable headers are focusable, and Enter or Space sorts them
+document.addEventListener('keydown', function(ev){
+  if(ev.key !== 'Enter' && ev.key !== ' ') return;
+  var th = ev.target.closest('th[data-sort]');
+  if(!th) return;
+  ev.preventDefault();
+  sortByHeader(th);
+});
+
+function applyFacets(facets){
   var wrap = facets.parentNode;
   var table = wrap.querySelector('table');
   if(!table) return;
@@ -382,9 +393,8 @@ document.addEventListener('change', function(ev){
     return Array.prototype.map.call(
       g.querySelectorAll('input[data-k]:checked'), function(i){ return i.dataset.k; });
   }).filter(function(keys){ return keys.length > 0; });
-  var rows = Array.prototype.slice.call(table.tBodies[0].rows);
   var shown = 0;
-  rows.forEach(function(row){
+  Array.prototype.forEach.call(table.tBodies[0].rows, function(row){
     var have = (row.getAttribute('data-f') || '').split(' ');
     var ok = groups.every(function(keys){
       return keys.some(function(k){ return have.indexOf(k) !== -1; });
@@ -398,6 +408,18 @@ document.addEventListener('change', function(ev){
   foot.textContent = groups.length
     ? (shown + ' of ' + total + ' instances shown. Every column sorts.')
     : (total + ' instances. Every column sorts.');
+}
+
+document.addEventListener('change', function(ev){
+  var cb = ev.target.closest('.facets input[data-k]');
+  if(cb) applyFacets(cb.closest('.facets'));
+});
+
+// Browsers restore checkbox state on reload and when the page comes back from the
+// back/forward cache, so the table has to be brought in line with the boxes before
+// the first change event. pageshow covers both; DOMContentLoaded misses the cache.
+window.addEventListener('pageshow', function(){
+  Array.prototype.forEach.call(document.querySelectorAll('.facets'), applyFacets);
 });
 </script>
 </body>

@@ -104,6 +104,8 @@ main.narrow .prose{max-width:none}
 .prose{max-width:66ch}
 .prose p{margin:0 0 14px}
 .muted{color:var(--muted)}
+.note{font-size:13px;color:var(--muted);margin-top:26px}
+.cite-note{font-size:13px;color:var(--muted);margin-top:12px;max-width:66ch}
 
 .eyebrow{
   font-family:var(--f-mono);font-size:11px;font-weight:500;
@@ -173,6 +175,7 @@ thead th{
 }
 thead th.r{text-align:right}
 thead th[data-sort]{cursor:pointer;user-select:none}
+thead th[data-sort]:focus-visible{outline:2px solid var(--primal);outline-offset:-2px}
 thead th[data-sort]:hover{color:var(--ink)}
 thead th[aria-sort="ascending"]::after{content:" \2191"}
 thead th[aria-sort="descending"]::after{content:" \2193"}
@@ -210,6 +213,7 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
 }
 .panel > header h2{font-size:15px;font-family:var(--f-sans);font-weight:600}
 .panel .body{padding:16px 18px}
+.lede{margin:0 0 13px;font-size:13.5px;color:var(--muted)}
 
 .kv{display:grid;grid-template-columns:auto 1fr;gap:0}
 .kv dt{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--rule-soft)}
@@ -274,7 +278,7 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
   background:var(--raise);padding:12px 15px;font-size:13.5px;
 }
 .crosslink:hover{background:var(--dual-wash)}
-.crosslink .mono{font-size:12.5px;color:var(--muted)}
+.crosslink .mono{font-size:12.5px;color:var(--muted);margin-left:auto}
 
 @media (max-width:900px){
   .pair,.detail,.browse,.files{grid-template-columns:1fr}
@@ -301,28 +305,14 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
 </div>
 <div class="detail">
   <div>
-    <div class="panel"><header><h2>The instance</h2>
-      <span class="eyebrow">as written</span></header>
-      <div class="body"><dl class="kv"><dt>Variables</dt><dd>360,822</dd><dt>Constraints</dt><dd>13,893</dd><dt>Nonzeros</dt><dd>567,642</dd><dt>Format</dt><dd>MPS, gzipped</dd></dl></div>
-    </div>
-    
-<div class="panel"><header><h2>Where it comes from</h2>
-  <span class="eyebrow">provenance</span></header>
-  <div class="body">
-    <p class="muted" style="margin:0 0 13px;font-size:13.5px">The source instance's LP
+    <div class="panel"><header><h2>The instance</h2><span class="eyebrow">as published</span></header><div class="body"><dl class="kv"><dt>Variables</dt><dd>360,822</dd><dt>Constraints</dt><dd>13,893</dd><dt>Nonzeros</dt><dd>567,642</dd><dt>Format</dt><dd>MPS, gzipped</dd></dl></div></div>
+    <div class="panel"><header><h2>Where it comes from</h2><span class="eyebrow">provenance</span></header><div class="body">
+    <p class="lede">The source instance's LP
     relaxation is feasible with a bounded optimum. Removing the elements below makes the
     objective unbounded, and putting any one of them back makes it bounded again.</p>
     <dl class="kv"><dt>Bounds dropped</dt><dd>3</dd><dt>Rows dropped</dt><dd>2</dd></dl>
-  </div>
-</div>
-<div class="panel"><header><h2>What was removed</h2>
-  <span class="eyebrow">5 entries</span></header>
-  <div class="body"><div class="path"><span>lb of C355357</span><span>row R0032</span><span>row R0025</span><span>lb of C349290</span><span>ub of C355358</span></div>
-    <p class="more">5 of 5 shown.
-    The complete list is in the sidecar.</p>
-  </div>
-</div>
-    <a class="crosslink" href="../../primal-infeasible/ns1111636/"><span>Also published in the <b>primal-infeasible</b> set</span><span class="mono" style="margin-left:auto">view &rarr;</span></a>
+  </div></div><div class="panel"><header><h2>What was removed</h2><span class="eyebrow">5 entries</span></header><div class="body"><div class="path"><span>lb of C355357</span><span>row R0032</span><span>row R0025</span><span>lb of C349290</span><span>ub of C355358</span></div><p class="more">5 of 5 shown. The complete list is in the sidecar.</p></div></div>
+    <a class="crosslink" href="../../primal-infeasible/ns1111636/"><span>Also published in the <b>primal-infeasible</b> set</span><span class="mono">view &rarr;</span></a>
   </div>
   <div class="aside"><div class="card">
   <header><span class="eyebrow">Download</span></header>
@@ -335,7 +325,7 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
 </div><div class="card">
   <header><span class="eyebrow">Source instance</span></header>
   <div class="body">
-    <div class="src-row"><span>Name</span><span>ns1111636</span></div><div class="src-row"><span>Submitted by</span><span>NEOS Server Submission</span></div><div class="src-row"><span>Group</span><span>neos-pseudoapplication-67</span></div><div class="srctags"><span class="srctag">decomposition</span><span class="srctag">invariant_knapsack</span><span class="srctag">knapsack</span><span class="srctag">mixed_binary</span><span class="srctag">set_packing</span><span class="srctag">set_partitioning</span></div><p class="hint">Network routing problem. Solved in June 2013 by CPLEX 12.5.1 with 32 threads in about 102 hours. Imported from MIPLIB2010.</p><p class="hint credit">Description from MIPLIB 2017.</p>
+    <div class="src-row"><span>Name</span><span>ns1111636</span></div><div class="src-row"><span>Submitted by</span><span>NEOS Server Submission</span></div><div class="src-row"><span>Group</span><span>neos-pseudoapplication-67</span></div><div class="srctags"><span class="srctag">decomposition</span><span class="srctag">invariant_knapsack</span><span class="srctag">knapsack</span><span class="srctag">set_packing</span><span class="srctag">set_partitioning</span></div><p class="hint">Network routing problem. Solved in June 2013 by CPLEX 12.5.1 with 32 threads in about 102 hours.</p><p class="hint credit">Description from MIPLIB 2017.</p>
     <a class="extlink" href="https://miplib.zib.de/instance_details_ns1111636.html" target="_blank" rel="noopener">
       View on MIPLIB 2017 &rarr;</a>
   </div>
@@ -343,8 +333,7 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
 </div>
 </main>
 <script>
-document.addEventListener('click', function(ev){
-  var th = ev.target.closest('th[data-sort]');
+function sortByHeader(th){
   if(!th) return;
   var table = th.closest('table');
   var idx = Array.prototype.indexOf.call(th.parentNode.children, th);
@@ -360,12 +349,22 @@ document.addEventListener('click', function(ev){
   Array.prototype.forEach.call(table.tHead.rows[0].cells, function(c){
     c.removeAttribute('aria-sort') });
   th.setAttribute('aria-sort', asc?'ascending':'descending');
+}
+
+document.addEventListener('click', function(ev){
+  sortByHeader(ev.target.closest('th[data-sort]'));
 });
 
-document.addEventListener('change', function(ev){
-  var cb = ev.target.closest('.facets input[data-k]');
-  if(!cb) return;
-  var facets = cb.closest('.facets');
+// keyboard: sortable headers are focusable, and Enter or Space sorts them
+document.addEventListener('keydown', function(ev){
+  if(ev.key !== 'Enter' && ev.key !== ' ') return;
+  var th = ev.target.closest('th[data-sort]');
+  if(!th) return;
+  ev.preventDefault();
+  sortByHeader(th);
+});
+
+function applyFacets(facets){
   var wrap = facets.parentNode;
   var table = wrap.querySelector('table');
   if(!table) return;
@@ -373,9 +372,8 @@ document.addEventListener('change', function(ev){
     return Array.prototype.map.call(
       g.querySelectorAll('input[data-k]:checked'), function(i){ return i.dataset.k; });
   }).filter(function(keys){ return keys.length > 0; });
-  var rows = Array.prototype.slice.call(table.tBodies[0].rows);
   var shown = 0;
-  rows.forEach(function(row){
+  Array.prototype.forEach.call(table.tBodies[0].rows, function(row){
     var have = (row.getAttribute('data-f') || '').split(' ');
     var ok = groups.every(function(keys){
       return keys.some(function(k){ return have.indexOf(k) !== -1; });
@@ -389,6 +387,18 @@ document.addEventListener('change', function(ev){
   foot.textContent = groups.length
     ? (shown + ' of ' + total + ' instances shown. Every column sorts.')
     : (total + ' instances. Every column sorts.');
+}
+
+document.addEventListener('change', function(ev){
+  var cb = ev.target.closest('.facets input[data-k]');
+  if(cb) applyFacets(cb.closest('.facets'));
+});
+
+// Browsers restore checkbox state on reload and when the page comes back from the
+// back/forward cache, so the table has to be brought in line with the boxes before
+// the first change event. pageshow covers both; DOMContentLoaded misses the cache.
+window.addEventListener('pageshow', function(){
+  Array.prototype.forEach.call(document.querySelectorAll('.facets'), applyFacets);
 });
 </script>
 </body>
