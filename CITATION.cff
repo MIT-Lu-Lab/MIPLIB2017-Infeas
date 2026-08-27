@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+title: "MIPLIB-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017"
+message: >-
+  If you use this collection, please cite it as below. MIPLIB 2017 should be cited
+  alongside it: every instance here is derived from one of theirs.
+type: dataset
+authors:
+  - family-names: Lu
+    given-names: Haihao
+    affiliation: Massachusetts Institute of Technology
+  - family-names: Tang
+    given-names: Bo
+    affiliation: Massachusetts Institute of Technology
+abstract: >-
+  334 linear programs with no optimal solution, each derived from a MIPLIB 2017
+  instance with its integrality dropped. 229 have no feasible point: each is a node
+  a branch-and-bound search reached and pruned. The other 105 are feasible with an
+  unbounded objective, produced by removing a minimal set of bounds and constraints
+  from a root relaxation. They run up to 20,682,487 variables and 19,912,111
+  constraints, and are intended as a benchmark for infeasibility and unboundedness
+  detection.
+keywords:
+  - linear programming
+  - infeasibility detection
+  - unbounded linear programs
+  - benchmark
+  - MIPLIB
+  - mathematical optimization
+license: CC-BY-SA-4.0
+repository-code: "https://github.com/MIT-Lu-Lab/MIPLIB-Infeas"
+url: "https://mit-lu-lab.github.io/MIPLIB-Infeas"
+year: 2026
+references:
+  - type: dataset
+    title: "MIPLIB 2017: Data-Driven Compilation of the 6th Mixed-Integer Programming Library"
+    url: "https://miplib.zib.de/"
+    year: 2021
+    authors:
+      - name: The MIPLIB 2017 team

@@ -1,0 +1,55 @@
+name: Deploy the site
+
+# The published site is a build artifact, not a committed tree: what is in this
+# repository is the generator and the index it reads. Set Pages to "GitHub
+# Actions" as its source, or this workflow deploys nothing.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# a queued deploy should wait for the running one rather than cancel it: a
+# half-finished deploy is a half-published site
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve the published URL
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build
+        run: |
+          python -m website.build_site --out-dir _site \
+            --release-base-url "https://github.com/${{ github.repository }}/releases/download/v1.0" \
+            --site-url "${{ steps.pages.outputs.base_url }}"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# the built site: it is deployed from CI, never committed
+_site/
+website/_out/
+
+# a checkout of the published files, for regenerating the site index
+dataset/

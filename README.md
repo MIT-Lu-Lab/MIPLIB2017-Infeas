@@ -36,6 +36,30 @@ unzip dual-infeasible.zip
 
 For a subset, `primal-infeasible.csv` and `dual-infeasible.csv` list the instances with their dimensions and filenames. Filter one and build the URLs from its `mps_filename` column; every asset sits directly under the release download prefix.
 
+## This repository
+
+The instances are release assets; what is tracked here is the site that presents
+them and the metadata it renders.
+
+```
+website/    the generator, standard library only
+metadata/   site-index.json, what the pages render, projected from the sidecars
+            miplib_meta.json, MIPLIB 2017's own entry for each source instance
+schema/     a JSON Schema for the .meta.json sidecars
+fonts/      the eight IBM Plex faces the site serves, under the OFL
+scripts/    tooling for the published set; only these read the instances
+```
+
+The site is built by CI and deployed to Pages on every push, so nothing generated
+is committed. To build it yourself:
+
+```bash
+python -m website.build_site --out-dir _site
+python -m http.server -d _site
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the rest.
+
 ## Citation
 
 ```bibtex

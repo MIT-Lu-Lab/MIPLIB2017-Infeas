@@ -1,0 +1,3779 @@
+{
+ "30n20b8": {
+  "description": "Multi-mode resource leveling with availability constraints; precedence and resource constrained scheduling problem",
+  "status": "easy",
+  "submitter": "E. Coughlan, M. Lübbecke, J. Schulz",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "precedence",
+   "set_partitioning"
+  ]
+ },
+ "academictimetablebig": {
+  "description": "Academic timetabling integer program Reported solved after 1 1/2 days using Gurobi.",
+  "status": "hard",
+  "submitter": "Joshua Friedman",
+  "tags": [
+   "aggregations",
+   "binary",
+   "binpacking",
+   "cardinality",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "academictimetablesmall": {
+  "description": "Academic timetabling integer program",
+  "status": "easy",
+  "submitter": "Joshua Friedman",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "cardinality",
+   "decomposition",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "adult-max5features": {
+  "description": "MIP to create optimized data-driven scoring systems. See: https://github.com/ustunb/miplib2017-slim#miplib2017-slim for a description.",
+  "group": "ustun",
+  "status": "hard",
+  "submitter": "Berk Ustun",
+  "tags": [
+   "general_linear",
+   "variable_bound"
+  ]
+ },
+ "allcolor58": {
+  "description": "Prepack optimization model.",
+  "group": "allcolor",
+  "status": "open",
+  "submitter": "Domenico Salvagnin",
+  "tags": [
+   "aggregations",
+   "decomposition",
+   "general_linear",
+   "integer_knapsack",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "app1-2": {
+  "description": "Undisclosed industrial application from Google",
+  "group": "app",
+  "status": "easy",
+  "submitter": "Emilie Danna",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "variable_bound"
+  ]
+ },
+ "atlanta-ip": {
+  "description": "Min-cost network dimensioning problems with a finite set of link capacities for each bidirected link, unsplittable shortest path routing, path restoration for single node failures, and routing path length restrictions",
+  "status": "easy",
+  "submitter": "E-Plus, D. Bienstock, A. Bley, R. Wessäly",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "bab1": {
+  "description": "Integrated vehicle routing and crew scheduling of toll inspectors on German highways",
+  "group": "bab",
+  "status": "hard",
+  "submitter": "Elmar Swarat, Laura Traverso, Julia Buwaya",
+  "tags": [
+   "aggregations",
+   "binary",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing"
+  ]
+ },
+ "bab2": {
+  "description": "Vehicle Routing with profits and an integrated crew scheduling formulated by two coupled multi-commodity flow problems.",
+  "group": "bab",
+  "status": "hard",
+  "submitter": "Elmar Swarat",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "decomposition",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "bab3": {
+  "description": "Vehicle routing with profits and an integrated crew scheduling problem formulated by two coupled multi-commodity flow problems",
+  "group": "bab",
+  "status": "open",
+  "submitter": "Elmar Swarat",
+  "tags": [
+   "aggregations",
+   "binary",
+   "cardinality",
+   "decomposition",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "bab5": {
+  "description": "Vehicle routing with profits and an integrated crew scheduling problem formulated by two coupled multi-commodity flow problems",
+  "group": "bab",
+  "status": "easy",
+  "submitter": "Elmar Swarat",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "decomposition",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "bab6": {
+  "description": "Vehicle routing with profit and an integrated crew scheduling like bab2 … bab5. Instances differ in multi-commodity-flow formulation (path oder arc formulation) or time discretization and some are quite easy to solve while others (bab2, bab3 and bab6) are very difficult.",
+  "group": "bab",
+  "status": "easy",
+  "submitter": "Elmar Swarat",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "blp-ar98": {
+  "description": "Railway line planning instance",
+  "group": "blp",
+  "status": "easy",
+  "submitter": "M. Lübbecke",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "equation_knapsack",
+   "general_linear",
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "blp-ic97": {
+  "description": "Railway line planning instance. Solved using CPLEX 12.3 (12 threads) on an Intel Xeon X5650 @ 2.67GHz, 12MB cache, 24GB RAM in 4947.5 sec. Solved using Gurobi 4.6.1 (12 threads) in 1867.9 sec.",
+  "group": "blp",
+  "status": "easy",
+  "submitter": "M. Lübbecke",
+  "tags": [
+   "benchmark_suitable",
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_packing"
+  ]
+ },
+ "blp-ic98": {
+  "description": "Railway line planning instance",
+  "group": "blp",
+  "status": "easy",
+  "submitter": "M. Lübbecke",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_packing"
+  ]
+ },
+ "bppc6-02": {
+  "description": "The models that we attach solve the “bar-relaxation”, also known as the “Bin Packing Problem with Contiguity” or the “P||Cmax with contiguity”. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
+  "group": "bppc",
+  "status": "hard",
+  "submitter": "Manuel Iori",
+  "tags": [
+   "mixed_binary",
+   "set_partitioning"
+  ]
+ },
+ "bppc6-06": {
+  "description": "The models that we attach solve the “bar-relaxation”, also known as the “Bin Packing Problem with Contiguity” or the “P||Cmax with contiguity”. This is one of the most interesting relaxations for two dimensional cutting and packing problems. Its solution by means of an ILP software is the bottleneck of the primal decomposition methods that we attempted in the paper cited below. In detail, the files correspond to model (12)-(15) in the paper, applied to the instances of the Classes 4, 6 and 8 by Martello and Vigo (Management Science, 1998).",
+  "group": "bppc",
+  "status": "open",
+  "submitter": "Manuel Iori",
+  "tags": [
+   "mixed_binary",
+   "set_partitioning"
+  ]
+ },
+ "brazil3": {
+  "description": "Educational timetabling problems from several real schools/universities around the world. These instances were originally expressed in the xhstt file format [1] and formulated as Integer Programming models as described at [2].",
+  "group": "timetabling",
+  "status": "easy",
+  "submitter": "George Fonseca",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "equation_knapsack",
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "circ10-3": {
+  "description": "Instance from the 2010 SAT conference pseudo-Boolean competition",
+  "status": "open",
+  "submitter": "M. Winkler",
+  "tags": [
+   "binary",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "cmflsp40-24-10-7": {
+  "description": "Capacitated Multi-Family Lot-Sizing Problem",
+  "group": "cmflsp",
+  "status": "easy",
+  "submitter": "Andrea Arias",
+  "tags": [
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "cmflsp40-36-2-10": {
+  "description": "Capacitated Multi-Family Lot-Sizing Problem",
+  "group": "cmflsp",
+  "status": "open",
+  "submitter": "Andrea Arias",
+  "tags": [
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "cmflsp50-24-8-8": {
+  "description": "Capacitated Multi-Family Lot-Sizing Problem",
+  "group": "cmflsp",
+  "status": "easy",
+  "submitter": "Andrea Arias",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "cmflsp60-36-2-6": {
+  "description": "Capacitated Multi-Family Lot-Sizing Problem",
+  "group": "cmflsp",
+  "status": "open",
+  "submitter": "Andrea Arias",
+  "tags": [
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "co-100": {
+  "description": "Model from optical access network planning",
+  "status": "easy",
+  "submitter": "Axel Werner",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "knapsack",
+   "precedence",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "cryptanalysiskb128n5obj16": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "group": "cryptanalysis",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "feasibility",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "variable_bound"
+  ]
+ },
+ "d20200": {
+  "description": "Instance coming from the COR@L test set with unknown origin",
+  "status": "open",
+  "submitter": "COR@L test set",
+  "tags": [
+   "binary",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "set_partitioning"
+  ]
+ },
+ "dc1l": {
+  "description": "Crew scheduling instance",
+  "status": "open",
+  "submitter": "Double-Click SAS",
+  "tags": [
+   "general_linear",
+   "mixed_binary"
+  ]
+ },
+ "ds": {
+  "status": "hard",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "binary",
+   "set_partitioning"
+  ]
+ },
+ "dws008-03": {
+  "description": "MILP for designing a decentralized water supply system for drinking water in skyscrapers. The nonlinear characteristics of pumps are integrated with the help of an aggregated convex combination. The instances vary in the total number of floors and load scenarios for water demand. First stage variables represent the layout decisions, second stage variables represent the operational parameters, such as the continuous rotating speed of pumps or binary switching decisions.",
+  "group": "dws",
+  "status": "hard",
+  "submitter": "Philipp Leise",
+  "tags": [
+   "decomposition",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "dws012-01": {
+  "description": "MILP for designing a decentralized water supply system for drinking water in skyscrapers. The nonlinear characteristics of pumps are integrated with the help of an aggregated convex combination. The instances vary in the total number of floors and load scenarios for water demand. First stage variables represent the layout decisions, second stage variables represent the operational parameters, such as the continuous rotating speed of pumps or binary switching decisions.",
+  "group": "dws",
+  "status": "open",
+  "submitter": "Philipp Leise",
+  "tags": [
+   "decomposition",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "dws012-02": {
+  "description": "MILP for designing a decentralized water supply system for drinking water in skyscrapers. The nonlinear characteristics of pumps are integrated with the help of an aggregated convex combination. The instances vary in the total number of floors and load scenarios for water demand. First stage variables represent the layout decisions, second stage variables represent the operational parameters, such as the continuous rotating speed of pumps or binary switching decisions.",
+  "group": "dws",
+  "status": "open",
+  "submitter": "Philipp Leise",
+  "tags": [
+   "aggregations",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "dws012-03": {
+  "description": "MILP for designing a decentralized water supply system for drinking water in skyscrapers. The nonlinear characteristics of pumps are integrated with the help of an aggregated convex combination. The instances vary in the total number of floors and load scenarios for water demand. First stage variables represent the layout decisions, second stage variables represent the operational parameters, such as the continuous rotating speed of pumps or binary switching decisions.",
+  "group": "dws",
+  "status": "open",
+  "submitter": "Philipp Leise",
+  "tags": [
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "eilA101-2": {
+  "description": "Set partitioning problem approximation for capicated vehicle routing problem instance from TSPLIB",
+  "group": "eil",
+  "status": "easy",
+  "submitter": "J. Linderoth",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "set_partitioning"
+  ]
+ },
+ "eilC76-2": {
+  "description": "Set partitioning problem approximation for capicated vehicle routing problem instance from TSPLIB",
+  "group": "eil",
+  "status": "easy",
+  "submitter": "J. Linderoth",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "set_partitioning"
+  ]
+ },
+ "eva1aprime6x6opt": {
+  "description": "MILP approach to generate structures with negative thermal expansion coefficients",
+  "group": "evaprime",
+  "status": "open",
+  "submitter": "Yoshihiro Kanno",
+  "tags": [
+   "aggregations",
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "ex10": {
+  "description": "Formulations of Boolean SAT instance",
+  "status": "easy",
+  "submitter": "Iulian Ober",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "invariant_knapsack",
+   "precedence",
+   "set_partitioning"
+  ]
+ },
+ "ex1010-pi": {
+  "description": "Logic synthesis problem from the 2010 SAT conference pseudo-Boolean competition",
+  "status": "open",
+  "submitter": "M. Winkler",
+  "tags": [
+   "binary",
+   "set_covering"
+  ]
+ },
+ "ex9": {
+  "description": "Formulations of Boolean SAT instance",
+  "status": "easy",
+  "submitter": "Iulian Ober",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "invariant_knapsack",
+   "precedence",
+   "set_partitioning"
+  ]
+ },
+ "fast0507": {
+  "status": "easy",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "set_covering",
+   "variable_bound"
+  ]
+ },
+ "fastxgemm-n3r21s3t6": {
+  "description": "Naive multiplication of two N by N matrices requires N^3 scalar multiplications. For N=2, Strassen showed that it could be done in only R=7 < 8=N^3 multiplications. For N=3, it is known that 19 <= R <= 23, and for N=4 it is known that 34 <= R <= 49. This repository contains code that generates a mixed-integer linear program (MILP) formulation of the fast matrix multiplication problem for finding solutions with R < N^3 and proving that they are optimal. For a more detailed description, see the accompanying manuscript.",
+  "group": "fastxgemm",
+  "status": "open",
+  "submitter": "Laurent Sorber",
+  "tags": [
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "fastxgemm-n3r22s4t6": {
+  "description": "Naive multiplication of two N by N matrices requires N^3 scalar multiplications. For N=2, Strassen showed that it could be done in only R=7 < 8=N^3 multiplications. For N=3, it is known that 19 <= R <= 23, and for N=4 it is known that 34 <= R <= 49. This repository contains code that generates a mixed-integer linear program (MILP) formulation of the fast matrix multiplication problem for finding solutions with R < N^3 and proving that they are optimal. For a more detailed description, see the accompanying manuscript.",
+  "group": "fastxgemm",
+  "status": "open",
+  "submitter": "Laurent Sorber",
+  "tags": [
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "fastxgemm-n3r23s5t6": {
+  "description": "Naive multiplication of two N by N matrices requires N^3 scalar multiplications. For N=2, Strassen showed that it could be done in only R=7 < 8=N^3 multiplications. For N=3, it is known that 19 <= R <= 23, and for N=4 it is known that 34 <= R <= 49. This repository contains code that generates a mixed-integer linear program (MILP) formulation of the fast matrix multiplication problem for finding solutions with R < N^3 and proving that they are optimal. For a more detailed description, see the accompanying manuscript.",
+  "group": "fastxgemm",
+  "status": "open",
+  "submitter": "Laurent Sorber",
+  "tags": [
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "fhnw-binschedule0": {
+  "description": "Scheduling/assignment for an industrial production pipeline",
+  "group": "fhnw-bin",
+  "status": "open",
+  "submitter": "Simon Felix",
+  "tags": [
+   "binpacking",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "fhnw-binschedule2": {
+  "description": "Scheduling/assignment for an industrial production pipeline",
+  "group": "fhnw-bin",
+  "status": "open",
+  "submitter": "Simon Felix",
+  "tags": [
+   "binpacking",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "fhnw-schedule-paira200": {
+  "description": "Continuous-time project scheduling and selection, inspired by an industry use-case. Each project has a value, the sum should be maximized. Each project has a deadline, and an earliest start date. Three formulations of the same problem (“Pair A”, “Pair B” and “Slot”) - we expect “Pair B” to be the best formulation.",
+  "group": "schedule",
+  "status": "open",
+  "submitter": "Simon Felix",
+  "tags": [
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "genus-sym-g62-2": {
+  "description": "Minimum Genus instance, with symmetry breaking constraints, of g.62.2 (undirected) of the AT&T Graphs by Stephen C. North.",
+  "group": "genus",
+  "status": "open",
+  "submitter": "Stephan Beyer",
+  "tags": [
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_covering",
+   "set_partitioning"
+  ]
+ },
+ "ger50-17-trans-dfn-3t": {
+  "description": "Multi-layer network design problem using a link-flow formulation over a path-flow formulation.",
+  "group": "ger50",
+  "status": "open",
+  "submitter": "C. Raack",
+  "tags": [
+   "general_linear",
+   "mixed_binary"
+  ]
+ },
+ "ger50-17-trans-pop-3t": {
+  "description": "Multi-layer network design problem using a link-flow formulation over a path-flow formulation.",
+  "group": "ger50",
+  "status": "open",
+  "submitter": "C. Raack",
+  "tags": [
+   "general_linear",
+   "mixed_binary"
+  ]
+ },
+ "germanrr": {
+  "description": "Model from a German railroad company. Solved in June 2013 by CPLEX 12.5.1 (24 threads) in about 5.2 hours.",
+  "status": "easy",
+  "submitter": "Q. Chen",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "general_linear",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "gfd-schedulen180f7d50m30k18": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "gfd-schedule",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "feasibility",
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "gmut-75-50": {
+  "description": "Timber harvest scheduling model. Solved by ParaXpress in a 12288 core supercomputer run on HLRN III. These are harvest scheduling models of hypothetical forest planning problems where net timber revenues are maximized over a planning horizon subject to four sets of constraints: 1. Each management unit can be harvested only once over the planning horizon, 2. Volume harvested in one planning period should not be less or more than some portion of that in the preceding period, 3. Area-weighted average age of the forest by the end of the plan should notbe less than a certain target age. 4. Clearcut size in any planning period has to be below a specific limit. Decision variable are management units and generalized management units (group of management units with a combined area not exceeding the limit on clearcut size) and can be either fully harvested or left untouched in any planning period, therefore there is a binary restriction on the decision variables.",
+  "group": "gmu",
+  "status": "hard",
+  "submitter": "Nora Konnyu",
+  "tags": [
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "gmut-76-40": {
+  "description": "Timber harvest scheduling model These are harvest scheduling models of hypothetical forest planning problems where net timber revenues are maximized over a planning horizon subject to four sets of constraints: 1. Each management unit can be harvested only once over the planning horizon, 2. Volume harvested in one planning period should not be less or more than some portion of that in the preceding period, 3. Area-weighted average age of the forest by the end of the plan should notbe less than a certain target age. 4. Clearcut size in any planning period has to be below a specific limit. Decision variable are management units and generalized management units (group of management units with a combined area not exceeding the limit on clearcut size) and can be either fully harvested or left untouched in any planning period, therefore there is a binary restriction on the decision variables.",
+  "group": "gmu",
+  "status": "open",
+  "submitter": "Nora Konnyu",
+  "tags": [
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "gmut-76-50": {
+  "description": "Timber harvest scheduling model These are harvest scheduling models of hypothetical forest planning problems where net timber revenues are maximized over a planning horizon subject to four sets of constraints: 1. Each management unit can be harvested only once over the planning horizon, 2. Volume harvested in one planning period should not be less or more than some portion of that in the preceding period, 3. Area-weighted average age of the forest by the end of the plan should notbe less than a certain target age. 4. Clearcut size in any planning period has to be below a specific limit. Decision variable are management units and generalized management units (group of management units with a combined area not exceeding the limit on clearcut size) and can be either fully harvested or left untouched in any planning period, therefore there is a binary restriction on the decision variables.",
+  "group": "gmu",
+  "status": "open",
+  "submitter": "Nora Konnyu",
+  "tags": [
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "graph20-80-1rand": {
+  "description": "Packing Cuts in Undirected Graphs. Instances are described in 4.1.",
+  "group": "graphs",
+  "status": "hard",
+  "submitter": "Michael Bastubbe",
+  "tags": [
+   "binary",
+   "decomposition",
+   "invariant_knapsack",
+   "precedence",
+   "set_partitioning"
+  ]
+ },
+ "graphdraw-opmanager": {
+  "description": "In the Graph Drawing problem a set of symbols must be placed in a plane and their connections routed. The objective is to produce aesthetically pleasant, easy to read diagrams. As a primary concern one usually tries to minimize edges crossing, edges’ length, waste of space and number of bents in the connections. When formulated with these constraints the problem becomes NP-Hard . In practice many additional complicating requirements can be included, such as non-uniform sizes for symbols. Thus, some heuristics such as the generalized force-direct method and Simulated Annealing have been proposed to tackle this problem. uses a grid structure to approach the Entity-Relationship (ER) drawing problem, emphasizing the differences between ER drawing and the more classical circuit drawing problems. presented different ways of producing graph layouts (e.g.: tree, orthogonal, visibility representations, hierarchic, among others) for general graphs with applications on different subjects. The ability to automatically produce high quality layouts is very important in many applications, one of these is Software Engineering: the availability of easy to understand ER diagrams, for instance, can improve the time needed for developers to master database models and increase their productivity. Our solution approach involves two phases: ( \\(i\\) ) firstly the optimal placement of entities is solved, i.e.: entities are positioned so as to minimize the distances between connected entities; and ( \\(ii\\) ) secondly, edges are routed minimizing bends and avoiding the inclusion of connectors too close. We present the model for the first phase of our problem.",
+  "group": "graphdraw",
+  "status": "open",
+  "submitter": "Cézar Augusto Nascimento e Silva",
+  "tags": [
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "hgms30": {
+  "description": "Maintenance scheduling of generators in hydropower systems",
+  "group": "hgms",
+  "status": "open",
+  "submitter": "Jesus Rodriguez",
+  "tags": [
+   "aggregations",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "hgms62": {
+  "description": "Maintenance scheduling of generators in hydropower systems",
+  "group": "hgms",
+  "status": "open",
+  "submitter": "Jesus Rodriguez",
+  "tags": [
+   "aggregations",
+   "equation_knapsack",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "hypothyroid-k1": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "group": "hypothyroid",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "general_linear",
+   "precedence",
+   "set_covering"
+  ]
+ },
+ "iis-hc-cov": {
+  "description": "23 “middlehard” Set-Covering Instances for MIPLIB: they have a small number of variables compared to the number of constraints and CPLEX 12.1 needs about one hour to solve them.For more information, have a look into the readme file which explains how the instances can be created.",
+  "group": "iis",
+  "status": "easy",
+  "submitter": "Marc Pfetsch",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "set_covering"
+  ]
+ },
+ "k1mushroom": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "group": "k1mushroom",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "general_linear",
+   "set_covering"
+  ]
+ },
+ "leo1": {
+  "description": "Instance coming from the COR@L test set with unknown origin",
+  "status": "easy",
+  "submitter": "COR@L test set",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "leo2": {
+  "description": "Instance coming from the COR@L test set with unknown origin",
+  "status": "easy",
+  "submitter": "COR@L test set",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "lr1dr04vc05v17a-t360": {
+  "description": "Maritime Inventory Routing Problem Library - Group 2 Instances. These instances are available at https://mirplib.scl.gatech.edu/instances , along with a host of additional information such as the underlying data used to generate the model, best known upper and lower bounds, and more. There are three sets of 24 instances (for a total of 72 instances) with a planning horizon of 120, 180, and 360 time periods, respectively. As of March 2016, Cplex and Gurobi could only solve one or two to provably optimality in less than an hour.",
+  "group": "maritime",
+  "status": "open",
+  "submitter": "Dimitri Papageorgiou",
+  "tags": [
+   "aggregations",
+   "general_linear",
+   "integer_knapsack",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "lr2-22dr3-333vc4v17a-t60": {
+  "description": "Maritime Inventory Routing Problem Library - Group 1 Instances. These instances are available at https://mirplib.scl.gatech.edu/instances , along with a host of additional information such as the underlying data used to generate the model, best known upper and lower bounds, and more. As of 2012, Group 1 instances gave Cplex and Gurobi tremendous difficulty finding a single feasible solution.",
+  "group": "maritime",
+  "status": "open",
+  "submitter": "Dimitri Papageorgiou",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "momentum1": {
+  "description": "Snapshot based UMTS planning problem, having a very wide dynamic range in the matrix coefficients and tending to be numerically unstable. Solved with Gurobi 4.5.1 on a 12-core Linux system in 3590.41 sec.",
+  "group": "momentum",
+  "status": "easy",
+  "submitter": "T. Koch",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "mzzv11": {
+  "description": "Railway slot allocation problems",
+  "status": "easy",
+  "submitter": "S. Lukac",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "mzzv42z": {
+  "status": "easy",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "general_linear",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "n2seq36q": {
+  "description": "Static line planning models on the Dutch IC network",
+  "group": "nseq",
+  "status": "easy",
+  "submitter": "R. Meirich",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "set_covering",
+   "set_packing"
+  ]
+ },
+ "n3div36": {
+  "description": "Static line planning models on the Dutch IC network. Solved with Gurobi 4.5.1 on a 12-core Linux system in 1700.37 sec.",
+  "group": "nseq",
+  "status": "easy",
+  "submitter": "R. Meirich",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "decomposition",
+   "mixed_binary",
+   "set_covering",
+   "set_packing"
+  ]
+ },
+ "neos-1122047": {
+  "group": "neos-pseudoapplication-46",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "neos-1171448": {
+  "group": "neos-pseudoapplication-8",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "invariant_knapsack",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "neos-1354092": {
+  "group": "neos-pseudoapplication-47",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "general_linear",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-1367061": {
+  "group": "neos-pseudoapplication-76",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "general_linear",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "neos-1593097": {
+  "group": "neos-pseudoapplication-77",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "decomposition",
+   "general_linear",
+   "knapsack",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "neos-2669500-cust": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-52",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-2987310-joes": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-82",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "neos-2991472-kalu": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-77",
+  "status": "open",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing"
+  ]
+ },
+ "neos-3025225-shelon": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "neos-pseudoapplication-64",
+  "status": "easy",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "neos-3209462-rhin": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-98",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-3229051-yass": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-23",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-3230511-yuna": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-4",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-3237086-abava": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-51",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "binary",
+   "binpacking",
+   "cardinality",
+   "decomposition",
+   "feasibility",
+   "invariant_knapsack",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "neos-3352863-ancoa": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-100",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "mixed_binary",
+   "set_covering"
+  ]
+ },
+ "neos-3354841-apure": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-100",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "benchmark_suitable",
+   "general_linear",
+   "integer_knapsack"
+  ]
+ },
+ "neos-3372571-onahau": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-93",
+  "status": "hard",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "neos-3402294-bobin": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-71",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_partitioning"
+  ]
+ },
+ "neos-3555904-turama": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-81",
+  "status": "easy",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "invariant_knapsack",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-3695882-vesdre": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-71",
+  "status": "open",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-3740487-motru": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-61",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4260495-otere": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-30",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4295773-pissa": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-6",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4300652-rahue": {
+  "description": "Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "neos-pseudoapplication-13",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4306827-ravan": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-30",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4321076-ruwer": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-98",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "neos-4322846-ryton": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-6",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "decomposition",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning"
+  ]
+ },
+ "neos-4332801-seret": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-28",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "binpacking",
+   "cardinality",
+   "general_linear",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4355351-swalm": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-58",
+  "status": "open",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "binpacking",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "neos-4359986-taipa": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-106",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4360552-sangro": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-62",
+  "status": "open",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "binpacking",
+   "cardinality",
+   "decomposition",
+   "equation_knapsack",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "neos-4391920-timok": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-106",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4408804-prosna": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-56",
+  "status": "easy",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "benchmark_suitable",
+   "decomposition",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4409277-trave": {
+  "description": "Reported solved by ParaSCIP in 441575 seconds using 71 solvers (72 cores).",
+  "group": "neos-pseudoapplication-47",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4413714-turia": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-67",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "mixed_binary",
+   "set_partitioning"
+  ]
+ },
+ "neos-4533806-waima": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-31",
+  "status": "open",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "neos-4555749-wards": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-31",
+  "status": "open",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "neos-4562542-watut": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-31",
+  "status": "open",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "neos-4647027-thurso": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-29",
+  "status": "hard",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "mixed_binary",
+   "set_packing"
+  ]
+ },
+ "neos-4647030-tutaki": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-29",
+  "status": "hard",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "set_packing"
+  ]
+ },
+ "neos-4647032-veleka": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-29",
+  "status": "open",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "mixed_binary",
+   "set_packing"
+  ]
+ },
+ "neos-4722843-widden": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-30",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4724674-aorere": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-30",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4797081-pakoka": {
+  "description": "Collection of anonymous submissions to the NEOS Server for Optimization",
+  "group": "neos-pseudoapplication-51",
+  "status": "easy",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "benchmark_suitable",
+   "cardinality",
+   "feasibility",
+   "general_linear",
+   "precedence",
+   "set_packing"
+  ]
+ },
+ "neos-4805882-barwon": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-30",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4954274-beardy": {
+  "description": "Reported solved after 77000 seconds using Gurobi with 32 threads.",
+  "group": "neos-pseudoapplication-62",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "binary",
+   "binpacking",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4966258-blicks": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-85",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4972437-bojana": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-85",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4972461-bolong": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-85",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-4976951-bunnoo": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-85",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-498623": {
+  "group": "neos-pseudoapplication-5",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "general_linear",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5041822-cockle": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-25",
+  "status": "open",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "neos-5049753-cuanza": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-85",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "neos-5104907-jarama": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-24",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5106984-jizera": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-24",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5108386-kalang": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-104",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5116085-kenana": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-24",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "neos-5118834-korana": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-24",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5118851-kowhai": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-104",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5123665-limmat": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-104",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5129192-manaia": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-51",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "cardinality",
+   "equation_knapsack",
+   "feasibility",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing"
+  ]
+ },
+ "neos-5138690-middle": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-104",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5188808-nattai": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-98",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5193246-nerang": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-32",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5195221-niemur": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-32",
+  "status": "easy",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5196530-nuhaka": {
+  "description": "Decomposed structure of original problem ( dec-file )",
+  "group": "neos-pseudoapplication-32",
+  "status": "hard",
+  "submitter": "Jeff Linderoth",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-5221106-oparau": {
+  "description": "Seem to be VRP output from 2-hour runs of Gurobi on 12 threads is included",
+  "group": "neos-pseudoapplication-46",
+  "status": "open",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "cardinality",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-525149": {
+  "group": "neos-pseudoapplication-110",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "decomposition",
+   "mixed_binary",
+   "set_partitioning"
+  ]
+ },
+ "neos-5266653-tugela": {
+  "description": "Seem to be VRP output from 2-hour runs of Gurobi on 12 threads is included",
+  "group": "neos-pseudoapplication-102",
+  "status": "open",
+  "submitter": "Hans Mittelmann",
+  "tags": [
+   "binpacking",
+   "cardinality",
+   "decomposition",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning"
+  ]
+ },
+ "neos-578379": {
+  "group": "neos-pseudoapplication-42",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "feasibility",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-662469": {
+  "group": "neos-pseudoapplication-73",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "general_linear",
+   "integer_knapsack",
+   "knapsack",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "neos-738098": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-15",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "equation_knapsack",
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-848589": {
+  "group": "neos-pseudoapplication-77",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "mixed_binary"
+  ]
+ },
+ "neos-860300": {
+  "group": "neos-pseudoapplication-23",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "invariant_knapsack",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "neos-872648": {
+  "description": "Imported from the MIPLIB2010 submissions. The instance was solved using up to 48 threads in 4000 sec. using Gurobi 9.0. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "neos-pseudoapplication-61",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "decomposition",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "neos-873061": {
+  "group": "neos-pseudoapplication-61",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "neos-876808": {
+  "group": "neos-pseudoapplication-62",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binary",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing"
+  ]
+ },
+ "neos-885086": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-8",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "neos-885524": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-100",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "mixed_binary",
+   "set_covering"
+  ]
+ },
+ "neos-948346": {
+  "group": "neos-pseudoapplication-48",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "set_packing"
+  ]
+ },
+ "neos-950242": {
+  "group": "neos-pseudoapplication-72",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "invariant_knapsack",
+   "precedence",
+   "set_covering",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "neos-953928": {
+  "group": "neos-pseudoapplication-13",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_packing"
+  ]
+ },
+ "neos-954925": {
+  "description": "Imported from the MIPLIB2010 submissions. The instance was solved using up to 40 threads in 120 sec. using Gurobi 9.0",
+  "group": "neos-pseudoapplication-48",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "binary",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_packing"
+  ]
+ },
+ "neos-956971": {
+  "group": "neos-pseudoapplication-48",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_packing"
+  ]
+ },
+ "neos-957143": {
+  "group": "neos-pseudoapplication-48",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_packing"
+  ]
+ },
+ "neos-957323": {
+  "group": "neos-pseudoapplication-48",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "neos6": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-47",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing"
+  ]
+ },
+ "neos8": {
+  "group": "neos-pseudoapplication-15",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "precedence",
+   "set_packing"
+  ]
+ },
+ "neos9": {
+  "group": "neos-pseudoapplication-5",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark_suitable",
+   "decomposition",
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "netdiversion": {
+  "description": "Directed network diversion problem",
+  "status": "easy",
+  "submitter": "Chris Cullenbine",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "invariant_knapsack",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "ns1111636": {
+  "description": "Network routing problem. Solved in June 2013 by CPLEX 12.5.1 with 32 threads in about 102 hours.",
+  "group": "neos-pseudoapplication-67",
+  "status": "hard",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "ns1116954": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-51",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "feasibility",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "ns1430538": {
+  "description": "Instance coming from the NEOS Server with unknown application.",
+  "group": "neos-pseudoapplication-76",
+  "status": "hard",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "decomposition",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "ns1456591": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-52",
+  "status": "open",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "cardinality",
+   "general_linear",
+   "mixed_binary",
+   "set_partitioning"
+  ]
+ },
+ "ns1631475": {
+  "description": "Traveling salesman problem model",
+  "group": "neos-pseudoapplication-75",
+  "status": "open",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "cardinality",
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "ns1690781": {
+  "description": "Instance coming from the NEOS Server with unknown application.",
+  "group": "neos-pseudoapplication-8",
+  "status": "open",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "ns1760995": {
+  "description": "Instance coming from the NEOS Server with unknown application.",
+  "group": "neos-pseudoapplication-12",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "ns1828997": {
+  "description": "Instance coming from the NEOS Server with unknown application.",
+  "group": "neos-pseudoapplication-13",
+  "status": "open",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "binary",
+   "cardinality",
+   "invariant_knapsack",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "ns1830653": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-110",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "ns1856153": {
+  "description": "Sensor placement problem",
+  "group": "neos-pseudoapplication-6",
+  "status": "open",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "binpacking",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "variable_bound"
+  ]
+ },
+ "ns1905797": {
+  "description": "Vehicle routing problem",
+  "group": "neos-pseudoapplication-102",
+  "status": "open",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "general_linear",
+   "mixed_binary",
+   "no_solution",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "ns1952667": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-78",
+  "status": "easy",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "feasibility",
+   "general_linear",
+   "integer_knapsack"
+  ]
+ },
+ "ns2122698": {
+  "description": "Instance coming from the NEOS Server with unknown application. Solved by SCIP-CPLEX in 9500 seconds.",
+  "group": "neos-pseudoapplication-93",
+  "status": "open",
+  "submitter": "Timo Berthold",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "ns2124243": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-93",
+  "status": "open",
+  "submitter": "Timo Berthold",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "decomposition",
+   "general_linear",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "ns930473": {
+  "description": "Instance coming from the NEOS Server with unknown application",
+  "group": "neos-pseudoapplication-46",
+  "status": "open",
+  "submitter": "NEOS Server Submission",
+  "tags": [
+   "cardinality",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "nsrand-ipx": {
+  "status": "easy",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "benchmark_suitable",
+   "mixed_binary",
+   "set_covering",
+   "set_packing"
+  ]
+ },
+ "nucorsav": {
+  "description": "scheduling on a continuous steel caster",
+  "status": "open",
+  "submitter": "Alexandra M. Newman",
+  "tags": [
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "no_solution",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "nursesched-medium-hint03": {
+  "description": "Nurse Scheduling Problems from the First International Nurse Rostering Competition - INRC 2010",
+  "group": "nursescheduling",
+  "status": "hard",
+  "submitter": "Haroldo Gambini Santos",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "nursesched-medium04": {
+  "description": "Nurse Scheduling Problems from the First International Nurse Rostering Competition - INRC 2010",
+  "group": "nursescheduling",
+  "status": "easy",
+  "submitter": "Haroldo Gambini Santos",
+  "tags": [
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "set_covering",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "nursesched-sprint-hidden09": {
+  "description": "Nurse Scheduling Problems from the First International Nurse Rostering Competition - INRC 2010",
+  "group": "nursescheduling",
+  "status": "easy",
+  "submitter": "Haroldo Gambini Santos",
+  "tags": [
+   "benchmark_suitable",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "nursesched-sprint-late03": {
+  "description": "Nurse Scheduling Problems from the First International Nurse Rostering Competition - INRC 2010",
+  "group": "nursescheduling",
+  "status": "easy",
+  "submitter": "Haroldo Gambini Santos",
+  "tags": [
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "nursesched-sprint02": {
+  "description": "Nurse Scheduling Problems from the First International Nurse Rostering Competition - INRC 2010",
+  "group": "nursescheduling",
+  "status": "easy",
+  "submitter": "Haroldo Gambini Santos",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "nw04": {
+  "status": "easy",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "set_partitioning"
+  ]
+ },
+ "opm2-z8-s0": {
+  "description": "Problems coming from precedence constrained knapsacks arising in mining applications. These are one-period problems with integer data but large root LP GAP",
+  "group": "opm2",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "knapsack",
+   "precedence"
+  ]
+ },
+ "pb-fit2d": {
+  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear –output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a –timeout 3 -D fIndConstr=true -D fMIPdomains=false –writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
+  "group": "pb-",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "binpacking",
+   "decomposition",
+   "equation_knapsack",
+   "knapsack"
+  ]
+ },
+ "pb-grow22": {
+  "description": "These are the instances from MiniZinc Challenges 2012-2016 (see www.minizinc.org), compiled for MIP WITH INDICATOR CONSTRAINTS using the develop branch of MiniZinc and CPLEX 12.7.1 on 30 April 2017. Thus, these instances can only be handled by solvers accepting indicator constraints. For instances compiled with big-M/domain decomposition only, see my previous submission to MIPLIB. To recompile, create a directory MODELS, a list lst12_16.txt of the instances with full paths to mzn/dzn files of each instance per line, and say \\(> ~/install/libmzn/tests/benchmarking/mzn-test.py -l ../lst12_16.txt --slvPrf MZN-CPLEX --debug 1 --addOption \"--timeout 3 -D fIndConstr=true -D fMIPdomains=false\" --useJoinedName \"--writeModel MODELS_IND/%s.mps\" Alternatively, you can compile individual instance as follows:\\) > mzn-cplex -v -s -G linear –output-time ../challenge_2012_2016/mznc2016_probs/zephyrus/zephyrus.mzn ../challenge_2012_2016/mznc2016_p/zephyrus/14__8__6__3.dzn -a –timeout 3 -D fIndConstr=true -D fMIPdomains=false –writeModel MODELS_IND/challenge_2012_2016mznc2016_probszephyruszephyrusmzn-challenge_2012_2016mznc2016_probszephyrus14__8__6__3dzn.mps",
+  "group": "pb-",
+  "status": "open",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "binary",
+   "equation_knapsack",
+   "knapsack"
+  ]
+ },
+ "physiciansched3-3": {
+  "description": "Physician scheduling problem for hospitalist, radiology and kidney specialist groups.",
+  "group": "physiciansched",
+  "status": "easy",
+  "submitter": "Pelin Damci-Kurt",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "physiciansched3-4": {
+  "description": "Physician scheduling problem for hospitalist, radiology and kidney specialist groups. Solved in 5533s on 6 cores using Gurobi 9.0",
+  "group": "physiciansched",
+  "status": "easy",
+  "submitter": "Pelin Damci-Kurt",
+  "tags": [
+   "aggregations",
+   "binpacking",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "physiciansched5-3": {
+  "description": "Physician scheduling problem for hospitalist, radiology and kidney specialist groups.",
+  "group": "physiciansched",
+  "status": "easy",
+  "submitter": "Pelin Damci-Kurt",
+  "tags": [
+   "benchmark_suitable",
+   "binpacking",
+   "decomposition",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "physiciansched6-1": {
+  "description": "Physician scheduling problem for hospitalist, radiology and kidney specialist groups.",
+  "group": "physiciansched",
+  "status": "easy",
+  "submitter": "Pelin Damci-Kurt",
+  "tags": [
+   "benchmark_suitable",
+   "binpacking",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "physiciansched6-2": {
+  "description": "Physician scheduling problem for hospitalist, radiology and kidney specialist groups.",
+  "group": "physiciansched",
+  "status": "easy",
+  "submitter": "Pelin Damci-Kurt",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "decomposition",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "piperout-d20": {
+  "description": "Pipe routing with flexibility constraints. Instances with _GCM in the name are simple routing",
+  "group": "piperout",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "decomposition",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "piperout-d27": {
+  "description": "Pipe routing with flexibility constraints. Instances with _GCM in the name are simple routing",
+  "group": "piperout",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "decomposition",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "proteindesign121hz512p9": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 60 minutes.",
+  "group": "proteindesign",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "proteindesign121pgb11p9": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "group": "proteindesign",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "proteindesign122trx11p8": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "group": "proteindesign",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "radiationm40-10-02": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38",
+  "group": "radiation",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "general_linear",
+   "integer_knapsack",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "rail01": {
+  "description": "Track allocation problem modeled as arc coupling problem",
+  "group": "rail0",
+  "status": "easy",
+  "submitter": "Thomas Schlechte",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "knapsack",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "rail507": {
+  "description": "Railway crew scheduling",
+  "status": "easy",
+  "submitter": "A. Caprara, M. Fischetti, P. Toth",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "invariant_knapsack",
+   "set_covering",
+   "variable_bound"
+  ]
+ },
+ "rd-rplusc-21": {
+  "status": "easy",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "reblock420": {
+  "description": "Multi-period mine production scheduling instance",
+  "group": "reblock",
+  "status": "easy",
+  "submitter": "Andreas Bley",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "knapsack",
+   "precedence"
+  ]
+ },
+ "rmine11": {
+  "description": "Set of instances comming from open pit minning over a cube and several time periods and two knapsack constraints per period",
+  "group": "rmine",
+  "status": "open",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "binary",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "rmine13": {
+  "description": "Set of instances comming from open pit minning over a cube and several time periods and two knapsack constraints per period",
+  "group": "rmine",
+  "status": "open",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "binary",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "rmine15": {
+  "description": "Set of instances comming from open pit minning over a cube and several time periods and two knapsack constraints per period",
+  "group": "rmine",
+  "status": "open",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "binary",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "rocII-10-11": {
+  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Imported from the MIPLIB2010 submissions. Rambau opinion control.",
+  "group": "rocI",
+  "status": "open",
+  "submitter": "Joerg Rambau",
+  "tags": [
+   "aggregations",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "rocII-5-11": {
+  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Imported from the MIPLIB2010 submissions. Rambau opinion control.",
+  "group": "rocI",
+  "status": "easy",
+  "submitter": "Joerg Rambau",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "rocII-8-11": {
+  "description": "Optimal control model in the deterministic dynamic system given by bounded-confidence dynamics in a system of opinions Imported from the MIPLIB2010 submissions. Rambau opinion control.",
+  "group": "rocI",
+  "status": "open",
+  "submitter": "Joerg Rambau",
+  "tags": [
+   "aggregations",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "roi2alpha3n4": {
+  "description": "Neurobiology application: optimal placing of sensors on the scalp to maximize signal on a given ROI, also taking uniformity of coverage into account.",
+  "status": "easy",
+  "submitter": "Domenico Salvagnin",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "cardinality",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "rvb-sub": {
+  "description": "Set partitioning instance resulting from a column generation algorithm used for duty scheduling in public transportation",
+  "status": "hard",
+  "submitter": "S. Weider",
+  "tags": [
+   "binary",
+   "knapsack",
+   "set_partitioning"
+  ]
+ },
+ "s100": {
+  "description": "Wine Scheduling problem with 100 jobs and four processing machines",
+  "group": "Spinoza",
+  "status": "hard",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "s250r10": {
+  "description": "Wine Scheduling problem with 250 jobs (up to 10 alternatives for processing) and four processing machines",
+  "group": "Spinoza",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "s55": {
+  "description": "Wine Scheduling problem with 55 jobs and four processing machines",
+  "group": "Spinoza",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "satellites2-25": {
+  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances.",
+  "group": "satellites",
+  "status": "easy",
+  "submitter": "He Renjie",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "satellites2-40": {
+  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances.",
+  "group": "satellites",
+  "status": "easy",
+  "submitter": "He Renjie",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "satellites2-60-fs": {
+  "description": "Satellite scheduling instance",
+  "group": "satellites",
+  "status": "easy",
+  "submitter": "He Renjie",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "satellites3-25": {
+  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances. Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "satellites",
+  "status": "easy",
+  "submitter": "He Renjie",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "satellites4-25": {
+  "description": "Ihe attachment is some instances generated from real life satelliteschedule problem data,these instances are easier comparable to real lifeproblem. The work is done by me and Alberto Ceselli from Univeristy ofMilano. I donnot know it is hard enough or not, if needs , I can generatemore difficult instances. Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "satellites",
+  "status": "easy",
+  "submitter": "He Renjie",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "cardinality",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning"
+  ]
+ },
+ "sct32": {
+  "description": "Assembly line balancing for printed circuit board production. First solved by Gurobi 7.0 in 65 hours (32 threads).",
+  "group": "sct",
+  "status": "hard",
+  "submitter": "Siemens",
+  "tags": [
+   "aggregations",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_covering",
+   "set_partitioning"
+  ]
+ },
+ "sct5": {
+  "description": "Assembly line balancing for printed circuit board production",
+  "group": "sct",
+  "status": "open",
+  "submitter": "Siemens",
+  "tags": [
+   "aggregations",
+   "decomposition",
+   "general_linear",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "seqsolve1": {
+  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "group": "seqsolve",
+  "status": "open",
+  "submitter": "Irv Lustig",
+  "tags": [
+   "aggregations",
+   "binpacking",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "seqsolve2short4288": {
+  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "group": "seqsolve",
+  "status": "open",
+  "submitter": "Irv Lustig",
+  "tags": [
+   "aggregations",
+   "binpacking",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "seqsolve3short4288excess384": {
+  "description": "The 3 problems in this group (seqsolve1–seqsolve3) represent a hierarchical optimization process, which is derived from a customer problem for assigning people to sites into blocks of time on days of the week. The specialty of this submission is that the best known solution for seqsolveX can be used as a MIP start for seqsolveX+1. For a description of the connections between the problems, please refer to the README.txt contained in the model data for this submission, which also includes MIP start files and a Gurobi log file.",
+  "group": "seqsolve",
+  "status": "open",
+  "submitter": "Irv Lustig",
+  "tags": [
+   "aggregations",
+   "binpacking",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "shipsched": {
+  "description": "A ship scheduling problem on the Kiel Canal",
+  "status": "open",
+  "submitter": "Marco Luebbecke",
+  "tags": [
+   "aggregations",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "shs1014": {
+  "description": "Joint online truck scheduling and inventory management for multiple warehouses.",
+  "group": "shs",
+  "status": "open",
+  "submitter": "Christoph Helmberg",
+  "tags": [
+   "aggregations",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "shs1023": {
+  "description": "Joint online truck scheduling and inventory management for multiple warehouses. The problem was solved by CPLEX 12.5 on a Intel Xeon E7540 @ 2.00 GHz, 1TB with 24 cores and 24 threads. The maximum memory requirements were 410GB. It took approximately 114.5 hours.",
+  "group": "shs",
+  "status": "hard",
+  "submitter": "C. Helmberg",
+  "tags": [
+   "aggregations",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "shs1042": {
+  "description": "Joint online truck scheduling and inventory management for multiple warehouses.",
+  "group": "shs",
+  "status": "open",
+  "submitter": "C. Helmberg",
+  "tags": [
+   "aggregations",
+   "general_linear",
+   "integer_knapsack",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "sing326": {
+  "description": "Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "sing",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "sing44": {
+  "description": "Imported from the MIPLIB2010 submissions. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "sing",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "decomposition",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "snp-02-004-104": {
+  "description": "Supply network planning problems.",
+  "group": "supplynetworkplanning",
+  "status": "easy",
+  "submitter": "Gerald Gamrath",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "sp97ar": {
+  "description": "Railway line planning instance. Solved with Gurobi 4.5.1 on a 12-core Linux system in 2678.77 sec.",
+  "group": "sp9",
+  "status": "easy",
+  "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "sp97ic": {
+  "description": "Railway line planning instance",
+  "group": "sp9",
+  "status": "easy",
+  "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "decomposition",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "sp98ar": {
+  "description": "Railway line planning instance",
+  "group": "sp9",
+  "status": "easy",
+  "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "sp98ic": {
+  "description": "Railway line planning instance",
+  "group": "sp9",
+  "status": "easy",
+  "submitter": "J. Goessens, S. v. Hoessel, L. Kroon",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "decomposition",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "variable_bound"
+  ]
+ },
+ "splice1k1": {
+  "description": "Linearized Constraint Programming models of the MiniZinc Challenges 2012-2016. I should be able to produce versions with indicator constraints supported by Gurobi and CPLEX, however don’t know if you can use them and if there is a standard format. These MPS were produced by Gurobi 7.0.2 using the MiniZinc develop branch on eb536656062ca13325a96b5d0881742c7d0e3c38. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "splice",
+  "status": "easy",
+  "submitter": "Gleb Belov",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "general_linear",
+   "set_covering"
+  ]
+ },
+ "square23": {
+  "description": "Squaring the square For a given integer n, determine the minimum number of squares in a tiling of an \\(n\\times n\\) square using using only integer sided squares of smaller size. (Although the models get quite large even for moderate n, they can be solved to optimality for all \\(n \\le 61\\) , while challenging the MIP solver, especially the presolver.)",
+  "group": "square",
+  "status": "easy",
+  "submitter": "Sascha Kurz",
+  "tags": [
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "square31": {
+  "description": "Squaring the square For a given integer n, determine the minimum number of squares in a tiling of an \\(n\\times n\\) square using using only integer sided squares of smaller size. (Although the models get quite large even for moderate n, they can be solved to optimality for all \\(n \\le 61\\) , while challenging the MIP solver, especially the presolver.)",
+  "group": "square",
+  "status": "easy",
+  "submitter": "Sascha Kurz",
+  "tags": [
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "square37": {
+  "description": "Squaring the square For a given integer n, determine the minimum number of squares in a tiling of an \\(n\\times n\\) square using using only integer sided squares of smaller size. (Although the models get quite large even for moderate n, they can be solved to optimality for all \\(n \\le 61\\) , while challenging the MIP solver, especially the presolver.)",
+  "group": "square",
+  "status": "easy",
+  "submitter": "Sascha Kurz",
+  "tags": [
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "square41": {
+  "description": "Squaring the square For a given integer n, determine the minimum number of squares in a tiling of an \\(n\\times n\\) square using using only integer sided squares of smaller size. (Although the models get quite large even for moderate n, they can be solved to optimality for all \\(n \\le 61\\) , while challenging the MIP solver, especially the presolver.)",
+  "group": "square",
+  "status": "easy",
+  "submitter": "Sascha Kurz",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "square47": {
+  "description": "Squaring the square For a given integer n, determine the minimum number of squares in a tiling of an \\(n\\times n\\) square using using only integer sided squares of smaller size. (Although the models get quite large even for moderate n, they can be solved to optimality for all \\(n \\le 61\\) , while challenging the MIP solver, especially the presolver.)",
+  "group": "square",
+  "status": "easy",
+  "submitter": "Sascha Kurz",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "stockholm": {
+  "description": "Toll booth placement problem",
+  "status": "open",
+  "submitter": "Paul Rubin",
+  "tags": [
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "supportcase23": {
+  "description": "MIP instances collected from Gurobi forum with unknown application",
+  "status": "open",
+  "submitter": "Michael Winkler",
+  "tags": [
+   "decomposition",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "supportcase33": {
+  "description": "Instance coming from IBM developerWorks forum with unknown application.",
+  "status": "easy",
+  "submitter": "Domenico Salvagnin",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "general_linear",
+   "integer_knapsack",
+   "invariant_knapsack",
+   "knapsack",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "supportcase37": {
+  "description": "Instance coming from IBM developerWorks forum with unknown application.",
+  "status": "easy",
+  "submitter": "Domenico Salvagnin",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "supportcase39": {
+  "description": "Instance coming from IBM developerWorks forum with unknown application.",
+  "status": "open",
+  "submitter": "Domenico Salvagnin",
+  "tags": [
+   "general_linear"
+  ]
+ },
+ "supportcase41": {
+  "description": "Instance coming from IBM developerWorks forum with unknown application.",
+  "status": "open",
+  "submitter": "Domenico Salvagnin",
+  "tags": [
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "supportcase42": {
+  "description": "Instance coming from IBM developerWorks forum with unknown application.",
+  "status": "easy",
+  "submitter": "Domenico Salvagnin",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "supportcase6": {
+  "description": "MIP instances collected from Gurobi forum with unknown application",
+  "status": "easy",
+  "submitter": "Michael Winkler",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "cardinality",
+   "general_linear",
+   "set_partitioning"
+  ]
+ },
+ "supportcase7": {
+  "description": "MIP instances collected from Gurobi forum with unknown application",
+  "status": "easy",
+  "submitter": "Michael Winkler",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "t1717": {
+  "description": "Vehicle scheduling set partitioning problem from Berlin’s Telebus handicapped people’s transportation system Imported from MIPLIB2010. Solution was computed with 12 Threads in 20 hours, by giving highest priority to variables with most edges in conflict graph.",
+  "status": "open",
+  "submitter": "R. Borndörfer",
+  "tags": [
+   "binary",
+   "set_partitioning"
+  ]
+ },
+ "t1722": {
+  "description": "Vehicle scheduling set partitioning problem from Berlin’s Telebus handicapped people’s transportation system",
+  "status": "open",
+  "submitter": "R. Borndörfer",
+  "tags": [
+   "binary",
+   "set_partitioning"
+  ]
+ },
+ "tbfp-network": {
+  "description": "Two formulations (big-M and network-based) for traveling baseball fan problem. Uses data from 2014 Major League Baseball regular season. Paper uses 2014 data: https://support.sas.com/resources/papers/proceedings14/SAS101-2014.pdf Blog post uses 2015 data: https://blogs.sas.com/content/operations/2015/04/03/the-traveling-baseball-fan-problem/",
+  "status": "easy",
+  "submitter": "Rob Pratt",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "set_partitioning"
+  ]
+ },
+ "thor50dday": {
+  "description": "Steiner tree problem in graphs instance, consisting of a complete graph with 231 vertices of which 50 are terminals. The vertices correspond to cities (mostly capitals) around the world, the edges weights correspond to the distances in km.",
+  "status": "easy",
+  "submitter": "Daniel Rehfeldt",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "decomposition",
+   "mixed_binary",
+   "variable_bound"
+  ]
+ },
+ "triptim1": {
+  "description": "Trip timetable optimization problem.",
+  "group": "triptim",
+  "status": "easy",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "invariant_knapsack",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "triptim2": {
+  "description": "Trip timetable optimization problem. Imported from MIPLIB2010. First solved by Gurobi 6.5 (12 threads) in about 13 days (December 2015).",
+  "group": "triptim",
+  "status": "hard",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "aggregations",
+   "cardinality",
+   "general_linear",
+   "invariant_knapsack",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "triptim4": {
+  "description": "Trip timetable optimization problem.",
+  "group": "triptim",
+  "status": "hard",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "aggregations",
+   "general_linear",
+   "invariant_knapsack",
+   "precedence",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "triptim7": {
+  "description": "Trip timetable optimization problem. Imported from the MIPLIB2010 submissions. Solved in 12470s on 4 cores using Gurobi 9.0. Solved with COPT 7.0 using up to 12 threads in less than 30 minutes.",
+  "group": "triptim",
+  "status": "easy",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "aggregations",
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "triptim8": {
+  "description": "Trip timetable optimization problem.",
+  "group": "triptim",
+  "status": "hard",
+  "submitter": "MIPLIB submission pool",
+  "tags": [
+   "aggregations",
+   "general_linear",
+   "invariant_knapsack",
+   "mixed_binary",
+   "set_covering",
+   "set_packing",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "uccase7": {
+  "group": "uccase",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "uccase8": {
+  "group": "uccase",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "benchmark_suitable",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "uccase9": {
+  "group": "uccase",
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "aggregations",
+   "benchmark",
+   "benchmark_suitable",
+   "binpacking",
+   "invariant_knapsack",
+   "knapsack",
+   "mixed_binary",
+   "precedence",
+   "set_partitioning",
+   "variable_bound"
+  ]
+ },
+ "unitcal_7": {
+  "description": "California seven day unit commitment problem",
+  "status": "easy",
+  "submitter": "R. O’Neill",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "general_linear",
+   "mixed_binary",
+   "precedence",
+   "variable_bound"
+  ]
+ },
+ "var-smallemery-m6j6": {
+  "status": "easy",
+  "submitter": "Daniel Espinoza",
+  "tags": [
+   "benchmark",
+   "benchmark_suitable",
+   "invariant_knapsack",
+   "mixed_binary",
+   "precedence"
+  ]
+ },
+ "vpphard": {
+  "description": "Vehicle positioning problem instance",
+  "status": "easy",
+  "submitter": "C. Cardonha",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "set_partitioning"
+  ]
+ },
+ "vpphard2": {
+  "description": "Vehicle positioning problem instance. Solved using CPLEX 12.4 in 43987 seconds (May 2012). Solved using Gurobi 5.6.2 in 124 seconds (May 2014).Solved using CPLEX 12.6 in 225 seconds (May 2014).",
+  "status": "easy",
+  "submitter": "C. Cardonha",
+  "tags": [
+   "benchmark_suitable",
+   "binary",
+   "cardinality",
+   "decomposition",
+   "invariant_knapsack",
+   "set_partitioning"
+  ]
+ }
+}

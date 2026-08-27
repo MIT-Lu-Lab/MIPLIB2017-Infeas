@@ -1,0 +1,34 @@
+# Tool configuration. This repository is not a distributable package: the
+# generator is run in place, out of a checkout, with `python -m website.build_site`.
+#
+# It is standard library only, and needs Python 3.10 or later for the `X | Y`
+# annotations. Keep both properties: the site has to be buildable from a bare
+# checkout years from now, with nothing to resolve at build time.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = ["fonts"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "SIM", "C4", "UP", "RET", "ARG", "PIE", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# The stylesheet and the client-side scripts are emitted verbatim; breaking a CSS
+# declaration across lines to please the linter would only make it harder to read.
+"website/assets.py" = ["E501"]
+# One BibTeX field per line, each padded with &nbsp; so it lines up in the
+# rendered block. Wrapping the source would put whitespace inside the citation.
+"website/render/overview.py" = ["E501"]
+# Both reach the package by path before importing it.
+"scripts/*.py" = ["E402"]
+"tests/test_build_site_index.py" = ["E402"]
+
+[tool.pyright]
+include = ["website", "scripts"]
+exclude = ["**/__pycache__"]
+pythonVersion = "3.10"

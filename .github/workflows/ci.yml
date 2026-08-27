@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          # the floor the annotations need; a newer runner default would hide a
+          # regression that only shows up on the version the project claims
+          python-version: "3.10"
+
+      - run: pip install "pytest>=7" "ruff>=0.5" "pyright>=1.1"
+
+      - name: Lint
+        run: ruff check .
+
+      - name: Type-check
+        run: pyright
+
+      - name: Test
+        run: pytest -q
+
+      - name: Build the site
+        run: |
+          python -m website.build_site --out-dir _site \
+            --release-base-url "https://github.com/${{ github.repository }}/releases/download/v1.0" \
+            --site-url "https://example.invalid/probe"
+
+      - name: The build has to stand on its own
+        # every asset a page asks for must come out of the same build: the site is
+        # deployed from this directory and nothing else
+        run: |
+          test -f _site/.nojekyll
+          test "$(find _site -name index.html | wc -l)" -eq 340
+          test -f _site/primal-infeasible.csv && test -f _site/dual-infeasible.csv
+          test "$(find _site/fonts -name '*.woff2' | wc -l)" -eq 8
+          ! grep -rlE 'href="https://fonts\.|@import|<script src=' _site --include='*.html'
+
+      - name: Rebuilding changes nothing
+        # the pages carry no timestamp, counter or ordering that depends on the
+        # run, so a second build over the first must leave every byte alone
+        run: |
+          find _site -type f | sort | xargs sha256sum > /tmp/first.sha
+          python -m website.build_site --out-dir _site \
+            --release-base-url "https://github.com/${{ github.repository }}/releases/download/v1.0" \
+            --site-url "https://example.invalid/probe"
+          find _site -type f | sort | xargs sha256sum > /tmp/second.sha
+          diff /tmp/first.sha /tmp/second.sha
