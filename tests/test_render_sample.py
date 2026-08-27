@@ -11,8 +11,8 @@ def test_primal_page_shows_the_branch_recipe(index):
     s = _samples(index)[("primal", "bbb")]
     html = V.render_sample(s, None)
     # the fixture records no column name, so the index is labelled as one
-    assert "column 1 &ge; 2" in html    # this instance's own side
-    assert "column 1 &le; 1" in html    # the side the search took
+    assert "column 1 ≥ 2" in html    # this instance's own side
+    assert "column 1 ≤ 1" in html    # the side the search took
 
 
 def test_primal_page_uses_the_resolved_column_name(index):
@@ -21,8 +21,8 @@ def test_primal_page_uses_the_resolved_column_name(index):
     s = _samples(index)[("primal", "bbb")]
     named = replace(s, provenance=replace(s.primal, branch_var_name="make_widget_7"))
     html = V.render_sample(named, None)
-    assert "make_widget_7 &ge; 2" in html
-    assert "column 1 &ge; 2" not in html
+    assert "make_widget_7 ≥ 2" in html
+    assert "column 1 ≥ 2" not in html
 
 
 def test_primal_page_says_column_when_no_name_is_recorded(index):

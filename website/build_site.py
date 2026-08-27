@@ -10,6 +10,8 @@ import csv
 import shutil
 from dataclasses import replace
 from pathlib import Path
+from urllib.parse import urlsplit, urlunsplit
+from xml.sax.saxutils import escape as xml_escape
 
 from . import load, render
 from .assets import CSS_NAME, JS_NAME, SITE_CSS, SITE_JS
@@ -85,6 +87,48 @@ def release_urls(samples: list[Sample], base_url: str | None) -> dict[str, str]:
     return urls
 
 
+def normalize_site_url(site_url: str | None) -> str | None:
+    """Return an absolute public base URL with exactly one trailing slash."""
+    if site_url is None:
+        return None
+    if not site_url or any(c.isspace() for c in site_url):
+        raise SystemExit(f"--site-url must be an absolute HTTP(S) URL, got {site_url!r}")
+    parts = urlsplit(site_url)
+    try:
+        _ = parts.port  # force validation of a malformed port
+    except ValueError as exc:
+        raise SystemExit(f"--site-url is invalid: {exc}") from exc
+    if (parts.scheme not in {"http", "https"} or not parts.netloc
+            or parts.username is not None or parts.password is not None
+            or parts.query or parts.fragment):
+        raise SystemExit(
+            f"--site-url must be an absolute HTTP(S) base URL without credentials, "
+            f"a query, or a fragment; got {site_url!r}")
+    path = parts.path.rstrip("/") + "/"
+    return urlunsplit((parts.scheme, parts.netloc, path, "", ""))
+
+
+def page_url(site_url: str, page_rel: str) -> str:
+    """Map a generated ``index.html`` path to its public trailing-slash URL."""
+    suffix = "index.html"
+    if not page_rel.endswith(suffix):
+        raise ValueError(f"not an HTML page path: {page_rel!r}")
+    return site_url + page_rel[:-len(suffix)]
+
+
+def _write_sitemap(out_dir: Path, site_url: str,
+                   page_rels: set[str]) -> str:
+    """Publish the canonical URL of every HTML page emitted by this build."""
+    urls = sorted(page_url(site_url, rel) for rel in page_rels)
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    lines.extend(f"  <url><loc>{xml_escape(url)}</loc></url>" for url in urls)
+    lines.append("</urlset>")
+    rel = "sitemap.xml"
+    _write(out_dir, rel, "\n".join(lines) + "\n")
+    return rel
+
+
 def _write_assets(out_dir: Path) -> set[str]:
     """Write the stylesheet and the scripts the pages link to.
 
@@ -145,16 +189,17 @@ def _prune(out_dir: Path, keep_rels: set[str]) -> None:
     """Delete generated files this build did not write, and any directory they
     leave empty.
 
-    Only files the build itself produces are candidates: pages, the CSV indexes,
-    the fonts and the hashed stylesheet and scripts. Anything else in the output
-    directory belongs to whoever put it there, a CNAME for a custom domain being
-    the usual case.
+    Only files the build itself produces are candidates: pages, the sitemap, the
+    CSV indexes, the fonts and the hashed stylesheet and scripts. Anything else
+    in the output directory belongs to whoever put it there, a CNAME for a custom
+    domain being the usual case.
     """
     # materialise the walk before deleting: rglob is a generator over the tree it
     # is walking, and removing entries mid-iteration is undefined
     generated = (list(out_dir.rglob("index.html")) + list(out_dir.glob("*.csv"))
                  + list((out_dir / "fonts").glob("*"))
-                 + list((out_dir / "assets").glob("*")))
+                 + list((out_dir / "assets").glob("*"))
+                 + [p for p in (out_dir / "sitemap.xml",) if p.exists()])
     for path in generated:
         rel = path.relative_to(out_dir).as_posix()
         if rel in keep_rels:
@@ -182,6 +227,7 @@ def build(index_path: Path | str, out_dir: Path | str,
         miplib_path (Path | None): cached MIPLIB 2017 metadata.
     """
     out_dir = Path(out_dir)
+    site_url = normalize_site_url(site_url)
     samples = load.load_index(index_path, miplib_path)
     if release_base_url:
         urls = release_urls(samples, release_base_url)
@@ -221,6 +267,9 @@ def build(index_path: Path | str, out_dir: Path | str,
     rels |= _write_assets(out_dir)
     rels.add(_copy_schema(out_dir))
     rels.add(_write_nojekyll(out_dir))
+    if site_url:
+        page_rels = {rel for rel in rels if rel.endswith("index.html")}
+        rels.add(_write_sitemap(out_dir, site_url, page_rels))
     _prune(out_dir, rels)
     return written
 

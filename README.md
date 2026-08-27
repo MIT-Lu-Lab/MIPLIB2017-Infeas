@@ -4,7 +4,7 @@
 
 Linear programs with no optimal solution, derived from
 [MIPLIB 2017](https://miplib.zib.de/) instances with their integrality dropped. One set has
-no feasible point and the other is unbounded. A large-scale benchmark for detection.
+no feasible point and the other is unbounded, forming a large-scale benchmark for detection.
 
 **Browse the collection:** https://mit-lu-lab.github.io/MIPLIB-Infeas
 
@@ -15,13 +15,13 @@ no feasible point and the other is unbounded. A large-scale benchmark for detect
 
 Each instance is a gzipped MPS file holding continuous variables only. Beside it sits a `.meta.json` sidecar that records how the program was derived from its source instance.
 
-### Primal-infeasible
+## Primal-infeasible
 
 A branch-and-bound search splits on a variable and explores one side of the split. These instances are the other side, taken at nodes where that side turns out to have no feasible point.
 
-### Dual-infeasible
+## Dual-infeasible
 
-These start from a root LP relaxation that is feasible and bounded. Bounds and constraints were dropped until the objective became unbounded, then any drop that proved unnecessary was restored.
+For 103 instances, bounds and constraints were dropped from a feasible, bounded root LP relaxation until its objective became unbounded; every unnecessary drop was then restored. The other two root relaxations were already unbounded and therefore required no drops.
 
 ## Download
 
@@ -41,8 +41,8 @@ fonts/      the eight IBM Plex faces the site serves, under the OFL
 scripts/    tooling for the published set; only these read the instances
 ```
 
-The site is built by CI and deployed to Pages on every push, so nothing generated
-is committed. To build it yourself:
+CI builds and checks the site for every proposed change, then deploys that same
+verified artifact from `main`; nothing generated is committed. To build it yourself:
 
 ```bash
 python -m website.build_site --out-dir _site
@@ -64,4 +64,4 @@ Please cite MIPLIB 2017 as well.
 
 ## Licence
 
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), the same licence the source instances carry. MIPLIB 2017 requires each contributed instance to be submitted under a licence granting redistribution, by default CC BY-SA 4.0. These instances are adapted material, so ShareAlike carries over.
+The collection is released under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). MIPLIB 2017 uses that licence by default; the source instance `adult-max5features` is the one documented BSD 3-Clause exception. Its notice and the complete terms for this adapted collection are reproduced in [LICENSE](LICENSE).

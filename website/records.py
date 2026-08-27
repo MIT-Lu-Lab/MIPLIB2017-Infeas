@@ -252,14 +252,14 @@ def fmt_int(n: int) -> str:
 
 
 def fmt_bytes(n: int) -> str:
-    """Byte count as KB, MB or GB, matching what the site shows."""
+    """Byte count using binary units, matching the powers of 1024 below."""
     if n < 1024:
         return f"{n} B"
     mb = n / (1024 * 1024)
     if mb < 0.1:
-        return f"{n / 1024:.0f} KB"
+        return f"{n / 1024:.0f} KiB"
     if mb < 100:
-        return f"{mb:.2f} MB"
+        return f"{mb:.2f} MiB"
     if mb < 1024:
-        return f"{mb:.1f} MB"
-    return f"{mb / 1024:.2f} GB"
+        return f"{mb:.1f} MiB"
+    return f"{mb / 1024:.2f} GiB"

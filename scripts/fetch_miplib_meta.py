@@ -60,7 +60,7 @@ def parse(page):
             for key, val in zip(cells, values, strict=False):
                 key = key.strip().lower()
                 # an en dash, not a hyphen: it is what MIPLIB puts in an empty cell
-                if key in ("submitter", "status", "group") and val and val != "–":  # noqa: RUF001
+                if key in ("submitter", "status", "group") and val and val != "–":
                     out[key] = val
             break
 

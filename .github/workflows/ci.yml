@@ -73,6 +73,8 @@ jobs:
           test "$(find _site -name index.html | wc -l)" -eq 340
           test -f _site/primal-infeasible.csv
           test -f _site/dual-infeasible.csv
+          test -f _site/sitemap.xml
+          test "$(grep -c '<url>' _site/sitemap.xml)" -eq 340
           test -f _site/schema/meta.schema.json
           cmp schema/meta.schema.json _site/schema/meta.schema.json
           test "$(find _site/fonts -name '*.woff2' | wc -l)" -eq 8

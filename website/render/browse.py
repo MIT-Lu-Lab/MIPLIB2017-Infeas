@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from ..records import NON_LP_TAGS, SUBSET_META, Sample, fmt_bytes, fmt_int
-from .shell import esc, page
+from .shell import Markup, el, fmt, join, page
 
 
 # A facet group is (label, [(option label, key, predicate)]). The key is what the
@@ -14,11 +14,11 @@ from .shell import esc, page
 _SIZE_FACETS = [
     ("Variables", [
         ("under 50 K", "vars-lt50k", lambda s: s.n_vars < 50_000),
-        ("50 K &ndash; 500 K", "vars-50k-500k", lambda s: 50_000 <= s.n_vars < 500_000),
+        ("50 K – 500 K", "vars-50k-500k", lambda s: 50_000 <= s.n_vars < 500_000),
         ("over 500 K", "vars-gt500k", lambda s: s.n_vars >= 500_000)]),
     ("Constraints", [
         ("under 10 K", "cons-lt10k", lambda s: s.n_cons < 10_000),
-        ("10 K &ndash; 100 K", "cons-10k-100k", lambda s: 10_000 <= s.n_cons < 100_000),
+        ("10 K – 100 K", "cons-10k-100k", lambda s: 10_000 <= s.n_cons < 100_000),
         ("over 100 K", "cons-gt100k", lambda s: s.n_cons >= 100_000)]),
 ]
 
@@ -27,7 +27,7 @@ FACETS = {
         *_SIZE_FACETS,
         ("Depth", [
             ("under 50", "depth-lt50", lambda s: s.primal.depth < 50),
-            ("50 &ndash; 250", "depth-50-250", lambda s: 50 <= s.primal.depth < 250),
+            ("50 – 250", "depth-50-250", lambda s: 50 <= s.primal.depth < 250),
             ("over 250", "depth-gt250", lambda s: s.primal.depth >= 250)]),
     ],
     "dual": [
@@ -41,9 +41,9 @@ FACETS = {
              lambda s: s.dual.natural_unbounded)]),
         ("Relaxation size", [
             ("nothing removed", "size-0", lambda s: s.dual.total_dropped == 0),
-            ("1 &ndash; 5 elements", "size-1-5",
+            ("1 – 5 elements", "size-1-5",
              lambda s: 1 <= s.dual.total_dropped <= 5),
-            ("6 &ndash; 50", "size-6-50", lambda s: 6 <= s.dual.total_dropped <= 50),
+            ("6 – 50", "size-6-50", lambda s: 6 <= s.dual.total_dropped <= 50),
             ("over 50", "size-gt50", lambda s: s.dual.total_dropped > 50)]),
     ],
 }
@@ -88,6 +88,29 @@ BROWSE_BLURB = {
 }
 
 
+BROWSE = """
+<div class="browse-head">
+  <div>
+    <span class="eyebrow">Subset</span>
+    <h1>{label}</h1>
+    <p class="desc">{blurb}</p>
+  </div>
+  {archive}
+</div>
+<div class="browse">
+  {rail}
+  <div>
+    <div class="table-wrap"><table>
+      <thead><tr>{header}</tr></thead>
+      <tbody>{rows}</tbody>
+    </table></div>
+    <p class="table-foot" data-total="{total}">{total_shown} instances.
+    Every column sorts.</p>
+  </div>
+</div>
+"""
+
+
 def _tag_options(rows: list[Sample]) -> list[tuple]:
     counts = {}
     for s in rows:
@@ -113,48 +136,57 @@ def _row_facet_keys(groups: list[tuple], s: Sample) -> list[str]:
     return [key for _, options in groups for _, key, pred in options if pred(s)]
 
 
-def _facet_rail(groups: list[tuple], rows: list[Sample]) -> str:
-    rail = []
-    for label, options in groups:
-        items = "".join(
-            f'<label><input type="checkbox" data-k="{key}"> {opt} '
-            f'<span class="n">{sum(1 for s in rows if pred(s))}</span></label>'
+def _facet_rail(groups: list[tuple], rows: list[Sample]) -> Markup:
+    def group(label: str, options) -> Markup:
+        items = join(
+            el("label",
+               el("input", type_="checkbox", data_k=key),
+               f" {opt} ",
+               el("span", sum(1 for s in rows if pred(s)), class_="n"))
             for opt, key, pred in options)
-        rail.append(f'<div class="facet"><span class="eyebrow">{esc(label)}</span>{items}</div>')
-    return ('<details class="facets" open>'
-            '<summary><span>Filters</span><span class="facet-selected">None selected</span>'
-            '</summary><div class="facet-groups">'
-            + "".join(rail) + "</div></details>")
+        return el("div", el("span", label, class_="eyebrow"), items, class_="facet")
+
+    return el("details",
+              el("summary",
+                 el("span", "Filters"),
+                 el("span", "None selected", class_="facet-selected")),
+              el("div", join(group(label, options) for label, options in groups),
+                 class_="facet-groups"),
+              class_="facets", open=True)
 
 
-def _header(cols: list[tuple]) -> str:
-    return ('<th data-sort="str" tabindex="0" role="button" '
-            'aria-label="Sort by instance">Instance</th>'
-            + "".join(f'<th class="r" data-sort="num" tabindex="0" role="button" '
-                      f'aria-label="Sort by {esc(h.lower())}">{esc(h)}</th>'
-                      for h, _ in cols)
-            + "<th></th>")
+def _header(cols: list[tuple]) -> Markup:
+    return join((
+        el("th", "Instance", data_sort="str", tabindex="0", role="button",
+           aria_label="Sort by instance"),
+        join(el("th", h, class_="r", data_sort="num", tabindex="0", role="button",
+                aria_label=f"Sort by {h.lower()}") for h, _ in cols),
+        el("th"),
+    ))
 
 
-def _row(s: Sample, cols: list[tuple], groups: list[tuple]) -> str:
-    cells = "".join(f'<td class="num" data-v="{esc(v)}">{disp}</td>'
-                    for v, disp in (acc(s) for _, acc in cols))
-    dl = (f'<a class="dl" href="{esc(s.mps_url)}">.mps.gz</a>'
-          if s.mps_url else '<span class="dl" aria-disabled="true">pending</span>')
-    return (f'<tr data-f="{esc(" ".join(_row_facet_keys(groups, s)))}">'
-            f'<td class="name" data-v="{esc(s.instance)}">'
-            f'<a href="{esc(s.instance)}/">{esc(s.instance)}</a></td>'
-            f"{cells}<td>{dl}</td></tr>")
+def _row(s: Sample, cols: list[tuple], groups: list[tuple]) -> Markup:
+    cells = join(el("td", disp, class_="num", data_v=v)
+                 for v, disp in (acc(s) for _, acc in cols))
+    dl = (el("a", ".mps.gz", class_="dl", href=s.mps_url) if s.mps_url
+          else el("span", "pending", class_="dl", aria_disabled="true"))
+    return el("tr",
+              el("td", el("a", s.instance, href=f"{s.instance}/"),
+                 class_="name", data_v=s.instance),
+              cells,
+              el("td", dl),
+              data_f=" ".join(_row_facet_keys(groups, s)))
 
 
-def _archive_link(subset: str, rows: list[Sample], release_base_url: str | None) -> str:
+def _archive_link(subset: str, rows: list[Sample],
+                  release_base_url: str | None) -> Markup:
     """The whole-subset download. Its size counts both files of every instance, so it
     is not the .mps.gz total the File column sums to."""
     label = f"{fmt_int(len(rows))} instances, {fmt_bytes(sum(s.total_bytes for s in rows))}"
     if not release_base_url:
-        return f'<span class="dl" aria-disabled="true">{label}</span>'
+        return el("span", label, class_="dl", aria_disabled="true")
     href = f'{release_base_url.rstrip("/")}/{SUBSET_META[subset]["slug"]}.zip'
-    return f'<a class="dl" href="{esc(href)}">{label} &darr;</a>'
+    return el("a", f"{label} ↓", class_="dl", href=href)
 
 
 def render_browse(subset: str, samples: list[Sample],
@@ -164,25 +196,15 @@ def render_browse(subset: str, samples: list[Sample],
     rows = [s for s in samples if s.subset == subset]
     cols = COLUMNS[subset]
     groups = facet_groups(subset, rows)
-    body = f"""
-<div class="browse-head">
-  <div>
-    <span class="eyebrow">Subset</span>
-    <h1>{esc(info['label'])}</h1>
-    <p class="desc">{esc(BROWSE_BLURB[subset])}</p>
-  </div>
-  {_archive_link(subset, rows, release_base_url)}
-</div>
-<div class="browse">
-  {_facet_rail(groups, rows)}
-  <div>
-    <div class="table-wrap"><table>
-      <thead><tr>{_header(cols)}</tr></thead>
-      <tbody>{"".join(_row(s, cols, groups) for s in rows)}</tbody>
-    </table></div>
-    <p class="table-foot" data-total="{len(rows)}">{fmt_int(len(rows))} instances.
-    Every column sorts.</p>
-  </div>
-</div>
-"""
+    body = fmt(
+        BROWSE,
+        label=info["label"],
+        blurb=BROWSE_BLURB[subset],
+        archive=_archive_link(subset, rows, release_base_url),
+        rail=_facet_rail(groups, rows),
+        header=_header(cols),
+        rows=join(_row(s, cols, groups) for s in rows),
+        total=len(rows),
+        total_shown=fmt_int(len(rows)),
+    )
     return page(f"{info['label']} instances", body, active=subset, depth=1)

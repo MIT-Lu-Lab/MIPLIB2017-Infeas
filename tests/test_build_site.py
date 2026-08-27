@@ -1,6 +1,7 @@
 import csv
 import json
 import re
+import xml.etree.ElementTree as ET
 
 import pytest
 
@@ -216,6 +217,48 @@ def test_build_emits_nojekyll(index, tmp_path):
     out = tmp_path / "out"
     B.build(index, out)
     assert (out / ".nojekyll").is_file()
+
+
+def test_public_build_emits_only_canonical_page_urls_in_sitemap(index, tmp_path):
+    out = tmp_path / "out"
+    base = "https://example.test/MIPLIB-Infeas/"
+    B.build(index, out, site_url=base[:-1])
+
+    root = ET.parse(out / "sitemap.xml").getroot()
+    ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    urls = [node.text for node in root.findall("sm:url/sm:loc", ns)]
+    assert urls == sorted({
+        base,
+        base + "about/",
+        base + "download/",
+        base + "dual-infeasible/",
+        base + "dual-infeasible/aaa/",
+        base + "guide/",
+        base + "primal-infeasible/",
+        base + "primal-infeasible/aaa/",
+        base + "primal-infeasible/bbb/",
+    })
+
+
+@pytest.mark.parametrize("site_url", [
+    "example.test/MIPLIB-Infeas",
+    "ftp://example.test/MIPLIB-Infeas",
+    "https:///MIPLIB-Infeas",
+    "https://example.test/MIPLIB-Infeas?preview=1",
+    "https://user:secret@example.test/MIPLIB-Infeas",
+])
+def test_site_url_must_be_a_clean_absolute_http_url(index, tmp_path, site_url):
+    with pytest.raises(SystemExit, match="--site-url"):
+        B.build(index, tmp_path / "out", site_url=site_url)
+
+
+def test_rebuild_without_site_url_prunes_an_old_sitemap(index, tmp_path):
+    out = tmp_path / "out"
+    B.build(index, out, site_url="https://example.test/MIPLIB-Infeas")
+    assert (out / "sitemap.xml").is_file()
+
+    B.build(index, out)
+    assert not (out / "sitemap.xml").exists()
 
 
 def test_the_whole_asset_chain_resolves_from_a_deep_page(index, tmp_path):

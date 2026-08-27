@@ -81,17 +81,17 @@ def test_source_metadata_is_attached_separately_from_the_sample():
 
 def test_formatters():
     assert R.fmt_int(20682487) == "20,682,487"
-    assert R.fmt_bytes(524288) == "0.50 MB"
-    assert R.fmt_bytes(379956346) == "362.4 MB"
-    assert R.fmt_bytes(2445000000) == "2.28 GB"
-    assert R.fmt_bytes(1024 * 1024 * 1024 + 1024 * 1024) == "1.00 GB"
+    assert R.fmt_bytes(524288) == "0.50 MiB"
+    assert R.fmt_bytes(379956346) == "362.4 MiB"
+    assert R.fmt_bytes(2445000000) == "2.28 GiB"
+    assert R.fmt_bytes(1024 * 1024 * 1024 + 1024 * 1024) == "1.00 GiB"
 
 
 def test_fmt_bytes_shows_bytes_below_a_kilobyte():
-    """Seven published sidecars are under 512 B and used to render as "0 KB"."""
+    """Seven published sidecars are under 512 B and used to render as "0 KiB"."""
     assert R.fmt_bytes(327) == "327 B"
     assert R.fmt_bytes(483) == "483 B"
-    assert R.fmt_bytes(1024) == "1 KB"
+    assert R.fmt_bytes(1024) == "1 KiB"
 
 
 def test_subset_follows_the_provenance_it_carries():
