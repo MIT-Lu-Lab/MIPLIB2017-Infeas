@@ -87,8 +87,8 @@ def render_overview(totals: dict, site_url: str | None = None,
     )
     body = f"""
 <div class="masthead">
-  <span class="eyebrow">A large-scale detection benchmark</span>
-  <h1>Primal- and dual-infeasible linear programs</h1>
+  <span class="eyebrow">A benchmark of primal- and dual-infeasible linear programs</span>
+  <h1>MIPLIB-Infeas</h1>
   <p class="sub">{fmt_int(totals['n_samples'])} linear programs with no optimal solution, each
     derived from a <a href="https://miplib.zib.de/" target="_blank" rel="noopener">MIPLIB
     2017</a> instance with its integrality dropped. {fmt_int(n.get('primal', 0))}
