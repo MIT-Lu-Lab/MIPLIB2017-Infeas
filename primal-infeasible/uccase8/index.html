@@ -4,10 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>uccase8 (primal-infeasible)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;600&display=swap">
-<style>
+<style>@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url(../../fonts/IBMPlexMono-Regular.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:swap;src:url(../../fonts/IBMPlexMono-Medium.woff2) format('woff2')}@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:600;font-display:swap;src:url(../../fonts/IBMPlexMono-SemiBold.woff2) format('woff2')}@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400;font-display:swap;src:url(../../fonts/IBMPlexSans-Regular.woff2) format('woff2')}@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:500;font-display:swap;src:url(../../fonts/IBMPlexSans-Medium.woff2) format('woff2')}@font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:600;font-display:swap;src:url(../../fonts/IBMPlexSans-SemiBold.woff2) format('woff2')}@font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:400;font-display:swap;src:url(../../fonts/IBMPlexSerif-Regular.woff2) format('woff2')}@font-face{font-family:'IBM Plex Serif';font-style:normal;font-weight:600;font-display:swap;src:url(../../fonts/IBMPlexSerif-SemiBold.woff2) format('woff2')}
 :root{
   --paper:#FAFAFB;
   --raise:#FFFFFF;
@@ -19,6 +16,10 @@
   --primal-wash:#EEF0FC;
   --dual:#B45309;
   --dual-wash:#FBF1E5;
+  --shared:#166534;
+  --shared-wash:#E8F3EB;
+  --on-view:#FFFFFF;
+  --muted-strong:#4E5361;
   --shadow:0 1px 2px rgba(20,22,29,.05),0 8px 24px -16px rgba(20,22,29,.25);
 
   --f-serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
@@ -37,6 +38,10 @@
     --primal-wash:#1B1F35;
     --dual:#E0A458;
     --dual-wash:#2A2015;
+    --shared:#6BD48F;
+    --shared-wash:#13251A;
+    --on-view:#0F1116;
+    --muted-strong:#B2B8C7;
     --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
   }
 }
@@ -51,6 +56,10 @@
   --primal-wash:#1B1F35;
   --dual:#E0A458;
   --dual-wash:#2A2015;
+  --shared:#6BD48F;
+  --shared-wash:#13251A;
+  --on-view:#0F1116;
+  --muted-strong:#B2B8C7;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
 }
 
@@ -65,10 +74,17 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit}
+
+/* Blue names the primal half, orange the dual half, green what belongs to both.
+   Every accent below resolves through --view, so a control takes the colour of
+   the set it acts on instead of whichever the stylesheet reached for first. */
+body{--view:var(--shared);--view-wash:var(--shared-wash)}
+body[data-view="primal"]{--view:var(--primal);--view-wash:var(--primal-wash)}
+body[data-view="dual"]{--view:var(--dual);--view-wash:var(--dual-wash)}
 h1,h2,h3{font-family:var(--f-serif);text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.01em}
 .mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
-:focus-visible{outline:2px solid var(--primal);outline-offset:2px;border-radius:2px}
+:focus-visible{outline:2px solid var(--view);outline-offset:2px;border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 /* ---------- chrome ---------- */
@@ -113,15 +129,20 @@ main.narrow .prose{max-width:none}
 }
 
 /* ---------- home ---------- */
-.masthead{display:flex;flex-direction:column;gap:14px;padding-bottom:34px}
+/* the following block owns the gap; the masthead adding its own stacked the two */
+.masthead{display:flex;flex-direction:column;gap:14px}
+.masthead + .pair{margin-top:32px}
+.masthead + .section{margin-top:38px}
 .masthead h1{font-size:40px;line-height:1.12}
 .masthead .sub{font-size:18px;color:var(--muted);font-family:var(--f-serif);max-width:62ch}
 main.narrow .masthead .sub{max-width:none}
-.masthead .sub a{color:var(--primal);text-decoration:none;border-bottom:1px solid var(--rule)}
-.masthead .sub a:hover{border-bottom-color:var(--primal)}
+.masthead .sub a{color:var(--view);text-decoration:none;border-bottom:1px solid var(--rule)}
+.masthead .sub a:hover{border-bottom-color:var(--view)}
 
 
-.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:34px 0}
+/* intrinsic, so the pair holds two columns until the cards genuinely stop
+   fitting rather than at whatever width the other grids happen to need */
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin:34px 0}
 .subset{
   border:1px solid var(--rule);border-radius:8px;background:var(--raise);
   padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;
@@ -143,7 +164,7 @@ main.narrow .masthead .sub{max-width:none}
 /* file cards */
 .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
 .file{border:1px solid var(--rule);border-radius:8px;background:var(--raise);padding:16px 18px}
-.file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--primal);margin-bottom:9px;overflow-wrap:anywhere}
+.file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--view);margin-bottom:9px;overflow-wrap:anywhere}
 .file p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
 
 .cite{
@@ -162,7 +183,7 @@ main.narrow .masthead .sub{max-width:none}
 .facet .eyebrow{margin-bottom:8px;display:block}
 .facet label{display:flex;align-items:center;gap:8px;font-size:13.5px;padding:3px 0;cursor:pointer;color:var(--muted)}
 .facet label:hover{color:var(--ink)}
-.facet input{accent-color:var(--primal);margin:0}
+.facet input{accent-color:var(--view);margin:0}
 .facet .n{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;font-variant-numeric:tabular-nums}
 
 .table-wrap{border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow-x:auto}
@@ -175,7 +196,7 @@ thead th{
 }
 thead th.r{text-align:right}
 thead th[data-sort]{cursor:pointer;user-select:none}
-thead th[data-sort]:focus-visible{outline:2px solid var(--primal);outline-offset:-2px}
+thead th[data-sort]:focus-visible{outline:2px solid var(--view);outline-offset:-2px}
 thead th[data-sort]:hover{color:var(--ink)}
 thead th[aria-sort="ascending"]::after{content:" \2191"}
 thead th[aria-sort="descending"]::after{content:" \2193"}
@@ -183,12 +204,12 @@ tbody td{padding:9px 13px;border-bottom:1px solid var(--rule-soft);white-space:n
 tbody tr:last-child td{border-bottom:0}
 tbody tr:hover td{background:var(--rule-soft)}
 td.name a{font-family:var(--f-mono);font-size:13px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--rule)}
-td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
+td.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .dl{
-  font-family:var(--f-mono);font-size:12px;text-decoration:none;color:var(--primal);
+  font-family:var(--f-mono);font-size:12px;text-decoration:none;color:var(--view);
   border:1px solid var(--rule);border-radius:4px;padding:3px 8px;white-space:nowrap;
 }
-.dl:hover{background:var(--primal-wash);border-color:var(--primal)}
+.dl:hover{background:var(--view-wash);border-color:var(--view)}
 .table-foot{font-size:12.5px;color:var(--muted);margin-top:11px}
 
 /* ---------- detail ---------- */
@@ -225,10 +246,9 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
 
 .recipe{
   font-family:var(--f-mono);font-size:13px;line-height:1.85;
-  background:var(--primal-wash);border:1px solid var(--rule);border-radius:6px;
+  background:var(--view-wash);border:1px solid var(--rule);border-radius:6px;
   padding:13px 15px;margin-bottom:14px;overflow-x:auto;
 }
-.recipe.d{background:var(--dual-wash)}
 .recipe .k{color:var(--muted)}
 .recipe b{font-weight:600}
 
@@ -236,18 +256,20 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
 .path span{display:block;color:var(--muted)}
 .path span b{color:var(--ink);font-weight:500}
 .more{font-size:12.5px;color:var(--muted);margin-top:12px;border-top:1px solid var(--rule-soft);padding-top:11px}
-.more a{color:var(--primal)}
+.more a{color:var(--view)}
 
 .aside{position:sticky;top:78px;display:flex;flex-direction:column;gap:18px}
 .card{border:1px solid var(--rule);border-radius:8px;background:var(--raise);overflow:hidden}
+.card.p{--view:var(--primal);--view-wash:var(--primal-wash)}
+.card.d{--view:var(--dual);--view-wash:var(--dual-wash)}
 .card > header{padding:12px 16px;border-bottom:1px solid var(--rule-soft)}
 .card > header .eyebrow{display:block}
 .card .body{padding:14px 16px}
 .btn{
   display:flex;align-items:center;justify-content:space-between;gap:10px;
   text-decoration:none;font-size:13.5px;font-weight:500;
-  padding:11px 14px;border-radius:6px;border:1px solid var(--primal);
-  color:#fff;background:var(--primal);transition:filter .12s;
+  padding:11px 14px;border-radius:6px;border:1px solid var(--view);
+  color:var(--on-view);background:var(--view);transition:filter .12s;
 }
 .btn:hover{filter:brightness(1.08)}
 .btn .sz{font-family:var(--f-mono);font-size:12px;opacity:.82;font-weight:400}
@@ -259,32 +281,54 @@ td.name a:hover{border-bottom-color:var(--primal);color:var(--primal)}
 padding:14px 0 5px;border-top:1px solid var(--rule-soft)}
 .fields dt .mono{font-size:13px;color:var(--ink);font-weight:500}
 .fields .ftype{font-size:11px;color:var(--muted);letter-spacing:.04em}
-.fields dd{margin:0 0 16px;font-size:13.5px;color:var(--muted);line-height:1.65}
+.fields dd{margin:0 0 16px;font-size:13.5px;line-height:1.65}
 .srctags{display:flex;flex-wrap:wrap;gap:5px;margin:11px 0 4px}
-.srctag{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.02em;
-padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)}
-.credit{font-size:11.5px;font-style:italic;opacity:.8;margin-top:6px}
+.srctag{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.02em;
+padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-strong)}
+/* no opacity here: muted already carries the de-emphasis, and multiplying the
+   two put this below the contrast floor */
+.credit{font-size:11.5px;font-style:italic;color:var(--muted-strong);margin-top:6px}
 .src-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:5px 0}
 .src-row span:first-child{color:var(--muted)}
 .src-row span:last-child{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .extlink{
-  display:inline-block;margin-top:12px;font-size:12.5px;color:var(--primal);
+  display:inline-block;margin-top:12px;font-size:12.5px;color:var(--view);
   text-decoration:none;border-bottom:1px solid var(--rule);
 }
-.extlink:hover{border-bottom-color:var(--primal)}
+.extlink:hover{border-bottom-color:var(--view)}
 .crosslink{
   display:flex;align-items:center;gap:10px;text-decoration:none;
-  border:1px solid var(--rule);border-left:3px solid var(--dual);border-radius:0 6px 6px 0;
+  border:1px solid var(--rule);border-left:3px solid var(--to);border-radius:0 6px 6px 0;
   background:var(--raise);padding:12px 15px;font-size:13.5px;
 }
-.crosslink:hover{background:var(--dual-wash)}
+.crosslink.p{--to:var(--primal);--to-wash:var(--primal-wash)}
+.crosslink.d{--to:var(--dual);--to-wash:var(--dual-wash)}
+.crosslink:hover{background:var(--to-wash)}
 .crosslink .mono{font-size:12.5px;color:var(--muted);margin-left:auto}
 
-@media (max-width:900px){
-  .pair,.detail,.browse,.files{grid-template-columns:1fr}
-  .facets,.aside{position:static}
-  .path{columns:2}
-  .masthead h1{font-size:32px}
+/* .pair and .files size themselves, so they are not listed here */
+@media (max-width:880px){
+  .detail{grid-template-columns:1fr}
+  .aside{position:static}
+}
+@media (max-width:780px){
+  .browse{grid-template-columns:1fr}
+  .facets{position:static}
+}
+@media (max-width:700px){.path{columns:2}}
+@media (max-width:640px){.masthead h1{font-size:32px}}
+@media (max-width:460px){.path{columns:1}}
+
+/* Touch targets. The desktop density is deliberate, so the taller hit areas are
+   scoped to pointers that cannot land on a 25px row. */
+@media (pointer:coarse){
+  nav.top a{padding:12px 13px}
+  .facet label{min-height:44px;padding:0}
+  .facet input{width:18px;height:18px}
+  .dl{display:inline-flex;align-items:center;min-height:40px;padding:0 12px}
+  tbody td{padding:13px}
+  td.name a{display:inline-block;padding:6px 0}
+  .extlink{display:inline-flex;align-items:center;min-height:44px}
 }
 @media (max-width:560px){.path{columns:1}}
 </style>
