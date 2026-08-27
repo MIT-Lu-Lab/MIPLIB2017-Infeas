@@ -7,7 +7,7 @@
    "n_cons": 572,
    "nnz": 107150,
    "file_bytes": 457752,
-   "meta_bytes": 19758,
+   "meta_bytes": 19971,
    "sha256": "18bf522494c92c274dc0721e21d0376d493ad8bc7783b3e4ffe9174477292531",
    "subset": "dual",
    "provenance": {
@@ -108,7 +108,7 @@
    "n_cons": 21732,
    "nnz": 257532,
    "file_bytes": 1477626,
-   "meta_bytes": 13227,
+   "meta_bytes": 13440,
    "sha256": "0f37c08a04f24b016e33c77c3a8707ccb53fd8ad6c4bb390bf5c77defe395526",
    "subset": "dual",
    "provenance": {
@@ -139,7 +139,7 @@
    "n_cons": 60680,
    "nnz": 854392,
    "file_bytes": 3390477,
-   "meta_bytes": 33110,
+   "meta_bytes": 33323,
    "sha256": "babdfcbfcc10634dfbb7650f2f58b0fd39e88facfa8f53723fb98da92510461e",
    "subset": "dual",
    "provenance": {
@@ -184,7 +184,7 @@
    "n_cons": 4963,
    "nnz": 155488,
    "file_bytes": 636801,
-   "meta_bytes": 60029,
+   "meta_bytes": 60242,
    "sha256": "8b1d4db8b2201505244e52ccb4778d5429968ac3ebb1974d400006d3f2f6dd42",
    "subset": "dual",
    "provenance": {
@@ -244,7 +244,7 @@
    "n_cons": 1128,
    "nnz": 200601,
    "file_bytes": 914010,
-   "meta_bytes": 11671,
+   "meta_bytes": 11884,
    "sha256": "af5b054c84f624162aa4a9c737ae3b9b645f9ac6a2bff3b669738cb7bc65ef74",
    "subset": "dual",
    "provenance": {
@@ -289,7 +289,7 @@
    "n_cons": 920,
    "nnz": 111347,
    "file_bytes": 533260,
-   "meta_bytes": 9380,
+   "meta_bytes": 9593,
    "sha256": "85b1d17420408654b747912f1938e3b961cc352478384d366dc471aed5d1021f",
    "subset": "dual",
    "provenance": {
@@ -351,7 +351,7 @@
    "n_cons": 715,
    "nnz": 184467,
    "file_bytes": 836734,
-   "meta_bytes": 9993,
+   "meta_bytes": 10222,
    "sha256": "adf8791cbc8ddcaeb76a60d1028571fe8f0691f6d248c3ca5ef2b173fdcbbaa0",
    "subset": "dual",
    "provenance": {
@@ -412,7 +412,7 @@
    "n_cons": 308,
    "nnz": 187904,
    "file_bytes": 498554,
-   "meta_bytes": 4822,
+   "meta_bytes": 4986,
    "sha256": "8cc38e7b0501db5ec8f4ee43947a09d657cb3d52561ea7b67386686769a0b745",
    "subset": "dual",
    "provenance": {
@@ -514,7 +514,7 @@
    "n_cons": 272,
    "nnz": 181319,
    "file_bytes": 490176,
-   "meta_bytes": 3591,
+   "meta_bytes": 3755,
    "sha256": "ede7c7bbeff7bbc196bb8c4f9630dde6ba33f12c3d451c74f4151d130a85292b",
    "subset": "dual",
    "provenance": {
@@ -616,7 +616,7 @@
    "n_cons": 2824,
    "nnz": 127712,
    "file_bytes": 642435,
-   "meta_bytes": 21887,
+   "meta_bytes": 22051,
    "sha256": "1054392bd61f3e5f20022fb05966b3ad3a9ec323c81b8aa6e564a6df3b40653c",
    "subset": "dual",
    "provenance": {
@@ -655,7 +655,7 @@
    "n_cons": 4265,
    "nnz": 386162,
    "file_bytes": 1720705,
-   "meta_bytes": 36321,
+   "meta_bytes": 36485,
    "sha256": "42db5a8390a8a59fb59988ed7c22558a8d81ff7ada8661f187221188add28ddd",
    "subset": "dual",
    "provenance": {
@@ -694,7 +694,7 @@
    "n_cons": 3518,
    "nnz": 158444,
    "file_bytes": 796450,
-   "meta_bytes": 27592,
+   "meta_bytes": 27756,
    "sha256": "2fefac8d83eb807ccc23f713a9e5c2a42c039f6baafb915840f0511a66ad51db",
    "subset": "dual",
    "provenance": {
@@ -755,7 +755,7 @@
    "n_cons": 6387,
    "nnz": 581265,
    "file_bytes": 2578651,
-   "meta_bytes": 47282,
+   "meta_bytes": 47446,
    "sha256": "9cf20f408c5d12bfaa3af84640dbd8bc74640bccbf5f4929b4712a0f29ccc30d",
    "subset": "dual",
    "provenance": {
@@ -794,7 +794,7 @@
    "n_cons": 2186,
    "nnz": 1993763,
    "file_bytes": 6533577,
-   "meta_bytes": 9233,
+   "meta_bytes": 9446,
    "sha256": "e3c5272facd490c0d7ea6042dfbe66e1b9e1a9cc466789b6014e0d3f73fbb928",
    "subset": "dual",
    "provenance": {
@@ -833,7 +833,7 @@
    "n_cons": 1653,
    "nnz": 448754,
    "file_bytes": 1686047,
-   "meta_bytes": 8513,
+   "meta_bytes": 8726,
    "sha256": "cf1943105208b676a45f7922a9c542deca0a298ae73f5ad260500ffe745de53e",
    "subset": "dual",
    "provenance": {
@@ -885,7 +885,7 @@
    "n_cons": 530,
    "nnz": 732397,
    "file_bytes": 2497467,
-   "meta_bytes": 97216,
+   "meta_bytes": 97429,
    "sha256": "bd4b13e5ea6dbeaec6292d0aef447af757a7130e990534d3b6b7edc5eaefc292",
    "subset": "dual",
    "provenance": {
@@ -989,7 +989,7 @@
    "n_cons": 16341,
    "nnz": 165024,
    "file_bytes": 973905,
-   "meta_bytes": 41462,
+   "meta_bytes": 41626,
    "sha256": "e31db563c1083c697668c6b0c63febc49fd7bf915ff23a7e3f23c01757585398",
    "subset": "dual",
    "provenance": {
@@ -1093,7 +1093,7 @@
    "n_cons": 14278,
    "nnz": 132836,
    "file_bytes": 790391,
-   "meta_bytes": 19564,
+   "meta_bytes": 19728,
    "sha256": "b5a305b39528c250087f541e352e9273743b17cd5755fe7fe9d7aa5e4a0cd0f9",
    "subset": "dual",
    "provenance": {
@@ -1182,7 +1182,7 @@
    "n_cons": 26379,
    "nnz": 260976,
    "file_bytes": 1543861,
-   "meta_bytes": 36931,
+   "meta_bytes": 37095,
    "sha256": "c0b9b5cf1672feff9f80d4f1ab0ba85d41aa7522491a22f57c0e219c930eff19",
    "subset": "dual",
    "provenance": {
@@ -1265,7 +1265,7 @@
    "n_cons": 38481,
    "nnz": 389200,
    "file_bytes": 2292685,
-   "meta_bytes": 26404,
+   "meta_bytes": 26568,
    "sha256": "4689cca9aa4855c1915db28a2ee30631bb81db501acd626b9701773310e668a8",
    "subset": "dual",
    "provenance": {
@@ -1355,7 +1355,7 @@
    "n_cons": 77,
    "nnz": 685281,
    "file_bytes": 2902679,
-   "meta_bytes": 26070,
+   "meta_bytes": 26283,
    "sha256": "dafa440b00443279be3396a4fd324ba68003cb0f9b2c92c2cde7692088e3f4ba",
    "subset": "dual",
    "provenance": {
@@ -1456,7 +1456,7 @@
    "n_cons": 55,
    "nnz": 193519,
    "file_bytes": 958444,
-   "meta_bytes": 18834,
+   "meta_bytes": 19063,
    "sha256": "e08c2bc7a892c2a52d96c4141bc75b67e6333248622c44a68bf1f0a9555dfb6a",
    "subset": "dual",
    "provenance": {
@@ -1558,7 +1558,7 @@
    "n_cons": 1467,
    "nnz": 101994,
    "file_bytes": 465094,
-   "meta_bytes": 18941,
+   "meta_bytes": 19154,
    "sha256": "147cc3118e2b4cfd5215b54edc72d866f4deaa28fa123799719032fa90e830bc",
    "subset": "dual",
    "provenance": {
@@ -1604,7 +1604,7 @@
    "n_cons": 493,
    "nnz": 372415,
    "file_bytes": 1430978,
-   "meta_bytes": 23109,
+   "meta_bytes": 23338,
    "sha256": "401e64dcabb69cb487075161b79909bea82b411815e97ec550392dbf4d293e1d",
    "subset": "dual",
    "provenance": {
@@ -1707,7 +1707,7 @@
    "n_cons": 40000,
    "nnz": 119746,
    "file_bytes": 693097,
-   "meta_bytes": 67871,
+   "meta_bytes": 68035,
    "sha256": "777bfff0d60df84e7947cdc51e2d10aea08c58ba7590922f4094b5f111a7394d",
    "subset": "dual",
    "provenance": {
@@ -1808,7 +1808,7 @@
    "n_cons": 499,
    "nnz": 172035,
    "file_bytes": 611250,
-   "meta_bytes": 688,
+   "meta_bytes": 917,
    "sha256": "edffb8b89ee5c0db3fec0297adcbb2110aef56b8e1adc43f302e37dfc274dc21",
    "subset": "dual",
    "provenance": {
@@ -1832,7 +1832,7 @@
    "n_cons": 499,
    "nnz": 172035,
    "file_bytes": 611612,
-   "meta_bytes": 915,
+   "meta_bytes": 1144,
    "sha256": "1f0c008044d6fa872f8a4e235bad4135c324108a428d6e704cbecd539cc6dda8",
    "subset": "dual",
    "provenance": {
@@ -1856,7 +1856,7 @@
    "n_cons": 2430,
    "nnz": 512950,
    "file_bytes": 2999066,
-   "meta_bytes": 111411,
+   "meta_bytes": 111640,
    "sha256": "01ad3aa5bc1cbea4c42b9fe96aa82e7af2480ed39f0ffb74e53ef6193429509a",
    "subset": "dual",
    "provenance": {
@@ -1963,7 +1963,7 @@
    "n_cons": 2398,
    "nnz": 133435,
    "file_bytes": 892805,
-   "meta_bytes": 125458,
+   "meta_bytes": 125687,
    "sha256": "03f6238012b74a21217188b559ca2ec7ff7e30013d5d92465a7d8f5e3dda7f9b",
    "subset": "dual",
    "provenance": {
@@ -2071,7 +2071,7 @@
    "n_cons": 2451,
    "nnz": 428817,
    "file_bytes": 2573207,
-   "meta_bytes": 128076,
+   "meta_bytes": 128305,
    "sha256": "cc8d6664461fe58053a7b96bedf3a5e6317e0a0b8c0a3968d27b89b69fb9272f",
    "subset": "dual",
    "provenance": {
@@ -2176,7 +2176,7 @@
    "n_cons": 75358,
    "nnz": 227016,
    "file_bytes": 1904299,
-   "meta_bytes": 41522,
+   "meta_bytes": 41686,
    "sha256": "9d9ba3a5594d934c42f1dbe32a7f5cff174e393419935b7af2c5c9e1ad952fb2",
    "subset": "dual",
    "provenance": {
@@ -2281,7 +2281,7 @@
    "n_cons": 9727,
    "nnz": 142971,
    "file_bytes": 441057,
-   "meta_bytes": 8573,
+   "meta_bytes": 8802,
    "sha256": "7cb680924f2082535d066e6b08eb12ef14da4f962a113548ea15eb362baf8676",
    "subset": "dual",
    "provenance": {
@@ -2382,7 +2382,7 @@
    "n_cons": 593,
    "nnz": 131218,
    "file_bytes": 477667,
-   "meta_bytes": 10178,
+   "meta_bytes": 10391,
    "sha256": "516459ea726765a0dbaee7ec3e36f8d08fd93bdd1e40591d112dbd1b178c6639",
    "subset": "dual",
    "provenance": {
@@ -2427,7 +2427,7 @@
    "n_cons": 593,
    "nnz": 219959,
    "file_bytes": 797118,
-   "meta_bytes": 5322,
+   "meta_bytes": 5535,
    "sha256": "761507e6f951936eab4352093e36a3bccefc36e32c1ec6b3b84c86b39fd51034",
    "subset": "dual",
    "provenance": {
@@ -2472,7 +2472,7 @@
    "n_cons": 12600,
    "nnz": 107170,
    "file_bytes": 1091591,
-   "meta_bytes": 62336,
+   "meta_bytes": 62500,
    "sha256": "0c14a102f8caa2ac056f009822f6371b50bb71c3435375c1e742b1a1e5e0b4a1",
    "subset": "dual",
    "provenance": {
@@ -2510,7 +2510,7 @@
    "n_cons": 10457,
    "nnz": 151244,
    "file_bytes": 516897,
-   "meta_bytes": 11443,
+   "meta_bytes": 11672,
    "sha256": "d641dbe53a0986d21ef3c55c2b4254ca45a0a2bd0ff348dfc311f27144505bf5",
    "subset": "dual",
    "provenance": {
@@ -2572,7 +2572,7 @@
    "n_cons": 2563,
    "nnz": 183250,
    "file_bytes": 708288,
-   "meta_bytes": 60668,
+   "meta_bytes": 60897,
    "sha256": "f5269ea63c150d40ef5a39e05cb73268efa35efe297b152b0a468fd1b294cc28",
    "subset": "dual",
    "provenance": {
@@ -2633,7 +2633,7 @@
    "n_cons": 4484,
    "nnz": 340740,
    "file_bytes": 1332861,
-   "meta_bytes": 9558,
+   "meta_bytes": 9771,
    "sha256": "3b55b5fd16530c581b1567d7121245dc2aa92f99ad0732722d827c9a0ad3e950",
    "subset": "dual",
    "provenance": {
@@ -2664,7 +2664,7 @@
    "n_cons": 13002,
    "nnz": 129215,
    "file_bytes": 564638,
-   "meta_bytes": 95003,
+   "meta_bytes": 95232,
    "sha256": "68a23bddef301535c2c4fbf1288ca3a4fd3cde4f67f885b2b0c489d08ee3b873",
    "subset": "dual",
    "provenance": {
@@ -2771,7 +2771,7 @@
    "n_cons": 794,
    "nnz": 112268,
    "file_bytes": 472053,
-   "meta_bytes": 20590,
+   "meta_bytes": 20819,
    "sha256": "cf40c928c4957c8de064020bae22dba41c699301df7045034d47ffd67f6ccbbb",
    "subset": "dual",
    "provenance": {
@@ -2875,7 +2875,7 @@
    "n_cons": 29015,
    "nnz": 580291,
    "file_bytes": 2246453,
-   "meta_bytes": 4615,
+   "meta_bytes": 4779,
    "sha256": "0fbc351a8df1d3f48c4c45582e70b4f19910249a549bd108f2f0a67ede20d27b",
    "subset": "dual",
    "provenance": {
@@ -2906,7 +2906,7 @@
    "n_cons": 18161,
    "nnz": 13703421,
    "file_bytes": 36371437,
-   "meta_bytes": 47921,
+   "meta_bytes": 48085,
    "sha256": "02600ee970da64e6896cfdaad97c541f74c2ce598adcd73deb36a780c123a1dc",
    "subset": "dual",
    "provenance": {
@@ -3012,7 +3012,7 @@
    "n_cons": 18846096,
    "nnz": 57144880,
    "file_bytes": 244666835,
-   "meta_bytes": 453,
+   "meta_bytes": 617,
    "sha256": "88d6c2d6a018928879901dcb84639460c71332a352e8492a8f18afa744dc3b03",
    "subset": "dual",
    "provenance": {
@@ -3028,7 +3028,7 @@
    "n_cons": 19335696,
    "nnz": 58613680,
    "file_bytes": 249084514,
-   "meta_bytes": 453,
+   "meta_bytes": 617,
    "sha256": "45cd73cf6d2e5f6dc5a49ac852a4424872a9f1d34dfe4b025d98e67a608369ac",
    "subset": "dual",
    "provenance": {
@@ -3044,7 +3044,7 @@
    "n_cons": 134,
    "nnz": 695726,
    "file_bytes": 1982228,
-   "meta_bytes": 25902,
+   "meta_bytes": 26066,
    "sha256": "7031c99b69b25f4b1e6b2ac117ae5bb98f798f5de1a3b88416956caee4123f16",
    "subset": "dual",
    "provenance": {
@@ -3152,7 +3152,7 @@
    "n_cons": 167,
    "nnz": 5250739,
    "file_bytes": 15291073,
-   "meta_bytes": 5913,
+   "meta_bytes": 6077,
    "sha256": "83247d49b97335d3f1a843257396cd1da351a1bf1203896968079af94ab2229b",
    "subset": "dual",
    "provenance": {
@@ -3255,7 +3255,7 @@
    "n_cons": 29487,
    "nnz": 116511,
    "file_bytes": 541377,
-   "meta_bytes": 33904,
+   "meta_bytes": 34068,
    "sha256": "cfb7ef6ba5c37d07051edacc068a83ea81174febd304943ddd04ef88d06cc55c",
    "subset": "dual",
    "provenance": {
@@ -3300,7 +3300,7 @@
    "n_cons": 104971,
    "nnz": 451326,
    "file_bytes": 2406806,
-   "meta_bytes": 17703,
+   "meta_bytes": 17867,
    "sha256": "643f3b3fa7f3c6a6a28ef0cee3ed125d6ff4928d5cd33f9e1a5c72f45cd46245",
    "subset": "dual",
    "provenance": {
@@ -3353,7 +3353,7 @@
    "n_cons": 21608,
    "nnz": 371465,
    "file_bytes": 1415328,
-   "meta_bytes": 12551,
+   "meta_bytes": 12715,
    "sha256": "b6e90a7894bd88f425a641b95ee07885c6d6f232cbfd1fa6846193f0176e6c31",
    "subset": "dual",
    "provenance": {
@@ -3399,7 +3399,7 @@
    "n_cons": 17358,
    "nnz": 139982,
    "file_bytes": 629624,
-   "meta_bytes": 39393,
+   "meta_bytes": 39557,
    "sha256": "ddcc43d7a0a433dd8429cb7d28ac87f71353a22936a2f3d4f2808fc5e79e5c7a",
    "subset": "dual",
    "provenance": {
@@ -3452,7 +3452,7 @@
    "n_cons": 1992,
    "nnz": 137160,
    "file_bytes": 516173,
-   "meta_bytes": 58796,
+   "meta_bytes": 59025,
    "sha256": "a468596f2d85dcfdab2842aba2d55a1ce03ec834711c47988af367dad2311fbf",
    "subset": "dual",
    "provenance": {
@@ -3557,7 +3557,7 @@
    "n_cons": 144120,
    "nnz": 1519200,
    "file_bytes": 4476079,
-   "meta_bytes": 6779,
+   "meta_bytes": 7008,
    "sha256": "b7a7ac5e058a6f9e9423602da52f243ee4dd25db297d8a71e9e3f4bc39ded0d1",
    "subset": "dual",
    "provenance": {
@@ -3630,7 +3630,7 @@
    "n_cons": 23456,
    "nnz": 170310,
    "file_bytes": 902308,
-   "meta_bytes": 18695,
+   "meta_bytes": 18859,
    "sha256": "1528cab87f846e6d9685bd8faaaabf493bf259a7f3e2a56692cc1b470be3eaeb",
    "subset": "dual",
    "provenance": {
@@ -3677,7 +3677,7 @@
    "n_cons": 979,
    "nnz": 172684,
    "file_bytes": 592526,
-   "meta_bytes": 77078,
+   "meta_bytes": 77307,
    "sha256": "5bdfb89baeb4072c5baeb6f23b914b476c509499aa69e92feb4a36ad6d9930cf",
    "subset": "dual",
    "provenance": {
@@ -3781,7 +3781,7 @@
    "n_cons": 1484,
    "nnz": 1101078,
    "file_bytes": 5962671,
-   "meta_bytes": 1444,
+   "meta_bytes": 1673,
    "sha256": "fc3e76fa17507a47f0a2baeffc3e0bc92bda18032cc7311abb0a58375a4d09b3",
    "subset": "dual",
    "provenance": {
@@ -3826,7 +3826,7 @@
    "n_cons": 842,
    "nnz": 383201,
    "file_bytes": 1048312,
-   "meta_bytes": 31854,
+   "meta_bytes": 32083,
    "sha256": "089a47efc865f294b1a4fdf07b206db2fdff94ed195883fde82e87e8a2ac2b57",
    "subset": "dual",
    "provenance": {
@@ -3927,7 +3927,7 @@
    "n_cons": 85808,
    "nnz": 682376,
    "file_bytes": 3203722,
-   "meta_bytes": 4603,
+   "meta_bytes": 4832,
    "sha256": "b35d9f8a2cd25b95e9cf97d22b74a79da075ddd9cb5d093a7b1132b00c4c12ab",
    "subset": "dual",
    "provenance": {
@@ -3965,7 +3965,7 @@
    "n_cons": 11409,
    "nnz": 245327,
    "file_bytes": 863299,
-   "meta_bytes": 198922,
+   "meta_bytes": 199135,
    "sha256": "ffabfcde194552fa67023b8f70f839297996e4d64c213572605a63fe5cfb6a41",
    "subset": "dual",
    "provenance": {
@@ -4077,7 +4077,7 @@
    "n_cons": 1405,
    "nnz": 491555,
    "file_bytes": 1758659,
-   "meta_bytes": 85992,
+   "meta_bytes": 86221,
    "sha256": "6c925bd51da4bf40becab54db6cbf49beccccbdc2b58cbe096556e892818e6f0",
    "subset": "dual",
    "provenance": {
@@ -4183,7 +4183,7 @@
    "n_cons": 12278,
    "nnz": 151135,
    "file_bytes": 630357,
-   "meta_bytes": 96330,
+   "meta_bytes": 96559,
    "sha256": "f2e31255da938c07c1fbbecd8db4c14e80f63728a47646f9fd3cb263282ef11c",
    "subset": "dual",
    "provenance": {
@@ -4292,7 +4292,7 @@
    "n_cons": 2661,
    "nnz": 706489,
    "file_bytes": 2532501,
-   "meta_bytes": 112792,
+   "meta_bytes": 113021,
    "sha256": "f6318c4960cc8be8c6578ef41587a6d941178bed8469bcda46af822ca4d7457e",
    "subset": "dual",
    "provenance": {
@@ -4404,7 +4404,7 @@
    "n_cons": 2076,
    "nnz": 399583,
    "file_bytes": 1492576,
-   "meta_bytes": 167504,
+   "meta_bytes": 167733,
    "sha256": "ca44db6e8946ba79dcd5c5bc7f6aea0879dbbfe1e2ffd2e718aed15df5d0bf37",
    "subset": "dual",
    "provenance": {
@@ -4511,7 +4511,7 @@
    "n_cons": 2333,
    "nnz": 419737,
    "file_bytes": 1563173,
-   "meta_bytes": 155675,
+   "meta_bytes": 155904,
    "sha256": "18ef1d3febfa335d515ac841151663681c929d7baf7bc535fd25e6f5d1253df8",
    "subset": "dual",
    "provenance": {
@@ -4624,7 +4624,7 @@
    "n_cons": 3320,
    "nnz": 418871,
    "file_bytes": 1565747,
-   "meta_bytes": 162314,
+   "meta_bytes": 162543,
    "sha256": "f907a8a887278ccf40fb9256bbfef13c62226d90f27457b6ccf1aa2978e45b74",
    "subset": "dual",
    "provenance": {
@@ -4731,7 +4731,7 @@
    "n_cons": 993,
    "nnz": 232838,
    "file_bytes": 720562,
-   "meta_bytes": 53929,
+   "meta_bytes": 54142,
    "sha256": "e3f080d8cc1f72d2cc6312dcf9677a6083bc4fce23214a71b94864e693b2f91e",
    "subset": "dual",
    "provenance": {
@@ -4834,7 +4834,7 @@
    "n_cons": 31600,
    "nnz": 244224,
    "file_bytes": 1243974,
-   "meta_bytes": 18207,
+   "meta_bytes": 18436,
    "sha256": "b383a4609cff96b22b068876acebec1c1c965b82183c9b521b1f469cec645dab",
    "subset": "dual",
    "provenance": {
@@ -4865,7 +4865,7 @@
    "n_cons": 13893,
    "nnz": 567642,
    "file_bytes": 1619885,
-   "meta_bytes": 4847,
+   "meta_bytes": 5060,
    "sha256": "c8b927e62257c79726db656d86a505ea7068a4595d88c14941eda39411eccbc3",
    "subset": "dual",
    "provenance": {
@@ -4919,7 +4919,7 @@
    "n_cons": 1994,
    "nnz": 199021,
    "file_bytes": 673201,
-   "meta_bytes": 18225,
+   "meta_bytes": 18438,
    "sha256": "2cfffb5935c20eb198c5aa071f5c339dd7813a717d77c824157eaa81397fa695",
    "subset": "dual",
    "provenance": {
@@ -4974,7 +4974,7 @@
    "n_cons": 11115,
    "nnz": 255607,
    "file_bytes": 866922,
-   "meta_bytes": 68265,
+   "meta_bytes": 68494,
    "sha256": "9bca8bfcc08a311198553e1f083c39a75266282bc8848877e8c2af270638f75c",
    "subset": "dual",
    "provenance": {
@@ -5076,7 +5076,7 @@
    "n_cons": 51880,
    "nnz": 238560,
    "file_bytes": 1202929,
-   "meta_bytes": 23635,
+   "meta_bytes": 23848,
    "sha256": "9066dd504da51641ae56a1f4dae6d12ca7a4ff806b6edbccbab59ff77a1dec72",
    "subset": "dual",
    "provenance": {
@@ -5146,7 +5146,7 @@
    "n_cons": 139279,
    "nnz": 428668,
    "file_bytes": 2131465,
-   "meta_bytes": 10663,
+   "meta_bytes": 10876,
    "sha256": "6080fefba409ef8353e182c1f63add1411cb12c0814c548386f535a2bc34d7a5",
    "subset": "dual",
    "provenance": {
@@ -5199,7 +5199,7 @@
    "n_cons": 735,
    "nnz": 223261,
    "file_bytes": 670376,
-   "meta_bytes": 3502,
+   "meta_bytes": 3731,
    "sha256": "e0d0e2262fc046225810686e0ac1f71f2adce465592b48837fa4481b71198290",
    "subset": "dual",
    "provenance": {
@@ -5230,7 +5230,7 @@
    "n_cons": 14062,
    "nnz": 622800,
    "file_bytes": 2445654,
-   "meta_bytes": 18919,
+   "meta_bytes": 19083,
    "sha256": "33858607a2c654344566071107148f74bc8f4897b68decb57882bbcdd95ea7d4",
    "subset": "dual",
    "provenance": {
@@ -5275,7 +5275,7 @@
    "n_cons": 8668,
    "nnz": 621829,
    "file_bytes": 2293254,
-   "meta_bytes": 68607,
+   "meta_bytes": 68771,
    "sha256": "05c9ec0e69980e08e054d70cf4dc6cc5182a25a2cdf5e180fc6d0243113036ce",
    "subset": "dual",
    "provenance": {
@@ -5334,7 +5334,7 @@
    "n_cons": 4872,
    "nnz": 208050,
    "file_bytes": 820846,
-   "meta_bytes": 21372,
+   "meta_bytes": 21536,
    "sha256": "173d26a708f8173676f499a08feced3b149afcdf6e607f0a8a44a1c2a78ee21f",
    "subset": "dual",
    "provenance": {
@@ -5379,7 +5379,7 @@
    "n_cons": 5032,
    "nnz": 208410,
    "file_bytes": 821970,
-   "meta_bytes": 21407,
+   "meta_bytes": 21571,
    "sha256": "5f652bbb34de93ee6198a39ca392821cd0494e45ab86ba034d085fa0c2c6def4",
    "subset": "dual",
    "provenance": {
@@ -5445,7 +5445,7 @@
    "n_cons": 3522,
    "nnz": 204000,
    "file_bytes": 774995,
-   "meta_bytes": 30597,
+   "meta_bytes": 30761,
    "sha256": "dc3f33b46092becc52b3deec2a71b783761253bd32badc6e8947a21086f4df65",
    "subset": "dual",
    "provenance": {
@@ -5504,7 +5504,7 @@
    "n_cons": 27,
    "nnz": 390025,
    "file_bytes": 1808482,
-   "meta_bytes": 7012,
+   "meta_bytes": 7241,
    "sha256": "682e87ddae2aeef3367503ea7500a56d289c6b3c773c11a43f8678c53ff26f9b",
    "subset": "dual",
    "provenance": {
@@ -5611,7 +5611,7 @@
    "n_cons": 63608,
    "nnz": 152793,
    "file_bytes": 757809,
-   "meta_bytes": 871,
+   "meta_bytes": 1100,
    "sha256": "2a6adc1c56e7aa21a5b9c46dc747ab3c5b7f6cf3eb18119481eaaa7fd5171739",
    "subset": "dual",
    "provenance": {
@@ -5642,7 +5642,7 @@
    "n_cons": 10525,
    "nnz": 1575578,
    "file_bytes": 6272550,
-   "meta_bytes": 1538,
+   "meta_bytes": 1767,
    "sha256": "b298239e4a2b5bc30a4b4dfb216f62a6a8f042a207e7de54e3b9972189647381",
    "subset": "dual",
    "provenance": {
@@ -5687,7 +5687,7 @@
    "n_cons": 1320,
    "nnz": 154694,
    "file_bytes": 705578,
-   "meta_bytes": 1172,
+   "meta_bytes": 1401,
    "sha256": "12bd7d99a8ea7c2232a98298c4e7380c8ae09643bef16b4df8248b2bafa53bc7",
    "subset": "dual",
    "provenance": {
@@ -5718,7 +5718,7 @@
    "n_cons": 15451,
    "nnz": 188747,
    "file_bytes": 704720,
-   "meta_bytes": 66235,
+   "meta_bytes": 66399,
    "sha256": "b86b580a26767d70142e55c44e5f0e85d1b2c6a3f906b95102d83031d57eb22a",
    "subset": "dual",
    "provenance": {
@@ -5825,7 +5825,7 @@
    "n_cons": 301,
    "nnz": 629449,
    "file_bytes": 2810945,
-   "meta_bytes": 7124,
+   "meta_bytes": 7288,
    "sha256": "b5bfa2fd89e7c4463c0677680f07b00c559401460a73b126fcc7732a1b2e9346",
    "subset": "dual",
    "provenance": {
@@ -5884,7 +5884,7 @@
    "n_cons": 254,
    "nnz": 524690,
    "file_bytes": 2346193,
-   "meta_bytes": 6174,
+   "meta_bytes": 6338,
    "sha256": "ff5ff4475734262e9253d35971f4c526cd9cc69fb0b257c6d39e880a423b432b",
    "subset": "dual",
    "provenance": {
@@ -5943,7 +5943,7 @@
    "n_cons": 253,
    "nnz": 501123,
    "file_bytes": 2238280,
-   "meta_bytes": 6303,
+   "meta_bytes": 6467,
    "sha256": "ce75d2e18716b440634163ae488902455bef5e3e4095dd2cd10cd8e894cee387",
    "subset": "dual",
    "provenance": {
@@ -6003,7 +6003,7 @@
    "n_cons": 501,
    "nnz": 439031,
    "file_bytes": 1594318,
-   "meta_bytes": 12217,
+   "meta_bytes": 12430,
    "sha256": "3095bfc2b3e5867fe6f3ba3a9a50ec3fd562648fe05f2dcd7455729531511df3",
    "subset": "dual",
    "provenance": {
@@ -6112,7 +6112,7 @@
    "n_cons": 1234,
    "nnz": 796463,
    "file_bytes": 6149449,
-   "meta_bytes": 15055,
+   "meta_bytes": 15219,
    "sha256": "7fe7a49b721f36825c69424f83e96573543c7ee6843c02d49e2d7e784e593422",
    "subset": "dual",
    "provenance": {
@@ -6218,7 +6218,7 @@
    "n_cons": 171,
    "nnz": 653992,
    "file_bytes": 2175338,
-   "meta_bytes": 39479,
+   "meta_bytes": 39692,
    "sha256": "b534c065c8a5ba0355e8245cf34d37aa53f3ee648ed720528cf6f33b15a03c65",
    "subset": "dual",
    "provenance": {
@@ -6322,7 +6322,7 @@
    "n_cons": 9752,
    "nnz": 261185,
    "file_bytes": 1780427,
-   "meta_bytes": 123911,
+   "meta_bytes": 124140,
    "sha256": "db5533e9edd82d07b3de7ae6b31f3c4d18783af24737fa7d273c43862c3f762b",
    "subset": "dual",
    "provenance": {
@@ -6430,7 +6430,7 @@
    "n_cons": 45500,
    "nnz": 121511,
    "file_bytes": 720846,
-   "meta_bytes": 32033,
+   "meta_bytes": 32246,
    "sha256": "209d49d7254740d965f8f4026c570cce32de5b88cc6e283189c016650f6ebf4d",
    "subset": "dual",
    "provenance": {
@@ -6542,7 +6542,7 @@
    "n_cons": 126512,
    "nnz": 463941,
    "file_bytes": 3795416,
-   "meta_bytes": 2830,
+   "meta_bytes": 2994,
    "sha256": "8a5c12d19dc97e27d38a44d4205ebcfcb626748195af9c4431313f81c5cc4b25",
    "subset": "dual",
    "provenance": {
@@ -6587,7 +6587,7 @@
    "n_cons": 1761,
    "nnz": 290968,
    "file_bytes": 1114811,
-   "meta_bytes": 15371,
+   "meta_bytes": 15584,
    "sha256": "d040a88503088b25bd0bd5c0064af16eb69d63068f9ea42e09962f365fbc1473",
    "subset": "dual",
    "provenance": {
@@ -6646,7 +6646,7 @@
    "n_cons": 1033,
    "nnz": 316629,
    "file_bytes": 1173909,
-   "meta_bytes": 8740,
+   "meta_bytes": 8969,
    "sha256": "309cae6a4a5becf2b01b55a58ab59f9b9669a60c2a379e7f87dd9625bf00f0de",
    "subset": "dual",
    "provenance": {
@@ -6691,7 +6691,7 @@
    "n_cons": 1434,
    "nnz": 425241,
    "file_bytes": 1553150,
-   "meta_bytes": 11214,
+   "meta_bytes": 11443,
    "sha256": "12a33ac8584424d2d4267df3517d13c16b0f7b683c8662602a0133344279d892",
    "subset": "dual",
    "provenance": {
@@ -6744,7 +6744,7 @@
    "n_cons": 825,
    "nnz": 316317,
    "file_bytes": 1157032,
-   "meta_bytes": 11633,
+   "meta_bytes": 11846,
    "sha256": "513e6390f9cf3fbc24ec0f2d7c4d7f9f930d22c65ceee363277f5ddf0f676336",
    "subset": "dual",
    "provenance": {
@@ -6789,7 +6789,7 @@
    "n_cons": 57346,
    "nnz": 171076,
    "file_bytes": 1098797,
-   "meta_bytes": 21528,
+   "meta_bytes": 21741,
    "sha256": "0939b69160005852455a54af04b3d7ae6ff3246cbd61d248c237628dcff1c609",
    "subset": "dual",
    "provenance": {
@@ -6841,7 +6841,7 @@
    "n_cons": 16376,
    "nnz": 398598,
    "file_bytes": 1954319,
-   "meta_bytes": 9452,
+   "meta_bytes": 9616,
    "sha256": "63189778ec7d440eeca82778552b431e802f3d224812e9aa36321a6c0abc335f",
    "subset": "dual",
    "provenance": {
@@ -6944,7 +6944,7 @@
    "n_cons": 18439,
    "nnz": 435653,
    "file_bytes": 2159053,
-   "meta_bytes": 1048,
+   "meta_bytes": 1212,
    "sha256": "61a56a3dc5cad22d528257a55770599fc12fd7ef55b92178084e89adb59682f4",
    "subset": "dual",
    "provenance": {
@@ -6975,7 +6975,7 @@
    "n_cons": 702,
    "nnz": 447093,
    "file_bytes": 3738755,
-   "meta_bytes": 52806,
+   "meta_bytes": 52970,
    "sha256": "17e84cd4f7ea9a5943159da25c9f7daf0e1d4ec5111672cec1a946502815ef9e",
    "subset": "dual",
    "provenance": {
@@ -7082,7 +7082,7 @@
    "n_cons": 6532,
    "nnz": 2845545,
    "file_bytes": 8519505,
-   "meta_bytes": 1575,
+   "meta_bytes": 1739,
    "sha256": "2253dfadae1c3731c6a23d975846d083cde90e4c319ca37461909b2225bb5db5",
    "subset": "dual",
    "provenance": {
@@ -7113,7 +7113,7 @@
    "n_cons": 551,
    "nnz": 325689,
    "file_bytes": 1875297,
-   "meta_bytes": 19927,
+   "meta_bytes": 20140,
    "sha256": "223b92f28aa3ab7c2fc9e61abbdbb4d80519538ff50290515a9c6ad88f348d2f",
    "subset": "dual",
    "provenance": {
@@ -7165,7 +7165,7 @@
    "n_cons": 299,
    "nnz": 117733,
    "file_bytes": 740181,
-   "meta_bytes": 29239,
+   "meta_bytes": 29452,
    "sha256": "358d998ea811fa73dd3a347c36d678420970330058471a4a21a532f3cb0c2d17",
    "subset": "dual",
    "provenance": {
@@ -7273,7 +7273,7 @@
    "n_cons": 2434,
    "nnz": 211166,
    "file_bytes": 1410193,
-   "meta_bytes": 76425,
+   "meta_bytes": 76589,
    "sha256": "5fbb3cbba6163b2f5e3b5591c58bb7700d6416a8e29051ae0ac5bdf5b71b5cee",
    "subset": "dual",
    "provenance": {
@@ -7362,7 +7362,7 @@
    "n_cons": 53360,
    "nnz": 212060,
    "file_bytes": 1545951,
-   "meta_bytes": 14216,
+   "meta_bytes": 14380,
    "sha256": "b751c1692a92a6b0422f853a8a247f47c559d79602613d74ebbd950eaa6cb4cf",
    "subset": "dual",
    "provenance": {
@@ -7428,7 +7428,7 @@
    "n_cons": 13416,
    "nnz": 850623,
    "file_bytes": 2829912,
-   "meta_bytes": 1697,
+   "meta_bytes": 1926,
    "sha256": "bef104ec4836226e9eb05c1208b5318b8164a2f0913799e192affd21bf051dda",
    "subset": "dual",
    "provenance": {
@@ -7480,7 +7480,7 @@
    "n_cons": 576,
    "nnz": 109706,
    "file_bytes": 463274,
-   "meta_bytes": 24462,
+   "meta_bytes": 24675,
    "sha256": "b57ebfacc864c15149fa1689e9dd716060b20f42d66aa23e414e9a2d0a878dd9",
    "subset": "primal",
    "provenance": {
@@ -7512,7 +7512,7 @@
    "n_cons": 167661,
    "nnz": 1545375,
    "file_bytes": 6564294,
-   "meta_bytes": 82958,
+   "meta_bytes": 83122,
    "sha256": "cbb3446c298916b24543e083f786f5aebfe0dd59c225b4c5a8cdac079b925d20",
    "subset": "primal",
    "provenance": {
@@ -7544,7 +7544,7 @@
    "n_cons": 23294,
    "nnz": 268350,
    "file_bytes": 1090502,
-   "meta_bytes": 17711,
+   "meta_bytes": 17875,
    "sha256": "4b293f5d7aef5c851d0d7e87594bab4e7d85e6186b231f6259ee36833d0fea19",
    "subset": "primal",
    "provenance": {
@@ -7576,7 +7576,7 @@
    "n_cons": 32709,
    "nnz": 417567,
    "file_bytes": 1701462,
-   "meta_bytes": 2506,
+   "meta_bytes": 2670,
    "sha256": "50bafbd29f00ea63199bd64296a83250f96d8963dbce08d97b92d2eee5967463",
    "subset": "primal",
    "provenance": {
@@ -7608,7 +7608,7 @@
    "n_cons": 197154,
    "nnz": 515184,
    "file_bytes": 2469378,
-   "meta_bytes": 1211114,
+   "meta_bytes": 1211278,
    "sha256": "0ebc2729e89b9795e14387da0aee545a6eef4ffbd8ba3a1a157faa4c4d157267",
    "subset": "primal",
    "provenance": {
@@ -7640,7 +7640,7 @@
    "n_cons": 53467,
    "nnz": 199175,
    "file_bytes": 1181637,
-   "meta_bytes": 3073,
+   "meta_bytes": 3286,
    "sha256": "2caf134561b65ac46809bb1f1d095620e0bdff163153d05e68c86a72fc88df75",
    "subset": "primal",
    "provenance": {
@@ -7672,7 +7672,7 @@
    "n_cons": 21732,
    "nnz": 257532,
    "file_bytes": 1478406,
-   "meta_bytes": 5385,
+   "meta_bytes": 5598,
    "sha256": "df2520c849d886d10ec924e768b5f0fc08780f3d97041bad4e24202e79539274",
    "subset": "primal",
    "provenance": {
@@ -7704,7 +7704,7 @@
    "n_cons": 60680,
    "nnz": 854392,
    "file_bytes": 3396585,
-   "meta_bytes": 933659,
+   "meta_bytes": 933872,
    "sha256": "3b8c6db826833af8373948c0cc9019e568192068554ef65f03754c61859fe28b",
    "subset": "primal",
    "provenance": {
@@ -7736,7 +7736,7 @@
    "n_cons": 17245,
    "nnz": 2027726,
    "file_bytes": 7316245,
-   "meta_bytes": 15581,
+   "meta_bytes": 15810,
    "sha256": "daf61e4ae10c688839ad1243e246313612c2addc6293aa2c5ca36017531babcb",
    "subset": "primal",
    "provenance": {
@@ -7768,7 +7768,7 @@
    "n_cons": 23069,
    "nnz": 3301838,
    "file_bytes": 11584937,
-   "meta_bytes": 30049,
+   "meta_bytes": 30262,
    "sha256": "ba1d3678f7fcd2970280b0e6d5ac7ab7534d9639dc0c14f617f06124328651c7",
    "subset": "primal",
    "provenance": {
@@ -7800,7 +7800,7 @@
    "n_cons": 4964,
    "nnz": 155520,
    "file_bytes": 637740,
-   "meta_bytes": 3805,
+   "meta_bytes": 4018,
    "sha256": "dc43a66c68cd10046cdbcd45ef17d0813da960f3442263725f9023f9404774e2",
    "subset": "primal",
    "provenance": {
@@ -7832,7 +7832,7 @@
    "n_cons": 29904,
    "nnz": 1283181,
    "file_bytes": 4762315,
-   "meta_bytes": 3318,
+   "meta_bytes": 3547,
    "sha256": "c3251dc9a17cb7c74adeb1aa3c449d36b85fadc4326234bf8d76cdfeabd78894",
    "subset": "primal",
    "provenance": {
@@ -7864,7 +7864,7 @@
    "n_cons": 1128,
    "nnz": 200601,
    "file_bytes": 914977,
-   "meta_bytes": 5074,
+   "meta_bytes": 5287,
    "sha256": "758094672a6b72e59bfdf832651fafa7bda24f287a7bfa1c1e23a684a80ca776",
    "subset": "primal",
    "provenance": {
@@ -7896,7 +7896,7 @@
    "n_cons": 923,
    "nnz": 118149,
    "file_bytes": 555874,
-   "meta_bytes": 31115,
+   "meta_bytes": 31328,
    "sha256": "ea84b2ed61fff3134a18d7508c59a119f12c6854d5376a028a2bc26c3ca2c513",
    "subset": "primal",
    "provenance": {
@@ -7928,7 +7928,7 @@
    "n_cons": 717,
    "nnz": 191947,
    "file_bytes": 860026,
-   "meta_bytes": 5701,
+   "meta_bytes": 5930,
    "sha256": "c58119bd440fa4b67a77b4230256267f02c2c971e9699452b5c46dfd6c021a7f",
    "subset": "primal",
    "provenance": {
@@ -7960,7 +7960,7 @@
    "n_cons": 14646,
    "nnz": 133184,
    "file_bytes": 673227,
-   "meta_bytes": 20780,
+   "meta_bytes": 20944,
    "sha256": "09b09cb81be539f88f51b9a6257a2228f51d5ae5a02b27d8800a2a27cf81fc44",
    "subset": "primal",
    "provenance": {
@@ -7992,7 +7992,7 @@
    "n_cons": 42620,
    "nnz": 307320,
    "file_bytes": 1180542,
-   "meta_bytes": 3280,
+   "meta_bytes": 3493,
    "sha256": "9a48692d9c62f892df33e2d33fdd3d30305913439f0bb49747b2cee39257a82e",
    "subset": "primal",
    "provenance": {
@@ -8024,7 +8024,7 @@
    "n_cons": 2825,
    "nnz": 127736,
    "file_bytes": 643079,
-   "meta_bytes": 3913,
+   "meta_bytes": 4077,
    "sha256": "3288177a07fdba5f2404d2b987e45d7b231cfd824ef753aaa0b07508bdf0277c",
    "subset": "primal",
    "provenance": {
@@ -8056,7 +8056,7 @@
    "n_cons": 4266,
    "nnz": 386432,
    "file_bytes": 1723336,
-   "meta_bytes": 11797,
+   "meta_bytes": 11961,
    "sha256": "c8bf77cdb61c17bc4e2037d33ff29b2d441810c4d8f626b689d6ef90e6fab727",
    "subset": "primal",
    "provenance": {
@@ -8088,7 +8088,7 @@
    "n_cons": 3520,
    "nnz": 158622,
    "file_bytes": 797338,
-   "meta_bytes": 5704,
+   "meta_bytes": 5868,
    "sha256": "0dc133dd8794570b43ad60fb3b7b54bdc45a3fdc19411c9b020843ab81e0a7ea",
    "subset": "primal",
    "provenance": {
@@ -8120,7 +8120,7 @@
    "n_cons": 6388,
    "nnz": 581335,
    "file_bytes": 2579624,
-   "meta_bytes": 21954,
+   "meta_bytes": 22118,
    "sha256": "12b4d6df430f7edd43b0542929386901bb9f7b6db1fb814d754c72e15bf9b9e2",
    "subset": "primal",
    "provenance": {
@@ -8152,7 +8152,7 @@
    "n_cons": 2187,
    "nnz": 1995817,
    "file_bytes": 6539835,
-   "meta_bytes": 7312,
+   "meta_bytes": 7525,
    "sha256": "64b13db86c197f110d3b85c2ec8f94a0c9b2733338d91156c9c6db237f8d711b",
    "subset": "primal",
    "provenance": {
@@ -8184,7 +8184,7 @@
    "n_cons": 98021,
    "nnz": 292875,
    "file_bytes": 1767701,
-   "meta_bytes": 63456,
+   "meta_bytes": 63620,
    "sha256": "8fdb682d76de405cd64bbf692cae6348e6eef6bb9993b00fcd8fffbfb2b01758",
    "subset": "primal",
    "provenance": {
@@ -8216,7 +8216,7 @@
    "n_cons": 1502,
    "nnz": 189389,
    "file_bytes": 792934,
-   "meta_bytes": 8089,
+   "meta_bytes": 8302,
    "sha256": "aa271a200867ef0617cad119a807b31f57077548957e00bbb63c4ec08f2ae447",
    "subset": "primal",
    "provenance": {
@@ -8248,7 +8248,7 @@
    "n_cons": 656,
    "nnz": 1024059,
    "file_bytes": 3326054,
-   "meta_bytes": 2373,
+   "meta_bytes": 2586,
    "sha256": "d8de79b76d9cb1dc8b23fc3d56a3a3eb7c98cd94e4144e0381f8739e070b8cc3",
    "subset": "primal",
    "provenance": {
@@ -8280,7 +8280,7 @@
    "n_cons": 16344,
    "nnz": 165168,
    "file_bytes": 975313,
-   "meta_bytes": 7716,
+   "meta_bytes": 7880,
    "sha256": "fb8157d3993f25d86a4e10a611a988692b74cd61ecf5df539bb1d6e21905fdec",
    "subset": "primal",
    "provenance": {
@@ -8312,7 +8312,7 @@
    "n_cons": 14280,
    "nnz": 132936,
    "file_bytes": 790751,
-   "meta_bytes": 7213,
+   "meta_bytes": 7377,
    "sha256": "99f7b6047abf1fdffe3df16317c02889d687c7b9c26dbea2980319d5128839f8",
    "subset": "primal",
    "provenance": {
@@ -8344,7 +8344,7 @@
    "n_cons": 26382,
    "nnz": 261120,
    "file_bytes": 1545755,
-   "meta_bytes": 12714,
+   "meta_bytes": 12878,
    "sha256": "8eaee8cc9b88432c239261a451fc7034c10759daeb3400f1728467fba19d6415",
    "subset": "primal",
    "provenance": {
@@ -8376,7 +8376,7 @@
    "n_cons": 38484,
    "nnz": 389304,
    "file_bytes": 2294924,
-   "meta_bytes": 15398,
+   "meta_bytes": 15562,
    "sha256": "dff949b56da0692a9ddd561230d47c88cb2e691e23585605bba0aa11cb1e33c2",
    "subset": "primal",
    "provenance": {
@@ -8408,7 +8408,7 @@
    "n_cons": 100,
    "nnz": 959373,
    "file_bytes": 3667301,
-   "meta_bytes": 1696,
+   "meta_bytes": 1909,
    "sha256": "db962445d9cb2f1ddc27e44ab0333e20b9e453bc414c632432e6b9bf89286930",
    "subset": "primal",
    "provenance": {
@@ -8440,7 +8440,7 @@
    "n_cons": 75,
    "nnz": 314837,
    "file_bytes": 1304743,
-   "meta_bytes": 2322,
+   "meta_bytes": 2551,
    "sha256": "6b150e391c667c1ff7b4538b34edb1dc3f03b86084691add03f66609ba5d2a4b",
    "subset": "primal",
    "provenance": {
@@ -8472,7 +8472,7 @@
    "n_cons": 34872,
    "nnz": 161558,
    "file_bytes": 777445,
-   "meta_bytes": 12845,
+   "meta_bytes": 13009,
    "sha256": "dad6bf95497fd9f18db224041a4cbaa0b1e3501b026a380de288ba6aa261bc38",
    "subset": "primal",
    "provenance": {
@@ -8504,7 +8504,7 @@
    "n_cons": 69608,
    "nnz": 1162000,
    "file_bytes": 5043974,
-   "meta_bytes": 22610,
+   "meta_bytes": 22823,
    "sha256": "46b60dd1d5aebbf4131576e19ea873591a38fc50b06fcc5bbea238e448900308",
    "subset": "primal",
    "provenance": {
@@ -8536,7 +8536,7 @@
    "n_cons": 40962,
    "nnz": 517112,
    "file_bytes": 2223130,
-   "meta_bytes": 24290,
+   "meta_bytes": 24503,
    "sha256": "f814b26c07f41835c94cf82e4410a33dedec6d826c1df0098111fc92a931a67d",
    "subset": "primal",
    "provenance": {
@@ -8568,7 +8568,7 @@
    "n_cons": 219368,
    "nnz": 718146,
    "file_bytes": 3031604,
-   "meta_bytes": 4220,
+   "meta_bytes": 4384,
    "sha256": "5b77c604f79405e6cc735684cbcf8ab4d08dad4ccfb7794cbdbb11c19a2f4bdd",
    "subset": "primal",
    "provenance": {
@@ -8600,7 +8600,7 @@
    "n_cons": 229742,
    "nnz": 752274,
    "file_bytes": 3175284,
-   "meta_bytes": 6218,
+   "meta_bytes": 6382,
    "sha256": "7cf3b7a81def2cf28bc4352cc8771281dfaf96f6d909bd5cc30de269d07cd0e1",
    "subset": "primal",
    "provenance": {
@@ -8632,7 +8632,7 @@
    "n_cons": 240116,
    "nnz": 786402,
    "file_bytes": 3295603,
-   "meta_bytes": 5706,
+   "meta_bytes": 5870,
    "sha256": "c635bc8449f402ab59fd10316e1b1d04ccde63946ade461aa6c5b5dfc33a9662",
    "subset": "primal",
    "provenance": {
@@ -8664,7 +8664,7 @@
    "n_cons": 58085,
    "nnz": 1382972,
    "file_bytes": 6514985,
-   "meta_bytes": 9630,
+   "meta_bytes": 9794,
    "sha256": "45d76c97c8c0a43620442e52f7560a939c5430647e890da04c1c4a6655877353",
    "subset": "primal",
    "provenance": {
@@ -8696,7 +8696,7 @@
    "n_cons": 6503,
    "nnz": 134640,
    "file_bytes": 583063,
-   "meta_bytes": 5770,
+   "meta_bytes": 5934,
    "sha256": "0bc04fdb6235ff212320b2660c5861f389f4f2d75473c589d8c24d02ddbb4f5a",
    "subset": "primal",
    "provenance": {
@@ -8728,7 +8728,7 @@
    "n_cons": 78472,
    "nnz": 275855,
    "file_bytes": 1346393,
-   "meta_bytes": 2714,
+   "meta_bytes": 2878,
    "sha256": "dd3bca1e435d2cf2d95a04193216f92d2ed88c924081372374bac36ac951ff8e",
    "subset": "primal",
    "provenance": {
@@ -8760,7 +8760,7 @@
    "n_cons": 499,
    "nnz": 172035,
    "file_bytes": 615192,
-   "meta_bytes": 18193,
+   "meta_bytes": 18422,
    "sha256": "43c91ff68c29e1d7a90727bbd24660d673c6f167e536f69094a70accedfc53f3",
    "subset": "primal",
    "provenance": {
@@ -8792,7 +8792,7 @@
    "n_cons": 499,
    "nnz": 172035,
    "file_bytes": 656546,
-   "meta_bytes": 317198,
+   "meta_bytes": 317427,
    "sha256": "40da73198698171ca8e367e5c98331821ce92f028729168efec1c561c561a939",
    "subset": "primal",
    "provenance": {
@@ -8824,7 +8824,7 @@
    "n_cons": 10779,
    "nnz": 175547,
    "file_bytes": 690799,
-   "meta_bytes": 3391,
+   "meta_bytes": 3604,
    "sha256": "7cc4c76416272d2a009b6acd7c298db4b344a6a7eb7f81358491da361f429eed",
    "subset": "primal",
    "provenance": {
@@ -8856,7 +8856,7 @@
    "n_cons": 457985,
    "nnz": 1233372,
    "file_bytes": 7339008,
-   "meta_bytes": 838670,
+   "meta_bytes": 838834,
    "sha256": "d28afa03c05cf234099694b65a34feb888b3052243f6f606bf76f2c333150be9",
    "subset": "primal",
    "provenance": {
@@ -8888,7 +8888,7 @@
    "n_cons": 2565,
    "nnz": 571475,
    "file_bytes": 3186254,
-   "meta_bytes": 44889,
+   "meta_bytes": 45118,
    "sha256": "0435e93eb87fe55d6847f634730755555d36460863fdd5ecf485314265ef4c2d",
    "subset": "primal",
    "provenance": {
@@ -8920,7 +8920,7 @@
    "n_cons": 2586,
    "nnz": 153017,
    "file_bytes": 959893,
-   "meta_bytes": 214447,
+   "meta_bytes": 214676,
    "sha256": "3291acbaed5037a026103145410cdc7403ff66b79013f8ae9e3400fa3e26a4e2",
    "subset": "primal",
    "provenance": {
@@ -8952,7 +8952,7 @@
    "n_cons": 2586,
    "nnz": 470045,
    "file_bytes": 2701281,
-   "meta_bytes": 6896,
+   "meta_bytes": 7125,
    "sha256": "72847a12d29e57317f4b185451850cf6519ef010410b3fa62f756369f6305e8f",
    "subset": "primal",
    "provenance": {
@@ -8984,7 +8984,7 @@
    "n_cons": 55107,
    "nnz": 191997,
    "file_bytes": 1400415,
-   "meta_bytes": 11226,
+   "meta_bytes": 11390,
    "sha256": "72c5a531f3ba05928f842509a1e0046f98f9c54fc9692b77245ec6c432e36634",
    "subset": "primal",
    "provenance": {
@@ -9016,7 +9016,7 @@
    "n_cons": 75395,
    "nnz": 227160,
    "file_bytes": 1905685,
-   "meta_bytes": 5546,
+   "meta_bytes": 5710,
    "sha256": "df614c54488b564e74816f918b9ba52ef7cf9b42878982953f12693ff1dba563",
    "subset": "primal",
    "provenance": {
@@ -9048,7 +9048,7 @@
    "n_cons": 281917,
    "nnz": 850486,
    "file_bytes": 4757688,
-   "meta_bytes": 242363,
+   "meta_bytes": 242527,
    "sha256": "3bbbe72a861b935ed021d0b05fdd9751fc181e17897e014c9b11b4b2e71dec7c",
    "subset": "primal",
    "provenance": {
@@ -9080,7 +9080,7 @@
    "n_cons": 582237,
    "nnz": 1753238,
    "file_bytes": 9772837,
-   "meta_bytes": 507214,
+   "meta_bytes": 507378,
    "sha256": "8b010cb9dc286ceae095d8a1aed5bdcf9c538cffc4030da9be5f2f0174bfcb26",
    "subset": "primal",
    "provenance": {
@@ -9112,7 +9112,7 @@
    "n_cons": 5195,
    "nnz": 433884,
    "file_bytes": 1265593,
-   "meta_bytes": 1144,
+   "meta_bytes": 1308,
    "sha256": "9fac3aef56146e9e8511016dd8b9ea627b5c5df78861bb0495b651de00fe69c3",
    "subset": "primal",
    "provenance": {
@@ -9144,7 +9144,7 @@
    "n_cons": 16419,
    "nnz": 1697946,
    "file_bytes": 4820092,
-   "meta_bytes": 1533,
+   "meta_bytes": 1697,
    "sha256": "dd6ab483fd2ab5e84e7b99e246bbc54f8c02666b27244d1d033bbb0eb781be13",
    "subset": "primal",
    "provenance": {
@@ -9176,7 +9176,7 @@
    "n_cons": 593,
    "nnz": 131218,
    "file_bytes": 477880,
-   "meta_bytes": 113418,
+   "meta_bytes": 113631,
    "sha256": "694bb14350dd81b002759f2899d02212e4a4e572aa22f3064b31005b70564b0c",
    "subset": "primal",
    "provenance": {
@@ -9208,7 +9208,7 @@
    "n_cons": 12600,
    "nnz": 107170,
    "file_bytes": 1102735,
-   "meta_bytes": 200659,
+   "meta_bytes": 200823,
    "sha256": "3cacb6bc55ea2a3fc2b3dc8380a7f693159d332d535e6c458a0ea158476a5170",
    "subset": "primal",
    "provenance": {
@@ -9240,7 +9240,7 @@
    "n_cons": 108566,
    "nnz": 435517,
    "file_bytes": 4006662,
-   "meta_bytes": 123792,
+   "meta_bytes": 123956,
    "sha256": "0020a4d6a146f49153fd1d0d242d19941d73f103bd37601eb5a683fce92fce17",
    "subset": "primal",
    "provenance": {
@@ -9272,7 +9272,7 @@
    "n_cons": 42680,
    "nnz": 103198,
    "file_bytes": 698514,
-   "meta_bytes": 18058,
+   "meta_bytes": 18271,
    "sha256": "0c26925532fc721653ac52666a067d27fb472ad6c156e643b427da403d795ccf",
    "subset": "primal",
    "provenance": {
@@ -9304,7 +9304,7 @@
    "n_cons": 9499,
    "nnz": 134603,
    "file_bytes": 467638,
-   "meta_bytes": 876,
+   "meta_bytes": 1089,
    "sha256": "746e485fc11ef7ae297677089954ee0e9a919baf89356822d17bdd1f4e9573b9",
    "subset": "primal",
    "provenance": {
@@ -9333,7 +9333,7 @@
    "n_cons": 10460,
    "nnz": 151261,
    "file_bytes": 517302,
-   "meta_bytes": 1755,
+   "meta_bytes": 1984,
    "sha256": "b88bb6a027a4052c90fe4c1c35c370c288abba6baf73014141b8bfee73b44845",
    "subset": "primal",
    "provenance": {
@@ -9365,7 +9365,7 @@
    "n_cons": 57791,
    "nnz": 163640,
    "file_bytes": 1113122,
-   "meta_bytes": 1286,
+   "meta_bytes": 1515,
    "sha256": "68d38cfcd9f62e6b64f893fbdc78b536d0f74df5b53cd113f21e9d6c55f07b78",
    "subset": "primal",
    "provenance": {
@@ -9397,7 +9397,7 @@
    "n_cons": 3135,
    "nnz": 187187,
    "file_bytes": 669468,
-   "meta_bytes": 162390,
+   "meta_bytes": 162619,
    "sha256": "e9c44eab796c93bc07b55df2407a3084462e47085399a7d5abca1f7a6c9a6014",
    "subset": "primal",
    "provenance": {
@@ -9429,7 +9429,7 @@
    "n_cons": 102750,
    "nnz": 260250,
    "file_bytes": 1452355,
-   "meta_bytes": 728733,
+   "meta_bytes": 728962,
    "sha256": "d4e6a48507315893ecf8feb979929230f0a881715300881d1be86eb7c11e6619",
    "subset": "primal",
    "provenance": {
@@ -9461,7 +9461,7 @@
    "n_cons": 798,
    "nnz": 113308,
    "file_bytes": 476137,
-   "meta_bytes": 6034,
+   "meta_bytes": 6263,
    "sha256": "58fe7d7e99252440703b8f136a1038a94b0225072d68a26880be6bf4f882ea71",
    "subset": "primal",
    "provenance": {
@@ -9493,7 +9493,7 @@
    "n_cons": 105744,
    "nnz": 636728,
    "file_bytes": 3388146,
-   "meta_bytes": 8125,
+   "meta_bytes": 8289,
    "sha256": "a0e0bc69d2d544529c611d689f75914aea9763dcd7fdee62b990bab6e52e9824",
    "subset": "primal",
    "provenance": {
@@ -9525,7 +9525,7 @@
    "n_cons": 18170,
    "nnz": 13709358,
    "file_bytes": 36400831,
-   "meta_bytes": 23939,
+   "meta_bytes": 24103,
    "sha256": "22c67fb8e858ee70797a6cdf9372f65980440bdd8f8ff3eba64b829abb381afc",
    "subset": "primal",
    "provenance": {
@@ -9557,7 +9557,7 @@
    "n_cons": 91572,
    "nnz": 9357951,
    "file_bytes": 25747296,
-   "meta_bytes": 63183,
+   "meta_bytes": 63347,
    "sha256": "8d9ca3efe19e33847868e1e8b68189b12dc65fbf3d7d0a6c195dcc0734ea0303",
    "subset": "primal",
    "provenance": {
@@ -9589,7 +9589,7 @@
    "n_cons": 170226,
    "nnz": 447473,
    "file_bytes": 2168707,
-   "meta_bytes": 954590,
+   "meta_bytes": 954754,
    "sha256": "a03ef5d7d69c8c48c3a3b15002762e2ea48327b0679af98946379426cde359e5",
    "subset": "primal",
    "provenance": {
@@ -9621,7 +9621,7 @@
    "n_cons": 69472,
    "nnz": 233552,
    "file_bytes": 1169607,
-   "meta_bytes": 2519,
+   "meta_bytes": 2683,
    "sha256": "678d132d71945ab07041a9ac4974da9b052ea3c5b5ee3f140a281eb36ddf3d39",
    "subset": "primal",
    "provenance": {
@@ -9653,7 +9653,7 @@
    "n_cons": 29487,
    "nnz": 116511,
    "file_bytes": 574915,
-   "meta_bytes": 223828,
+   "meta_bytes": 223992,
    "sha256": "9fadba7cd3baa617fe2deaf1e70aa487c9c41b81fefcac1f0b3da781ad6ca40c",
    "subset": "primal",
    "provenance": {
@@ -9685,7 +9685,7 @@
    "n_cons": 591076,
    "nnz": 2034888,
    "file_bytes": 8403731,
-   "meta_bytes": 3239,
+   "meta_bytes": 3403,
    "sha256": "b66c367030464f684841651342d2d306291ecf256ff2339ae7066bc32e42bcd1",
    "subset": "primal",
    "provenance": {
@@ -9717,7 +9717,7 @@
    "n_cons": 146493,
    "nnz": 793605,
    "file_bytes": 2997584,
-   "meta_bytes": 6144,
+   "meta_bytes": 6308,
    "sha256": "cbaab352e532f73c922f3a97ac90007361e083b88a3ea393ff94c96cad5ac8ae",
    "subset": "primal",
    "provenance": {
@@ -9749,7 +9749,7 @@
    "n_cons": 191504,
    "nnz": 598115,
    "file_bytes": 3002652,
-   "meta_bytes": 4212,
+   "meta_bytes": 4376,
    "sha256": "2cb2cf3ea9ce70aa8f2a3b04bbcf9c0a1e7188e535d741e1937470b902dabbb6",
    "subset": "primal",
    "provenance": {
@@ -9781,7 +9781,7 @@
    "n_cons": 4936372,
    "nnz": 26433474,
    "file_bytes": 127859782,
-   "meta_bytes": 22659,
+   "meta_bytes": 22823,
    "sha256": "e6da0cc511e2bbba6af6cfcb34b10bb1a6d643b26d63230055a3dab4665b6037",
    "subset": "primal",
    "provenance": {
@@ -9813,7 +9813,7 @@
    "n_cons": 295357,
    "nnz": 702986,
    "file_bytes": 4352297,
-   "meta_bytes": 181753,
+   "meta_bytes": 181917,
    "sha256": "0237f9295febf2b605c01464caf4c46c7302c7eab36ccc34f62d6ea7184de52b",
    "subset": "primal",
    "provenance": {
@@ -9845,7 +9845,7 @@
    "n_cons": 210116,
    "nnz": 552408,
    "file_bytes": 3224614,
-   "meta_bytes": 5802,
+   "meta_bytes": 5966,
    "sha256": "deddb89ea56a47a81671d7074b19d5438bfe5d65f3bba24b5d5e4b36e0fb5fb7",
    "subset": "primal",
    "provenance": {
@@ -9877,7 +9877,7 @@
    "n_cons": 76992,
    "nnz": 183616,
    "file_bytes": 1085261,
-   "meta_bytes": 178741,
+   "meta_bytes": 178905,
    "sha256": "bdfadfc5c3063bb2ffbc2eea345a63b4689b36cab741c4df2cca622c2bc63012",
    "subset": "primal",
    "provenance": {
@@ -9909,7 +9909,7 @@
    "n_cons": 261877,
    "nnz": 639474,
    "file_bytes": 3950512,
-   "meta_bytes": 159017,
+   "meta_bytes": 159181,
    "sha256": "c639be0782d3a9ce5d16b8b31abda6305a7a6557bb2e7eb8f1faa3eca688a867",
    "subset": "primal",
    "provenance": {
@@ -9941,7 +9941,7 @@
    "n_cons": 509809,
    "nnz": 1265750,
    "file_bytes": 8474733,
-   "meta_bytes": 3326174,
+   "meta_bytes": 3326338,
    "sha256": "59f272b82ce3f525761726eafab30c9a4ca99e378307f165f8ab49ff239b0a51",
    "subset": "primal",
    "provenance": {
@@ -9973,7 +9973,7 @@
    "n_cons": 104972,
    "nnz": 452044,
    "file_bytes": 2409919,
-   "meta_bytes": 2412,
+   "meta_bytes": 2576,
    "sha256": "6e6bc1a4437df5c572030d0214be623b6869af82b185a9fa6edea1f984bf2d94",
    "subset": "primal",
    "provenance": {
@@ -10005,7 +10005,7 @@
    "n_cons": 19912111,
    "nnz": 47513027,
    "file_bytes": 355049160,
-   "meta_bytes": 126201,
+   "meta_bytes": 126365,
    "sha256": "eda3fb620d04570f5048f9c2899acf757d61fec7b539d584eb5f7e9428d61398",
    "subset": "primal",
    "provenance": {
@@ -10037,7 +10037,7 @@
    "n_cons": 21609,
    "nnz": 371467,
    "file_bytes": 1443052,
-   "meta_bytes": 195185,
+   "meta_bytes": 195349,
    "sha256": "b7c669dfd4dd2d99113900db0ed1e0b33e1a06bb58456ac7680cb38e03453bb0",
    "subset": "primal",
    "provenance": {
@@ -10069,7 +10069,7 @@
    "n_cons": 48864,
    "nnz": 126561,
    "file_bytes": 735643,
-   "meta_bytes": 1483,
+   "meta_bytes": 1647,
    "sha256": "677f5ca3ec96750721c53b90776820856d52a150577b2f7a0dd034a766d126cb",
    "subset": "primal",
    "provenance": {
@@ -10101,7 +10101,7 @@
    "n_cons": 46012,
    "nnz": 302184,
    "file_bytes": 958484,
-   "meta_bytes": 1575,
+   "meta_bytes": 1739,
    "sha256": "affb4e3f2fd94e3ef5ef6a382e3e3f3763fad5dda938b3ed4d0bd45a31f8565f",
    "subset": "primal",
    "provenance": {
@@ -10133,7 +10133,7 @@
    "n_cons": 184575,
    "nnz": 585839,
    "file_bytes": 3662973,
-   "meta_bytes": 4330,
+   "meta_bytes": 4494,
    "sha256": "748049086a54a1b6be00cc7ae05022dbcef8f889b47ebb1211a440e48567828c",
    "subset": "primal",
    "provenance": {
@@ -10165,7 +10165,7 @@
    "n_cons": 67161,
    "nnz": 266448,
    "file_bytes": 1750555,
-   "meta_bytes": 1009419,
+   "meta_bytes": 1009583,
    "sha256": "931d74ffda854782d6c716fc1632f770be2ce12dc437d0329ed3247af41bd6ac",
    "subset": "primal",
    "provenance": {
@@ -10197,7 +10197,7 @@
    "n_cons": 7875,
    "nnz": 204518,
    "file_bytes": 700824,
-   "meta_bytes": 50694,
+   "meta_bytes": 50858,
    "sha256": "19ab58c98e0822bf371be7245a5a3172448edbf4acfa186510bf9618f0fe6ed8",
    "subset": "primal",
    "provenance": {
@@ -10229,7 +10229,7 @@
    "n_cons": 2303,
    "nnz": 761756,
    "file_bytes": 4987115,
-   "meta_bytes": 217340,
+   "meta_bytes": 217504,
    "sha256": "f52d7aa0824783fe12036622ca528c360201253423f9a6abd37f34acd62f5d3f",
    "subset": "primal",
    "provenance": {
@@ -10261,7 +10261,7 @@
    "n_cons": 52983,
    "nnz": 1250570,
    "file_bytes": 4287174,
-   "meta_bytes": 1316,
+   "meta_bytes": 1480,
    "sha256": "2403e423ffdf52f1df7dc3580865c12b91db4f7648d4af640af34c4029d697d2",
    "subset": "primal",
    "provenance": {
@@ -10293,7 +10293,7 @@
    "n_cons": 51776,
    "nnz": 1263377,
    "file_bytes": 4331758,
-   "meta_bytes": 2334,
+   "meta_bytes": 2498,
    "sha256": "ab49db70c1cceca2c1d5ae8a9a66e282c2bfbbdc403974ddb9811bcf3df28960",
    "subset": "primal",
    "provenance": {
@@ -10325,7 +10325,7 @@
    "n_cons": 73746,
    "nnz": 2015543,
    "file_bytes": 6951766,
-   "meta_bytes": 870,
+   "meta_bytes": 1034,
    "sha256": "942801baea058db7e5f8f2f2f5bef7b38f5da6596aca2232885dc8951c5b868f",
    "subset": "primal",
    "provenance": {
@@ -10353,7 +10353,7 @@
    "n_cons": 8382,
    "nnz": 3944988,
    "file_bytes": 10130417,
-   "meta_bytes": 105817,
+   "meta_bytes": 105981,
    "sha256": "b8343e5e30be9650777641eec1b4820c0c9ebdc1dc2edc889b8cf99908f83cc2",
    "subset": "primal",
    "provenance": {
@@ -10385,7 +10385,7 @@
    "n_cons": 8382,
    "nnz": 3953388,
    "file_bytes": 10174169,
-   "meta_bytes": 135038,
+   "meta_bytes": 135202,
    "sha256": "8497c872879d035e1b8e539dcc173d2d52d52e3e538ab985970f99b496468fcc",
    "subset": "primal",
    "provenance": {
@@ -10417,7 +10417,7 @@
    "n_cons": 8382,
    "nnz": 3970188,
    "file_bytes": 10273405,
-   "meta_bytes": 202558,
+   "meta_bytes": 202722,
    "sha256": "3f5066fda2d3c95a526d4be91d9f4bf171812df87e540f68fa57c9c217f60902",
    "subset": "primal",
    "provenance": {
@@ -10449,7 +10449,7 @@
    "n_cons": 113555,
    "nnz": 311529,
    "file_bytes": 1781298,
-   "meta_bytes": 92991,
+   "meta_bytes": 93155,
    "sha256": "0d44f26431b2b2e01ed3b69749c211af7b2a78856032dd20e207e639010973a5",
    "subset": "primal",
    "provenance": {
@@ -10481,7 +10481,7 @@
    "n_cons": 137123,
    "nnz": 376775,
    "file_bytes": 2232911,
-   "meta_bytes": 169041,
+   "meta_bytes": 169205,
    "sha256": "1986cc6852d37169c47d49b75619ac218d582c7bec2a0291ead4d0989eeead7a",
    "subset": "primal",
    "provenance": {
@@ -10513,7 +10513,7 @@
    "n_cons": 7147,
    "nnz": 456124,
    "file_bytes": 1526064,
-   "meta_bytes": 38842,
+   "meta_bytes": 39006,
    "sha256": "547b24922e34bfae0a50143da4f460838d422cd99090ad4a06248358cb1e8e7a",
    "subset": "primal",
    "provenance": {
@@ -10545,7 +10545,7 @@
    "n_cons": 49386,
    "nnz": 117001,
    "file_bytes": 691326,
-   "meta_bytes": 177911,
+   "meta_bytes": 178075,
    "sha256": "235b8b668cfebde8c0b6077feb2d99639f3cd4f4f0ae136c55d063097ef1106e",
    "subset": "primal",
    "provenance": {
@@ -10577,7 +10577,7 @@
    "n_cons": 17359,
    "nnz": 140082,
    "file_bytes": 630117,
-   "meta_bytes": 1934,
+   "meta_bytes": 2098,
    "sha256": "981aebc6c4b5585b7e84dc2a7dd139660c82fa4f78f53847d4ec09ac09d44949",
    "subset": "primal",
    "provenance": {
@@ -10609,7 +10609,7 @@
    "n_cons": 270816,
    "nnz": 975084,
    "file_bytes": 5990720,
-   "meta_bytes": 3510003,
+   "meta_bytes": 3510167,
    "sha256": "72c1fd2d8ec8060eb0e9453854e3e9c5ae272b0ddf6890bdde215ac7c76fc7f7",
    "subset": "primal",
    "provenance": {
@@ -10641,7 +10641,7 @@
    "n_cons": 408192,
    "nnz": 1746396,
    "file_bytes": 9946768,
-   "meta_bytes": 5317695,
+   "meta_bytes": 5317859,
    "sha256": "efc321980857ab10b0833ddb2393e8c3d793e181f68f17dbba30ffd150cf2d51",
    "subset": "primal",
    "provenance": {
@@ -10673,7 +10673,7 @@
    "n_cons": 341424,
    "nnz": 1456692,
    "file_bytes": 8035567,
-   "meta_bytes": 4413003,
+   "meta_bytes": 4413167,
    "sha256": "63b32c1a01760d7f9cfbdc163cdd841dca4c76f31a7a60448ceb74752171e420",
    "subset": "primal",
    "provenance": {
@@ -10705,7 +10705,7 @@
    "n_cons": 408336,
    "nnz": 1746684,
    "file_bytes": 9959439,
-   "meta_bytes": 5317162,
+   "meta_bytes": 5317326,
    "sha256": "18c71dd20b368008f4b8ae4fbd84e6b4023c1e834a28e72ec26a4380f7b1b8f5",
    "subset": "primal",
    "provenance": {
@@ -10737,7 +10737,7 @@
    "n_cons": 2047,
    "nnz": 148434,
    "file_bytes": 553953,
-   "meta_bytes": 119538,
+   "meta_bytes": 119767,
    "sha256": "e35becd3fef25a4ef9dbda9a5fb6c9ff33c76bc88737e3610cb323872226b4e1",
    "subset": "primal",
    "provenance": {
@@ -10769,7 +10769,7 @@
    "n_cons": 546733,
    "nnz": 1362474,
    "file_bytes": 7022693,
-   "meta_bytes": 290279,
+   "meta_bytes": 290443,
    "sha256": "5be3085ea3b80b4aeab6b43c80e9f441c117a0c87be215b9461edde5c29c7f21",
    "subset": "primal",
    "provenance": {
@@ -10801,7 +10801,7 @@
    "n_cons": 322248,
    "nnz": 1440672,
    "file_bytes": 8166693,
-   "meta_bytes": 4353927,
+   "meta_bytes": 4354091,
    "sha256": "fb24313edf04938d48472fe06a4311427e81ff1b0bdb9235cf1a6bb62d75a3c3",
    "subset": "primal",
    "provenance": {
@@ -10833,7 +10833,7 @@
    "n_cons": 489818,
    "nnz": 2053548,
    "file_bytes": 11664309,
-   "meta_bytes": 6292611,
+   "meta_bytes": 6292775,
    "sha256": "399fa8323cd339a97a0f4e18c86bd4fa1e2fcbc3a0cbb9e08797638cc8bb5a83",
    "subset": "primal",
    "provenance": {
@@ -10865,7 +10865,7 @@
    "n_cons": 648984,
    "nnz": 2796682,
    "file_bytes": 15555177,
-   "meta_bytes": 8617679,
+   "meta_bytes": 8617843,
    "sha256": "37a90815a746539968dda4fbbea6597be85504b42261639a5f17fa572a2cbcbd",
    "subset": "primal",
    "provenance": {
@@ -10897,7 +10897,7 @@
    "n_cons": 849226,
    "nnz": 3585988,
    "file_bytes": 20408175,
-   "meta_bytes": 11091539,
+   "meta_bytes": 11091703,
    "sha256": "6de4cccf5d3d7a7961ed9797c5a0e12edb19f0e42b5e93d9afc0ced18e9a33c8",
    "subset": "primal",
    "provenance": {
@@ -10929,7 +10929,7 @@
    "n_cons": 690242,
    "nnz": 3032792,
    "file_bytes": 16952138,
-   "meta_bytes": 9370222,
+   "meta_bytes": 9370386,
    "sha256": "5a6fd51a35cff6c3480cab2349382a1807c2e47a7e3bc1081f61fdd276121145",
    "subset": "primal",
    "provenance": {
@@ -10961,7 +10961,7 @@
    "n_cons": 649124,
    "nnz": 2796962,
    "file_bytes": 15552373,
-   "meta_bytes": 8643088,
+   "meta_bytes": 8643252,
    "sha256": "68059cd39094366e98ff00dd3093d52ff68a1bb37ab0e949dcdce257fa984358",
    "subset": "primal",
    "provenance": {
@@ -10993,7 +10993,7 @@
    "n_cons": 859504,
    "nnz": 3643968,
    "file_bytes": 20742441,
-   "meta_bytes": 11302453,
+   "meta_bytes": 11302617,
    "sha256": "49dcfd50bb6725a69872db7c32901efa2315d8ad7b44deaab28fab199c9768a3",
    "subset": "primal",
    "provenance": {
@@ -11025,7 +11025,7 @@
    "n_cons": 904358,
    "nnz": 3911502,
    "file_bytes": 22137831,
-   "meta_bytes": 12144021,
+   "meta_bytes": 12144185,
    "sha256": "8b3c2d0751cc18c71cb1a1aa2092eb4605c408d4d2dffd72f45aeb9d8027d810",
    "subset": "primal",
    "provenance": {
@@ -11057,7 +11057,7 @@
    "n_cons": 531569,
    "nnz": 1599180,
    "file_bytes": 8517574,
-   "meta_bytes": 691,
+   "meta_bytes": 855,
    "sha256": "c0d19f108708399a58ef4723ed5d0ed462bbbf4ea4cdb44e31e92d62741ebc56",
    "subset": "primal",
    "provenance": {
@@ -11080,7 +11080,7 @@
    "n_cons": 776608,
    "nnz": 3353966,
    "file_bytes": 18932476,
-   "meta_bytes": 10393430,
+   "meta_bytes": 10393594,
    "sha256": "1113f4f307aa4bc3a9280bd59ef41ba62264e5924fccd9dd3ce9ccf98f23e5df",
    "subset": "primal",
    "provenance": {
@@ -11112,7 +11112,7 @@
    "n_cons": 29452,
    "nnz": 133686,
    "file_bytes": 599896,
-   "meta_bytes": 323791,
+   "meta_bytes": 323955,
    "sha256": "c78bc036043236d4425a1369e2351a357e5b9a96d7d7643e6c4d269c1e40306b",
    "subset": "primal",
    "provenance": {
@@ -11144,7 +11144,7 @@
    "n_cons": 42256,
    "nnz": 175794,
    "file_bytes": 852741,
-   "meta_bytes": 169316,
+   "meta_bytes": 169480,
    "sha256": "dc3dc7366a7507339cc5f508b8ecb860d636aa7ded45af890fb186d9a71380e3",
    "subset": "primal",
    "provenance": {
@@ -11176,7 +11176,7 @@
    "n_cons": 42256,
    "nnz": 176586,
    "file_bytes": 854244,
-   "meta_bytes": 167217,
+   "meta_bytes": 167381,
    "sha256": "31edd25acfff5ef101ec06e3bc5191615dc4daf1b36afeae73d11fb78156aafa",
    "subset": "primal",
    "provenance": {
@@ -11208,7 +11208,7 @@
    "n_cons": 42124,
    "nnz": 171702,
    "file_bytes": 843676,
-   "meta_bytes": 167407,
+   "meta_bytes": 167571,
    "sha256": "36b03bdc195a67c5443e51fad64c2cd5bf2c02a283673464efee2a2bbd525720",
    "subset": "primal",
    "provenance": {
@@ -11240,7 +11240,7 @@
    "n_cons": 13897,
    "nnz": 245756,
    "file_bytes": 1068863,
-   "meta_bytes": 8348,
+   "meta_bytes": 8512,
    "sha256": "918eabe48c784a3fee35247b04604d80457e9075551fa527c007993312b49c8f",
    "subset": "primal",
    "provenance": {
@@ -11272,7 +11272,7 @@
    "n_cons": 23458,
    "nnz": 171534,
    "file_bytes": 904872,
-   "meta_bytes": 21481,
+   "meta_bytes": 21645,
    "sha256": "39a3cea90bd35e09e249a722a6ca6dddfec75931ad5e330a5f178d1b12dcac54",
    "subset": "primal",
    "provenance": {
@@ -11304,7 +11304,7 @@
    "n_cons": 21703,
    "nnz": 101560,
    "file_bytes": 593050,
-   "meta_bytes": 1108,
+   "meta_bytes": 1337,
    "sha256": "fa103a3428d4fb35525e361812da43a32259b007f7f224f8057b272d6897d2b2",
    "subset": "primal",
    "provenance": {
@@ -11336,7 +11336,7 @@
    "n_cons": 1085,
    "nnz": 200055,
    "file_bytes": 669278,
-   "meta_bytes": 55946,
+   "meta_bytes": 56175,
    "sha256": "9c763f964b87673b77923d4c96530981ac39a2f8c606a1ed6315e679462b9857",
    "subset": "primal",
    "provenance": {
@@ -11368,7 +11368,7 @@
    "n_cons": 25849,
    "nnz": 101360,
    "file_bytes": 521076,
-   "meta_bytes": 6637,
+   "meta_bytes": 6850,
    "sha256": "b55716af97eba65af21741389d5641ca306615679ab45f48f33db5d2c3c74638",
    "subset": "primal",
    "provenance": {
@@ -11400,7 +11400,7 @@
    "n_cons": 850,
    "nnz": 384329,
    "file_bytes": 1050731,
-   "meta_bytes": 4410,
+   "meta_bytes": 4639,
    "sha256": "94915772f163fdc05d8034a19b20f5d03af2b915371a975b92e26a71f3cdc419",
    "subset": "primal",
    "provenance": {
@@ -11432,7 +11432,7 @@
    "n_cons": 93291,
    "nnz": 350438,
    "file_bytes": 2894452,
-   "meta_bytes": 10492,
+   "meta_bytes": 10721,
    "sha256": "9aa19479cac04d9bb01a5560d52f060d76ab30d4a625890e39601290aec55bfb",
    "subset": "primal",
    "provenance": {
@@ -11464,7 +11464,7 @@
    "n_cons": 93360,
    "nnz": 350576,
    "file_bytes": 2897308,
-   "meta_bytes": 12299,
+   "meta_bytes": 12528,
    "sha256": "2138ab7a0c08123a0af59a4c239d970b943f8971b95b9b12f4bcfc94d7848d2d",
    "subset": "primal",
    "provenance": {
@@ -11496,7 +11496,7 @@
    "n_cons": 85808,
    "nnz": 682376,
    "file_bytes": 3203954,
-   "meta_bytes": 1247,
+   "meta_bytes": 1476,
    "sha256": "fc194da436ad49244c31478c80daf4da22d60f0b98f4b5114750f935916b72ea",
    "subset": "primal",
    "provenance": {
@@ -11528,7 +11528,7 @@
    "n_cons": 65,
    "nnz": 258309,
    "file_bytes": 1338416,
-   "meta_bytes": 131240,
+   "meta_bytes": 131453,
    "sha256": "016f7b48a52b8317ed81ed6a071562aeb4c2de79b9601216a6b084ea7896e80c",
    "subset": "primal",
    "provenance": {
@@ -11560,7 +11560,7 @@
    "n_cons": 1570,
    "nnz": 540443,
    "file_bytes": 1888469,
-   "meta_bytes": 454595,
+   "meta_bytes": 454824,
    "sha256": "ce15bf4ea25214803ef9003b97ccd6af940fb4490a38de91b99fb809cd9a83c4",
    "subset": "primal",
    "provenance": {
@@ -11592,7 +11592,7 @@
    "n_cons": 34224,
    "nnz": 104160,
    "file_bytes": 504609,
-   "meta_bytes": 3252,
+   "meta_bytes": 3481,
    "sha256": "9d90090985f538f4c7f2770f222ed56f71057eff02ec6881adbae2e11fdf0274",
    "subset": "primal",
    "provenance": {
@@ -11624,7 +11624,7 @@
    "n_cons": 12498,
    "nnz": 169861,
    "file_bytes": 678539,
-   "meta_bytes": 67596,
+   "meta_bytes": 67825,
    "sha256": "ef2a97eb8a6917128839b2aa1157aeeea27300574e5f317c09b994227eea8be8",
    "subset": "primal",
    "provenance": {
@@ -11656,7 +11656,7 @@
    "n_cons": 2527,
    "nnz": 483560,
    "file_bytes": 1694903,
-   "meta_bytes": 226102,
+   "meta_bytes": 226331,
    "sha256": "70572561e7f203f94ca1ae89429e43e8c39c16070a7fcc065bff4ccd9c5a8e11",
    "subset": "primal",
    "provenance": {
@@ -11688,7 +11688,7 @@
    "n_cons": 1036,
    "nnz": 251946,
    "file_bytes": 767954,
-   "meta_bytes": 3773,
+   "meta_bytes": 3986,
    "sha256": "932b6484612d12b213a77a13f8b063710d8d372c364af8735239f127e1a2569b",
    "subset": "primal",
    "provenance": {
@@ -11720,7 +11720,7 @@
    "n_cons": 46324,
    "nnz": 313180,
    "file_bytes": 1259774,
-   "meta_bytes": 3916,
+   "meta_bytes": 4145,
    "sha256": "6383f7b3363442e287ffac51937a9ab87cf7a72b898bd6a949cd56bce4c67bd0",
    "subset": "primal",
    "provenance": {
@@ -11752,7 +11752,7 @@
    "n_cons": 119589,
    "nnz": 615282,
    "file_bytes": 3251060,
-   "meta_bytes": 14425,
+   "meta_bytes": 14638,
    "sha256": "d0928d54f4e619d27995515c76a0e60fb2179e9005f0a44c822bcc16ca842490",
    "subset": "primal",
    "provenance": {
@@ -11784,7 +11784,7 @@
    "n_cons": 13895,
    "nnz": 568444,
    "file_bytes": 1636139,
-   "meta_bytes": 157377,
+   "meta_bytes": 157590,
    "sha256": "54965409dd0114667ceca7777ded1d7d2771f76140431abae066c328051f8690",
    "subset": "primal",
    "provenance": {
@@ -11816,7 +11816,7 @@
    "n_cons": 131991,
    "nnz": 410582,
    "file_bytes": 2127417,
-   "meta_bytes": 3804,
+   "meta_bytes": 4017,
    "sha256": "50d51c4296199daaddfa3a6fffe69ee49e3548258a3065012cf1b04c4482fc13",
    "subset": "primal",
    "provenance": {
@@ -11848,7 +11848,7 @@
    "n_cons": 34960,
    "nnz": 178112,
    "file_bytes": 869160,
-   "meta_bytes": 35725,
+   "meta_bytes": 35954,
    "sha256": "6f93a21cfbfbb518c97b094550a160dff52731ef90b9eae3d598a7d73dd2cef4",
    "subset": "primal",
    "provenance": {
@@ -11880,7 +11880,7 @@
    "n_cons": 1997,
    "nnz": 199862,
    "file_bytes": 676737,
-   "meta_bytes": 22430,
+   "meta_bytes": 22643,
    "sha256": "4cb325163bff88b6dcfd07fa27353320321851c10a4f80a5d42f33ad79269aa9",
    "subset": "primal",
    "provenance": {
@@ -11912,7 +11912,7 @@
    "n_cons": 24496,
    "nnz": 116733,
    "file_bytes": 583913,
-   "meta_bytes": 13557,
+   "meta_bytes": 13770,
    "sha256": "eaa13ea19f09fa76d17dd29ff9d04ae58be8ce1eadb05aafe0b5be14e573d36a",
    "subset": "primal",
    "provenance": {
@@ -11944,7 +11944,7 @@
    "n_cons": 615388,
    "nnz": 1854012,
    "file_bytes": 8648707,
-   "meta_bytes": 17828,
+   "meta_bytes": 18057,
    "sha256": "c393be8eead6c3bc91e5a2c9f07c41a6b85b6d38bcf34908263a2e5e3fcf998e",
    "subset": "primal",
    "provenance": {
@@ -11976,7 +11976,7 @@
    "n_cons": 81725,
    "nnz": 190670,
    "file_bytes": 998439,
-   "meta_bytes": 3191,
+   "meta_bytes": 3420,
    "sha256": "c54f0dbc1f4de780baf6757c96da7102dc012fef41718532d923b1200b47a047",
    "subset": "primal",
    "provenance": {
@@ -12008,7 +12008,7 @@
    "n_cons": 2932,
    "nnz": 100933,
    "file_bytes": 327419,
-   "meta_bytes": 7412,
+   "meta_bytes": 7625,
    "sha256": "6ae4afaad9e637795e9d085d9fe20c5441902cbf150b47a0618eeaf4f166ed6c",
    "subset": "primal",
    "provenance": {
@@ -12040,7 +12040,7 @@
    "n_cons": 35407,
    "nnz": 105882,
    "file_bytes": 562769,
-   "meta_bytes": 14675,
+   "meta_bytes": 14888,
    "sha256": "e603e0e377e9afe3f4fddbe60ff25184ead94ac05bd52a2f8121f3c7ce5678b3",
    "subset": "primal",
    "provenance": {
@@ -12072,7 +12072,7 @@
    "n_cons": 51884,
    "nnz": 239700,
    "file_bytes": 1204502,
-   "meta_bytes": 9448,
+   "meta_bytes": 9661,
    "sha256": "7d274d412539ad60b8386b572dd5416b354cf4b3a7cb685f2757638389a7f222",
    "subset": "primal",
    "provenance": {
@@ -12104,7 +12104,7 @@
    "n_cons": 41,
    "nnz": 335643,
    "file_bytes": 1075784,
-   "meta_bytes": 2495,
+   "meta_bytes": 2708,
    "sha256": "56899f19a7f80bf032512a7b16f029ea7aecd5ffd03a42a4294e8bf9366926b0",
    "subset": "primal",
    "provenance": {
@@ -12136,7 +12136,7 @@
    "n_cons": 139280,
    "nnz": 424272,
    "file_bytes": 2302605,
-   "meta_bytes": 1382979,
+   "meta_bytes": 1383208,
    "sha256": "fcf60634f986f9228f3c098b309b3d6009b1d867879eda924afeff8a575b719c",
    "subset": "primal",
    "provenance": {
@@ -12168,7 +12168,7 @@
    "n_cons": 139280,
    "nnz": 429032,
    "file_bytes": 2307938,
-   "meta_bytes": 1360451,
+   "meta_bytes": 1360664,
    "sha256": "1d3d1589a7b78cb456ed52b44586632eebaf935200ca555c4da54b1b7e5c68df",
    "subset": "primal",
    "provenance": {
@@ -12200,7 +12200,7 @@
    "n_cons": 23240,
    "nnz": 121764,
    "file_bytes": 663607,
-   "meta_bytes": 5270,
+   "meta_bytes": 5483,
    "sha256": "91413dd152bf11efbe7eb71d2fa9e367564cb1d7f7f7a5fbefd33b277450abca",
    "subset": "primal",
    "provenance": {
@@ -12232,7 +12232,7 @@
    "n_cons": 735,
    "nnz": 223261,
    "file_bytes": 670765,
-   "meta_bytes": 107359,
+   "meta_bytes": 107588,
    "sha256": "0ee6be1b0770cf305dbb2cf2742cffa28dbf8eb107faf043dece42dba269fe82",
    "subset": "primal",
    "provenance": {
@@ -12264,7 +12264,7 @@
    "n_cons": 1812472,
    "nnz": 26170428,
    "file_bytes": 100512109,
-   "meta_bytes": 83924,
+   "meta_bytes": 84088,
    "sha256": "4c2d02324ff5f0455f1de162afbd2539476ac48bc64f9836bcab5d3b2c58d4d0",
    "subset": "primal",
    "provenance": {
@@ -12296,7 +12296,7 @@
    "n_cons": 14062,
    "nnz": 622800,
    "file_bytes": 2449244,
-   "meta_bytes": 36392,
+   "meta_bytes": 36556,
    "sha256": "33c995f487a480f5fcc36089bf6d209da71bada90b2c39d6c48e8f0d65ef36c5",
    "subset": "primal",
    "provenance": {
@@ -12328,7 +12328,7 @@
    "n_cons": 8668,
    "nnz": 621829,
    "file_bytes": 2296392,
-   "meta_bytes": 35975,
+   "meta_bytes": 36139,
    "sha256": "d6bf28157c8938f8733a54e4b117d94faeef725f8de757ce2d806274d4121be1",
    "subset": "primal",
    "provenance": {
@@ -12360,7 +12360,7 @@
    "n_cons": 4872,
    "nnz": 208050,
    "file_bytes": 822511,
-   "meta_bytes": 15773,
+   "meta_bytes": 15937,
    "sha256": "68f855f84eea485fb9473728e2a7a1aba561bd01ceb5576a66c7744bd545180a",
    "subset": "primal",
    "provenance": {
@@ -12392,7 +12392,7 @@
    "n_cons": 5032,
    "nnz": 208410,
    "file_bytes": 823228,
-   "meta_bytes": 10855,
+   "meta_bytes": 11019,
    "sha256": "25787b0513fcc4a7f4c58474599295b92ebe37f69253302a33b015e1653e0e43",
    "subset": "primal",
    "provenance": {
@@ -12424,7 +12424,7 @@
    "n_cons": 3522,
    "nnz": 204000,
    "file_bytes": 776135,
-   "meta_bytes": 10869,
+   "meta_bytes": 11033,
    "sha256": "98ba9800251d61653f4a0d40d508f935f4d5ba4c9a9ea5dc330471fc5c184726",
    "subset": "primal",
    "provenance": {
@@ -12456,7 +12456,7 @@
    "n_cons": 36,
    "nnz": 636666,
    "file_bytes": 2466592,
-   "meta_bytes": 1560367,
+   "meta_bytes": 1560596,
    "sha256": "83e25e55a7956a098ace2dceaac1f55128215d017f83ea114ce3e70fba1dddd2",
    "subset": "primal",
    "provenance": {
@@ -12488,7 +12488,7 @@
    "n_cons": 10525,
    "nnz": 1575578,
    "file_bytes": 6295689,
-   "meta_bytes": 985500,
+   "meta_bytes": 985729,
    "sha256": "b4043a6ad4ae9894b4fbcc04dc658a97a87dce8a5a917ba55bb4414c52c31a7e",
    "subset": "primal",
    "provenance": {
@@ -12520,7 +12520,7 @@
    "n_cons": 1320,
    "nnz": 154694,
    "file_bytes": 705645,
-   "meta_bytes": 920,
+   "meta_bytes": 1149,
    "sha256": "7aec7b6913b12d7770cf627d14d566c7320eb1c2e5fbbef97fc8f50adf2c30be",
    "subset": "primal",
    "provenance": {
@@ -12550,7 +12550,7 @@
    "n_cons": 266227,
    "nnz": 1062479,
    "file_bytes": 4925827,
-   "meta_bytes": 455937,
+   "meta_bytes": 456101,
    "sha256": "95f0768975878d7da5a77226f469cae086a54128fe3e9200c60137c5c40302fc",
    "subset": "primal",
    "provenance": {
@@ -12582,7 +12582,7 @@
    "n_cons": 239780,
    "nnz": 908634,
    "file_bytes": 4308855,
-   "meta_bytes": 499951,
+   "meta_bytes": 500115,
    "sha256": "bc5ecf053818d8e68fa10362b02282f9519d238e358c375f5609d2c2ee975df4",
    "subset": "primal",
    "provenance": {
@@ -12614,7 +12614,7 @@
    "n_cons": 31925,
    "nnz": 156378,
    "file_bytes": 700516,
-   "meta_bytes": 61288,
+   "meta_bytes": 61452,
    "sha256": "beeb64639d362ae2ac7cdbef2ec39e524d94ceb44bcdaf3a159377c204d6c572",
    "subset": "primal",
    "provenance": {
@@ -12646,7 +12646,7 @@
    "n_cons": 175664,
    "nnz": 542098,
    "file_bytes": 3097696,
-   "meta_bytes": 1119631,
+   "meta_bytes": 1119795,
    "sha256": "db0b45ace3899fa95f4dea9ca66d6826ebf06e66a2cd5ab1a675153603b50e89",
    "subset": "primal",
    "provenance": {
@@ -12678,7 +12678,7 @@
    "n_cons": 168336,
    "nnz": 480259,
    "file_bytes": 2825329,
-   "meta_bytes": 1276619,
+   "meta_bytes": 1276783,
    "sha256": "8c6be40f16a5ec94b8cf89837504e593838c7fc0498147a18f505b8f66dc0dff",
    "subset": "primal",
    "provenance": {
@@ -12710,7 +12710,7 @@
    "n_cons": 15562,
    "nnz": 190915,
    "file_bytes": 709611,
-   "meta_bytes": 11989,
+   "meta_bytes": 12153,
    "sha256": "c20d8e1c314c86a8b3861a46ae55f4d0dfdb153ba25d4afff2af04e0bb919ac0",
    "subset": "primal",
    "provenance": {
@@ -12742,7 +12742,7 @@
    "n_cons": 17470,
    "nnz": 224457,
    "file_bytes": 822585,
-   "meta_bytes": 9889,
+   "meta_bytes": 10053,
    "sha256": "7e2cf82737176ea53001a95ca9403c554903b56335fd6a957bfc97a90251f336",
    "subset": "primal",
    "provenance": {
@@ -12774,7 +12774,7 @@
    "n_cons": 301,
    "nnz": 629449,
    "file_bytes": 2812753,
-   "meta_bytes": 6344,
+   "meta_bytes": 6508,
    "sha256": "92472d75b865c286b7a6f80bcf97f89847c2a3a05e1f83fd4005db79aeafc1a3",
    "subset": "primal",
    "provenance": {
@@ -12806,7 +12806,7 @@
    "n_cons": 254,
    "nnz": 524690,
    "file_bytes": 2346373,
-   "meta_bytes": 1342,
+   "meta_bytes": 1506,
    "sha256": "a851d06fd9081c26a72279786d0dc23d17f24d0349c88b6f8a2b611bc4db57bd",
    "subset": "primal",
    "provenance": {
@@ -12838,7 +12838,7 @@
    "n_cons": 254,
    "nnz": 503427,
    "file_bytes": 2248392,
-   "meta_bytes": 15350,
+   "meta_bytes": 15514,
    "sha256": "a2cc6f432a803ae1ac68daaf98eba23beb2b89c2c260a8d5f080014c3404e004",
    "subset": "primal",
    "provenance": {
@@ -12870,7 +12870,7 @@
    "n_cons": 173603,
    "nnz": 406825,
    "file_bytes": 3273432,
-   "meta_bytes": 10335,
+   "meta_bytes": 10499,
    "sha256": "25129b443b635decbda6e6919e14ffcf1c2c48aa3df64ee231f924033c4a684a",
    "subset": "primal",
    "provenance": {
@@ -12902,7 +12902,7 @@
    "n_cons": 46843,
    "nnz": 392086,
    "file_bytes": 1858894,
-   "meta_bytes": 2199,
+   "meta_bytes": 2412,
    "sha256": "b852734a5ba624f09a7b76f218a580912b1d9cb5ce6026f3cf52ca737878bd71",
    "subset": "primal",
    "provenance": {
@@ -12934,7 +12934,7 @@
    "n_cons": 125899,
    "nnz": 852384,
    "file_bytes": 3560310,
-   "meta_bytes": 2178,
+   "meta_bytes": 2407,
    "sha256": "a54031b3dd33574456c47bc82c3e1c480c7e562340ddb47d3013aefbb99c5e1d",
    "subset": "primal",
    "provenance": {
@@ -12966,7 +12966,7 @@
    "n_cons": 62800,
    "nnz": 138670,
    "file_bytes": 808136,
-   "meta_bytes": 847,
+   "meta_bytes": 1060,
    "sha256": "5325bfc943d9282ea78a0a70c7483313134df5388a10836e6a381d35f91aa9ea",
    "subset": "primal",
    "provenance": {
@@ -12994,7 +12994,7 @@
    "n_cons": 97389,
    "nnz": 241240,
    "file_bytes": 1254702,
-   "meta_bytes": 21203,
+   "meta_bytes": 21432,
    "sha256": "313a9bbca82050af50919bef6ae46e8310e0e3e9b410bf1c8dca83dfd58596eb",
    "subset": "primal",
    "provenance": {
@@ -13026,7 +13026,7 @@
    "n_cons": 197155,
    "nnz": 485784,
    "file_bytes": 2548750,
-   "meta_bytes": 17145,
+   "meta_bytes": 17374,
    "sha256": "d3832b1955c2072284a52fbbc0e899b408dfee3c6505f8133a385b87a4594f47",
    "subset": "primal",
    "provenance": {
@@ -13058,7 +13058,7 @@
    "n_cons": 358395,
    "nnz": 879732,
    "file_bytes": 4554304,
-   "meta_bytes": 21467,
+   "meta_bytes": 21696,
    "sha256": "b6e1213e843754eff597698fbcdf228c1bd3561fa4d03f65553b97cf4b037a43",
    "subset": "primal",
    "provenance": {
@@ -13090,7 +13090,7 @@
    "n_cons": 52692,
    "nnz": 604216,
    "file_bytes": 2318509,
-   "meta_bytes": 104090,
+   "meta_bytes": 104319,
    "sha256": "98c4559456a716af1eab4923a8a3c8ed87bc331443e229e5de97279be74023f4",
    "subset": "primal",
    "provenance": {
@@ -13122,7 +13122,7 @@
    "n_cons": 26897,
    "nnz": 303291,
    "file_bytes": 1171677,
-   "meta_bytes": 70111,
+   "meta_bytes": 70340,
    "sha256": "cdb40c25460f3538f236e33bff71732c96267f3bc5d33c5fa4b40af050dcdf95",
    "subset": "primal",
    "provenance": {
@@ -13154,7 +13154,7 @@
    "n_cons": 42374,
    "nnz": 483846,
    "file_bytes": 1858964,
-   "meta_bytes": 91326,
+   "meta_bytes": 91555,
    "sha256": "9f1a848319bc2c4c1c94d32113cbbba6f71d96ab08a8692aeb277ebd41170b84",
    "subset": "primal",
    "provenance": {
@@ -13186,7 +13186,7 @@
    "n_cons": 225,
    "nnz": 984143,
    "file_bytes": 3173866,
-   "meta_bytes": 6622,
+   "meta_bytes": 6835,
    "sha256": "a527c299a26eae6be45cfdd46c7e27cc82f7b4cff3c427fffd31af2fdb7b9ef6",
    "subset": "primal",
    "provenance": {
@@ -13218,7 +13218,7 @@
    "n_cons": 14733,
    "nnz": 1777917,
    "file_bytes": 10709873,
-   "meta_bytes": 385104,
+   "meta_bytes": 385333,
    "sha256": "5eb832c8fa2fec62f526fc4f0391c881b47c4adf456d0ddadc4e585ac1a8c355",
    "subset": "primal",
    "provenance": {
@@ -13250,7 +13250,7 @@
    "n_cons": 10962,
    "nnz": 1318607,
    "file_bytes": 8337467,
-   "meta_bytes": 4533724,
+   "meta_bytes": 4533953,
    "sha256": "11130d6245b0160063d54a0e8885530f6b85d39d422dcafdb53da6c36d77d17a",
    "subset": "primal",
    "provenance": {
@@ -13282,7 +13282,7 @@
    "n_cons": 20916,
    "nnz": 283668,
    "file_bytes": 1131296,
-   "meta_bytes": 6104,
+   "meta_bytes": 6333,
    "sha256": "d004b7953f26977982b1ab4399699863e8c5d70e66c9da058697969d712fa9de",
    "subset": "primal",
    "provenance": {
@@ -13314,7 +13314,7 @@
    "n_cons": 20916,
    "nnz": 283668,
    "file_bytes": 1131470,
-   "meta_bytes": 6494,
+   "meta_bytes": 6723,
    "sha256": "49ae501bd3f1007a175363e1dbdb98155e2bdbb76add1f22b682339f5c274f6f",
    "subset": "primal",
    "provenance": {
@@ -13346,7 +13346,7 @@
    "n_cons": 16516,
    "nnz": 125048,
    "file_bytes": 636346,
-   "meta_bytes": 6833,
+   "meta_bytes": 7046,
    "sha256": "605db11c1142dd7412ad05109fb98db1670155c47cb7be79444b5917d7ec665a",
    "subset": "primal",
    "provenance": {
@@ -13378,7 +13378,7 @@
    "n_cons": 44804,
    "nnz": 698176,
    "file_bytes": 3056258,
-   "meta_bytes": 6225,
+   "meta_bytes": 6454,
    "sha256": "1b6e2a9d6550bd0f85d832509357e0be4ba22dd976d9630ab9d83598d6693279",
    "subset": "primal",
    "provenance": {
@@ -13410,7 +13410,7 @@
    "n_cons": 51712,
    "nnz": 821192,
    "file_bytes": 3573314,
-   "meta_bytes": 6364,
+   "meta_bytes": 6593,
    "sha256": "d0038a0aecd909365675cebd8882aa35f5e8e852c7515d86b3aff1eb5367f53b",
    "subset": "primal",
    "provenance": {
@@ -13442,7 +13442,7 @@
    "n_cons": 5440,
    "nnz": 109654,
    "file_bytes": 453930,
-   "meta_bytes": 51273,
+   "meta_bytes": 51486,
    "sha256": "6dd1159bfc8e15c732691c7b1a8a35edcdef3c8a9d070f04c49f99650e404719",
    "subset": "primal",
    "provenance": {
@@ -13474,7 +13474,7 @@
    "n_cons": 13304,
    "nnz": 147037,
    "file_bytes": 722094,
-   "meta_bytes": 189695,
+   "meta_bytes": 189908,
    "sha256": "342ee41106a6f369bfc9c3ad7af174f06259f4f5dfdb7f16d7966720816b471e",
    "subset": "primal",
    "provenance": {
@@ -13506,7 +13506,7 @@
    "n_cons": 242243,
    "nnz": 1027681,
    "file_bytes": 8313000,
-   "meta_bytes": 331866,
+   "meta_bytes": 332030,
    "sha256": "5f0cd5dbccc736ecba52a842c0d923088e0ba1b17053dce09e6cfacc378a582f",
    "subset": "primal",
    "provenance": {
@@ -13538,7 +13538,7 @@
    "n_cons": 242244,
    "nnz": 1028179,
    "file_bytes": 8312075,
-   "meta_bytes": 304960,
+   "meta_bytes": 305124,
    "sha256": "4fee300d9e7ebba6cc954ae5bc1566dbfd0c0ccdf37281d37f87f53d6f4e4668",
    "subset": "primal",
    "provenance": {
@@ -13570,7 +13570,7 @@
    "n_cons": 242245,
    "nnz": 1028677,
    "file_bytes": 8556284,
-   "meta_bytes": 289975,
+   "meta_bytes": 290139,
    "sha256": "f1e36ae51ae53cbb670b7b266e390286a255eac43ae40cc16545bf46c3e520b9",
    "subset": "primal",
    "provenance": {
@@ -13602,7 +13602,7 @@
    "n_cons": 45554,
    "nnz": 121571,
    "file_bytes": 722515,
-   "meta_bytes": 110958,
+   "meta_bytes": 111171,
    "sha256": "bd2b05dadd30f3e21b251e57d000c5f90e4f398e6f4400dc8963bf6230689bb7",
    "subset": "primal",
    "provenance": {
@@ -13634,7 +13634,7 @@
    "n_cons": 134322,
    "nnz": 1046077,
    "file_bytes": 6611907,
-   "meta_bytes": 91559,
+   "meta_bytes": 91788,
    "sha256": "2b1ed1ccc4c04e97f1f0886bc0adf1db6c3474c25a5085624548c9fdac361898",
    "subset": "primal",
    "provenance": {
@@ -13666,7 +13666,7 @@
    "n_cons": 133944,
    "nnz": 1044725,
    "file_bytes": 6596010,
-   "meta_bytes": 88831,
+   "meta_bytes": 89044,
    "sha256": "c0f224c007a8608053b240bef4070846b6148471e06654d6a3c624da7a318f65",
    "subset": "primal",
    "provenance": {
@@ -13698,7 +13698,7 @@
    "n_cons": 133377,
    "nnz": 1114011,
    "file_bytes": 7160471,
-   "meta_bytes": 58051,
+   "meta_bytes": 58280,
    "sha256": "76814cb68f6f0b203d81cdff1d5f53eb52f2b614b827fcfafeab0819620c107a",
    "subset": "primal",
    "provenance": {
@@ -13730,7 +13730,7 @@
    "n_cons": 50781,
    "nnz": 268173,
    "file_bytes": 1629250,
-   "meta_bytes": 486796,
+   "meta_bytes": 487025,
    "sha256": "8210a08233982b1ce4256a2af5e0d01ef0e02691a985453f62c9dccf3524fd3d",
    "subset": "primal",
    "provenance": {
@@ -13762,7 +13762,7 @@
    "n_cons": 54745,
    "nnz": 281260,
    "file_bytes": 1709411,
-   "meta_bytes": 698028,
+   "meta_bytes": 698257,
    "sha256": "accdae48182799811d084bb9f493be9a075b00f6bf48889d5d1a2d47ae779bc9",
    "subset": "primal",
    "provenance": {
@@ -13794,7 +13794,7 @@
    "n_cons": 1761,
    "nnz": 290968,
    "file_bytes": 1118167,
-   "meta_bytes": 72651,
+   "meta_bytes": 72864,
    "sha256": "e1a637acee74e2aef31e4abfacc1e125ee55ea56339aa697d33cbc5bdff1ecd0",
    "subset": "primal",
    "provenance": {
@@ -13826,7 +13826,7 @@
    "n_cons": 1435,
    "nnz": 426148,
    "file_bytes": 1559096,
-   "meta_bytes": 60113,
+   "meta_bytes": 60342,
    "sha256": "efb89457b9ad2c7bb0637de51be6f8bf1c69b22b443cf566ce662cbd18f773b4",
    "subset": "primal",
    "provenance": {
@@ -13858,7 +13858,7 @@
    "n_cons": 6505,
    "nnz": 1761016,
    "file_bytes": 4960583,
-   "meta_bytes": 3890,
+   "meta_bytes": 4054,
    "sha256": "c8286e14c7df6e709ce7a58c449785538226b1eeed1262475c1cab85132898e5",
    "subset": "primal",
    "provenance": {
@@ -13890,7 +13890,7 @@
    "n_cons": 7887,
    "nnz": 898813,
    "file_bytes": 2617045,
-   "meta_bytes": 126730,
+   "meta_bytes": 126894,
    "sha256": "0a52fbb29129a87d5560e1cd387eacca4be9b65cb3343c1e6b670720d0f00efa",
    "subset": "primal",
    "provenance": {
@@ -13922,7 +13922,7 @@
    "n_cons": 19435,
    "nnz": 3937200,
    "file_bytes": 11340522,
-   "meta_bytes": 478384,
+   "meta_bytes": 478548,
    "sha256": "722f7b9c006ab0eb476b6851c33d29502ea77223cf563731ac5b0d3624e4b5a4",
    "subset": "primal",
    "provenance": {
@@ -13954,7 +13954,7 @@
    "n_cons": 33150,
    "nnz": 9475672,
    "file_bytes": 26719591,
-   "meta_bytes": 567973,
+   "meta_bytes": 568137,
    "sha256": "e8d9bf12e917a9e80c08e3b18644d1a10b172513571224b36485bf535a08cf83",
    "subset": "primal",
    "provenance": {
@@ -13986,7 +13986,7 @@
    "n_cons": 40160,
    "nnz": 13566426,
    "file_bytes": 37903602,
-   "meta_bytes": 688571,
+   "meta_bytes": 688735,
    "sha256": "881d8c5f124e08a88bd8ced1a9a776b3000f514587df55b568b32412d55a4864",
    "subset": "primal",
    "provenance": {
@@ -14018,7 +14018,7 @@
    "n_cons": 61591,
    "nnz": 27329856,
    "file_bytes": 74573170,
-   "meta_bytes": 1064689,
+   "meta_bytes": 1064853,
    "sha256": "1fe594e16513ebcd22d2f090d13336ede63956b240952607fdf2ee8a350259af",
    "subset": "primal",
    "provenance": {
@@ -14050,7 +14050,7 @@
    "n_cons": 57346,
    "nnz": 171076,
    "file_bytes": 1101331,
-   "meta_bytes": 20073,
+   "meta_bytes": 20286,
    "sha256": "666e44231ca3bbbadbb7c56663b03645cba0eaa10cb8bf222c66fba1d1ba234e",
    "subset": "primal",
    "provenance": {
@@ -14082,7 +14082,7 @@
    "n_cons": 40502,
    "nnz": 161525,
    "file_bytes": 910610,
-   "meta_bytes": 423183,
+   "meta_bytes": 423347,
    "sha256": "0eac79f569fdf511315d8f1f648a2b4a801880545cc8ed96406bbcb84513794b",
    "subset": "primal",
    "provenance": {
@@ -14114,7 +14114,7 @@
    "n_cons": 20489,
    "nnz": 211915,
    "file_bytes": 1057711,
-   "meta_bytes": 170084,
+   "meta_bytes": 170248,
    "sha256": "d9befa1580b004670ef76cc2319871da7d2cae40a4bf042b4da2552fdee3055f",
    "subset": "primal",
    "provenance": {
@@ -14146,7 +14146,7 @@
    "n_cons": 59023,
    "nnz": 135627,
    "file_bytes": 948563,
-   "meta_bytes": 94473,
+   "meta_bytes": 94637,
    "sha256": "b1d761079eac9f1da954ac1544ad4a800e01e467dfebfdfc428ef79851af3030",
    "subset": "primal",
    "provenance": {
@@ -14178,7 +14178,7 @@
    "n_cons": 16384,
    "nnz": 398774,
    "file_bytes": 1956254,
-   "meta_bytes": 4978,
+   "meta_bytes": 5142,
    "sha256": "e4f9297ea9e540dabf7dcaaa862a1b21a05fc1d2b92c3b637b8fbe5a40d1d946",
    "subset": "primal",
    "provenance": {
@@ -14210,7 +14210,7 @@
    "n_cons": 28923,
    "nnz": 221321,
    "file_bytes": 816782,
-   "meta_bytes": 40070,
+   "meta_bytes": 40234,
    "sha256": "ca31e37d4c74547716e6bad207f393c5e3f9669bf7064c06abfcbeef6e3f7ebe",
    "subset": "primal",
    "provenance": {
@@ -14242,7 +14242,7 @@
    "n_cons": 771,
    "nnz": 584976,
    "file_bytes": 4209012,
-   "meta_bytes": 1255,
+   "meta_bytes": 1419,
    "sha256": "a0551528d4bc12b466c7b9ea9ed2d32d27ad8105629ab60cfea173e8cb0c95ec",
    "subset": "primal",
    "provenance": {
@@ -14274,7 +14274,7 @@
    "n_cons": 6532,
    "nnz": 2845545,
    "file_bytes": 8899427,
-   "meta_bytes": 3381994,
+   "meta_bytes": 3382158,
    "sha256": "7c575a2374980133057cd68554be07fc2c4ef3635ecd6bdd089737da6ccc654a",
    "subset": "primal",
    "provenance": {
@@ -14306,7 +14306,7 @@
    "n_cons": 551,
    "nnz": 325689,
    "file_bytes": 1896578,
-   "meta_bytes": 491668,
+   "meta_bytes": 491881,
    "sha256": "62fd009eac952d79a9e344b2b81608493642e74f968d3009ef4bc92e9278ad0d",
    "subset": "primal",
    "provenance": {
@@ -14338,7 +14338,7 @@
    "n_cons": 338,
    "nnz": 133096,
    "file_bytes": 805616,
-   "meta_bytes": 207696,
+   "meta_bytes": 207909,
    "sha256": "5ec5ab03d71af483fd1f66e1ace9da8b08e0cdb65d5d60025cd063035c06b98a",
    "subset": "primal",
    "provenance": {
@@ -14370,7 +14370,7 @@
    "n_cons": 2436,
    "nnz": 215837,
    "file_bytes": 1471523,
-   "meta_bytes": 2326,
+   "meta_bytes": 2490,
    "sha256": "e0fe7e7169b189c45abda485123a82a826a7ca7abe62036d25c487be83e7b626",
    "subset": "primal",
    "provenance": {
@@ -14402,7 +14402,7 @@
    "n_cons": 53360,
    "nnz": 212060,
    "file_bytes": 1658027,
-   "meta_bytes": 1044382,
+   "meta_bytes": 1044546,
    "sha256": "f46d11aee497e8efe794780df45ed3dc08b33c504ce66c7ca7f3b9f671047d54",
    "subset": "primal",
    "provenance": {
@@ -14434,7 +14434,7 @@
    "n_cons": 15706,
    "nnz": 515436,
    "file_bytes": 1692880,
-   "meta_bytes": 80391,
+   "meta_bytes": 80620,
    "sha256": "53571d89c18448fb9ee2aebf515b4fc6709122c85bead5b701a090b7b8944ece",
    "subset": "primal",
    "provenance": {
@@ -14466,7 +14466,7 @@
    "n_cons": 14427,
    "nnz": 521898,
    "file_bytes": 1663295,
-   "meta_bytes": 71910,
+   "meta_bytes": 72123,
    "sha256": "6b639119ebd1fbfb7b93e59fc743b0d93c3a7dec2e2f716e9d7e4397cf9f08fa",
    "subset": "primal",
    "provenance": {
@@ -14498,7 +14498,7 @@
    "n_cons": 14361,
    "nnz": 520532,
    "file_bytes": 1651045,
-   "meta_bytes": 71410,
+   "meta_bytes": 71639,
    "sha256": "c11e18894f04ac8c64de57fdbd33b788f08130d6641828fdd5903afa9bddbe21",
    "subset": "primal",
    "provenance": {
@@ -14530,7 +14530,7 @@
    "n_cons": 14427,
    "nnz": 521944,
    "file_bytes": 1660656,
-   "meta_bytes": 88413,
+   "meta_bytes": 88642,
    "sha256": "1d1eab6311d39e24b91831d175b15e5d036232ceddae5d7af19306b22abc5b99",
    "subset": "primal",
    "provenance": {
@@ -14562,7 +14562,7 @@
    "n_cons": 14427,
    "nnz": 521945,
    "file_bytes": 1660906,
-   "meta_bytes": 89250,
+   "meta_bytes": 89479,
    "sha256": "aaa05c6d3082875318f292c8f158f16c346280b594170498c9eb80c31ee4af8e",
    "subset": "primal",
    "provenance": {
@@ -14594,7 +14594,7 @@
    "n_cons": 47132,
    "nnz": 335644,
    "file_bytes": 1613580,
-   "meta_bytes": 158627,
+   "meta_bytes": 158856,
    "sha256": "7f740a20b12dc00b071114f1ef2fbba11596782178fde73a5df48a179dbf5c74",
    "subset": "primal",
    "provenance": {
@@ -14626,7 +14626,7 @@
    "n_cons": 53709,
    "nnz": 214625,
    "file_bytes": 1318759,
-   "meta_bytes": 134341,
+   "meta_bytes": 134570,
    "sha256": "a60c1a2006bae74bcbf1ca8b90ea89074b71ef33eb6547905de308c1197b8dbe",
    "subset": "primal",
    "provenance": {
@@ -14658,7 +14658,7 @@
    "n_cons": 49565,
    "nnz": 332316,
    "file_bytes": 1631770,
-   "meta_bytes": 104273,
+   "meta_bytes": 104502,
    "sha256": "58b69f800c83ccbe224d0f6b5e740147e77c31dc32a58d8678c1a7e21ca7b8ec",
    "subset": "primal",
    "provenance": {
@@ -14690,7 +14690,7 @@
    "n_cons": 48939,
    "nnz": 127595,
    "file_bytes": 863145,
-   "meta_bytes": 170941,
+   "meta_bytes": 171154,
    "sha256": "141457a726586b9ebca5c243d706848c75e69b42da3e33afd7fc203bc2f208e5",
    "subset": "primal",
    "provenance": {
@@ -14722,7 +14722,7 @@
    "n_cons": 47280,
    "nnz": 372305,
    "file_bytes": 1760858,
-   "meta_bytes": 879811,
+   "meta_bytes": 880024,
    "sha256": "3554c6b83cf4153a491cd35ae067e75fba8050cbdb3493d25dcafd0774045013",
    "subset": "primal",
    "provenance": {
@@ -14754,7 +14754,7 @@
    "n_cons": 198450,
    "nnz": 648340,
    "file_bytes": 4514409,
-   "meta_bytes": 3603571,
+   "meta_bytes": 3603784,
    "sha256": "a69dcd00df0048305e1dd618de160941268b46da3284d304be23cee16fb98078",
    "subset": "primal",
    "provenance": {
