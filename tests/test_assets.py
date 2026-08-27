@@ -55,6 +55,10 @@ def test_mobile_layout_has_explicit_overflow_guards():
     assert ".btn-label{min-width:0;overflow-wrap:anywhere}" in A.STYLESHEET
     assert "thead th{position:static}" in A.STYLESHEET
     assert "height:auto;min-height:56px" in A.STYLESHEET
+    # the two subset names do not fit six equal cells on a phone
+    assert ".nav-short{display:none}" in A.STYLESHEET
+    assert "nav.top .nav-full{display:none}" in A.STYLESHEET
+    assert "nav.top .nav-short{display:inline}" in A.STYLESHEET
 
 
 def test_the_page_loads_nothing_from_a_third_party():

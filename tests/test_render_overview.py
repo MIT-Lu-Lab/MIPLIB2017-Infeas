@@ -32,6 +32,18 @@ def test_active_nav_item_is_marked():
     assert nav_html.count('aria-current="page"') == 1
 
 
+def test_only_the_long_nav_labels_carry_a_short_form():
+    """Both forms ship and the stylesheet hides one, so a name that outgrows a
+    phone cell is shortened rather than overlapping its neighbour."""
+    nav_html = re.search(r"<nav [^>]*>(.*?)</nav>",
+                         V.page("A", "", active="overview", depth=0), re.S).group(1)
+    assert '<span class="nav-full">Primal-infeasible</span>' in nav_html
+    assert '<span class="nav-short">Primal</span>' in nav_html
+    assert '<span class="nav-short">Dual</span>' in nav_html
+    assert nav_html.count('class="nav-short"') == 2
+    assert ">Guide</a>" in nav_html      # a name that fits stays a bare label
+
+
 def test_overview_reports_real_counts_and_ranges(index):
     samples = L.load_index(index)
     html = V.render_overview(L.collection_totals(samples))

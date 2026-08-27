@@ -8,13 +8,16 @@ from ..assets import CSS_NAME, JS_NAME
 from ..records import SUBSET_META
 
 
+# (key, href, label, short label). A short label is given only where the full one
+# does not fit a phone: six equal cells across 360px leave about 108px each, and
+# "Primal-infeasible" wants more than that. Both ship; the stylesheet picks one.
 NAV = [
-    ("overview", "", "Overview"),
-    ("primal", "primal-infeasible/", "Primal-infeasible"),
-    ("dual", "dual-infeasible/", "Dual-infeasible"),
-    ("guide", "guide/", "Guide"),
-    ("download", "download/", "Download"),
-    ("about", "about/", "About"),
+    ("overview", "", "Overview", ""),
+    ("primal", "primal-infeasible/", "Primal-infeasible", "Primal"),
+    ("dual", "dual-infeasible/", "Dual-infeasible", "Dual"),
+    ("guide", "guide/", "Guide", ""),
+    ("download", "download/", "Download", ""),
+    ("about", "about/", "About", ""),
 ]
 
 
@@ -25,6 +28,14 @@ def esc(value: object) -> str:
     nowhere today but would need the moment an attribute is single-quoted.
     """
     return html.escape(str(value))
+
+
+def _nav_label(label: str, short: str) -> str:
+    """Render a nav label, carrying a short form when the name has one."""
+    if not short:
+        return esc(label)
+    return (f'<span class="nav-full">{esc(label)}</span>'
+            f'<span class="nav-short">{esc(short)}</span>')
 
 
 def page(title: str, body: str, active: str, depth: int, narrow: bool = False) -> str:
@@ -43,8 +54,8 @@ def page(title: str, body: str, active: str, depth: int, narrow: bool = False) -
     nav = "".join(
         f'<a href="{up}{href}"'
         + (' aria-current="page"' if key == active else "")
-        + f">{esc(label)}</a>"
-        for key, href, label in NAV
+        + f">{_nav_label(label, short)}</a>"
+        for key, href, label, short in NAV
     )
     return f"""<!doctype html>
 <html lang="en">
