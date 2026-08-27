@@ -41,14 +41,14 @@ which is what you want when checking a layout change locally. Then
 
 ```bash
 pip install pytest ruff pyright jsonschema
-pytest -q          # 110 tests, no network, no dataset
+pytest -q          # no network, no dataset, no published files
 ruff check .
 pyright
 ```
 
-CI runs all three on every push, then builds the site twice and diffs the two
-builds: the pages carry no timestamp or counter, so a second build over the first
-must leave every byte alone.
+CI runs all three on every push and fails on a skipped test, then builds the site
+twice and diffs the two builds: the pages carry no timestamp or counter, so a
+second build over the first must leave every byte alone.
 
 ## Changing the published set
 

@@ -25,7 +25,7 @@ jobs:
           # regression that only shows up on the version the project claims
           python-version: "3.10"
 
-      - run: pip install "pytest>=7" "ruff>=0.5" "pyright>=1.1"
+      - run: pip install "pytest>=7" "ruff>=0.5" "pyright>=1.1" "jsonschema>=4"
 
       - name: Lint
         run: ruff check .
@@ -34,7 +34,15 @@ jobs:
         run: pyright
 
       - name: Test
-        run: pytest -q
+        shell: bash            # for pipefail; the default run shell has none
+        run: |
+          pytest -q -rs | tee /tmp/pytest.out
+          # a skip here means the runner is missing something the tests need, and
+          # the check it guards silently stops running. The schema tests skip
+          # without jsonschema, which is exactly how that would go unnoticed.
+          if grep -q "SKIPPED" /tmp/pytest.out; then
+            echo "::error::a test skipped in CI; install what it needs"; exit 1
+          fi
 
       - name: Build the site
         run: |
@@ -48,9 +56,20 @@ jobs:
         run: |
           test -f _site/.nojekyll
           test "$(find _site -name index.html | wc -l)" -eq 340
-          test -f _site/primal-infeasible.csv && test -f _site/dual-infeasible.csv
+          test -f _site/primal-infeasible.csv
+          test -f _site/dual-infeasible.csv
           test "$(find _site/fonts -name '*.woff2' | wc -l)" -eq 8
-          ! grep -rlE 'href="https://fonts\.|@import|<script src=' _site --include='*.html'
+          # a reader must not be announced to a third party to read a page. Links
+          # in the prose are the point of the site and are not what this looks at:
+          # only what the browser fetches on its own, from the pages and from the
+          # stylesheet they pull in.
+          if grep -rEn '<(link|script|img)[^>]+(href|src)="https?://' \
+               _site --include='*.html'; then
+            echo "::error::a page fetches a third-party resource"; exit 1
+          fi
+          if grep -En "url\(\s*[\"']?https?://" _site/assets/*.css; then
+            echo "::error::the stylesheet fetches a third-party resource"; exit 1
+          fi
 
       - name: Rebuilding changes nothing
         # the pages carry no timestamp, counter or ordering that depends on the
