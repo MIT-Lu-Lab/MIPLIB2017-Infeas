@@ -71,7 +71,7 @@ GUIDE_DESCRIPTION = ("Every field of the .meta.json sidecar beside a published "
 DOWNLOAD_DESCRIPTION = ("The archives and the per-subset indexes, and where a single "
                         "instance comes from.")
 ABOUT_DESCRIPTION = ("How the instances were produced, which solver did what, and the "
-                     "licence they carry.")
+                     "terms each one carries.")
 
 
 # The masthead says the same thing at reading length, and carries a link, so it

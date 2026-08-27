@@ -122,11 +122,17 @@ ABOUT = """
     <a href="https://doi.org/10.1007/s12532-020-00194-3">Gleixner et al.,
     “MIPLIB 2017: Data-Driven Compilation of the 6th Mixed-Integer Programming
     Library”</a>.</p>
-    <p>The collection is released under
-    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
-    MIPLIB 2017 uses that licence by default; <span class="mono">adult-max5features</span>
-    is the one documented BSD 3-Clause exception. Its notice, the required attribution,
-    and the complete terms for this adapted collection are reproduced in
+    <p>The 262 source instances do not all carry the same terms. Of them, 141 carry
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, the
+    default of the MIPLIB 2017 submission form; <span class="mono">adult-max5features</span>
+    carries BSD 3-Clause, the one contributor who chose otherwise; and 120 carry no
+    licence of record, having been carried over in bulk from MIPLIB 2010, which predates
+    MIPLIB's licensing requirement.</p>
+    <p>This project's own work, and the linear programs derived from the 141, are
+    released under CC BY-SA 4.0. That licence is not applied to the 120: neither MIPLIB
+    nor anyone else placed them under it. They are redistributed on the footing ZIB
+    distributes them on, with the source named and the contributor credited. Every case,
+    the BSD notice, the required attribution and the list of the 120 are set out in
     <a href="{licence_href}">LICENSE</a>.</p>
   </div>
 </div>

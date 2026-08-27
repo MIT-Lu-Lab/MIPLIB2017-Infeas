@@ -133,7 +133,11 @@ def test_overview_carries_a_machine_readable_dataset_description(index):
     doc = json.loads(m.group(1))
     assert doc["@type"] == "Dataset"
     assert doc["url"] == "https://example.invalid/mi"
-    assert doc["license"] == "https://creativecommons.org/licenses/by-sa/4.0/"
+    # No blanket "license": 141 source instances carry CC BY-SA 4.0, one carries
+    # BSD 3-Clause and 120 carry none, so one machine-readable licence for the
+    # dataset would assert a grant nobody made. Consumers get the notice instead.
+    assert "license" not in doc
+    assert doc["usageInfo"] == "LICENSE.txt"
     assert {c["name"] for c in doc["creator"]} == {"Haihao Lu", "Bo Tang"}
     assert [d["contentUrl"] for d in doc["distribution"]] == [
         "https://e.invalid/dl/primal-infeasible.zip",

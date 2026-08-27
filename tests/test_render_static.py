@@ -68,10 +68,22 @@ def test_about_credits_miplib_and_states_the_licence():
     html = V.render_about()
     assert "MIPLIB 2017" in html
     assert "CC BY-SA 4.0" in html
-    # not plain CC-BY: the source instances are ShareAlike, so the adaptation must be too
+    # not plain CC-BY: the instances that are licensed are ShareAlike, so the
+    # adaptation must be too
     assert "CC-BY 4.0" not in html
     assert "adult-max5features" in html and "BSD 3-Clause" in html
     assert 'href="../LICENSE.txt"' in html
+
+
+def test_about_does_not_claim_one_licence_for_every_source_instance():
+    """120 of the 262 sources came from MIPLIB 2010 with no licence recorded.
+
+    Saying the collection is simply CC BY-SA, as this page once did, asserts a
+    grant that neither MIPLIB nor its contributors ever made.
+    """
+    html = " ".join(V.render_about().split())   # the claim may wrap mid-phrase
+    assert "141" in html and "120" in html
+    assert "no licence of record" in html
 
 
 def test_about_describes_both_mining_procedures():

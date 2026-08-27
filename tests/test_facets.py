@@ -71,7 +71,7 @@ def test_the_query_grammar_is_unambiguous(index, subset):
     assert len(keys) == len(set(keys)), keys
     for facet in facets:
         assert not set(facet.param) & set(",&=?#")
-        assert facet.param not in ("sort", "dir"), "reserved by the sort state"
+        assert facet.param not in ("q", "sort", "dir"), "reserved by search and sort"
         for bucket in facet.buckets:
             assert not set(bucket.value) & set(",&=?#"), bucket
 

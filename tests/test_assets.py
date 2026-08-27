@@ -94,6 +94,17 @@ def test_a_filtered_view_has_an_address():
     assert "params.set('sort'" in A.BROWSE_SCRIPT
 
 
+def test_searching_is_another_condition_on_the_same_rows():
+    """Not a mechanism of its own: the same apply(), the same rows, the same
+    announced count, and a place in the same address."""
+    assert "instance-search" in A.BROWSE_SCRIPT
+    assert ".table-search').hidden = false" in A.BROWSE_SCRIPT
+    assert "params.set('q'" in A.BROWSE_SCRIPT
+    assert "row.values.instance.toLowerCase().includes(term)" in A.BROWSE_SCRIPT
+    # 229 rows is a filter per keystroke
+    assert "setTimeout" not in A.BROWSE_SCRIPT
+
+
 def test_the_browse_script_never_renders_a_row():
     """One renderer, in Python. This moves and hides the elements it was given."""
     for creating in ("createElement", "innerHTML", "insertAdjacentHTML"):

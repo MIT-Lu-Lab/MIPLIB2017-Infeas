@@ -60,6 +60,13 @@ BROWSE = """
 <div class="browse">
   {rail}
   <div>
+    <!-- hidden until the script that makes it work has run: a search field that
+         does nothing is worse than none -->
+    <div class="table-search" hidden>
+      <label class="sr-only" for="instance-search">Search instances by name</label>
+      <input type="search" id="instance-search" class="search-input"
+        placeholder="Search by name" autocomplete="off" spellcheck="false">
+    </div>
     <div class="table-wrap" tabindex="0" role="region" aria-labelledby="{table_id}"><table>
       <caption id="{table_id}" class="sr-only">{label} instances</caption>
       <thead><tr>{header}</tr></thead>

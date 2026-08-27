@@ -80,7 +80,11 @@ def _dataset_jsonld(totals: dict, site_url: str | None,
         "alternateName": ("Primal- and Dual-Infeasible Linear Programs "
                           "from MIPLIB 2017"),
         "description": content.collection_summary(totals),
-        "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+        # Not "license": the source instances do not share one. 141 carry CC BY-SA
+        # 4.0, one carries BSD 3-Clause and 120 carry none, so a single machine-
+        # readable licence for the dataset would assert a grant nobody ever made.
+        # usageInfo points a consumer at the notice that separates the three.
+        "usageInfo": "LICENSE.txt",
         "keywords": ["linear programming", "infeasibility detection",
                      "unbounded linear programs", "benchmark", "MIPLIB",
                      "mathematical optimization"],

@@ -107,6 +107,16 @@ def test_dual_facet_checkbox_data_k_matches_the_row_keys(index):
         assert f'data-k="{key}"' in html
 
 
+def test_the_search_field_is_labelled_and_waits_for_its_script(index):
+    """A field that does nothing is worse than none, so the markup ships it
+    hidden and the script that makes it work is what reveals it."""
+    html = _browse(index, "primal")
+    assert '<div class="table-search" hidden>' in html
+    assert ('<label class="sr-only" for="instance-search">'
+            "Search instances by name</label>") in html
+    assert 'type="search" id="instance-search"' in html
+
+
 def test_no_size_class_and_no_em_dash(index):
     for subset in ("primal", "dual"):
         html = _browse(index, subset)
