@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .. import content
 from ..records import SUBSET_META, fmt_bytes, fmt_int
 from .shell import Markup, el, fmt, join, page
 
@@ -148,7 +149,7 @@ def _dl(rows) -> Markup:
         for name, kind, body in rows), class_="fields")
 
 
-def render_guide() -> str:
+def render_guide(canonical: str | None = None) -> str:
     """Reference for every field in a sidecar and every figure on a page.
 
     Without this a reader cannot tell that `drops[].var` is a 0-based column
@@ -236,11 +237,13 @@ def render_guide() -> str:
     ])
 
     body = fmt(GUIDE, common=common, primal=primal, dual=dual, internal=internal)
-    return page("Reading a file", body, active="guide", depth=1, narrow=True)
+    return page("Reading a file", body, active="guide", depth=1, narrow=True,
+                description=content.GUIDE_DESCRIPTION, canonical=canonical)
 
 
 def render_download(totals: dict, release_base_url: str | None = None,
-                    sizes: dict[str, int] | None = None) -> str:
+                    sizes: dict[str, int] | None = None,
+                    canonical: str | None = None) -> str:
     """Download page: the links themselves.
 
     Args:
@@ -265,9 +268,11 @@ def render_download(totals: dict, release_base_url: str | None = None,
     in_all = f", {fmt_bytes(sum(sizes.values()))} in all" if sizes else ""
     body = fmt(DOWNLOAD, n_samples=fmt_int(totals["n_samples"]), in_all=in_all,
                cards=join(cards))
-    return page("Download", body, active="download", depth=1, narrow=True)
+    return page("Download", body, active="download", depth=1, narrow=True,
+                description=content.DOWNLOAD_DESCRIPTION, canonical=canonical)
 
 
-def render_about() -> str:
+def render_about(canonical: str | None = None) -> str:
     """About page: how the instances were produced, provenance, licence, citation."""
-    return page("About", Markup(ABOUT), active="about", depth=1, narrow=True)
+    return page("About", Markup(ABOUT), active="about", depth=1, narrow=True,
+                description=content.ABOUT_DESCRIPTION, canonical=canonical)

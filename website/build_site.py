@@ -243,24 +243,32 @@ def build(index_path: Path | str, out_dir: Path | str,
     written = 0
     rels = set()
 
+    def canonical(rel: str) -> str | None:
+        """A page's public URL, when this build was told the site's origin."""
+        return page_url(site_url, rel) if site_url else None
+
     def _emit(rel: str, html: str) -> None:
         nonlocal written
         _write(out_dir, rel, html)
         rels.add(rel)
         written += 1
 
-    _emit("index.html", render.render_overview(totals, site_url, release_base_url))
+    _emit("index.html", render.render_overview(totals, site_url, release_base_url,
+                                               canonical("index.html")))
     _emit("download/index.html",
-          render.render_download(totals, release_base_url, sizes))
-    _emit("about/index.html", render.render_about())
-    _emit("guide/index.html", render.render_guide())
+          render.render_download(totals, release_base_url, sizes,
+                                 canonical("download/index.html")))
+    _emit("about/index.html", render.render_about(canonical("about/index.html")))
+    _emit("guide/index.html", render.render_guide(canonical("guide/index.html")))
 
     for subset, info in SUBSET_META.items():
-        _emit(f"{info['slug']}/index.html",
-              render.render_browse(subset, samples, release_base_url))
+        rel = f"{info['slug']}/index.html"
+        _emit(rel, render.render_browse(subset, samples, release_base_url,
+                                        canonical(rel)))
         for s in (x for x in samples if x.subset == subset):
             cross = by_key.get((OTHER_SUBSET[subset], s.instance))
-            _emit(s.page_path + "index.html", render.render_sample(s, cross))
+            page_rel = s.page_path + "index.html"
+            _emit(page_rel, render.render_sample(s, cross, canonical(page_rel)))
         rels.add(_write_manifest(out_dir, subset, info, samples))
 
     rels |= _copy_fonts(out_dir)

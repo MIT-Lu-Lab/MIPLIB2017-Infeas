@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .. import content
 from ..records import (NON_LP_TAGS, SUBSET_META, DualProvenance,
                        PrimalProvenance, Sample, fmt_bytes, fmt_int)
 from .shell import Markup, el, fmt, join, page
@@ -179,7 +180,8 @@ def _dual_panels(p: DualProvenance) -> Markup:
     ))
 
 
-def render_sample(sample: Sample, cross: Sample | None) -> str:
+def render_sample(sample: Sample, cross: Sample | None,
+                  canonical: str | None = None) -> str:
     """One sample page. `cross` is the same instance in the other subset, or None."""
     info = SUBSET_META[sample.subset]
     provenance = sample.provenance
@@ -217,4 +219,7 @@ def render_sample(sample: Sample, cross: Sample | None) -> str:
         aside=join((_download_card(sample), _source_card(sample))),
     )
     return page(f"{sample.instance} ({info['label'].lower()})", body,
-                active=sample.subset, depth=2)
+                active=sample.subset, depth=2,
+                description=content.instance_description(
+                    sample.instance, info["label"], sample.n_vars, sample.n_cons),
+                canonical=canonical)

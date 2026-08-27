@@ -5,20 +5,12 @@ from __future__ import annotations
 import json
 from string import Template
 
+from .. import content
 from ..records import SUBSET_META, fmt_int
 from .shell import Markup, el, esc, fmt, join, page
 
-SUBSET_BLURB = {
-    "primal": "A branch-and-bound run splits on a variable and explores one side of "
-              "the split. This set collects the other side, at nodes where that side "
-              "has no feasible point.",
-    "dual": "Bounds and constraints are removed from a MIPLIB relaxation until the "
-            "objective becomes unbounded, then every removal that proves unnecessary "
-            "is restored.",
-}
-
 CARD = """<a class="subset {tone}" href="{slug}/">
-      <h3>{label}</h3>
+      <h2>{label}</h2>
       <div class="count">{count} instances</div>
       <p>{blurb}</p>
       <span class="go">Browse them all →</span>
@@ -34,15 +26,9 @@ CITATION = Template("""@misc{miplib_infeas,<br>
 
 OVERVIEW = """
 <div class="masthead">
-  <span class="eyebrow">A benchmark of primal- and dual-infeasible linear programs</span>
-  <h1>MIPLIB-Infeas</h1>
-  <p class="sub">{n_samples} linear programs with no optimal solution, each
-    derived from a <a href="https://miplib.zib.de/" target="_blank" rel="noopener">MIPLIB
-    2017</a> instance with its integrality dropped. {n_primal}
-    have no feasible point and the other
-    {n_dual} are unbounded. They run up
-    to {max_vars} variables and {max_cons}
-    constraints.</p>
+  <span class="eyebrow">{tagline}</span>
+  <h1>{name}</h1>
+  <p class="sub">{summary}</p>
 </div>
 <div class="pair">{cards}</div>
 <div class="section">
@@ -85,22 +71,13 @@ def _dataset_jsonld(totals: dict, site_url: str,
     collection is a web page that happens to mention linear programs, and the
     people most likely to want it never find it.
     """
-    n = totals["counts"]
     doc = {
         "@context": "https://schema.org",
         "@type": "Dataset",
-        "name": "MIPLIB-Infeas",
+        "name": content.NAME,
         "alternateName": ("Primal- and Dual-Infeasible Linear Programs "
                           "from MIPLIB 2017"),
-        "description": (
-            f"{totals['n_samples']} linear programs with no optimal solution, each "
-            "derived from a MIPLIB 2017 instance with its integrality dropped. "
-            f"{n.get('primal', 0)} have no feasible point, each the side of a branch "
-            "a branch-and-bound search did not explore. The other "
-            f"{n.get('dual', 0)} are feasible with an unbounded objective, produced "
-            "by removing a minimal set of bounds and constraints from a root "
-            f"relaxation. They run up to {totals['max_vars']} variables and "
-            f"{totals['max_cons']} constraints."),
+        "description": content.collection_summary(totals),
         "url": site_url,
         "license": "https://creativecommons.org/licenses/by-sa/4.0/",
         "keywords": ["linear programming", "infeasibility detection",
@@ -127,7 +104,8 @@ def _dataset_jsonld(totals: dict, site_url: str,
 
 
 def render_overview(totals: dict, site_url: str | None = None,
-                    release_base_url: str | None = None) -> str:
+                    release_base_url: str | None = None,
+                    canonical: str | None = None) -> str:
     """The site root.
 
     Args:
@@ -141,19 +119,29 @@ def render_overview(totals: dict, site_url: str | None = None,
     n = totals["counts"]
     cards = join(
         fmt(CARD, tone=info["tone"], slug=info["slug"], label=info["label"],
-            count=fmt_int(n.get(key, 0)), blurb=SUBSET_BLURB[key])
+            count=fmt_int(n.get(key, 0)), blurb=content.SUBSET_CARD[key])
         for key, info in SUBSET_META.items()
     )
-    body = fmt(
-        OVERVIEW,
+    summary = fmt(
+        content.MASTHEAD_SUMMARY,
         n_samples=fmt_int(totals["n_samples"]),
         n_primal=fmt_int(n.get("primal", 0)),
         n_dual=fmt_int(n.get("dual", 0)),
         max_vars=fmt_int(totals["max_vars"]),
         max_cons=fmt_int(totals["max_cons"]),
+        miplib=el("a", "MIPLIB 2017", href="https://miplib.zib.de/",
+                  target="_blank", rel="noopener"),
+    )
+    body = fmt(
+        OVERVIEW,
+        tagline=content.TAGLINE,
+        name=content.NAME,
+        summary=summary,
         cards=cards,
         citation=Markup(CITATION.substitute(url=esc(site_url))),
     )
-    return page("MIPLIB-Infeas",
+    return page(content.NAME,
                 join((_dataset_jsonld(totals, site_url, release_base_url), body)),
-                active="overview", depth=0, narrow=True)
+                active="overview", depth=0, narrow=True,
+                description=content.overview_description(totals),
+                canonical=canonical)

@@ -3,11 +3,11 @@
 from .browse import FACETS, render_browse
 from .instance import render_sample
 from .overview import render_overview
-from .shell import esc, page
+from .shell import Markup, esc, page
 from .static import render_about, render_download, render_guide
 
 __all__ = [
-    "FACETS", "esc", "page",
+    "FACETS", "Markup", "esc", "page",
     "render_about", "render_browse", "render_download", "render_guide",
     "render_overview", "render_sample",
 ]

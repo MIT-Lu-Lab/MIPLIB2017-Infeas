@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .. import content
 from ..records import NON_LP_TAGS, SUBSET_META, Sample, fmt_bytes, fmt_int
 from .shell import Markup, el, fmt, join, page
 
@@ -79,15 +80,6 @@ COLUMNS = {
     ],
 }
 
-BROWSE_BLURB = {
-    "primal": "Linear programs with no feasible point. Each is the side of a branch "
-              "that a branch-and-bound search did not explore, on a distinct MIPLIB "
-              "2017 instance.",
-    "dual": "Linear programs whose objective is unbounded, from MIPLIB 2017 root "
-            "relaxations with a minimal set of bounds and constraints removed.",
-}
-
-
 BROWSE = """
 <div class="browse-head">
   <div>
@@ -100,12 +92,14 @@ BROWSE = """
 <div class="browse">
   {rail}
   <div>
-    <div class="table-wrap"><table>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="{table_id}"><table>
+      <caption id="{table_id}" class="sr-only">{label} instances</caption>
       <thead><tr>{header}</tr></thead>
       <tbody>{rows}</tbody>
     </table></div>
-    <p class="table-foot" data-total="{total}">{total_shown} instances.
-    Every column sorts.</p>
+    <p class="table-foot"><span class="result-count" data-total="{total}"
+      role="status" aria-live="polite" aria-atomic="true">{total_shown} instances.</span>
+      All data columns sort; Download does not.</p>
   </div>
 </div>
 """
@@ -144,7 +138,8 @@ def _facet_rail(groups: list[tuple], rows: list[Sample]) -> Markup:
                f" {opt} ",
                el("span", sum(1 for s in rows if pred(s)), class_="n"))
             for opt, key, pred in options)
-        return el("div", el("span", label, class_="eyebrow"), items, class_="facet")
+        return el("fieldset", el("legend", label, class_="eyebrow"), items,
+                  class_="facet")
 
     return el("details",
               el("summary",
@@ -156,23 +151,29 @@ def _facet_rail(groups: list[tuple], rows: list[Sample]) -> Markup:
 
 
 def _header(cols: list[tuple]) -> Markup:
+    def sortable(label: str, kind: str, right: bool = False) -> Markup:
+        button = el("button", label, type_="button", class_="sort-button",
+                    data_sort=kind, aria_label=f"Sort by {label.lower()}")
+        return el("th", button, scope="col", class_="r" if right else None)
+
     return join((
-        el("th", "Instance", data_sort="str", tabindex="0", role="button",
-           aria_label="Sort by instance"),
-        join(el("th", h, class_="r", data_sort="num", tabindex="0", role="button",
-                aria_label=f"Sort by {h.lower()}") for h, _ in cols),
-        el("th"),
+        sortable("Instance", "str"),
+        join(sortable(h, "num", right=True) for h, _ in cols),
+        el("th", "Download", scope="col"),
     ))
 
 
 def _row(s: Sample, cols: list[tuple], groups: list[tuple]) -> Markup:
     cells = join(el("td", disp, class_="num", data_v=v)
                  for v, disp in (acc(s) for _, acc in cols))
-    dl = (el("a", ".mps.gz", class_="dl", href=s.mps_url) if s.mps_url
-          else el("span", "pending", class_="dl", aria_disabled="true"))
+    dl_label = f"Download {s.instance} as gzipped MPS"
+    dl = (el("a", ".mps.gz", class_="dl", href=s.mps_url,
+             aria_label=dl_label) if s.mps_url
+          else el("span", "pending", class_="dl", role="link",
+                  aria_disabled="true", aria_label=f"{dl_label}: unavailable"))
     return el("tr",
-              el("td", el("a", s.instance, href=f"{s.instance}/"),
-                 class_="name", data_v=s.instance),
+              el("th", el("a", s.instance, href=f"{s.instance}/"),
+                 scope="row", class_="name", data_v=s.instance),
               cells,
               el("td", dl),
               data_f=" ".join(_row_facet_keys(groups, s)))
@@ -190,7 +191,8 @@ def _archive_link(subset: str, rows: list[Sample],
 
 
 def render_browse(subset: str, samples: list[Sample],
-                  release_base_url: str | None = None) -> str:
+                  release_base_url: str | None = None,
+                  canonical: str | None = None) -> str:
     """One subset's browse page: facet rail plus a sortable table."""
     info = SUBSET_META[subset]
     rows = [s for s in samples if s.subset == subset]
@@ -199,7 +201,8 @@ def render_browse(subset: str, samples: list[Sample],
     body = fmt(
         BROWSE,
         label=info["label"],
-        blurb=BROWSE_BLURB[subset],
+        blurb=content.SUBSET_SUMMARY[subset],
+        table_id=f"{info['slug']}-table-caption",
         archive=_archive_link(subset, rows, release_base_url),
         rail=_facet_rail(groups, rows),
         header=_header(cols),
@@ -207,4 +210,6 @@ def render_browse(subset: str, samples: list[Sample],
         total=len(rows),
         total_shown=fmt_int(len(rows)),
     )
-    return page(f"{info['label']} instances", body, active=subset, depth=1)
+    return page(f"{info['label']} instances", body, active=subset, depth=1,
+                description=content.subset_description(subset, len(rows)),
+                canonical=canonical)
