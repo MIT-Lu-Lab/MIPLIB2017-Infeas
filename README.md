@@ -2,7 +2,9 @@
 
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/License-CC_BY--SA_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
-Linear programs that have no solution, derived from [MIPLIB 2017](https://miplib.zib.de/) instances. One set has no feasible point. The other is feasible, but its objective is unbounded. They are meant for testing how a solver detects infeasibility and unboundedness at a scale that small classical test sets do not reach.
+Linear programs that have no solution, derived from [MIPLIB 2017](https://miplib.zib.de/)
+instances. One set has no feasible point. The other is feasible, but its objective is
+unbounded. A large-scale benchmark for detection.
 
 **Browse the collection:** https://mit-lu-lab.github.io/MIPLIB-Infeas
 
@@ -25,14 +27,17 @@ These start from a root LP relaxation that is feasible and bounded. Bounds and c
 
 The files are release assets rather than part of the git tree.
 
-`primal-infeasible.csv` and `dual-infeasible.csv` list the instances with their dimensions and filenames. The matching `.urls.txt` files hold the download URLs, one per line:
+For the whole set, `primal-infeasible.zip` and `dual-infeasible.zip` hold every file of
+that subset, laid out as `instances/infeasible/` and `instances/unbounded/`:
 
 ```bash
-wget -i primal-infeasible.urls.txt -P primal/
-wget -i dual-infeasible.urls.txt -P dual/
+unzip primal-infeasible.zip
+unzip dual-infeasible.zip
 ```
 
-For a subset, filter a CSV and build the URLs from its `mps_filename` column.
+For a subset, `primal-infeasible.csv` and `dual-infeasible.csv` list the instances with
+their dimensions and filenames. Filter one and build the URLs from its `mps_filename`
+column; every asset sits directly under the release download prefix.
 
 ## Citation
 
