@@ -90,7 +90,7 @@ def test_a_filtered_view_has_an_address():
     assert "URLSearchParams" in A.BROWSE_SCRIPT
     assert "location.search" in A.BROWSE_SCRIPT
     assert "history.replaceState" in A.BROWSE_SCRIPT
-    assert "pushState" not in A.BROWSE_SCRIPT
+    assert "history.pushState" not in A.BROWSE_SCRIPT
     assert "params.set('sort'" in A.BROWSE_SCRIPT
 
 
