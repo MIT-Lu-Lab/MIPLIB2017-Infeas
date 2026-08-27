@@ -75,44 +75,32 @@ ABOUT = """
 <div class="section">
   <h2>Primal-infeasible instances</h2>
   <div class="prose">
-    <p>A CPLEX branch-and-bound run explores a MIPLIB 2017 instance with
-    cuts, presolve, probing and primal heuristics switched off. A callback follows the
-    search, infers the branch taken at each step from the one integral bound that changes
-    on an integer variable, and re-solves the opposite side on a standalone LP template.
-    When that side has no feasible point, it is written out. The bounds come from a
-    branch the run actually took, not from bounds tightened at random.</p>
+    <p>A CPLEX branch-and-bound run explores a MIPLIB 2017 instance with cuts,
+    presolve, probing and primal heuristics switched off. A callback follows the search
+    and re-solves the opposite side of every branch it takes; the sides with no feasible
+    point are written out. The bounds come from a branch the run actually took, not from
+    bounds tightened at random. Which nodes a tree contains depends on the solver that
+    built it, so reproducing this subset means reproducing that run.</p>
   </div>
 </div>
 <div class="section">
   <h2>Dual-infeasible instances</h2>
   <div class="prose">
-    <p>For 103 instances, the source LP relaxation is feasible with a bounded optimum.
-    Bounds and constraints are removed one at a time from the optimal dual support until
-    the objective becomes unbounded; a second pass restores every unnecessary removal,
-    leaving an inclusion-minimal set. The other two source relaxations are unbounded as
-    given, so nothing is removed. Because relaxing a feasible problem cannot make it
-    infeasible, every constructed instance is genuinely unbounded rather than empty.</p>
+    <p>Where the source LP relaxation is feasible with a bounded optimum, a CPLEX loop
+    drops bounds and constraints one at a time from the optimal dual support until the
+    objective goes unbounded, then restores every unnecessary drop, leaving an
+    inclusion-minimal set. That built 103 of the instances; the other two relaxations
+    arrive unbounded already. Relaxing a feasible problem cannot make it infeasible, so
+    each one is genuinely unbounded rather than empty.</p>
   </div>
 </div>
 <div class="section">
   <h2>What survives to publication</h2>
   <div class="prose">
-    <p>A candidate is kept only if neither HiGHS nor Gurobi presolve settles
-    it on its own. Anything either presolver disposes of unaided is discarded as trivial.
-    One instance per source instance per subset is then selected, reproducibly, from the
-    candidates that survived.</p>
-  </div>
-</div>
-<div class="section">
-  <h2>Which solver did what</h2>
-  <div class="prose">
-    <p>CPLEX produced the collection. It ran the branch-and-bound search
-    behind the primal-infeasible set, and it solved every LP in the drop-and-restore loop
-    behind the 103 constructed dual-infeasible instances. Which nodes a tree contains
-    depends on the solver that built it, so reproducing this collection means reproducing
-    that run.</p>
-    <p>HiGHS and Gurobi supply the presolve gates described above. Neither
-    contributes an instance; they only reject the ones their presolve settles unaided.</p>
+    <p>A candidate is kept only if neither HiGHS nor Gurobi presolve settles it unaided:
+    whatever a presolver disposes of on its own is too easy to publish. One instance per
+    source instance per subset is then selected, reproducibly, from what survives.
+    Neither presolver contributes an instance.</p>
   </div>
 </div>
 <div class="section">
@@ -122,17 +110,18 @@ ABOUT = """
     <a href="https://doi.org/10.1007/s12532-020-00194-3">Gleixner et al.,
     “MIPLIB 2017: Data-Driven Compilation of the 6th Mixed-Integer Programming
     Library”</a>.</p>
-    <p>The 262 source instances do not all carry the same terms. Of them, 141 carry
+    <p>The 262 source instances do not all carry the same terms. Of them, 131 carry
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, the
     default of the MIPLIB 2017 submission form; <span class="mono">adult-max5features</span>
-    carries BSD 3-Clause, the one contributor who chose otherwise; and 120 carry no
-    licence of record, having been carried over in bulk from MIPLIB 2010, which predates
-    MIPLIB's licensing requirement.</p>
-    <p>This project's own work, and the linear programs derived from the 141, are
-    released under CC BY-SA 4.0. That licence is not applied to the 120: neither MIPLIB
-    nor anyone else placed them under it. They are redistributed on the footing ZIB
-    distributes them on, with the source named and the contributor credited. Every case,
-    the BSD notice, the required attribution and the list of the 120 are set out in
+    carries BSD 3-Clause, the one contributor who chose otherwise; and 130 carry no
+    licence of record, having been carried over from editions that predate the form and
+    the licence it required.</p>
+    <p>To the extent this project holds copyright or related rights in them, its own work
+    and the linear programs derived from the 131 are released under CC BY-SA 4.0. The 130
+    are not: neither MIPLIB nor anyone else placed them under it, so they are
+    redistributed on the footing ZIB distributes them on, with the source named and the
+    contributor credited. Each instance page states the terms of its own source; the BSD
+    notice, the required attribution and the list of the 130 are set out in
     <a href="{licence_href}">LICENSE</a>.</p>
   </div>
 </div>
@@ -190,6 +179,13 @@ def render_guide(site_url: str | None = None) -> str:
          fmt("Lowercase SHA-256 digest of the published {mps} file. Use it with "
              "{size} to detect a truncated or corrupted download.",
              mps=mono(".mps.gz"), size=mono("file_bytes"))),
+        ("source_terms", "object",
+         fmt("Terms the source instance carries, which govern this file too. {spdx} "
+             "is an SPDX identifier, or {null} for the 130 sources imported from an "
+             "earlier MIPLIB, which carry no licence at all. That null is a finding, "
+             "not a gap: {imp} gives MIPLIB's own sentence behind it. A file pulled "
+             "out of an archive alone still says what may be done with it.",
+             spdx=mono("spdx"), null=mono("null"), imp=mono("miplib_import"))),
     ])
 
     primal = _dl([
