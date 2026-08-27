@@ -17,27 +17,24 @@ Each instance is a gzipped MPS file holding continuous variables only. Beside it
 
 ### Primal-infeasible
 
-A branch-and-bound search splits on a variable and explores one side of the split. These instances are the other side, taken at nodes where that side turns out to have no feasible point. The bounds the search accumulated on the way down are all included.
+A branch-and-bound search splits on a variable and explores one side of the split. These instances are the other side, taken at nodes where that side turns out to have no feasible point.
 
 ### Dual-infeasible
 
-These start from a root LP relaxation that is feasible and bounded. Bounds and constraints were dropped until the objective became unbounded, then any drop that proved unnecessary was restored. Put back a single one of those that remain and the LP is bounded again.
+These start from a root LP relaxation that is feasible and bounded. Bounds and constraints were dropped until the objective became unbounded, then any drop that proved unnecessary was restored.
 
 ## Download
 
 The files are release assets rather than part of the git tree.
 
-For the whole set, `primal-infeasible.zip` and `dual-infeasible.zip` hold every file of
-that subset, laid out as `instances/infeasible/` and `instances/unbounded/`:
+For the whole set, `primal-infeasible.zip` and `dual-infeasible.zip` hold every file of that subset, laid out as `instances/infeasible/` and `instances/unbounded/`:
 
 ```bash
 unzip primal-infeasible.zip
 unzip dual-infeasible.zip
 ```
 
-For a subset, `primal-infeasible.csv` and `dual-infeasible.csv` list the instances with
-their dimensions and filenames. Filter one and build the URLs from its `mps_filename`
-column; every asset sits directly under the release download prefix.
+For a subset, `primal-infeasible.csv` and `dual-infeasible.csv` list the instances with their dimensions and filenames. Filter one and build the URLs from its `mps_filename` column; every asset sits directly under the release download prefix.
 
 ## Citation
 
