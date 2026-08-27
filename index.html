@@ -302,13 +302,14 @@ padding:2px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted)
     2017</a> instance. 229 have no feasible point. The other
     105 are feasible, but their objective is unbounded. They run up
     to 20,682,487 variables and 19,912,111
-    constraints, and every one of them arises inside the solving of a real mixed-integer
-    program rather than being built by hand.</p>
+    constraints. The primal-infeasible ones are nodes a real branch-and-bound search
+    reached and pruned; the dual-infeasible ones are built from a root relaxation of the
+    same instances.</p>
 </div>
 <div class="pair"><a class="subset p" href="primal-infeasible/">
       <h3>Primal-infeasible</h3>
       <div class="count">229 instances</div>
-      <p>A branch-and-bound run splits on a variable and explores one side of the split. This set collects the other side, at nodes where that side has no feasible point. Each file carries the node's full bound box, which holds the branch decisions on the path together with whatever the search had already fixed.</p>
+      <p>A branch-and-bound run splits on a variable and explores one side of the split. This set collects the other side, at nodes where that side has no feasible point.</p>
       <span class="go">Browse the 229 &rarr;</span>
     </a><a class="subset d" href="dual-infeasible/">
       <h3>Dual-infeasible</h3>
