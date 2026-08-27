@@ -59,6 +59,16 @@ STYLESHEET = """
   /* the top bar's height, which the sticky offsets below are measured from */
   --topbar-h:56px;
 
+  /* One column width, shared by the top bar and the pages that fill it, so the
+     wordmark sits over the heading below it and the bar does not jump sideways
+     from page to page. The number is what the widest browse table needs: its
+     columns come to 992px, and the facet rail, the gap and the page's padding
+     add 272 more. The rest is slack, because a browser lays text out slightly
+     wider than the font metrics add up to. Under this the table scrolls inside
+     .table-wrap with its last column off-screen. The reading pages take a
+     narrower column of their own inside the same bar. */
+  --page:1320px;
+
   --f-serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;
   --f-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -68,7 +78,7 @@ STYLESHEET = """
 
 /* min-width:0 below is on flex and grid items only. A grid or flex item's
    automatic minimum is its content's min-content, which is what kept the browse
-   column from shrinking under a 970px table and pushed the whole page sideways.
+   column from shrinking under the browse table and pushed the page sideways.
    On anything that is not such an item the property does nothing, and ten of
    them were doing nothing. */
 *{box-sizing:border-box}
@@ -117,7 +127,7 @@ html{scroll-padding-top:72px}
 }
 .skip-link:focus{transform:none}
 .topbar-inner{
-  max-width:1180px;margin:0 auto;padding:0 24px;
+  max-width:var(--page);margin:0 auto;padding:0 24px;
   height:var(--topbar-h);display:flex;align-items:center;gap:28px;min-width:0;
 }
 .wordmark{font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
@@ -144,8 +154,8 @@ body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
    resolves against the element's own font, so the same 66ch handed each text
    size a different width, and every block needed its own opt-out of the cap on
    a narrow page. The citation note never got one, and wrapped short. */
-main{--measure:34rem;width:100%;max-width:1180px;margin:0 auto;padding:44px 24px 96px}
-main.narrow{--measure:none;max-width:900px}
+main{--measure:34rem;width:100%;max-width:var(--page);margin:0 auto;padding:44px 24px 96px}
+main.narrow{--measure:none;--page:900px}
 .prose,.note,.cite-note,.masthead .sub,.browse-head .desc{
   max-width:var(--measure);overflow-wrap:break-word;
 }
@@ -217,8 +227,8 @@ main.narrow{--measure:none;max-width:900px}
 .browse-head h1{font-size:29px}
 .browse-head .desc{font-size:14px;color:var(--muted);margin-top:5px}
 /* minmax(0,...), not a bare 1fr: a track's automatic minimum is its content's
-   min-content, and the widest table here is 970px, so the column refused to
-   shrink below that and pushed the whole page into a horizontal scroll. The
+   min-content, and a browse table's is the full width of its columns, so the
+   column refused to shrink below that and took the whole page sideways. The
    table is meant to scroll inside .table-wrap instead, taking neither the
    sticky facets nor the header out of view with it. */
 .browse{display:grid;grid-template-columns:196px minmax(0,1fr);gap:28px;align-items:start}
@@ -234,6 +244,13 @@ main.narrow{--measure:none;max-width:900px}
 .facet input{accent-color:var(--view);margin:0}
 .facet .n{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;font-variant-numeric:tabular-nums}
 
+.table-search{margin-bottom:12px}
+.search-input{
+  width:100%;max-width:320px;font:inherit;font-size:13.5px;
+  padding:8px 11px;border:1px solid var(--rule);border-radius:6px;
+  background:var(--raise);color:var(--ink);
+}
+.search-input::placeholder{color:var(--muted)}
 .table-wrap{max-width:100%;overflow-x:auto}
 .table-wrap:focus-visible{outline-offset:3px}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
@@ -382,6 +399,7 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   .facet label{min-height:44px;padding:0}
   .facet input{width:18px;height:18px}
   .dl{display:inline-flex;align-items:center;min-height:40px;padding:0 12px}
+  .search-input{min-height:44px}
   tbody th,tbody td{padding:13px}
   th.name a{display:inline-block;padding:6px 0}
   .extlink{display:inline-flex;align-items:center;min-height:44px}
@@ -472,6 +490,10 @@ function bucketHolds(bucket, value){
 }
 
 function setUpBrowseTable(payload){
+  // The rail, the table, the search field and the count are rendered by the
+  // same template as this payload. None of them is checked for: if one is
+  // missing that is a build error, and it should say so here rather than leave
+  // a page that quietly filters nothing.
   const rail = document.querySelector('.facets');
   const table = document.querySelector('.table-wrap table');
   const body = table.tBodies[0];
@@ -491,7 +513,11 @@ function setUpBrowseTable(payload){
     }
   }
   const result = document.querySelector('.result-count');
-  const selectedLabel = rail?.querySelector('.facet-selected');
+  const selectedLabel = rail.querySelector('.facet-selected');
+  // a name is what a reader arrives knowing, so searching for one is another
+  // condition on the same rows rather than a mechanism of its own
+  const search = document.getElementById('instance-search');
+  document.querySelector('.table-search').hidden = false;
   let sortedBy = null;
   let ascending = true;
 
@@ -511,6 +537,8 @@ function setUpBrowseTable(payload){
      rather than undo a checkbox, and what a reader wants to keep is the link. */
   function writeUrl(){
     const params = new URLSearchParams();
+    const term = search.value.trim();
+    if(term) params.set('q', term);
     for(const [param, values] of checkedByParam()) params.set(param, values.join(','));
     if(sortedBy){
       params.set('sort', sortedBy);
@@ -525,8 +553,9 @@ function setUpBrowseTable(payload){
   function readUrl(){
     const params = new URLSearchParams(location.search);
     const wanted = new Set();
+    search.value = params.get('q') ?? '';
     for(const [param, value] of params){
-      if(param === 'sort' || param === 'dir') continue;
+      if(param === 'q' || param === 'sort' || param === 'dir') continue;
       for(const one of value.split(',')) wanted.add(`${param}-${one}`);
     }
     for(const box of rail.querySelectorAll('input[data-k]')){
@@ -543,26 +572,23 @@ function setUpBrowseTable(payload){
   }
 
   function apply(){
-    const groups = rail
-      ? [...rail.querySelectorAll('.facet')].map(checkedIn)
-          .filter((selected) => selected.length > 0)
-      : [];
+    const term = search.value.trim().toLowerCase();
+    const groups = [...rail.querySelectorAll('.facet')].map(checkedIn)
+      .filter((selected) => selected.length > 0);
     let shown = 0;
     for(const row of rows){
-      // a row has to satisfy every group that has a box checked, by any one of
-      // that group's checked buckets
-      const ok = groups.every((selected) =>
-        selected.some(({field, bucket}) => bucketHolds(bucket, row.values[field])));
+      // a row has to carry the term, and satisfy every group that has a box
+      // checked, by any one of that group's checked buckets
+      const ok = (!term || row.values.instance.toLowerCase().includes(term))
+        && groups.every((selected) =>
+          selected.some(({field, bucket}) => bucketHolds(bucket, row.values[field])));
       row.element.hidden = !ok;
       if(ok) shown++;
     }
-    if(selectedLabel){
-      const count = rail.querySelectorAll('input[data-k]:checked').length;
-      selectedLabel.textContent = count ? `${count} selected` : 'None selected';
-    }
-    if(!result) return;
+    const checked = rail.querySelectorAll('input[data-k]:checked').length;
+    selectedLabel.textContent = checked ? `${checked} selected` : 'None selected';
     const total = result.dataset.total;
-    if(!groups.length){
+    if(!groups.length && !term){
       result.textContent = `${total} ${total === '1' ? 'instance' : 'instances'}.`;
     }else if(shown === 0){
       result.textContent = 'No instances match these filters.';
@@ -596,17 +622,21 @@ function setUpBrowseTable(payload){
     sortTo(field, field === sortedBy ? !ascending : true);
     writeUrl();
   });
-  rail?.addEventListener('change', () => {
+  function narrow(){
     apply();
     writeUrl();
-  });
+  }
+
+  rail.addEventListener('change', narrow);
+  // 229 rows is a filter per keystroke, not a reason for a debounce
+  search.addEventListener('input', narrow);
   // Browsers restore checkbox state on reload and when the page comes back from
   // the back/forward cache, so the table has to be brought in line with the boxes
   // before the first change event. pageshow covers both; DOMContentLoaded misses
   // the cache.
   window.addEventListener('pageshow', apply);
 
-  const opening = rail ? readUrl() : null;
+  const opening = readUrl();
   apply();
   if(opening) sortTo(opening.field, opening.ascending);
 }
