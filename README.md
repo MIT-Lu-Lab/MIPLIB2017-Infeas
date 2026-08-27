@@ -38,6 +38,7 @@ For a subset, `primal-infeasible.csv` and `dual-infeasible.csv` list the instanc
 
 ```bibtex
 @misc{miplib_infeas,
+  author       = {Haihao Lu and Bo Tang},
   title        = {MIPLIB-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},
   howpublished = {\url{https://mit-lu-lab.github.io/MIPLIB-Infeas}},
   year         = {2026}
