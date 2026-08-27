@@ -1,3 +1,100 @@
+MIPLIB-Infeas
+=============
+
+Copyright of each original instance rests with its contributor to MIPLIB 2017.
+This collection is adapted material under CC BY-SA 4.0; the full licence text
+follows this notice.
+
+ATTRIBUTION
+
+Every linear program here derives from an instance of the MIPLIB 2017 collection
+(https://miplib.zib.de/). Each sample page names the source instance and the
+person or group who contributed it, and links to its MIPLIB page. The 66
+contributors whose instances this collection adapts are:
+
+  A. Caprara, M. Fischetti, P. Toth
+  Alexandra M. Newman
+  Andrea Arias
+  Andreas Bley
+  Axel Werner
+  Berk Ustun
+  C. Cardonha
+  C. Helmberg
+  C. Raack
+  COR@L test set
+  Chris Cullenbine
+  Christoph Helmberg
+  Cézar Augusto Nascimento e Silva
+  Daniel Espinoza
+  Daniel Rehfeldt
+  Dimitri Papageorgiou
+  Domenico Salvagnin
+  Double-Click SAS
+  E-Plus, D. Bienstock, A. Bley, R. Wessäly
+  E. Coughlan, M. Lübbecke, J. Schulz
+  Elmar Swarat
+  Elmar Swarat, Laura Traverso, Julia Buwaya
+  Emilie Danna
+  George Fonseca
+  Gerald Gamrath
+  Gleb Belov
+  Hans Mittelmann
+  Haroldo Gambini Santos
+  He Renjie
+  Irv Lustig
+  Iulian Ober
+  J. Goessens, S. v. Hoessel, L. Kroon
+  J. Linderoth
+  Jeff Linderoth
+  Jesus Rodriguez
+  Joerg Rambau
+  Joshua Friedman
+  Laurent Sorber
+  M. Lübbecke
+  M. Winkler
+  MIPLIB submission pool
+  Manuel Iori
+  Marc Pfetsch
+  Marco Luebbecke
+  Michael Bastubbe
+  Michael Winkler
+  NEOS Server Submission
+  Nora Konnyu
+  Paul Rubin
+  Pelin Damci-Kurt
+  Philipp Leise
+  Q. Chen
+  R. Borndörfer
+  R. Meirich
+  R. O’Neill
+  Rob Pratt
+  S. Lukac
+  S. Weider
+  Sascha Kurz
+  Siemens
+  Simon Felix
+  Stephan Beyer
+  T. Koch
+  Thomas Schlechte
+  Timo Berthold
+  Yoshihiro Kanno
+
+WHAT WAS CHANGED
+
+Each file keeps its source instance's constraint matrix, objective and
+right-hand side. Changed relative to the source: variable bounds are tightened
+(primal-infeasible) or relaxed (dual-infeasible), rows are deleted
+(dual-infeasible only), and integrality is dropped throughout. Every sample's
+`.meta.json` sidecar records exactly which changes were made.
+
+LICENCE
+
+Released under the Creative Commons Attribution-ShareAlike 4.0 International
+licence, the same licence MIPLIB 2017 applies to contributed instances by
+default. https://creativecommons.org/licenses/by-sa/4.0/
+
+-----------------------------------------------------------------------
+
 Attribution-ShareAlike 4.0 International
 
 =======================================================================
