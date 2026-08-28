@@ -1,6 +1,6 @@
 """Fetch per-instance metadata from MIPLIB 2017 and cache it for the site build.
 
-    python scripts/fetch_miplib_meta.py [--out metadata/miplib_meta.json]
+    python -m scripts.fetch_miplib_meta [--out metadata/miplib_meta.json]
 
 CC BY-SA 4.0 requires that adapted material identify the creator of the original.
 This collection derives every instance from MIPLIB 2017 but named no submitter
@@ -17,17 +17,16 @@ import argparse
 import html
 import json
 import re
-import sys
 import time
 import urllib.error
 import urllib.request
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.dataset import DatasetError, scan_dataset
+from website import DATASET_DIR, MIPLIB_FILE
 
 BASE = "https://miplib.zib.de/instance_details_{name}.html"
 UA = "miplib2017-infeas-metadata/1.0 (one-off attribution fetch)"
-
 
 
 def fetch(name, timeout=30):
@@ -55,8 +54,7 @@ def parse(page):
     for i, row in enumerate(rows):
         cells = [_text(c) for c in re.findall(r"<t[hd][^>]*>(.*?)</t[hd]>", row, re.S)]
         if "Submitter" in cells and i + 1 < len(rows):
-            values = [_text(c) for c in
-                      re.findall(r"<t[hd][^>]*>(.*?)</t[hd]>", rows[i + 1], re.S)]
+            values = [_text(c) for c in re.findall(r"<t[hd][^>]*>(.*?)</t[hd]>", rows[i + 1], re.S)]
             for key, val in zip(cells, values, strict=False):
                 key = key.strip().lower()
                 # an en dash, not a hyphen: it is what MIPLIB puts in an empty cell
@@ -67,9 +65,15 @@ def parse(page):
     # description is the first paragraph, before the boilerplate sections
     for para in re.findall(r"<p[^>]*>(.*?)</p>", page, re.S):
         t = _text(para)
-        if not t or t.startswith(("Location of instance", "Detailed explanation",
-                                  "Available nonzero", "Nonzero entries",
-                                  "The following instances")):
+        if not t or t.startswith(
+            (
+                "Location of instance",
+                "Detailed explanation",
+                "Available nonzero",
+                "Nonzero entries",
+                "The following instances",
+            )
+        ):
             continue
         # MIPLIB appends its own provenance note to many descriptions. It says
         # nothing about the model and runs into the preceding sentence without
@@ -81,11 +85,10 @@ def parse(page):
         # which is what LICENSE turns on.
         # It is not always last. MIPLIB puts it at the front of some entries and
         # in the middle of others, so this cannot be anchored to the end.
-        m = re.search(r"Imported from (?:the )?MIPLIB\s*\d*(?: submissions)?\.",
-                      t, flags=re.I)
+        m = re.search(r"Imported from (?:the )?MIPLIB\s*\d*(?: submissions)?\.", t, flags=re.I)
         if m:
             out["imported_from"] = m.group(0).strip()
-            t = " ".join((t[: m.start()] + " " + t[m.end():]).split())
+            t = " ".join((t[: m.start()] + " " + t[m.end() :]).split())
         if t:
             out["description"] = t
         break
@@ -104,26 +107,24 @@ def parse(page):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset-dir", type=Path,
-                        default=Path(__file__).resolve().parents[1] / "dataset")
-    parser.add_argument("--out", type=Path,
-                        default=Path(__file__).resolve().parents[1]
-                        / "metadata" / "miplib_meta.json")
-    parser.add_argument("--delay", type=float, default=1.0,
-                        help="seconds between requests; this is someone else's server")
+    parser.add_argument("--dataset-dir", type=Path, default=DATASET_DIR)
+    parser.add_argument("--out", type=Path, default=MIPLIB_FILE)
+    parser.add_argument(
+        "--delay",
+        type=float,
+        default=1.0,
+        help="seconds between requests; this is someone else's server",
+    )
     args = parser.parse_args()
 
-    names = set()
-    for sub, suffix in (("infeasible", "_if"), ("unbounded", "_ub")):
-        d = args.dataset_dir / sub
-        if d.is_dir():
-            names |= {p.name[: -len(f"{suffix}.mps.gz")]
-                      for p in d.glob(f"*{suffix}.mps.gz")}
-    names = sorted(names)
+    try:
+        names = sorted({entry.instance for entry in scan_dataset(args.dataset_dir)})
+    except DatasetError as exc:
+        raise SystemExit(str(exc)) from exc
     print(f"fetching metadata for {len(names)} source instances", flush=True)
 
     cache = {}
-    if args.out.exists():                       # resume a partial run
+    if args.out.exists():  # resume a partial run
         cache = json.loads(args.out.read_text(encoding="utf-8"))
         print(f"  {len(cache)} already cached", flush=True)
 
@@ -136,25 +137,28 @@ def main():
             missing.append(name)
         else:
             cache[name] = parse(page)
-        if n % 20 == 0 or n == len(names):
+        if n % 20 == 0:
             args.out.parent.mkdir(parents=True, exist_ok=True)
             args.out.write_text(
                 json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False) + "\n",
-                encoding="utf-8")
+                encoding="utf-8",
+            )
             print(f"  {n}/{len(names)}", flush=True)
         time.sleep(args.delay)
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(
-        json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False) + "\n",
-        encoding="utf-8")
+        json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
 
     def have(k):
         return sum(1 for v in cache.values() if v.get(k))
 
     print(f"\nwrote {args.out}  ({len(cache)} instances)")
-    print(f"  submitter: {have('submitter')}   tags: {have('tags')}   "
-          f"description: {have('description')}   group: {have('group')}")
+    print(
+        f"  submitter: {have('submitter')}   tags: {have('tags')}   "
+        f"description: {have('description')}   group: {have('group')}"
+    )
     if missing:
         print(f"  no MIPLIB page for {len(missing)}: {', '.join(missing[:5])}")
 

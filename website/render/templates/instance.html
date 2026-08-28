@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="detail-head">
+  <nav class="crumb" aria-label="Breadcrumb"><a href="{{ up_href }}">{{ info.label }}</a>
+    <span aria-hidden="true"> / </span><span aria-current="page">{{ sample.instance }}</span></nav>
+  <h1>{{ sample.instance }}</h1>
+  <div class="badges">
+    <span class="badge {{ info.tone }}">{{ info.label | lower }}</span>
+    {% if not primal and provenance.natural_unbounded %}
+    <span class="badge n">unbounded as given</span>
+    {% endif %}
+  </div>
+</div>
+<div class="detail">
+  <div>
+    <div class="panel">
+      <header><h2>The instance</h2><span class="eyebrow">as published</span></header>
+      <div class="body"><dl class="kv">
+        <dt>Variables</dt><dd>{{ n_vars }}</dd>
+        <dt>Constraints</dt><dd>{{ n_cons }}</dd>
+        <dt>Nonzeros</dt><dd>{{ nnz }}</dd>
+        <dt>Format</dt><dd>MPS, gzipped</dd>
+      </dl></div>
+    </div>
+    {% if primal %}
+    <div class="panel">
+      <header><h2>Where it comes from</h2><span class="eyebrow">provenance</span></header>
+      <div class="body">
+        <p class="lede">A branch-and-bound run reached this node's parent and split on a
+        variable. This instance is the side the search did not explore, and it has no
+        feasible point.</p>
+        <div class="recipe">
+          <span class="k">branch taken by the search</span><br>
+          {{ details.branch.var }} {{ details.branch.taken_sense }} {{ details.branch.taken_value }}<br>
+          <span class="k">this instance, the other side</span><br>
+          <b>{{ details.branch.var }} {{ details.branch.sense }} {{ details.branch.value }}</b>
+          <span class="k">at depth {{ details.depth }}</span>
+        </div>
+        <dl class="kv">
+          <dt>Depth in the tree</dt><dd>{{ details.depth }}</dd>
+          <dt>Bounds tightened vs. source</dt><dd>{{ details.bound_changes }}</dd>
+          <dt>Branch variable</dt><dd>{{ details.branch.var }}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="panel">
+      <header><h2>Tightened bounds</h2><span class="eyebrow">{{ details.path_count }}</span></header>
+      <div class="body">
+        <div class="path">{% for entry in provenance.path_head %}<span>{{ entry }}</span>{% endfor %}</div>
+        <p class="more">{{ details.path_shown }} of {{ details.bound_changes }} shown.
+        The complete list is in the sidecar.</p>
+      </div>
+    </div>
+    {% elif provenance.natural_unbounded %}
+    <div class="panel">
+      <header><h2>Where it comes from</h2><span class="eyebrow">provenance</span></header>
+      <div class="body"><p class="lede">The source instance's LP relaxation is unbounded as given. Nothing was removed to produce this instance.</p></div>
+    </div>
+    {% else %}
+    <div class="panel">
+      <header><h2>Where it comes from</h2><span class="eyebrow">provenance</span></header>
+      <div class="body">
+        <p class="lede">The source instance's LP relaxation is feasible with a bounded
+        optimum. Removing the elements below makes the objective unbounded, and putting
+        any one of them back makes it bounded again.</p>
+        <dl class="kv">
+          <dt>Bounds dropped</dt><dd>{{ details.bounds_dropped }}</dd>
+          <dt>Rows dropped</dt><dd>{{ details.rows_dropped }}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="panel">
+      <header><h2>What was removed</h2><span class="eyebrow">{{ details.drop_count }}</span></header>
+      <div class="body">
+        <div class="path">{% for label in details.drop_labels %}<span>{{ label }}</span>{% endfor %}</div>
+        <p class="more">{{ details.drops_shown }} of {{ details.total_dropped }} shown.
+        The complete list is in the sidecar.</p>
+      </div>
+    </div>
+    {% endif %}
+    {% if cross_info %}
+    <a class="crosslink {{ cross_info.tone }}" href="{{ cross_href }}">
+      <span>Also published in the <b>{{ cross_info.label | lower }}</b> set</span>
+      <span class="mono">view →</span>
+    </a>
+    {% endif %}
+  </div>
+  <aside class="aside" aria-label="Downloads and source">
+    <div class="card">
+      <header><h2 class="eyebrow">Download</h2></header>
+      <div class="body">
+        {% for file in downloads %}
+        {% if file.href %}
+        <a class="btn{% if file.ghost %} ghost{% endif %}" href="{{ file.href }}"><span
+          class="btn-label">{{ file.name }}</span><span class="sz">{{ file.size }}</span></a>
+        {% else %}
+        <span class="btn{% if file.ghost %} ghost{% endif %}" role="link"
+          aria-disabled="true" aria-label="{{ file.name }}: unavailable"><span
+          class="btn-label">{{ file.name }}</span><span class="sz">{{ file.size }}</span></span>
+        {% endif %}
+        {% endfor %}
+        <p class="hint">The sidecar carries the full provenance, including the fields this
+        page truncates.</p>
+      </div>
+    </div>
+    <div class="card">
+      <header><h2 class="eyebrow">Source instance</h2></header>
+      <div class="body">
+        {% for label, value in source_rows %}
+        <div class="src-row"><span>{{ label }}</span><span>{{ value }}</span></div>
+        {% endfor %}
+        <div class="src-row"><span>Terms</span>{% if terms_url %}<a
+          href="{{ terms_url }}">{{ terms }}</a>{% else %}<span>{{ terms }}</span>{% endif %}</div>
+        {% if sample.imported_from %}
+        <p class="hint terms-note">{{ sample.imported_from }} It predates MIPLIB's
+        submission form, and the licence that form required. See
+        <a href="{{ licence_href }}">LICENSE</a>.</p>
+        {% endif %}
+        {% if shown_tags %}
+        <div class="srctags">{% for tag in shown_tags %}<span
+          class="srctag">{{ tag }}</span>{% endfor %}</div>
+        {% endif %}
+        {% if sample.source_description %}
+        <p class="hint">{% for text, href in source_tokens %}{% if href %}<a href="{{ href }}">{{ text }}</a>{% else %}{{ text }}{% endif %}{% endfor %}</p>
+        <p class="hint credit">Source description quoted from MIPLIB 2017; links and
+        mathematical notation formatted for the web.</p>
+        {% endif %}
+        <a class="extlink" href="{{ sample.miplib_url }}">View on MIPLIB 2017 →</a>
+      </div>
+    </div>
+  </aside>
+</div>
+{% endblock %}

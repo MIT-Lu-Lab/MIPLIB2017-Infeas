@@ -9,15 +9,12 @@ on:
 permissions:
   contents: read
 
-# The release the download links point at. The site names a specific release
-# rather than following the newest one, so cutting a new one is a deliberate
-# edit here.
-env:
-  RELEASE_TAG: v1.0
-
 jobs:
   check:
     runs-on: ubuntu-latest
+    outputs:
+      release_tag: ${{ steps.release.outputs.tag }}
+      release_manifest: ${{ steps.release.outputs.manifest }}
     permissions:
       contents: read
       pages: read
@@ -27,21 +24,36 @@ jobs:
       group: site-check-${{ github.ref }}
       cancel-in-progress: true
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - name: Carry the one configured release into the deployment gate
+        id: release
+        run: |
+          . .github/release.env
+          echo "tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+          echo "manifest=$RELEASE_MANIFEST" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-python@v7
         with:
-          # the floor the annotations need; a newer runner default would hide a
-          # regression that only shows up on the version the project claims
-          python-version: "3.10"
+          # the version the deployment gate and a checkout run; testing any
+          # other would prove nothing about the build that actually ships
+          python-version: "3.14"
 
-      # fonttools reads the shipped subsets: what a face leaves out is a
-      # question now, and the answer has to come from the files themselves
-      - run: pip install "pytest>=7" "ruff>=0.5" "pyright>=1.1" "jsonschema>=4"
-                         "fonttools>=4.50" "brotli>=1.1"
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      # the list itself lives in pyproject.toml, so a checkout installs what
+      # CI installs rather than the two drifting apart
+      - run: pip install --group dev
 
       - name: Lint
         run: ruff check .
+
+      # layout is the formatter's, so a hand-wrapped line fails here rather
+      # than being argued about in review
+      - name: Check formatting
+        run: ruff format --check .
 
       - name: Type-check
         run: pyright
@@ -52,122 +64,68 @@ jobs:
           pytest -q -rs | tee /tmp/pytest.out
           # a skip here means the runner is missing something the tests need, and
           # the check it guards silently stops running. The schema tests skip
-          # without jsonschema, which is exactly how that would go unnoticed.
+          # without jsonschema and the font tests without fontTools, which is
+          # exactly how that would go unnoticed.
           if grep -q "SKIPPED" /tmp/pytest.out; then
             echo "::error::a test skipped in CI; install what it needs"; exit 1
           fi
 
+      - name: Execute the browser-independent filter logic
+        run: node tests/js/browse.test.js
+
       - name: Resolve the published URL
         id: pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build the site
         run: |
-          python -m website.build_site --out-dir _site \
-            --release-base-url "https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_TAG }}" \
+          python -m website.build --out-dir _site \
+            --release-base-url "https://github.com/${{ github.repository }}/releases/download/${{ steps.release.outputs.tag }}" \
             --site-url "${{ steps.pages.outputs.base_url || 'https://example.invalid/probe' }}"
 
-      - name: The build has to stand on its own
-        # every asset a page asks for must come out of the same build: the site is
-        # deployed from this directory and nothing else
-        run: |
-          test -f _site/.nojekyll
-          test "$(find _site -name index.html | wc -l)" -eq 340
-          test -f _site/primal-infeasible.csv
-          test -f _site/dual-infeasible.csv
-          # the same catalogue a script reads, and the document that finds it
-          test -f _site/primal-infeasible.json
-          test -f _site/dual-infeasible.json
-          test -f _site/index.json
-          test -f _site/sitemap.xml
-          test "$(grep -c '<url>' _site/sitemap.xml)" -eq 340
-          test -f _site/schema/meta.schema.json
-          cmp schema/meta.schema.json _site/schema/meta.schema.json
-          test -f _site/LICENSE.txt
-          cmp LICENSE _site/LICENSE.txt
-          test -f _site/og.png
-          cmp og.png _site/og.png
-          test "$(find _site/fonts -name '*.woff2' | wc -l)" -eq 8
-          # A reader must not be announced to a third party to read a page. Links
-          # in the prose are the point of the site and are not what this looks at:
-          # only what the browser fetches on its own, from the pages and from the
-          # stylesheet they pull in.
-          if grep -rEn '<(script|img)[^>]+src="https?://' _site --include='*.html'; then
-            echo "::error::a page fetches a third-party script or image"; exit 1
-          fi
-          # A <link> fetches for rel=stylesheet, preload, icon and their kin. It
-          # does not for canonical and alternate, which name a URL rather than
-          # load one, so an unlisted rel is still a failure.
-          if grep -rEn '<link[^>]+href="https?://' _site --include='*.html' \
-               | grep -Ev '<link rel="(canonical|alternate)" '; then
-            echo "::error::a page loads a third-party stylesheet or preload"; exit 1
-          fi
-          if grep -En "url\(\s*[\"']?https?://" _site/assets/*.css; then
-            echo "::error::the stylesheet fetches a third-party resource"; exit 1
-          fi
-
-      - name: Rebuilding changes nothing
-        # the pages carry no timestamp, counter or ordering that depends on the
-        # run, so a second build over the first must leave every byte alone
-        run: |
-          find _site -type f | sort | xargs sha256sum > /tmp/first.sha
-          python -m website.build_site --out-dir _site \
-            --release-base-url "https://github.com/${{ github.repository }}/releases/download/${{ env.RELEASE_TAG }}" \
-            --site-url "${{ steps.pages.outputs.base_url || 'https://example.invalid/probe' }}"
-          find _site -type f | sort | xargs sha256sum > /tmp/second.sha
-          diff /tmp/first.sha /tmp/second.sha
-
-      - name: Package the verified Pages artifact
+      - name: Check the production public URL
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        shell: bash
         run: |
-          # A missing configure-pages URL must not turn the PR-only probe origin
-          # into the canonical URL of a production deployment.
-          if grep -rIEn 'REPLACE-WITH|https://example\.invalid/probe' _site \
+          if grep -rIEn 'https://example\.invalid/probe' _site \
                --include='*.html' --include='*.xml'; then
             echo "::error::the Pages artifact contains a placeholder public URL"
             exit 1
           fi
-          # The current upload-pages-artifact@v4 release excludes dotfiles,
-          # including .nojekyll. Build the Pages tar explicitly so the deployed
-          # tree is exactly the tree checked above. Reject any unreviewed hidden
-          # entry or symbolic link.
-          unexpected="$(find _site -mindepth 1 -name '.*' ! -path '_site/.nojekyll' -print)"
-          if [[ -n "$unexpected" ]]; then
-            echo "::error::unexpected hidden path in the site artifact"
-            printf '%s\n' "$unexpected"
-            exit 1
-          fi
-          if find _site -type l -print -quit | grep -q .; then
-            echo "::error::the Pages artifact contains a symbolic link"
-            exit 1
-          fi
-          tar --dereference --hard-dereference \
-            --directory _site \
-            -cf "$RUNNER_TEMP/artifact.tar" \
-            .
-          tar -tf "$RUNNER_TEMP/artifact.tar" > "$RUNNER_TEMP/artifact-files.txt"
-          grep -Fxq './.nojekyll' "$RUNNER_TEMP/artifact-files.txt"
-          grep -Fxq './schema/meta.schema.json' "$RUNNER_TEMP/artifact-files.txt"
-          grep -Fxq './LICENSE.txt' "$RUNNER_TEMP/artifact-files.txt"
 
       - name: Upload the verified Pages artifact
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
+          path: _site
+          include-hidden-files: true
           retention-days: 1
-          if-no-files-found: error
 
-  deploy:
+  release-gate:
     needs: check
     if: >-
-      ${{ needs.check.result == 'success' &&
-          github.ref == 'refs/heads/main' &&
+      ${{ github.ref == 'refs/heads/main' &&
           github.event_name != 'pull_request' }}
+    permissions:
+      contents: read
+    uses: ./.github/workflows/verify-release.yml
+    with:
+      tag: ${{ needs.check.outputs.release_tag }}
+      manifest: ${{ needs.check.outputs.release_manifest }}
+
+  deploy:
+    needs: release-gate
+    runs-on: ubuntu-latest
     permissions:
       pages: write
       id-token: write
-    uses: ./.github/workflows/pages.yml
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the verified artifact
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -62,8 +62,11 @@ def test_a_sidecar_may_record_that_no_licence_exists(validator):
     only way to pass validation would be to name a licence nobody granted.
     """
     meta = dict(_SIDECARS[0][0])
-    meta["source_terms"] = {"spdx": None, "summary": "No licence of record",
-                            "miplib_import": "Imported from MIPLIB2010."}
+    meta["source_terms"] = {
+        "spdx": None,
+        "summary": "No licence of record",
+        "miplib_import": "Imported from MIPLIB2010.",
+    }
     assert not list(validator.iter_errors(meta))
 
 

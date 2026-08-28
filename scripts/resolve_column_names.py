@@ -1,6 +1,6 @@
 """Resolve the column indices in each sidecar to the real MPS column names.
 
-    python scripts/resolve_column_names.py [--dataset-dir dataset]
+    python -m scripts.resolve_column_names [--dataset-dir dataset]
 
 The miners record variables by 0-based column index, which is what they have in
 hand. Printing those as `x643` invents a name: column 643 of `30n20b8_if` is
@@ -22,21 +22,15 @@ names are longer than indices. The sidecar records that convention in
 
 import argparse
 import gzip
-import json
 import re
-import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.dataset import DatasetError, read_entry_sidecar, replace_sidecar, scan_dataset
+from website import DATASET_DIR
+from website.domain import HEAD_LIMIT
 
-HEAD_LIMIT = 12
 ENTRY_RE = re.compile(r"^x(\d+)(<=|>=)(.+)$")
-
-SUBSETS = {
-    "primal": {"dir": "infeasible", "suffix": "_if"},
-    "dual": {"dir": "unbounded", "suffix": "_ub"},
-}
 
 
 def column_names(mps_path):
@@ -48,7 +42,7 @@ def column_names(mps_path):
                 continue
             if not line[0].isspace():
                 section = line.split()[0]
-                if section == "RHS":       # COLUMNS is over; stop reading
+                if section == "RHS":  # COLUMNS is over; stop reading
                     break
                 continue
             if section != "COLUMNS" or "'MARKER'" in line:
@@ -73,43 +67,43 @@ def rename_entry(entry, names):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset-dir", type=Path,
-                        default=Path(__file__).resolve().parents[1] / "dataset")
+    parser.add_argument("--dataset-dir", type=Path, default=DATASET_DIR)
     args = parser.parse_args()
 
-    jobs = []
-    for subset, info in SUBSETS.items():
-        d = args.dataset_dir / info["dir"]
-        if d.is_dir():
-            jobs += [(subset, p) for p in sorted(d.glob(f"*{info['suffix']}.meta.json"))]
-    print(f"resolving column names in {len(jobs)} sidecars", flush=True)
+    try:
+        dataset = scan_dataset(args.dataset_dir)
+    except DatasetError as exc:
+        raise SystemExit(str(exc)) from exc
+    print(f"resolving column names in {len(dataset)} sidecars", flush=True)
 
     t0 = time.time()
-    for n, (subset, meta_path) in enumerate(jobs, 1):
-        mps = meta_path.with_name(meta_path.name.removesuffix(".meta.json") + ".mps.gz")
-        meta = json.loads(meta_path.read_text(encoding="utf-8"))
-        names = column_names(mps)
+    for n, entry in enumerate(dataset, 1):
+        try:
+            meta = read_entry_sidecar(entry)
+        except DatasetError as exc:
+            raise SystemExit(str(exc)) from exc
+        names = column_names(entry.mps)
 
-        if subset == "primal":
+        if entry.subset == "primal":
             idx = meta.get("branch_var")
-            if isinstance(idx, int) and idx < len(names):
+            if type(idx) is int and 0 <= idx < len(names):
                 meta["branch_var_name"] = names[idx]
-            meta["path_head_named"] = [rename_entry(e, names)
-                                       for e in meta.get("path_entries", [])[:HEAD_LIMIT]]
+            meta["path_head_named"] = [
+                rename_entry(e, names) for e in meta.get("path_entries", [])[:HEAD_LIMIT]
+            ]
             meta["path_entries_are_column_indices"] = True
         else:
             for drop in meta.get("drops", []):
                 if drop.get("kind") == "bound":
                     j = drop.get("var")
-                    if isinstance(j, int) and j < len(names):
+                    if type(j) is int and 0 <= j < len(names):
                         drop["name"] = names[j]
 
-        meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
-                             encoding="utf-8")
-        if n % 25 == 0 or n == len(jobs):
-            print(f"  {n}/{len(jobs)}  ({time.time() - t0:.0f}s)", flush=True)
+        replace_sidecar(entry.sidecar, meta)
+        if n % 25 == 0 or n == len(dataset):
+            print(f"  {n}/{len(dataset)}  ({time.time() - t0:.0f}s)", flush=True)
 
-    print("done")
+    print("done; next: python -m scripts.build_site_index")
 
 
 if __name__ == "__main__":

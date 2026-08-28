@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ document_title }}</title>
+<meta name="description" content="{{ page_description }}">
+{% if canonical %}<link rel="canonical" href="{{ canonical }}">
+{% endif %}<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site_name }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ page_description }}">
+{% if canonical %}<meta property="og:url" content="{{ canonical }}">
+{% endif %}{% if image %}<meta property="og:image" content="{{ image }}">
+<meta property="og:image:width" content="{{ image_size[0] }}">
+<meta property="og:image:height" content="{{ image_size[1] }}">
+<meta property="og:image:alt" content="{{ image_alt }}">
+{% endif %}<meta name="twitter:card" content="{{ twitter_card }}">
+<link rel="stylesheet" href="{{ css_href }}">
+</head>
+<body data-view="{{ view }}">
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="{{ root_href }}">MIPLIB<span class="dash">-</span>Infeas</a>
+    <nav class="top" aria-label="Primary navigation">
+      {% for item in nav %}
+      <a href="{{ item.href }}"{% if item.current %} aria-current="page"{% endif %}{% if item.short %} aria-label="{{ item.label }}"{% endif %}>{% if item.short %}<span class="nav-full">{{ item.label }}</span><span class="nav-short">{{ item.short }}</span>{% else %}{{ item.label }}{% endif %}</a>
+      {% endfor %}
+    </nav>
+  </div>
+  <div class="hairline"><span></span><span></span></div>
+</header>
+<main id="main-content" tabindex="-1"{% if narrow %} class="narrow"{% endif %}>
+{% block main required %}{% endblock %}
+</main>
+<script src="{{ js_src }}" defer></script>
+</body>
+</html>

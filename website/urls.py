@@ -1,22 +1,9 @@
-"""Where a link points. One model, rather than one per call site.
-
-A page-to-page link was built five different ways: the shell multiplied "../"
-by a depth it was handed, an instance page wrote "../../" into its crosslink,
-the download card wrote "../" into its index link, and two places each rstripped
-a slash off the release prefix. The depth of a page was therefore stated twice,
-once as a number and once as a count of dot-dots, with nothing keeping them in
-step.
-
-Here a page names its own path in the site and asks for a link to another one.
-The same path also gives its canonical URL, so the two cannot disagree.
-"""
+"""Normalize public bases and derive links from generated site paths."""
 
 from __future__ import annotations
 
 import posixpath
 from urllib.parse import urlsplit, urlunsplit
-
-__all__ = ["normalize_site_url", "page_url", "rel", "site_file"]
 
 
 def rel(from_page: str, to: str) -> str:
@@ -39,37 +26,46 @@ def rel(from_page: str, to: str) -> str:
     return out
 
 
-def normalize_site_url(site_url: str | None) -> str | None:
-    """Return an absolute public base URL with exactly one trailing slash."""
-    if site_url is None:
+def _normalize_http_base(value: str | None, *, label: str, trailing_slash: bool) -> str | None:
+    if value is None:
         return None
-    if (not site_url or "\\" in site_url
-            or any(c.isspace() or ord(c) < 0x20 or ord(c) == 0x7f for c in site_url)):
-        raise SystemExit(f"--site-url must be an absolute HTTP(S) URL, got {site_url!r}")
+    if (
+        not value
+        or "\\" in value
+        or any(c.isspace() or ord(c) < 0x20 or ord(c) == 0x7F for c in value)
+    ):
+        raise ValueError(f"{label} must be an absolute HTTP(S) URL, got {value!r}")
     try:
-        parts = urlsplit(site_url)
+        parts = urlsplit(value)
         _ = parts.port  # force validation of a malformed port
         hostname = parts.hostname
     except ValueError as exc:
-        raise SystemExit(f"--site-url is invalid: {exc}") from exc
-    if (parts.scheme not in {"http", "https"} or not parts.netloc or not hostname
-            or parts.username is not None or parts.password is not None
-            or parts.query or parts.fragment):
-        raise SystemExit(
-            f"--site-url must be an absolute HTTP(S) base URL without credentials, "
-            f"a query, or a fragment; got {site_url!r}")
-    path = parts.path.rstrip("/") + "/"
+        raise ValueError(f"{label} is invalid: {exc}") from exc
+    if (
+        parts.scheme not in {"http", "https"}
+        or not parts.netloc
+        or not hostname
+        or parts.username is not None
+        or parts.password is not None
+        or parts.query
+        or parts.fragment
+    ):
+        raise ValueError(
+            f"{label} must be an absolute HTTP(S) base URL without credentials, "
+            f"a query, or a fragment; got {value!r}"
+        )
+    path = parts.path.rstrip("/") + ("/" if trailing_slash else "")
     return urlunsplit((parts.scheme, parts.netloc, path, "", ""))
 
 
-def _origin(site_url: str) -> str:
-    """The public base, with exactly one trailing slash.
+def normalize_site_url(site_url: str | None) -> str | None:
+    """Return an absolute public base URL with exactly one trailing slash."""
+    return _normalize_http_base(site_url, label="site URL", trailing_slash=True)
 
-    normalize_site_url guarantees that of what the CLI is given, but a renderer
-    can be called with a base directly, and one that ends without a slash used
-    to produce a URL with a path segment glued to the file after it.
-    """
-    return site_url.rstrip("/") + "/"
+
+def normalize_release_base_url(value: str | None) -> str | None:
+    """Return a clean HTTP(S) release prefix without a trailing slash."""
+    return _normalize_http_base(value, label="release base URL", trailing_slash=False)
 
 
 def page_url(site_url: str, page_rel: str) -> str:
@@ -77,9 +73,9 @@ def page_url(site_url: str, page_rel: str) -> str:
     suffix = "index.html"
     if not page_rel.endswith(suffix):
         raise ValueError(f"not an HTML page path: {page_rel!r}")
-    return _origin(site_url) + page_rel[:-len(suffix)]
+    return site_url + page_rel[: -len(suffix)]
 
 
 def site_file(site_url: str, path: str) -> str:
     """A file published at the site root, as an absolute URL."""
-    return _origin(site_url) + path.lstrip("/")
+    return site_url + path.lstrip("/")

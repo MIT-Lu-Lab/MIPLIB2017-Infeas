@@ -1,113 +1,124 @@
 """Record in every published sidecar the terms its source instance carries.
 
-    python scripts/add_source_terms.py --dataset-dir dataset
+    python -m scripts.add_source_terms --dataset-dir dataset
 
 A sidecar travels with its `.mps.gz`, and someone who takes one file out of an
 archive has only that pair to go on. Until now neither said anything about
 terms, so the whole question lived in LICENSE, which such a reader never sees.
 That was tolerable while the collection claimed one licence for everything. It
-is not tolerable now that it does not: 130 of the 262 source instances carry no
-licence of record, and a file that says nothing invites the reader to assume the
-CC BY-SA the rest of the collection is under.
+is not tolerable now that the sources do not share one: a file that says nothing
+invites the reader to assume the terms of a different source.
 
-The terms come from `website.records.source_terms`, the same function the pages
+The terms come from `website.domain.source_terms`, the same function the pages
 render, so the sidecar and the instance page cannot drift apart. Which case an
 instance falls into is decided by MIPLIB's own provenance note, cached in
 metadata/miplib_meta.json by scripts/fetch_miplib_meta.py.
 
 Writing this changes every sidecar's size, and metadata/site-index.json records
-those sizes, so run scripts/build_site_index.py afterwards and re-upload both.
+those sizes, so run ``python -m scripts.build_site_index`` afterwards and re-upload both.
 The .mps.gz files are untouched, and so are the checksums published for them.
 """
 
 from __future__ import annotations
 
 import argparse
-import json
-import sys
 from pathlib import Path
+from typing import Any, cast
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
-from website.records import SUBSET_META, source_terms
-
-
-def dumps(sidecar: dict) -> str:
-    """Serialise a sidecar the way the miners wrote it.
-
-    Byte-identical to the published files, so a re-upload carries the new field
-    and nothing else.
-    """
-    return json.dumps(sidecar, indent=2, sort_keys=True, ensure_ascii=False) + "\n"
-
-
-def sidecars(dataset_dir: Path):
-    """Every published sidecar, with the subset it belongs to."""
-    for info in SUBSET_META.values():
-        subdir = dataset_dir / info["dir"]
-        if not subdir.is_dir():
-            raise SystemExit(f"{subdir}: not a directory")
-        yield from sorted(subdir.glob("*.meta.json"))
+from scripts.dataset import (
+    DatasetEntry,
+    DatasetError,
+    read_entry_sidecar,
+    replace_sidecar,
+    scan_dataset,
+    sidecar_text,
+)
+from website import DATASET_DIR, MIPLIB_FILE
+from website.domain import source_terms
+from website.jsonio import JsonError, read_json
 
 
 def main() -> None:
-    root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--dataset-dir", type=Path, default=root / "dataset")
-    parser.add_argument("--miplib-meta", type=Path,
-                        default=root / "metadata" / "miplib_meta.json")
-    parser.add_argument("--dry-run", action="store_true",
-                        help="report what would change and write nothing")
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument("--dataset-dir", type=Path, default=DATASET_DIR)
+    parser.add_argument("--miplib-meta", type=Path, default=MIPLIB_FILE)
+    parser.add_argument(
+        "--dry-run", action="store_true", help="report what would change and write nothing"
+    )
     args = parser.parse_args()
 
-    meta = json.loads(args.miplib_meta.read_text(encoding="utf-8"))
+    try:
+        raw_meta = read_json(args.miplib_meta)
+        if not isinstance(raw_meta, dict):
+            raise DatasetError(f"{args.miplib_meta}: metadata cache must be a JSON object")
+        source_meta = cast(dict[str, dict[str, Any]], raw_meta)
+        dataset = scan_dataset(args.dataset_dir)
+    except (DatasetError, JsonError) as exc:
+        raise SystemExit(str(exc)) from exc
 
-    written = unchanged = 0
+    unchanged = 0
     counts: dict[str, int] = {}
-    unknown = []
-    for path in sidecars(args.dataset_dir):
+    unknown: list[str] = []
+    planned: list[DatasetEntry] = []
+    for entry in dataset:
+        path = entry.sidecar
         raw = path.read_text(encoding="utf-8")
-        sidecar = json.loads(raw)
+        try:
+            sidecar = read_entry_sidecar(entry)
+        except DatasetError as exc:
+            raise SystemExit(str(exc)) from exc
         instance = sidecar["instance"]
-        entry = meta.get(instance)
-        if entry is None:
+        source = source_meta.get(instance)
+        if source is None:
             # without MIPLIB's note there is no evidence either way, and guessing
             # is what this whole exercise exists to stop
             unknown.append(instance)
             continue
-        terms = source_terms(instance, entry.get("imported_from"))
+        terms = source_terms(instance, source.get("imported_from"))
         counts[terms["summary"]] = counts.get(terms["summary"], 0) + 1
         if sidecar.get("source_terms") == terms:
             unchanged += 1
             continue
         # Re-serialising the file unchanged has to reproduce it byte for byte. If
         # it does not, this script's formatting differs from the miners' and a
-        # write would reflow all 334 published files instead of adding one field.
-        if dumps(sidecar) != raw:
+        # write would reflow every sidecar instead of adding one field.
+        if sidecar_text(sidecar) != raw:
             raise SystemExit(
                 f"{path}: re-serialising it changes bytes beyond the new field, so "
                 "writing would reflow every sidecar. Match the miners' formatting "
-                "before publishing anything.")
-        sidecar["source_terms"] = terms
-        if not args.dry_run:
-            path.write_text(dumps(sidecar), encoding="utf-8")
-        written += 1
+                "before publishing anything."
+            )
+        planned.append(entry)
 
-    verb = "would write" if args.dry_run else "wrote"
-    print(f"{verb} {written} sidecars, {unchanged} already current")
-    for summary, n in sorted(counts.items()):
-        print(f"  {n:>4}  {summary}")
     if unknown:
         raise SystemExit(
             f"\n{len(unknown)} instance(s) absent from {args.miplib_meta.name}, so "
             f"their terms are unknown: {', '.join(unknown[:5])}\n"
-            "Run scripts/fetch_miplib_meta.py first; a sidecar must not be given "
-            "terms that were guessed rather than read off MIPLIB.")
-    if not args.dry_run and written:
-        print("\nsidecar sizes changed: run scripts/build_site_index.py next, then "
-              "re-upload the sidecars and metadata/site-index.json")
+            "Run python -m scripts.fetch_miplib_meta first; a sidecar must not be given "
+            "terms that were guessed rather than read off MIPLIB."
+        )
+    if not args.dry_run:
+        for entry in planned:
+            try:
+                sidecar = read_entry_sidecar(entry)
+            except DatasetError as exc:
+                raise SystemExit(str(exc)) from exc
+            instance = sidecar["instance"]
+            source = source_meta[instance]
+            sidecar["source_terms"] = source_terms(instance, source.get("imported_from"))
+            replace_sidecar(entry.sidecar, sidecar)
+
+    verb = "would write" if args.dry_run else "wrote"
+    print(f"{verb} {len(planned)} sidecars, {unchanged} already current")
+    for summary, n in sorted(counts.items()):
+        print(f"  {n:>4}  {summary}")
+    if not args.dry_run and planned:
+        print(
+            "\nsidecar sizes changed: run python -m scripts.build_site_index next, then "
+            "re-upload the sidecars and metadata/site-index.json"
+        )
 
 
 if __name__ == "__main__":

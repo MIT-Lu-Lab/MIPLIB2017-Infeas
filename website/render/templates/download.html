@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="masthead">
+  <span class="eyebrow">Files</span>
+  <h1>Download</h1>
+  <p class="sub">{{ instance_count }}. The archives below carry both
+  files of every instance, {{ total_size }} unpacked in all.</p>
+</div>
+<div class="pair">
+  {% for card in cards %}
+  <div class="card {{ card.info.tone }}">
+    <header><h2 class="eyebrow">{{ card.info.label }}</h2></header>
+    <div class="body">
+      {% if card.zip_href %}
+      <a class="btn" href="{{ card.zip_href }}">{{ card.info.slug }}.zip<span
+        class="sz">{{ card.size }} unpacked</span></a>
+      {% else %}
+      <span class="btn" role="link" aria-disabled="true"
+        aria-label="{{ card.info.label }} archive: unavailable">{{ card.info.slug }}.zip<span
+        class="sz">{{ card.size }} unpacked</span></span>
+      {% endif %}
+      <a class="btn ghost" href="{{ card.csv_href }}">{{ card.info.slug }}.csv<span
+        class="sz">index</span></a>
+      <p class="hint">The archive unpacks to <span class="mono">instances/{{ card.info.directory }}/</span>. The
+      index lists every instance in this subset with its dimensions and the filename to
+      fetch.</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<p class="note">Single instances download from
+their own page. Every asset sits directly under the release prefix, so a filename taken
+from an index is all you need to append.</p>
+{% endblock %}

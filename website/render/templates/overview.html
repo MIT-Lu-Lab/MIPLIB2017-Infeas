@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block main %}
+{% from "_macros.html" import miplib_citation %}
+<script type="application/ld+json">{{ dataset_jsonld | tojson }}</script>
+<div class="masthead">
+  <span class="eyebrow">{{ tagline }}</span>
+  <h1>{{ name }}</h1>
+  <p class="sub">{{ n_samples }} linear programs with no optimal solution, each
+  derived from a <a href="https://miplib.zib.de/">MIPLIB 2017</a> instance with its
+  integrality dropped. {{ n_primal }} {{ primal_verb }} no feasible point;
+  {{ n_dual }} {{ dual_verb }} unbounded. They run up to {{ max_vars }} variables
+  and {{ max_cons }} constraints.</p>
+</div>
+<div class="pair">
+  {% for card in cards %}<a class="subset {{ card.tone }}" href="{{ card.slug }}/">
+    <h2>{{ card.label }}</h2>
+    <div class="count">{{ card.count }} instances</div>
+    <p>{{ card.blurb }}</p>
+    <span class="go">Browse them all →</span>
+  </a>{% endfor %}
+</div>
+<div class="section">
+  <span class="eyebrow">Every instance</span>
+  <h2>Two files</h2>
+  <div class="files">
+    <div class="file"><div class="fn">&lt;name&gt;.mps.gz</div>
+      <p>The linear program, gzipped MPS, continuous variables only. Nothing to
+      reconstruct before handing it to a solver.</p></div>
+    <div class="file"><div class="fn">&lt;name&gt;.meta.json</div>
+      <p>How that program was derived from its source instance: the recorded branch
+      for a primal-infeasible file; for a dual-infeasible file, either the bounds and
+      constraints removed or that the source relaxation was already unbounded.</p></div>
+  </div>
+</div>
+<div class="section">
+  <span class="eyebrow">Citing</span>
+  <h2>How to cite</h2>
+  <div class="cite">@misc{miplib2017_infeas,<br>
+    &nbsp;&nbsp;author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {Haihao Lu and Bo Tang},<br>
+    &nbsp;&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= {MIPLIB2017-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},<br>
+    &nbsp;&nbsp;howpublished = &#123;\url&#123;{{ citation_url }}&#125;&#125;,<br>
+    &nbsp;&nbsp;year&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = {2026}<br>}</div>
+  {{ miplib_citation("cite-note") }}
+</div>
+<div class="section">
+  <h2>Contact</h2>
+  <div class="prose">
+    <p class="muted">This collection is maintained by Haihao Lu and Bo Tang. If a
+    published file does not have the status it claims, or a source instance carries terms
+    other than the default, please
+    <a href="https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/issues">open an issue</a> and
+    the affected file will be corrected or withdrawn.</p>
+  </div>
+</div>
+{% endblock %}

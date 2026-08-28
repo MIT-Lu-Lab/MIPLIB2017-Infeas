@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "records": [
   {
    "instance": "30n20b8",
@@ -17,87 +17,75 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "R_Mechaniker",
-      "original_value": 0.0,
+      "var": 0,
       "side": "lb",
-      "var": 0
+      "name": "R_Mechaniker"
      },
      {
       "kind": "bound",
-      "name": "x_12_1_92",
-      "original_value": 0.0,
+      "var": 6932,
       "side": "lb",
-      "var": 6932
+      "name": "x_12_1_92"
      },
      {
       "kind": "bound",
-      "name": "x_27_3_201",
-      "original_value": 0.0,
+      "var": 16654,
       "side": "lb",
-      "var": 16654
+      "name": "x_27_3_201"
      },
      {
       "kind": "bound",
-      "name": "x_20_2_112",
-      "original_value": 0.0,
+      "var": 12079,
       "side": "lb",
-      "var": 12079
+      "name": "x_20_2_112"
      },
      {
       "kind": "bound",
-      "name": "x_20_1_179",
-      "original_value": 0.0,
+      "var": 11934,
       "side": "lb",
-      "var": 11934
+      "name": "x_20_1_179"
      },
      {
       "kind": "bound",
-      "name": "x_2_2_6",
-      "original_value": 0.0,
+      "var": 861,
       "side": "lb",
-      "var": 861
+      "name": "x_2_2_6"
      },
      {
       "kind": "bound",
-      "name": "x_20_2_131",
-      "original_value": 0.0,
+      "var": 12098,
       "side": "lb",
-      "var": 12098
+      "name": "x_20_2_131"
      },
      {
       "kind": "bound",
-      "name": "x_2_2_39",
-      "original_value": 0.0,
+      "var": 894,
       "side": "lb",
-      "var": 894
+      "name": "x_2_2_39"
      },
      {
       "kind": "bound",
-      "name": "x_3_3_17",
-      "original_value": 0.0,
+      "var": 1725,
       "side": "lb",
-      "var": 1725
+      "name": "x_3_3_17"
      },
      {
       "kind": "bound",
-      "name": "x_2_2_28",
-      "original_value": 0.0,
+      "var": 883,
       "side": "lb",
-      "var": 883
+      "name": "x_2_2_28"
      },
      {
       "kind": "bound",
-      "name": "x_12_3_137",
-      "original_value": 0.0,
+      "var": 7401,
       "side": "lb",
-      "var": 7401
+      "name": "x_12_3_137"
      },
      {
       "kind": "bound",
-      "name": "x_14_1_100",
-      "original_value": 0.0,
+      "var": 8222,
       "side": "lb",
-      "var": 8222
+      "name": "x_14_1_100"
      }
     ]
    }
@@ -118,17 +106,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x12149",
-      "original_value": 0.0,
+      "var": 12148,
       "side": "lb",
-      "var": 12148
+      "name": "x12149"
      },
      {
       "kind": "bound",
-      "name": "x12150",
-      "original_value": 0.0,
+      "var": 12149,
       "side": "lb",
-      "var": 12149
+      "name": "x12150"
      }
     ]
    }
@@ -149,31 +135,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x56637",
-      "original_value": 0.0,
+      "var": 56636,
       "side": "lb",
-      "var": 56636
+      "name": "x56637"
      },
      {
       "kind": "bound",
-      "name": "x57673",
-      "original_value": 0.0,
+      "var": 57672,
       "side": "lb",
-      "var": 57672
+      "name": "x57673"
      },
      {
       "kind": "bound",
-      "name": "x56217",
-      "original_value": 1.0,
+      "var": 56216,
       "side": "ub",
-      "var": 56216
+      "name": "x56217"
      },
      {
       "kind": "bound",
-      "name": "x58093",
-      "original_value": 1.0,
+      "var": 58092,
       "side": "ub",
-      "var": 58092
+      "name": "x58093"
      }
     ]
    }
@@ -194,46 +176,38 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x11320",
-      "original_value": 0.0,
+      "var": 11319,
       "side": "lb",
-      "var": 11319
+      "name": "x11320"
      },
      {
       "kind": "row",
-      "name": "c15",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 14
+      "row": 14,
+      "name": "c15"
      },
      {
       "kind": "bound",
-      "name": "x6681",
-      "original_value": 0.0,
+      "var": 6680,
       "side": "lb",
-      "var": 6680
+      "name": "x6681"
      },
      {
       "kind": "bound",
-      "name": "x10863",
-      "original_value": 0.0,
+      "var": 10862,
       "side": "lb",
-      "var": 10862
+      "name": "x10863"
      },
      {
       "kind": "bound",
-      "name": "x6908",
-      "original_value": 1.0,
+      "var": 6907,
       "side": "ub",
-      "var": 6907
+      "name": "x6908"
      },
      {
       "kind": "bound",
-      "name": "x11375",
-      "original_value": 1.0,
+      "var": 11374,
       "side": "ub",
-      "var": 11374
+      "name": "x11375"
      }
     ]
    }
@@ -254,31 +228,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x(Bmr.Ut.2.1.4)",
-      "original_value": 0.0,
+      "var": 10227,
       "side": "lb",
-      "var": 10227
+      "name": "x(Bmr.Ut.2.1.4)"
      },
      {
       "kind": "bound",
-      "name": "x(Asd.Ehv.1.1.2)",
-      "original_value": 0.0,
+      "var": 550,
       "side": "lb",
-      "var": 550
+      "name": "x(Asd.Ehv.1.1.2)"
      },
      {
       "kind": "bound",
-      "name": "x(Asd.Ehv.1.2.7)",
-      "original_value": 1.0,
+      "var": 564,
       "side": "ub",
-      "var": 564
+      "name": "x(Asd.Ehv.1.2.7)"
      },
      {
       "kind": "bound",
-      "name": "x(Bmr.Ut.2.2.1)",
-      "original_value": 1.0,
+      "var": 10233,
       "side": "ub",
-      "var": 10233
+      "name": "x(Bmr.Ut.2.2.1)"
      }
     ]
    }
@@ -299,48 +269,36 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "defblpfreq(GdRtdC)",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 32
+      "row": 32,
+      "name": "defblpfreq(GdRtdC)"
      },
      {
       "kind": "bound",
-      "name": "x(Amf.Bd.2.1.5)",
-      "original_value": 0.0,
+      "var": 4395,
       "side": "lb",
-      "var": 4395
+      "name": "x(Amf.Bd.2.1.5)"
      },
      {
       "kind": "row",
-      "name": "defblpfreq(AmfUtC)",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 7
+      "row": 7,
+      "name": "defblpfreq(AmfUtC)"
      },
      {
       "kind": "bound",
-      "name": "x(Amf.Rtd.1.1.0)",
-      "original_value": 0.0,
+      "var": 4689,
       "side": "lb",
-      "var": 4689
+      "name": "x(Amf.Rtd.1.1.0)"
      },
      {
       "kind": "row",
-      "name": "defblpfreq(GdUtC)",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 33
+      "row": 33,
+      "name": "defblpfreq(GdUtC)"
      },
      {
       "kind": "bound",
-      "name": "x(Amf.Bd.2.1.12)",
-      "original_value": 1.0,
+      "var": 4402,
       "side": "ub",
-      "var": 4402
+      "name": "x(Amf.Bd.2.1.12)"
      }
     ]
    }
@@ -361,47 +319,37 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "defblpfreq(EhvHtC)",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 29
+      "row": 29,
+      "name": "defblpfreq(EhvHtC)"
      },
      {
       "kind": "row",
-      "name": "defblpreq(EhvHtC)",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 72
+      "row": 72,
+      "name": "defblpreq(EhvHtC)"
      },
      {
       "kind": "bound",
-      "name": "x(Hgl.Ht.1.1.0)",
-      "original_value": 0.0,
+      "var": 4108,
       "side": "lb",
-      "var": 4108
+      "name": "x(Hgl.Ht.1.1.0)"
      },
      {
       "kind": "bound",
-      "name": "x(Ehv.Ut.1.1.11)",
-      "original_value": 0.0,
+      "var": 12750,
       "side": "lb",
-      "var": 12750
+      "name": "x(Ehv.Ut.1.1.11)"
      },
      {
       "kind": "bound",
-      "name": "x(Hgl.Ut.1.1.4)",
-      "original_value": 0.0,
+      "var": 4413,
       "side": "lb",
-      "var": 4413
+      "name": "x(Hgl.Ut.1.1.4)"
      },
      {
       "kind": "bound",
-      "name": "x(Hgl.Ht.1.2.5)",
-      "original_value": 1.0,
+      "var": 4126,
       "side": "ub",
-      "var": 4126
+      "name": "x(Hgl.Ht.1.2.5)"
      }
     ]
    }
@@ -422,88 +370,74 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "c8",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 7
+      "row": 7,
+      "name": "c8"
      },
      {
       "kind": "bound",
-      "name": "X7.54",
-      "original_value": 0.0,
+      "var": 1522,
       "side": "lb",
-      "var": 1522
+      "name": "X7.54"
      },
      {
       "kind": "bound",
-      "name": "X7.40",
-      "original_value": 0.0,
+      "var": 1508,
       "side": "lb",
-      "var": 1508
+      "name": "X7.40"
      },
      {
       "kind": "bound",
-      "name": "X12.101",
-      "original_value": 0.0,
+      "var": 2829,
       "side": "lb",
-      "var": 2829
+      "name": "X12.101"
      },
      {
       "kind": "bound",
-      "name": "X2.165",
-      "original_value": 0.0,
+      "var": 554,
       "side": "lb",
-      "var": 554
+      "name": "X2.165"
      },
      {
       "kind": "bound",
-      "name": "X3.1",
-      "original_value": 0.0,
+      "var": 606,
       "side": "lb",
-      "var": 606
+      "name": "X3.1"
      },
      {
       "kind": "bound",
-      "name": "X10.0",
-      "original_value": 0.0,
+      "var": 2218,
       "side": "lb",
-      "var": 2218
+      "name": "X10.0"
      },
      {
       "kind": "bound",
-      "name": "X5.214",
-      "original_value": 0.0,
+      "var": 1228,
       "side": "lb",
-      "var": 1228
+      "name": "X5.214"
      },
      {
       "kind": "bound",
-      "name": "X7.249",
-      "original_value": 0.0,
+      "var": 1714,
       "side": "lb",
-      "var": 1714
+      "name": "X7.249"
      },
      {
       "kind": "bound",
-      "name": "h",
-      "original_value": 0.0,
+      "var": 0,
       "side": "lb",
-      "var": 0
+      "name": "h"
      },
      {
       "kind": "bound",
-      "name": "X5.47",
-      "original_value": 1.0,
+      "var": 1062,
       "side": "ub",
-      "var": 1062
+      "name": "X5.47"
      },
      {
       "kind": "bound",
-      "name": "X3.207",
-      "original_value": 1.0,
+      "var": 803,
       "side": "ub",
-      "var": 803
+      "name": "X3.207"
      }
     ]
    }
@@ -524,88 +458,74 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "c6",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 5
+      "row": 5,
+      "name": "c6"
      },
      {
       "kind": "bound",
-      "name": "X5.77",
-      "original_value": 0.0,
+      "var": 898,
       "side": "lb",
-      "var": 898
+      "name": "X5.77"
      },
      {
       "kind": "bound",
-      "name": "X5.33",
-      "original_value": 0.0,
+      "var": 857,
       "side": "lb",
-      "var": 857
+      "name": "X5.33"
      },
      {
       "kind": "bound",
-      "name": "X0.191",
-      "original_value": 0.0,
+      "var": 156,
       "side": "lb",
-      "var": 156
+      "name": "X0.191"
      },
      {
       "kind": "bound",
-      "name": "X8.243",
-      "original_value": 0.0,
+      "var": 1621,
       "side": "lb",
-      "var": 1621
+      "name": "X8.243"
      },
      {
       "kind": "bound",
-      "name": "h",
-      "original_value": 0.0,
+      "var": 0,
       "side": "lb",
-      "var": 0
+      "name": "h"
      },
      {
       "kind": "bound",
-      "name": "X0.47",
-      "original_value": 1.0,
+      "var": 22,
       "side": "ub",
-      "var": 22
+      "name": "X0.47"
      },
      {
       "kind": "bound",
-      "name": "X5.178",
-      "original_value": 0.0,
+      "var": 999,
       "side": "lb",
-      "var": 999
+      "name": "X5.178"
      },
      {
       "kind": "bound",
-      "name": "X8.123",
-      "original_value": 0.0,
+      "var": 1521,
       "side": "lb",
-      "var": 1521
+      "name": "X8.123"
      },
      {
       "kind": "bound",
-      "name": "X3.161",
-      "original_value": 1.0,
+      "var": 625,
       "side": "ub",
-      "var": 625
+      "name": "X3.161"
      },
      {
       "kind": "bound",
-      "name": "X3.104",
-      "original_value": 0.0,
+      "var": 568,
       "side": "lb",
-      "var": 568
+      "name": "X3.104"
      },
      {
       "kind": "bound",
-      "name": "X8.220",
-      "original_value": 1.0,
+      "var": 1614,
       "side": "ub",
-      "var": 1614
+      "name": "X8.220"
      }
     ]
    }
@@ -626,25 +546,20 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "Balance_4_24",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 79
+      "row": 79,
+      "name": "Balance_4_24"
      },
      {
       "kind": "bound",
-      "name": "X_4_4_24",
-      "original_value": 0.0,
+      "var": 2089,
       "side": "lb",
-      "var": 2089
+      "name": "X_4_4_24"
      },
      {
       "kind": "bound",
-      "name": "X_4_4_23",
-      "original_value": 1.0,
+      "var": 2088,
       "side": "ub",
-      "var": 2088
+      "name": "X_4_4_23"
      }
     ]
    }
@@ -665,25 +580,20 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "X_36_2_27",
-      "original_value": 0.0,
+      "var": 23513,
       "side": "lb",
-      "var": 23513
+      "name": "X_36_2_27"
      },
      {
       "kind": "row",
-      "name": "Balance_36_27",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 1197
+      "row": 1197,
+      "name": "Balance_36_27"
      },
      {
       "kind": "bound",
-      "name": "X_36_2_26",
-      "original_value": 1.0,
+      "var": 23512,
       "side": "ub",
-      "var": 23512
+      "name": "X_36_2_26"
      }
     ]
    }
@@ -704,47 +614,37 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "Balance_9_24",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 174
+      "row": 174,
+      "name": "Balance_9_24"
      },
      {
       "kind": "row",
-      "name": "Balance_23_14",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 455
+      "row": 455,
+      "name": "Balance_23_14"
      },
      {
       "kind": "bound",
-      "name": "X_9_17_24",
-      "original_value": 0.0,
+      "var": 3795,
       "side": "lb",
-      "var": 3795
+      "name": "X_9_17_24"
      },
      {
       "kind": "bound",
-      "name": "X_23_14_14",
-      "original_value": 0.0,
+      "var": 15528,
       "side": "lb",
-      "var": 15528
+      "name": "X_23_14_14"
      },
      {
       "kind": "bound",
-      "name": "X_9_14_16",
-      "original_value": 0.0,
+      "var": 3763,
       "side": "lb",
-      "var": 3763
+      "name": "X_9_14_16"
      },
      {
       "kind": "bound",
-      "name": "X_9_14_23",
-      "original_value": 1.0,
+      "var": 3770,
       "side": "ub",
-      "var": 3770
+      "name": "X_9_14_23"
      }
     ]
    }
@@ -765,25 +665,20 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "X_1_1_35",
-      "original_value": 0.0,
+      "var": 2262,
       "side": "lb",
-      "var": 2262
+      "name": "X_1_1_35"
      },
      {
       "kind": "row",
-      "name": "Balance_1_35",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 30
+      "row": 30,
+      "name": "Balance_1_35"
      },
      {
       "kind": "bound",
-      "name": "X_1_1_34",
-      "original_value": 1.0,
+      "var": 2261,
       "side": "ub",
-      "var": 2261
+      "name": "X_1_1_34"
      }
     ]
    }
@@ -804,25 +699,20 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "c52",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 52
+      "row": 52,
+      "name": "c52"
      },
      {
       "kind": "bound",
-      "name": "x2024",
-      "original_value": 0.0,
+      "var": 1726,
       "side": "lb",
-      "var": 1726
+      "name": "x2024"
      },
      {
       "kind": "bound",
-      "name": "x1964",
-      "original_value": 1.0,
+      "var": 1666,
       "side": "ub",
-      "var": 1666
+      "name": "x1964"
      }
     ]
    }
@@ -843,38 +733,33 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "S26010",
-      "original_value": 0.0,
+      "var": 37281,
       "side": "lb",
-      "var": 37281
+      "name": "S26010"
      },
      {
       "kind": "bound",
-      "name": "X32141",
-      "original_value": 0.0,
+      "var": 32140,
       "side": "lb",
-      "var": 32140
+      "name": "X32141"
      },
      {
       "kind": "bound",
-      "name": "X29728",
-      "original_value": 1.0,
+      "var": 29727,
       "side": "ub",
-      "var": 29727
+      "name": "X29728"
      },
      {
       "kind": "bound",
-      "name": "X33336",
-      "original_value": 1.0,
+      "var": 33335,
       "side": "ub",
-      "var": 33335
+      "name": "X33336"
      },
      {
       "kind": "bound",
-      "name": "X25311",
-      "original_value": 1.0,
+      "var": 25310,
       "side": "ub",
-      "var": 25310
+      "name": "X25311"
      }
     ]
    }
@@ -895,90 +780,72 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x28069",
-      "original_value": 0.0,
+      "var": 28068,
       "side": "lb",
-      "var": 28068
+      "name": "x28069"
      },
      {
       "kind": "bound",
-      "name": "x29112",
-      "original_value": 0.0,
+      "var": 29111,
       "side": "lb",
-      "var": 29111
+      "name": "x29112"
      },
      {
       "kind": "bound",
-      "name": "x43551",
-      "original_value": 0.0,
+      "var": 43550,
       "side": "lb",
-      "var": 43550
+      "name": "x43551"
      },
      {
       "kind": "bound",
-      "name": "x50672",
-      "original_value": 0.0,
+      "var": 50671,
       "side": "lb",
-      "var": 50671
+      "name": "x50672"
      },
      {
       "kind": "row",
-      "name": "c138",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 137
+      "row": 137,
+      "name": "c138"
      },
      {
       "kind": "row",
-      "name": "c631",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 630
+      "row": 630,
+      "name": "c631"
      },
      {
       "kind": "row",
-      "name": "c584",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 583
+      "row": 583,
+      "name": "c584"
      },
      {
       "kind": "bound",
-      "name": "x45202",
-      "original_value": 0.0,
+      "var": 45201,
       "side": "lb",
-      "var": 45201
+      "name": "x45202"
      },
      {
       "kind": "bound",
-      "name": "x5965",
-      "original_value": 0.0,
+      "var": 5964,
       "side": "lb",
-      "var": 5964
+      "name": "x5965"
      },
      {
       "kind": "bound",
-      "name": "x17579",
-      "original_value": 0.0,
+      "var": 17578,
       "side": "lb",
-      "var": 17578
+      "name": "x17579"
      },
      {
       "kind": "bound",
-      "name": "x49287",
-      "original_value": 0.0,
+      "var": 49286,
       "side": "lb",
-      "var": 49286
+      "name": "x49287"
      },
      {
       "kind": "bound",
-      "name": "x44341",
-      "original_value": 0.0,
+      "var": 44340,
       "side": "lb",
-      "var": 44340
+      "name": "x44341"
      }
     ]
    }
@@ -999,90 +866,72 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "VAR248",
-      "original_value": 0.0,
+      "var": 251,
       "side": "lb",
-      "var": 251
+      "name": "VAR248"
      },
      {
       "kind": "row",
-      "name": "c10662",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 10661
+      "row": 10661,
+      "name": "c10662"
      },
      {
       "kind": "bound",
-      "name": "VAR32045",
-      "original_value": 0.0,
+      "var": 21715,
       "side": "lb",
-      "var": 21715
+      "name": "VAR32045"
      },
      {
       "kind": "bound",
-      "name": "VAR14004",
-      "original_value": 0.0,
+      "var": 21525,
       "side": "lb",
-      "var": 21525
+      "name": "VAR14004"
      },
      {
       "kind": "row",
-      "name": "c10659",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 10658
+      "row": 10658,
+      "name": "c10659"
      },
      {
       "kind": "bound",
-      "name": "VAR13994",
-      "original_value": 1.0,
+      "var": 21515,
       "side": "ub",
-      "var": 21515
+      "name": "VAR13994"
      },
      {
       "kind": "bound",
-      "name": "VAR32042",
-      "original_value": 0.0,
+      "var": 21712,
       "side": "lb",
-      "var": 21712
+      "name": "VAR32042"
      },
      {
       "kind": "bound",
-      "name": "VAR13998",
-      "original_value": 0.0,
+      "var": 21519,
       "side": "lb",
-      "var": 21519
+      "name": "VAR13998"
      },
      {
       "kind": "bound",
-      "name": "VAR32043",
-      "original_value": 1.0,
+      "var": 21713,
       "side": "ub",
-      "var": 21713
+      "name": "VAR32043"
      },
      {
       "kind": "bound",
-      "name": "VAR32035",
-      "original_value": 1.0,
+      "var": 21705,
       "side": "ub",
-      "var": 21705
+      "name": "VAR32035"
      },
      {
       "kind": "row",
-      "name": "c10667",
-      "original_range": 0.0,
-      "original_rhs": -30.0,
-      "original_sense": "G",
-      "row": 10666
+      "row": 10666,
+      "name": "c10667"
      },
      {
       "kind": "bound",
-      "name": "VAR32055",
-      "original_value": 1.0,
+      "var": 21725,
       "side": "ub",
-      "var": 21725
+      "name": "VAR32055"
      }
     ]
    }
@@ -1103,75 +952,61 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "VAR50",
-      "original_value": 0.0,
+      "var": 346,
       "side": "lb",
-      "var": 346
+      "name": "VAR50"
      },
      {
       "kind": "bound",
-      "name": "VAR15540",
-      "original_value": 0.0,
+      "var": 7767,
       "side": "lb",
-      "var": 7767
+      "name": "VAR15540"
      },
      {
       "kind": "bound",
-      "name": "VAR314",
-      "original_value": 0.0,
+      "var": 7637,
       "side": "lb",
-      "var": 7637
+      "name": "VAR314"
      },
      {
       "kind": "bound",
-      "name": "VAR1052",
-      "original_value": 0.0,
+      "var": 7585,
       "side": "lb",
-      "var": 7585
+      "name": "VAR1052"
      },
      {
       "kind": "row",
-      "name": "c4728",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 4727
+      "row": 4727,
+      "name": "c4728"
      },
      {
       "kind": "bound",
-      "name": "VAR854",
-      "original_value": 0.0,
+      "var": 82,
       "side": "lb",
-      "var": 82
+      "name": "VAR854"
      },
      {
       "kind": "bound",
-      "name": "VAR4695",
-      "original_value": 0.0,
+      "var": 7573,
       "side": "lb",
-      "var": 7573
+      "name": "VAR4695"
      },
      {
       "kind": "bound",
-      "name": "VAR4689",
-      "original_value": 0.0,
+      "var": 7567,
       "side": "lb",
-      "var": 7567
+      "name": "VAR4689"
      },
      {
       "kind": "row",
-      "name": "c4740",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 4739
+      "row": 4739,
+      "name": "c4740"
      },
      {
       "kind": "bound",
-      "name": "VAR4696",
-      "original_value": 0.0,
+      "var": 7574,
       "side": "lb",
-      "var": 7574
+      "name": "VAR4696"
      }
     ]
    }
@@ -1192,69 +1027,54 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "VAR186",
-      "original_value": 0.0,
+      "var": 624,
       "side": "lb",
-      "var": 624
+      "name": "VAR186"
      },
      {
       "kind": "row",
-      "name": "c19083",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 19082
+      "row": 19082,
+      "name": "c19083"
      },
      {
       "kind": "row",
-      "name": "c19086",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 19085
+      "row": 19085,
+      "name": "c19086"
      },
      {
       "kind": "bound",
-      "name": "VAR12429",
-      "original_value": 1.0,
+      "var": 37807,
       "side": "ub",
-      "var": 37807
+      "name": "VAR12429"
      },
      {
       "kind": "bound",
-      "name": "VAR12434",
-      "original_value": 0.0,
+      "var": 37812,
       "side": "lb",
-      "var": 37812
+      "name": "VAR12434"
      },
      {
       "kind": "bound",
-      "name": "VAR36114",
-      "original_value": 0.0,
+      "var": 38033,
       "side": "lb",
-      "var": 38033
+      "name": "VAR36114"
      },
      {
       "kind": "row",
-      "name": "c19092",
-      "original_range": 0.0,
-      "original_rhs": -30.0,
-      "original_sense": "G",
-      "row": 19091
+      "row": 19091,
+      "name": "c19092"
      },
      {
       "kind": "bound",
-      "name": "VAR12428",
-      "original_value": 0.0,
+      "var": 37806,
       "side": "lb",
-      "var": 37806
+      "name": "VAR12428"
      },
      {
       "kind": "bound",
-      "name": "VAR36116",
-      "original_value": 1.0,
+      "var": 38035,
       "side": "ub",
-      "var": 38035
+      "name": "VAR36116"
      }
     ]
    }
@@ -1275,76 +1095,60 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "VAR3010",
-      "original_value": 0.0,
+      "var": 24234,
       "side": "lb",
-      "var": 24234
+      "name": "VAR3010"
      },
      {
       "kind": "bound",
-      "name": "VAR30441",
-      "original_value": 0.0,
+      "var": 24214,
       "side": "lb",
-      "var": 24214
+      "name": "VAR30441"
      },
      {
       "kind": "bound",
-      "name": "VAR532",
-      "original_value": 0.0,
+      "var": 323,
       "side": "lb",
-      "var": 323
+      "name": "VAR532"
      },
      {
       "kind": "row",
-      "name": "c12516",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 12515
+      "row": 12515,
+      "name": "c12516"
      },
      {
       "kind": "bound",
-      "name": "VAR71781",
-      "original_value": 0.0,
+      "var": 24391,
       "side": "lb",
-      "var": 24391
+      "name": "VAR71781"
      },
      {
       "kind": "bound",
-      "name": "VAR30455",
-      "original_value": 0.0,
+      "var": 24228,
       "side": "lb",
-      "var": 24228
+      "name": "VAR30455"
      },
      {
       "kind": "row",
-      "name": "c38375",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 38374
+      "row": 38374,
+      "name": "c38375"
      },
      {
       "kind": "row",
-      "name": "c12519",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 12518
+      "row": 12518,
+      "name": "c12519"
      },
      {
       "kind": "bound",
-      "name": "VAR30442",
-      "original_value": 0.0,
+      "var": 24215,
       "side": "lb",
-      "var": 24215
+      "name": "VAR30442"
      },
      {
       "kind": "bound",
-      "name": "VAR30448",
-      "original_value": 0.0,
+      "var": 24221,
       "side": "lb",
-      "var": 24221
+      "name": "VAR30448"
      }
     ]
    }
@@ -1365,87 +1169,75 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x35499",
-      "original_value": 0.0,
+      "var": 35498,
       "side": "lb",
-      "var": 35498
+      "name": "x35499"
      },
      {
       "kind": "bound",
-      "name": "x62984",
-      "original_value": 0.0,
+      "var": 62983,
       "side": "lb",
-      "var": 62983
+      "name": "x62984"
      },
      {
       "kind": "bound",
-      "name": "x46808",
-      "original_value": 0.0,
+      "var": 46807,
       "side": "lb",
-      "var": 46807
+      "name": "x46808"
      },
      {
       "kind": "bound",
-      "name": "x23230",
-      "original_value": 0.0,
+      "var": 23229,
       "side": "lb",
-      "var": 23229
+      "name": "x23230"
      },
      {
       "kind": "bound",
-      "name": "x20598",
-      "original_value": 0.0,
+      "var": 20597,
       "side": "lb",
-      "var": 20597
+      "name": "x20598"
      },
      {
       "kind": "bound",
-      "name": "x18628",
-      "original_value": 0.0,
+      "var": 18627,
       "side": "lb",
-      "var": 18627
+      "name": "x18628"
      },
      {
       "kind": "bound",
-      "name": "x21378",
-      "original_value": 0.0,
+      "var": 21377,
       "side": "lb",
-      "var": 21377
+      "name": "x21378"
      },
      {
       "kind": "bound",
-      "name": "x48483",
-      "original_value": 0.0,
+      "var": 48482,
       "side": "lb",
-      "var": 48482
+      "name": "x48483"
      },
      {
       "kind": "bound",
-      "name": "x50659",
-      "original_value": 0.0,
+      "var": 50658,
       "side": "lb",
-      "var": 50658
+      "name": "x50659"
      },
      {
       "kind": "bound",
-      "name": "x50612",
-      "original_value": 0.0,
+      "var": 50611,
       "side": "lb",
-      "var": 50611
+      "name": "x50612"
      },
      {
       "kind": "bound",
-      "name": "x65116",
-      "original_value": 0.0,
+      "var": 65115,
       "side": "lb",
-      "var": 65115
+      "name": "x65116"
      },
      {
       "kind": "bound",
-      "name": "x38070",
-      "original_value": 0.0,
+      "var": 38069,
       "side": "lb",
-      "var": 38069
+      "name": "x38070"
      }
     ]
    }
@@ -1466,88 +1258,74 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x8514",
-      "original_value": 0.0,
+      "var": 8513,
       "side": "lb",
-      "var": 8513
+      "name": "x8514"
      },
      {
       "kind": "row",
-      "name": "c72",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 71
+      "row": 71,
+      "name": "c72"
      },
      {
       "kind": "bound",
-      "name": "x6947",
-      "original_value": 0.0,
+      "var": 6946,
       "side": "lb",
-      "var": 6946
+      "name": "x6947"
      },
      {
       "kind": "bound",
-      "name": "x24211",
-      "original_value": 0.0,
+      "var": 24210,
       "side": "lb",
-      "var": 24210
+      "name": "x24211"
      },
      {
       "kind": "bound",
-      "name": "x11647",
-      "original_value": 0.0,
+      "var": 11646,
       "side": "lb",
-      "var": 11646
+      "name": "x11647"
      },
      {
       "kind": "bound",
-      "name": "x2918",
-      "original_value": 0.0,
+      "var": 2917,
       "side": "lb",
-      "var": 2917
+      "name": "x2918"
      },
      {
       "kind": "bound",
-      "name": "x12051",
-      "original_value": 0.0,
+      "var": 12050,
       "side": "lb",
-      "var": 12050
+      "name": "x12051"
      },
      {
       "kind": "bound",
-      "name": "x12773",
-      "original_value": 0.0,
+      "var": 12772,
       "side": "lb",
-      "var": 12772
+      "name": "x12773"
      },
      {
       "kind": "bound",
-      "name": "x7882",
-      "original_value": 0.0,
+      "var": 7881,
       "side": "lb",
-      "var": 7881
+      "name": "x7882"
      },
      {
       "kind": "bound",
-      "name": "x2085",
-      "original_value": 0.0,
+      "var": 2084,
       "side": "lb",
-      "var": 2084
+      "name": "x2085"
      },
      {
       "kind": "bound",
-      "name": "x1490",
-      "original_value": 0.0,
+      "var": 1489,
       "side": "lb",
-      "var": 1489
+      "name": "x1490"
      },
      {
       "kind": "bound",
-      "name": "x14374",
-      "original_value": 0.0,
+      "var": 14373,
       "side": "lb",
-      "var": 14373
+      "name": "x14374"
      }
     ]
    }
@@ -1568,32 +1346,26 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x6295",
-      "original_value": 0.0,
+      "var": 6294,
       "side": "lb",
-      "var": 6294
+      "name": "x6295"
      },
      {
       "kind": "row",
-      "name": "c584",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 584
+      "row": 584,
+      "name": "c584"
      },
      {
       "kind": "bound",
-      "name": "x1623",
-      "original_value": 0.0,
+      "var": 1622,
       "side": "lb",
-      "var": 1622
+      "name": "x1623"
      },
      {
       "kind": "bound",
-      "name": "x1624",
-      "original_value": 1.0,
+      "var": 1623,
       "side": "ub",
-      "var": 1623
+      "name": "x1624"
      }
     ]
    }
@@ -1614,89 +1386,73 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x29973",
-      "original_value": 0.0,
+      "var": 29972,
       "side": "lb",
-      "var": 29972
+      "name": "x29973"
      },
      {
       "kind": "bound",
-      "name": "x8997",
-      "original_value": 0.0,
+      "var": 8996,
       "side": "lb",
-      "var": 8996
+      "name": "x8997"
      },
      {
       "kind": "bound",
-      "name": "x49323",
-      "original_value": 0.0,
+      "var": 49322,
       "side": "lb",
-      "var": 49322
+      "name": "x49323"
      },
      {
       "kind": "bound",
-      "name": "x4989",
-      "original_value": 0.0,
+      "var": 4988,
       "side": "lb",
-      "var": 4988
+      "name": "x4989"
      },
      {
       "kind": "bound",
-      "name": "x26414",
-      "original_value": 0.0,
+      "var": 26413,
       "side": "lb",
-      "var": 26413
+      "name": "x26414"
      },
      {
       "kind": "bound",
-      "name": "x40086",
-      "original_value": 0.0,
+      "var": 40085,
       "side": "lb",
-      "var": 40085
+      "name": "x40086"
      },
      {
       "kind": "bound",
-      "name": "x32010",
-      "original_value": 0.0,
+      "var": 32009,
       "side": "lb",
-      "var": 32009
+      "name": "x32010"
      },
      {
       "kind": "bound",
-      "name": "x10959",
-      "original_value": 0.0,
+      "var": 10958,
       "side": "lb",
-      "var": 10958
+      "name": "x10959"
      },
      {
       "kind": "row",
-      "name": "c115",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 114
+      "row": 114,
+      "name": "c115"
      },
      {
       "kind": "row",
-      "name": "c366",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 365
+      "row": 365,
+      "name": "c366"
      },
      {
       "kind": "bound",
-      "name": "x1586",
-      "original_value": 0.0,
+      "var": 1585,
       "side": "lb",
-      "var": 1585
+      "name": "x1586"
      },
      {
       "kind": "bound",
-      "name": "x17463",
-      "original_value": 0.0,
+      "var": 17462,
       "side": "lb",
-      "var": 17462
+      "name": "x17463"
      }
     ]
    }
@@ -1717,87 +1473,75 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C232",
-      "original_value": 0.8062088972917799,
+      "var": 232,
       "side": "lb",
-      "var": 232
+      "name": "C232"
      },
      {
       "kind": "bound",
-      "name": "C394",
-      "original_value": 0.7001704870258321,
+      "var": 394,
       "side": "lb",
-      "var": 394
+      "name": "C394"
      },
      {
       "kind": "bound",
-      "name": "C325",
-      "original_value": 0.8153797424469981,
+      "var": 325,
       "side": "lb",
-      "var": 325
+      "name": "C325"
      },
      {
       "kind": "bound",
-      "name": "C374",
-      "original_value": 0.3075107477174656,
+      "var": 374,
       "side": "lb",
-      "var": 374
+      "name": "C374"
      },
      {
       "kind": "bound",
-      "name": "C229",
-      "original_value": 0.35798247827123036,
+      "var": 229,
       "side": "lb",
-      "var": 229
+      "name": "C229"
      },
      {
       "kind": "bound",
-      "name": "C221",
-      "original_value": 0.8736733593389734,
+      "var": 221,
       "side": "lb",
-      "var": 221
+      "name": "C221"
      },
      {
       "kind": "bound",
-      "name": "C312",
-      "original_value": 0.49332052445659436,
+      "var": 312,
       "side": "lb",
-      "var": 312
+      "name": "C312"
      },
      {
       "kind": "bound",
-      "name": "C368",
-      "original_value": 0.5417807006937362,
+      "var": 368,
       "side": "lb",
-      "var": 368
+      "name": "C368"
      },
      {
       "kind": "bound",
-      "name": "C208",
-      "original_value": 0.27178409056355435,
+      "var": 208,
       "side": "lb",
-      "var": 208
+      "name": "C208"
      },
      {
       "kind": "bound",
-      "name": "C214",
-      "original_value": 0.28749155406257676,
+      "var": 214,
       "side": "lb",
-      "var": 214
+      "name": "C214"
      },
      {
       "kind": "bound",
-      "name": "C336",
-      "original_value": 0.9103759242735691,
+      "var": 336,
       "side": "lb",
-      "var": 336
+      "name": "C336"
      },
      {
       "kind": "bound",
-      "name": "C378",
-      "original_value": 0.031910314239519795,
+      "var": 378,
       "side": "lb",
-      "var": 378
+      "name": "C378"
      }
     ]
    }
@@ -1818,10 +1562,9 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x$Stuttgart@29ff",
-      "original_value": 0.0,
+      "var": 6399,
       "side": "lb",
-      "var": 6399
+      "name": "x$Stuttgart@29ff"
      }
     ]
    }
@@ -1842,10 +1585,9 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x$Dortmund_@3a31",
-      "original_value": 0.0,
+      "var": 10545,
       "side": "lb",
-      "var": 10545
+      "name": "x$Dortmund_@3a31"
      }
     ]
    }
@@ -1866,93 +1608,69 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "AA_224",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 223
+      "row": 223,
+      "name": "AA_224"
      },
      {
       "kind": "row",
-      "name": "AA_78",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 77
+      "row": 77,
+      "name": "AA_78"
      },
      {
       "kind": "bound",
-      "name": "x3690_6",
-      "original_value": 0.0,
+      "var": 25587,
       "side": "lb",
-      "var": 25587
+      "name": "x3690_6"
      },
      {
       "kind": "bound",
-      "name": "x9658_5",
-      "original_value": 0.0,
+      "var": 67362,
       "side": "lb",
-      "var": 67362
+      "name": "x9658_5"
      },
      {
       "kind": "bound",
-      "name": "x8219_5",
-      "original_value": 0.0,
+      "var": 57289,
       "side": "lb",
-      "var": 57289
+      "name": "x8219_5"
      },
      {
       "kind": "row",
-      "name": "AA_98",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 97
+      "row": 97,
+      "name": "AA_98"
      },
      {
       "kind": "bound",
-      "name": "x4405_5",
-      "original_value": 0.0,
+      "var": 30591,
       "side": "lb",
-      "var": 30591
+      "name": "x4405_5"
      },
      {
       "kind": "bound",
-      "name": "x9341_5",
-      "original_value": 0.0,
+      "var": 65143,
       "side": "lb",
-      "var": 65143
+      "name": "x9341_5"
      },
      {
       "kind": "bound",
-      "name": "x7756_5",
-      "original_value": 0.0,
+      "var": 54048,
       "side": "lb",
-      "var": 54048
+      "name": "x7756_5"
      },
      {
       "kind": "row",
-      "name": "AA_210",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 209
+      "row": 209,
+      "name": "AA_210"
      },
      {
       "kind": "row",
-      "name": "AA_119",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 118
+      "row": 118,
+      "name": "AA_119"
      },
      {
       "kind": "row",
-      "name": "Adj_996",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1312
+      "row": 1312,
+      "name": "Adj_996"
      }
     ]
    }
@@ -1973,94 +1691,68 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x1355_1",
-      "original_value": 0.0,
+      "var": 9218,
       "side": "lb",
-      "var": 9218
+      "name": "x1355_1"
      },
      {
       "kind": "row",
-      "name": "AA_94",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 93
+      "row": 93,
+      "name": "AA_94"
      },
      {
       "kind": "row",
-      "name": "AA_92",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 91
+      "row": 91,
+      "name": "AA_92"
      },
      {
       "kind": "bound",
-      "name": "x1800_6",
-      "original_value": 0.0,
+      "var": 12338,
       "side": "lb",
-      "var": 12338
+      "name": "x1800_6"
      },
      {
       "kind": "row",
-      "name": "AA_205",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 204
+      "row": 204,
+      "name": "AA_205"
      },
      {
       "kind": "row",
-      "name": "AA_174",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 173
+      "row": 173,
+      "name": "AA_174"
      },
      {
       "kind": "row",
-      "name": "AA_185",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 184
+      "row": 184,
+      "name": "AA_185"
      },
      {
       "kind": "bound",
-      "name": "x3102_6",
-      "original_value": 0.0,
+      "var": 21452,
       "side": "lb",
-      "var": 21452
+      "name": "x3102_6"
      },
      {
       "kind": "bound",
-      "name": "x3096_6",
-      "original_value": 0.0,
+      "var": 21410,
       "side": "lb",
-      "var": 21410
+      "name": "x3096_6"
      },
      {
       "kind": "bound",
-      "name": "x2562_5",
-      "original_value": 0.0,
+      "var": 17671,
       "side": "lb",
-      "var": 17671
+      "name": "x2562_5"
      },
      {
       "kind": "row",
-      "name": "AA_176",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 175
+      "row": 175,
+      "name": "AA_176"
      },
      {
       "kind": "row",
-      "name": "AA_101",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 100
+      "row": 100,
+      "name": "AA_101"
      }
     ]
    }
@@ -2081,91 +1773,71 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x9153_3",
-      "original_value": 0.0,
+      "var": 63806,
       "side": "lb",
-      "var": 63806
+      "name": "x9153_3"
      },
      {
       "kind": "row",
-      "name": "AA_55",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 54
+      "row": 54,
+      "name": "AA_55"
      },
      {
       "kind": "bound",
-      "name": "x860_6",
-      "original_value": 0.0,
+      "var": 5758,
       "side": "lb",
-      "var": 5758
+      "name": "x860_6"
      },
      {
       "kind": "bound",
-      "name": "x9787_5",
-      "original_value": 0.0,
+      "var": 68246,
       "side": "lb",
-      "var": 68246
+      "name": "x9787_5"
      },
      {
       "kind": "row",
-      "name": "AA_231",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 230
+      "row": 230,
+      "name": "AA_231"
      },
      {
       "kind": "bound",
-      "name": "x3195_5",
-      "original_value": 0.0,
+      "var": 22102,
       "side": "lb",
-      "var": 22102
+      "name": "x3195_5"
      },
      {
       "kind": "bound",
-      "name": "x772_3",
-      "original_value": 0.0,
+      "var": 5139,
       "side": "lb",
-      "var": 5139
+      "name": "x772_3"
      },
      {
       "kind": "row",
-      "name": "AA_230",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 229
+      "row": 229,
+      "name": "AA_230"
      },
      {
       "kind": "row",
-      "name": "AA_185",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 184
+      "row": 184,
+      "name": "AA_185"
      },
      {
       "kind": "bound",
-      "name": "x8737_6",
-      "original_value": 0.0,
+      "var": 60897,
       "side": "lb",
-      "var": 60897
+      "name": "x8737_6"
      },
      {
       "kind": "bound",
-      "name": "x2909_4",
-      "original_value": 0.0,
+      "var": 20099,
       "side": "lb",
-      "var": 20099
+      "name": "x2909_4"
      },
      {
       "kind": "bound",
-      "name": "x9350_4",
-      "original_value": 0.0,
+      "var": 65186,
       "side": "lb",
-      "var": 65186
+      "name": "x9350_4"
      }
     ]
    }
@@ -2186,91 +1858,71 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "DistSumLB[ifhcdailyrate_2012_02...,managedobjectid]",
-      "original_range": 0.0,
-      "original_rhs": 5.5,
-      "original_sense": "G",
-      "row": 6086
+      "row": 6086,
+      "name": "DistSumLB[ifhcdailyrate_2012_02...,managedobjectid]"
      },
      {
       "kind": "row",
-      "name": "choose1[managedobjectid,ifhcdailyrate_2012_02...]",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 334
+      "row": 334,
+      "name": "choose1[managedobjectid,ifhcdailyrate_2012_02...]"
      },
      {
       "kind": "bound",
-      "name": "dist[r,ifhcdailyrate_2012_02...,managedobjectid]",
-      "original_value": 0.0,
+      "var": 230,
       "side": "lb",
-      "var": 230
+      "name": "dist[r,ifhcdailyrate_2012_02...,managedobjectid]"
      },
      {
       "kind": "row",
-      "name": "compDistAxis2[r,ifhcdailyrate_2012_02...,managedobjectid]",
-      "original_range": 0.0,
-      "original_rhs": -1.5,
-      "original_sense": "G",
-      "row": 5978
+      "row": 5978,
+      "name": "compDistAxis2[r,ifhcdailyrate_2012_02...,managedobjectid]"
      },
      {
       "kind": "row",
-      "name": "DistAxisLB1[r,ifhcdailyrate_2012_02...,managedobjectid]",
-      "original_range": 0.0,
-      "original_rhs": 5.5,
-      "original_sense": "G",
-      "row": 6141
+      "row": 6141,
+      "name": "DistAxisLB1[r,ifhcdailyrate_2012_02...,managedobjectid]"
      },
      {
       "kind": "bound",
-      "name": "x[r,ifhcdailyrate_2012_02...]",
-      "original_value": 1.0,
+      "var": 34,
       "side": "lb",
-      "var": 34
+      "name": "x[r,ifhcdailyrate_2012_02...]"
      },
      {
       "kind": "bound",
-      "name": "zV[r,lb,managedobjectid,ifhcdailyrate_2012_02...]",
-      "original_value": 0.0,
+      "var": 1638,
       "side": "lb",
-      "var": 1638
+      "name": "zV[r,lb,managedobjectid,ifhcdailyrate_2012_02...]"
      },
      {
       "kind": "bound",
-      "name": "zV[r,lb,devicepackagetoven...,ifhcdailyrate_2012_02...]",
-      "original_value": 0.0,
+      "var": 3246,
       "side": "lb",
-      "var": 3246
+      "name": "zV[r,lb,devicepackagetoven...,ifhcdailyrate_2012_02...]"
      },
      {
       "kind": "bound",
-      "name": "zV[r,lb,devicetographtothres...,ifhcdailyrate_2012_02...]",
-      "original_value": 0.0,
+      "var": 3654,
       "side": "lb",
-      "var": 3654
+      "name": "zV[r,lb,devicetographtothres...,ifhcdailyrate_2012_02...]"
      },
      {
       "kind": "bound",
-      "name": "zV[r,lb,graphdiagnostics,ifhcdailyrate_2012_02...]",
-      "original_value": 0.0,
+      "var": 1946,
       "side": "lb",
-      "var": 1946
+      "name": "zV[r,lb,graphdiagnostics,ifhcdailyrate_2012_02...]"
      },
      {
       "kind": "bound",
-      "name": "zV[r,lb,graphtopollmap,ifhcdailyrate_2012_02...]",
-      "original_value": 0.0,
+      "var": 2646,
       "side": "lb",
-      "var": 2646
+      "name": "zV[r,lb,graphtopollmap,ifhcdailyrate_2012_02...]"
      },
      {
       "kind": "bound",
-      "name": "zV[r,lb,thresholdobjects,ifhcdailyrate_2012_02...]",
-      "original_value": 0.0,
+      "var": 3746,
       "side": "lb",
-      "var": 3746
+      "name": "zV[r,lb,thresholdobjects,ifhcdailyrate_2012_02...]"
      }
     ]
    }
@@ -2291,87 +1943,75 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x103",
-      "original_value": 0.0,
+      "var": 102,
       "side": "lb",
-      "var": 102
+      "name": "x103"
      },
      {
       "kind": "bound",
-      "name": "x14",
-      "original_value": 0.0,
+      "var": 13,
       "side": "lb",
-      "var": 13
+      "name": "x14"
      },
      {
       "kind": "bound",
-      "name": "x64",
-      "original_value": 0.0,
+      "var": 63,
       "side": "lb",
-      "var": 63
+      "name": "x64"
      },
      {
       "kind": "bound",
-      "name": "x146",
-      "original_value": 0.0,
+      "var": 145,
       "side": "lb",
-      "var": 145
+      "name": "x146"
      },
      {
       "kind": "bound",
-      "name": "x196",
-      "original_value": 0.0,
+      "var": 195,
       "side": "lb",
-      "var": 195
+      "name": "x196"
      },
      {
       "kind": "bound",
-      "name": "x256",
-      "original_value": 0.0,
+      "var": 255,
       "side": "lb",
-      "var": 255
+      "name": "x256"
      },
      {
       "kind": "bound",
-      "name": "x95",
-      "original_value": 0.0,
+      "var": 94,
       "side": "lb",
-      "var": 94
+      "name": "x95"
      },
      {
       "kind": "bound",
-      "name": "x248",
-      "original_value": 1.0,
+      "var": 247,
       "side": "ub",
-      "var": 247
+      "name": "x248"
      },
      {
       "kind": "bound",
-      "name": "x250",
-      "original_value": 1.0,
+      "var": 249,
       "side": "ub",
-      "var": 249
+      "name": "x250"
      },
      {
       "kind": "bound",
-      "name": "x105",
-      "original_value": 0.0,
+      "var": 104,
       "side": "lb",
-      "var": 104
+      "name": "x105"
      },
      {
       "kind": "bound",
-      "name": "x207",
-      "original_value": 1.0,
+      "var": 206,
       "side": "ub",
-      "var": 206
+      "name": "x207"
      },
      {
       "kind": "bound",
-      "name": "x293",
-      "original_value": 1.0,
+      "var": 292,
       "side": "ub",
-      "var": 292
+      "name": "x293"
      }
     ]
    }
@@ -2392,31 +2032,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C0005935",
-      "original_value": 0.0,
+      "var": 5934,
       "side": "lb",
-      "var": 5934
+      "name": "C0005935"
      },
      {
       "kind": "bound",
-      "name": "C0004165",
-      "original_value": 0.0,
+      "var": 4164,
       "side": "lb",
-      "var": 4164
+      "name": "C0004165"
      },
      {
       "kind": "bound",
-      "name": "C0004152",
-      "original_value": 1.0,
+      "var": 4151,
       "side": "ub",
-      "var": 4151
+      "name": "C0004152"
      },
      {
       "kind": "bound",
-      "name": "C0005948",
-      "original_value": 1.0,
+      "var": 5947,
       "side": "ub",
-      "var": 5947
+      "name": "C0005948"
      }
     ]
    }
@@ -2437,31 +2073,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C0007444",
-      "original_value": 0.0,
+      "var": 7443,
       "side": "lb",
-      "var": 7443
+      "name": "C0007444"
      },
      {
       "kind": "bound",
-      "name": "C0007440",
-      "original_value": 1.0,
+      "var": 7439,
       "side": "ub",
-      "var": 7439
+      "name": "C0007440"
      },
      {
       "kind": "bound",
-      "name": "C0007277",
-      "original_value": 1.0,
+      "var": 7276,
       "side": "ub",
-      "var": 7276
+      "name": "C0007277"
      },
      {
       "kind": "bound",
-      "name": "C0007263",
-      "original_value": 0.0,
+      "var": 7262,
       "side": "lb",
-      "var": 7262
+      "name": "C0007263"
      }
     ]
    }
@@ -2482,24 +2114,21 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x_(0,17),(4,38),1,Term",
-      "original_value": 0.0,
+      "var": 22167,
       "side": "lb",
-      "var": 22167
+      "name": "x_(0,17),(4,38),1,Term"
      },
      {
       "kind": "bound",
-      "name": "x_(-6,-1),(4,38),1,Term",
-      "original_value": 0.0,
+      "var": 14449,
       "side": "ub",
-      "var": 14449
+      "name": "x_(-6,-1),(4,38),1,Term"
      },
      {
       "kind": "bound",
-      "name": "x_(0,17),(-6,360),1,Term",
-      "original_value": 4.0,
+      "var": 22162,
       "side": "ub",
-      "var": 22162
+      "name": "x_(0,17),(-6,360),1,Term"
      }
     ]
    }
@@ -2520,48 +2149,36 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x5",
-      "original_value": 1.0,
+      "var": 4,
       "side": "ub",
-      "var": 4
+      "name": "x5"
      },
      {
       "kind": "row",
-      "name": "c426",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 425
+      "row": 425,
+      "name": "c426"
      },
      {
       "kind": "row",
-      "name": "c10381",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 10380
+      "row": 10380,
+      "name": "c10381"
      },
      {
       "kind": "row",
-      "name": "c428",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 427
+      "row": 427,
+      "name": "c428"
      },
      {
       "kind": "bound",
-      "name": "x871",
-      "original_value": 1.0,
+      "var": 870,
       "side": "ub",
-      "var": 870
+      "name": "x871"
      },
      {
       "kind": "bound",
-      "name": "x879",
-      "original_value": 1.0,
+      "var": 878,
       "side": "ub",
-      "var": 878
+      "name": "x879"
      }
     ]
    }
@@ -2582,47 +2199,37 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x#new14_17_I198;;U24",
-      "original_value": 0.0,
+      "var": 7223,
       "side": "lb",
-      "var": 7223
+      "name": "x#new14_17_I198;;U24"
      },
      {
       "kind": "bound",
-      "name": "x#new8_14_I137;;U33",
-      "original_value": 0.0,
+      "var": 5072,
       "side": "lb",
-      "var": 5072
+      "name": "x#new8_14_I137;;U33"
      },
      {
       "kind": "row",
-      "name": "link#e37#f33",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 1440
+      "row": 1440,
+      "name": "link#e37#f33"
      },
      {
       "kind": "row",
-      "name": "link#e36#f33",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 1402
+      "row": 1402,
+      "name": "link#e36#f33"
      },
      {
       "kind": "bound",
-      "name": "x#new14_17_I198;;U33",
-      "original_value": 1.0,
+      "var": 7232,
       "side": "ub",
-      "var": 7232
+      "name": "x#new14_17_I198;;U33"
      },
      {
       "kind": "bound",
-      "name": "x#new8_14_I137;;U24",
-      "original_value": 1.0,
+      "var": 5063,
       "side": "ub",
-      "var": 5063
+      "name": "x#new8_14_I137;;U24"
      }
     ]
    }
@@ -2643,17 +2250,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x#new1_3_I270;;U1",
-      "original_value": 0.0,
+      "var": 1410,
       "side": "lb",
-      "var": 1410
+      "name": "x#new1_3_I270;;U1"
      },
      {
       "kind": "bound",
-      "name": "x#new1_3_I270;;U9",
-      "original_value": 1.0,
+      "var": 1412,
       "side": "ub",
-      "var": 1412
+      "name": "x#new1_3_I270;;U9"
      }
     ]
    }
@@ -2674,93 +2279,69 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R1514",
-      "original_range": 0.0,
-      "original_rhs": 3.0,
-      "original_sense": "L",
-      "row": 1513
+      "row": 1513,
+      "name": "R1514"
      },
      {
       "kind": "row",
-      "name": "R2660",
-      "original_range": 0.0,
-      "original_rhs": 8.0,
-      "original_sense": "L",
-      "row": 2659
+      "row": 2659,
+      "name": "R2660"
      },
      {
       "kind": "row",
-      "name": "R2368",
-      "original_range": 0.0,
-      "original_rhs": 3.0,
-      "original_sense": "L",
-      "row": 2367
+      "row": 2367,
+      "name": "R2368"
      },
      {
       "kind": "row",
-      "name": "R2684",
-      "original_range": 0.0,
-      "original_rhs": 8.0,
-      "original_sense": "L",
-      "row": 2683
+      "row": 2683,
+      "name": "R2684"
      },
      {
       "kind": "row",
-      "name": "R2584",
-      "original_range": 0.0,
-      "original_rhs": 3.0,
-      "original_sense": "L",
-      "row": 2583
+      "row": 2583,
+      "name": "R2584"
      },
      {
       "kind": "row",
-      "name": "R2657",
-      "original_range": 0.0,
-      "original_rhs": 8.0,
-      "original_sense": "L",
-      "row": 2656
+      "row": 2656,
+      "name": "R2657"
      },
      {
       "kind": "bound",
-      "name": "C0947",
-      "original_value": 0.0,
+      "var": 946,
       "side": "lb",
-      "var": 946
+      "name": "C0947"
      },
      {
       "kind": "bound",
-      "name": "C1157",
-      "original_value": 0.0,
+      "var": 1156,
       "side": "lb",
-      "var": 1156
+      "name": "C1157"
      },
      {
       "kind": "bound",
-      "name": "C2028",
-      "original_value": 0.0,
+      "var": 2027,
       "side": "lb",
-      "var": 2027
+      "name": "C2028"
      },
      {
       "kind": "bound",
-      "name": "C2199",
-      "original_value": 0.0,
+      "var": 2198,
       "side": "lb",
-      "var": 2198
+      "name": "C2199"
      },
      {
       "kind": "bound",
-      "name": "C2158",
-      "original_value": 0.0,
+      "var": 2157,
       "side": "lb",
-      "var": 2157
+      "name": "C2158"
      },
      {
       "kind": "bound",
-      "name": "C1132",
-      "original_value": 0.0,
+      "var": 1131,
       "side": "lb",
-      "var": 1131
+      "name": "C1132"
      }
     ]
    }
@@ -2781,90 +2362,72 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C10415",
-      "original_value": 0.0,
+      "var": 10414,
       "side": "lb",
-      "var": 10414
+      "name": "C10415"
      },
      {
       "kind": "bound",
-      "name": "C0238",
-      "original_value": 0.0,
+      "var": 237,
       "side": "lb",
-      "var": 237
+      "name": "C0238"
      },
      {
       "kind": "row",
-      "name": "R0004",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 3
+      "row": 3,
+      "name": "R0004"
      },
      {
       "kind": "bound",
-      "name": "C10735",
-      "original_value": 0.0,
+      "var": 10734,
       "side": "lb",
-      "var": 10734
+      "name": "C10735"
      },
      {
       "kind": "bound",
-      "name": "C10524",
-      "original_value": 0.0,
+      "var": 10523,
       "side": "lb",
-      "var": 10523
+      "name": "C10524"
      },
      {
       "kind": "bound",
-      "name": "C10624",
-      "original_value": 0.0,
+      "var": 10623,
       "side": "lb",
-      "var": 10623
+      "name": "C10624"
      },
      {
       "kind": "bound",
-      "name": "C10590",
-      "original_value": 0.0,
+      "var": 10589,
       "side": "lb",
-      "var": 10589
+      "name": "C10590"
      },
      {
       "kind": "bound",
-      "name": "C16178",
-      "original_value": 0.0,
+      "var": 16177,
       "side": "lb",
-      "var": 16177
+      "name": "C16178"
      },
      {
       "kind": "bound",
-      "name": "C17291",
-      "original_value": 0.0,
+      "var": 17290,
       "side": "lb",
-      "var": 17290
+      "name": "C17291"
      },
      {
       "kind": "bound",
-      "name": "C17314",
-      "original_value": 1.0,
+      "var": 17313,
       "side": "ub",
-      "var": 17313
+      "name": "C17314"
      },
      {
       "kind": "row",
-      "name": "R0005",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 4
+      "row": 4,
+      "name": "R0005"
      },
      {
       "kind": "row",
-      "name": "R0021",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 20
+      "row": 20,
+      "name": "R0021"
      }
     ]
    }
@@ -2885,17 +2448,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C6381",
-      "original_value": 0.0,
+      "var": 6380,
       "side": "lb",
-      "var": 6380
+      "name": "C6381"
      },
      {
       "kind": "bound",
-      "name": "C6382",
-      "original_value": 1.0,
+      "var": 6381,
       "side": "ub",
-      "var": 6381
+      "name": "C6382"
      }
     ]
    }
@@ -2916,92 +2477,70 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R0029",
-      "original_range": 0.0,
-      "original_rhs": 64.0,
-      "original_sense": "L",
-      "row": 28
+      "row": 28,
+      "name": "R0029"
      },
      {
       "kind": "bound",
-      "name": "C0005",
-      "original_value": 0.0,
+      "var": 4,
       "side": "lb",
-      "var": 4
+      "name": "C0005"
      },
      {
       "kind": "row",
-      "name": "R0033",
-      "original_range": 0.0,
-      "original_rhs": 64.0,
-      "original_sense": "L",
-      "row": 32
+      "row": 32,
+      "name": "R0033"
      },
      {
       "kind": "row",
-      "name": "R0011",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 10
+      "row": 10,
+      "name": "R0011"
      },
      {
       "kind": "row",
-      "name": "R0057",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 56
+      "row": 56,
+      "name": "R0057"
      },
      {
       "kind": "bound",
-      "name": "C6211",
-      "original_value": 0.0,
+      "var": 6210,
       "side": "lb",
-      "var": 6210
+      "name": "C6211"
      },
      {
       "kind": "bound",
-      "name": "C1808",
-      "original_value": 0.0,
+      "var": 1807,
       "side": "lb",
-      "var": 1807
+      "name": "C1808"
      },
      {
       "kind": "bound",
-      "name": "C2001",
-      "original_value": 0.0,
+      "var": 2000,
       "side": "lb",
-      "var": 2000
+      "name": "C2001"
      },
      {
       "kind": "bound",
-      "name": "C10509",
-      "original_value": 0.0,
+      "var": 10508,
       "side": "lb",
-      "var": 10508
+      "name": "C10509"
      },
      {
       "kind": "bound",
-      "name": "C5632",
-      "original_value": 0.0,
+      "var": 5631,
       "side": "lb",
-      "var": 5631
+      "name": "C5632"
      },
      {
       "kind": "row",
-      "name": "R13553",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 13552
+      "row": 13552,
+      "name": "R13553"
      },
      {
       "kind": "bound",
-      "name": "C5757",
-      "original_value": 0.0,
+      "var": 5756,
       "side": "lb",
-      "var": 5756
+      "name": "C5757"
      }
     ]
    }
@@ -3054,94 +2593,68 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R0015",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 14
+      "row": 14,
+      "name": "R0015"
      },
      {
       "kind": "bound",
-      "name": "C7458",
-      "original_value": 0.0,
+      "var": 7457,
       "side": "lb",
-      "var": 7457
+      "name": "C7458"
      },
      {
       "kind": "row",
-      "name": "R0098",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 97
+      "row": 97,
+      "name": "R0098"
      },
      {
       "kind": "row",
-      "name": "R0069",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 68
+      "row": 68,
+      "name": "R0069"
      },
      {
       "kind": "row",
-      "name": "R0064",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 63
+      "row": 63,
+      "name": "R0064"
      },
      {
       "kind": "bound",
-      "name": "C17864",
-      "original_value": 0.0,
+      "var": 17863,
       "side": "lb",
-      "var": 17863
+      "name": "C17864"
      },
      {
       "kind": "row",
-      "name": "R0014",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 13
+      "row": 13,
+      "name": "R0014"
      },
      {
       "kind": "bound",
-      "name": "C12393",
-      "original_value": 0.0,
+      "var": 12392,
       "side": "lb",
-      "var": 12392
+      "name": "C12393"
      },
      {
       "kind": "bound",
-      "name": "C6910",
-      "original_value": 0.0,
+      "var": 6909,
       "side": "lb",
-      "var": 6909
+      "name": "C6910"
      },
      {
       "kind": "row",
-      "name": "R0086",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 85
+      "row": 85,
+      "name": "R0086"
      },
      {
       "kind": "row",
-      "name": "R0013",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 12
+      "row": 12,
+      "name": "R0013"
      },
      {
       "kind": "bound",
-      "name": "C19058",
-      "original_value": 0.0,
+      "var": 19057,
       "side": "lb",
-      "var": 19057
+      "name": "C19058"
      }
     ]
    }
@@ -3162,89 +2675,73 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C71623",
-      "original_value": 0.0,
+      "var": 71622,
       "side": "lb",
-      "var": 71622
+      "name": "C71623"
      },
      {
       "kind": "bound",
-      "name": "C73494",
-      "original_value": 0.0,
+      "var": 73493,
       "side": "lb",
-      "var": 73493
+      "name": "C73494"
      },
      {
       "kind": "bound",
-      "name": "C26906",
-      "original_value": 0.0,
+      "var": 26905,
       "side": "lb",
-      "var": 26905
+      "name": "C26906"
      },
      {
       "kind": "bound",
-      "name": "C90941",
-      "original_value": 0.0,
+      "var": 90940,
       "side": "lb",
-      "var": 90940
+      "name": "C90941"
      },
      {
       "kind": "bound",
-      "name": "C10122",
-      "original_value": 0.0,
+      "var": 10121,
       "side": "lb",
-      "var": 10121
+      "name": "C10122"
      },
      {
       "kind": "row",
-      "name": "R0110",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 109
+      "row": 109,
+      "name": "R0110"
      },
      {
       "kind": "bound",
-      "name": "C57976",
-      "original_value": 0.0,
+      "var": 57975,
       "side": "lb",
-      "var": 57975
+      "name": "C57976"
      },
      {
       "kind": "bound",
-      "name": "C30606",
-      "original_value": 0.0,
+      "var": 30605,
       "side": "lb",
-      "var": 30605
+      "name": "C30606"
      },
      {
       "kind": "bound",
-      "name": "C20823",
-      "original_value": 0.0,
+      "var": 20822,
       "side": "lb",
-      "var": 20822
+      "name": "C20823"
      },
      {
       "kind": "row",
-      "name": "R0169",
-      "original_range": 0.0,
-      "original_rhs": 5.0,
-      "original_sense": "E",
-      "row": 168
+      "row": 168,
+      "name": "R0169"
      },
      {
       "kind": "bound",
-      "name": "C60148",
-      "original_value": 0.0,
+      "var": 60147,
       "side": "lb",
-      "var": 60147
+      "name": "C60148"
      },
      {
       "kind": "bound",
-      "name": "C60926",
-      "original_value": 5.0,
+      "var": 60925,
       "side": "ub",
-      "var": 60925
+      "name": "C60926"
      }
     ]
    }
@@ -3265,31 +2762,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x#6#8#12",
-      "original_value": 0.0,
+      "var": 2075,
       "side": "lb",
-      "var": 2075
+      "name": "x#6#8#12"
      },
      {
       "kind": "bound",
-      "name": "b#12",
-      "original_value": 0.0,
+      "var": 12,
       "side": "lb",
-      "var": 12
+      "name": "b#12"
      },
      {
       "kind": "bound",
-      "name": "l#4#7",
-      "original_value": 1.0,
+      "var": 13019,
       "side": "ub",
-      "var": 13019
+      "name": "l#4#7"
      },
      {
       "kind": "bound",
-      "name": "y#6#8#12",
-      "original_value": 0.0,
+      "var": 8525,
       "side": "lb",
-      "var": 8525
+      "name": "y#6#8#12"
      }
     ]
    }
@@ -3310,39 +2803,32 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C0001",
-      "original_value": 0.0,
+      "var": 0,
       "side": "lb",
-      "var": 0
+      "name": "C0001"
      },
      {
       "kind": "bound",
-      "name": "C77926",
-      "original_value": 0.0,
+      "var": 77925,
       "side": "lb",
-      "var": 77925
+      "name": "C77926"
      },
      {
       "kind": "row",
-      "name": "R0113",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 112
+      "row": 112,
+      "name": "R0113"
      },
      {
       "kind": "bound",
-      "name": "C2839",
-      "original_value": 0.0,
+      "var": 2838,
       "side": "lb",
-      "var": 2838
+      "name": "C2839"
      },
      {
       "kind": "bound",
-      "name": "C2781",
-      "original_value": 0.0,
+      "var": 2780,
       "side": "lb",
-      "var": 2780
+      "name": "C2781"
      }
     ]
    }
@@ -3363,32 +2849,26 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C4779",
-      "original_value": 0.0,
+      "var": 4778,
       "side": "lb",
-      "var": 4778
+      "name": "C4779"
      },
      {
       "kind": "row",
-      "name": "R7137",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 7136
+      "row": 7136,
+      "name": "R7137"
      },
      {
       "kind": "bound",
-      "name": "C15314",
-      "original_value": 0.0,
+      "var": 15313,
       "side": "lb",
-      "var": 15313
+      "name": "C15314"
      },
      {
       "kind": "bound",
-      "name": "C4790",
-      "original_value": 0.0,
+      "var": 4789,
       "side": "lb",
-      "var": 4789
+      "name": "C4790"
      }
     ]
    }
@@ -3409,39 +2889,32 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C10113",
-      "original_value": 0.0,
+      "var": 10112,
       "side": "lb",
-      "var": 10112
+      "name": "C10113"
      },
      {
       "kind": "bound",
-      "name": "C10103",
-      "original_value": 0.0,
+      "var": 10102,
       "side": "lb",
-      "var": 10102
+      "name": "C10103"
      },
      {
       "kind": "bound",
-      "name": "C10108",
-      "original_value": 0.0,
+      "var": 10107,
       "side": "lb",
-      "var": 10107
+      "name": "C10108"
      },
      {
       "kind": "bound",
-      "name": "C10118",
-      "original_value": 0.0,
+      "var": 10117,
       "side": "lb",
-      "var": 10117
+      "name": "C10118"
      },
      {
       "kind": "row",
-      "name": "R17288",
-      "original_range": 0.0,
-      "original_rhs": 8.0,
-      "original_sense": "E",
-      "row": 17287
+      "row": 17287,
+      "name": "R17288"
      }
     ]
    }
@@ -3462,91 +2935,71 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R0001",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 0
+      "row": 0,
+      "name": "R0001"
      },
      {
       "kind": "bound",
-      "name": "C9271",
-      "original_value": 0.0,
+      "var": 9270,
       "side": "lb",
-      "var": 9270
+      "name": "C9271"
      },
      {
       "kind": "bound",
-      "name": "C9161",
-      "original_value": 0.0,
+      "var": 9160,
       "side": "lb",
-      "var": 9160
+      "name": "C9161"
      },
      {
       "kind": "bound",
-      "name": "C6392",
-      "original_value": 0.0,
+      "var": 6391,
       "side": "lb",
-      "var": 6391
+      "name": "C6392"
      },
      {
       "kind": "bound",
-      "name": "C2125",
-      "original_value": 0.0,
+      "var": 2124,
       "side": "lb",
-      "var": 2124
+      "name": "C2125"
      },
      {
       "kind": "row",
-      "name": "R0007",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 6
+      "row": 6,
+      "name": "R0007"
      },
      {
       "kind": "row",
-      "name": "R1383",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 1382
+      "row": 1382,
+      "name": "R1383"
      },
      {
       "kind": "bound",
-      "name": "C6025",
-      "original_value": 0.0,
+      "var": 6024,
       "side": "lb",
-      "var": 6024
+      "name": "C6025"
      },
      {
       "kind": "bound",
-      "name": "C4670",
-      "original_value": 0.0,
+      "var": 4669,
       "side": "lb",
-      "var": 4669
+      "name": "C4670"
      },
      {
       "kind": "bound",
-      "name": "C9811",
-      "original_value": 0.0,
+      "var": 9810,
       "side": "lb",
-      "var": 9810
+      "name": "C9811"
      },
      {
       "kind": "row",
-      "name": "R1392",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 1391
+      "row": 1391,
+      "name": "R1392"
      },
      {
       "kind": "bound",
-      "name": "C6742",
-      "original_value": 0.0,
+      "var": 6741,
       "side": "lb",
-      "var": 6741
+      "name": "C6742"
      }
     ]
    }
@@ -3567,59 +3020,51 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C1193",
-      "original_value": 0.0,
+      "var": 1192,
       "side": "lb",
-      "var": 1192
+      "name": "C1193"
      },
      {
       "kind": "bound",
-      "name": "C2475",
-      "original_value": 0.0,
+      "var": 2474,
       "side": "lb",
-      "var": 2474
+      "name": "C2475"
      },
      {
       "kind": "bound",
-      "name": "C0418",
-      "original_value": 0.0,
+      "var": 417,
       "side": "lb",
-      "var": 417
+      "name": "C0418"
      },
      {
       "kind": "bound",
-      "name": "C0435",
-      "original_value": 1.0,
+      "var": 434,
       "side": "ub",
-      "var": 434
+      "name": "C0435"
      },
      {
       "kind": "bound",
-      "name": "C3206",
-      "original_value": 0.0,
+      "var": 3205,
       "side": "lb",
-      "var": 3205
+      "name": "C3206"
      },
      {
       "kind": "bound",
-      "name": "C3173",
-      "original_value": 1.0,
+      "var": 3172,
       "side": "ub",
-      "var": 3172
+      "name": "C3173"
      },
      {
       "kind": "bound",
-      "name": "C1198",
-      "original_value": 1.0,
+      "var": 1197,
       "side": "ub",
-      "var": 1197
+      "name": "C1198"
      },
      {
       "kind": "bound",
-      "name": "C2486",
-      "original_value": 1.0,
+      "var": 2485,
       "side": "ub",
-      "var": 2485
+      "name": "C2486"
      }
     ]
    }
@@ -3640,33 +3085,25 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R0010",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 9
+      "row": 9,
+      "name": "R0010"
      },
      {
       "kind": "bound",
-      "name": "C11526",
-      "original_value": 0.0,
+      "var": 11525,
       "side": "lb",
-      "var": 11525
+      "name": "C11526"
      },
      {
       "kind": "bound",
-      "name": "C7224",
-      "original_value": 0.0,
+      "var": 7223,
       "side": "lb",
-      "var": 7223
+      "name": "C7224"
      },
      {
       "kind": "row",
-      "name": "R0017",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 16
+      "row": 16,
+      "name": "R0017"
      }
     ]
    }
@@ -3687,90 +3124,72 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C2198",
-      "original_value": 0.0,
+      "var": 2197,
       "side": "lb",
-      "var": 2197
+      "name": "C2198"
      },
      {
       "kind": "row",
-      "name": "R0817",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 816
+      "row": 816,
+      "name": "R0817"
      },
      {
       "kind": "bound",
-      "name": "C14203",
-      "original_value": 0.0,
+      "var": 14202,
       "side": "lb",
-      "var": 14202
+      "name": "C14203"
      },
      {
       "kind": "bound",
-      "name": "C10834",
-      "original_value": 0.0,
+      "var": 10833,
       "side": "lb",
-      "var": 10833
+      "name": "C10834"
      },
      {
       "kind": "row",
-      "name": "R0068",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "E",
-      "row": 67
+      "row": 67,
+      "name": "R0068"
      },
      {
       "kind": "bound",
-      "name": "C6300",
-      "original_value": 0.0,
+      "var": 6299,
       "side": "lb",
-      "var": 6299
+      "name": "C6300"
      },
      {
       "kind": "bound",
-      "name": "C10566",
-      "original_value": 0.0,
+      "var": 10565,
       "side": "lb",
-      "var": 10565
+      "name": "C10566"
      },
      {
       "kind": "bound",
-      "name": "C11424",
-      "original_value": 0.0,
+      "var": 11423,
       "side": "lb",
-      "var": 11423
+      "name": "C11424"
      },
      {
       "kind": "bound",
-      "name": "C17726",
-      "original_value": 0.0,
+      "var": 17725,
       "side": "lb",
-      "var": 17725
+      "name": "C17726"
      },
      {
       "kind": "bound",
-      "name": "C6508",
-      "original_value": 0.0,
+      "var": 6507,
       "side": "lb",
-      "var": 6507
+      "name": "C6508"
      },
      {
       "kind": "row",
-      "name": "R0929",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 928
+      "row": 928,
+      "name": "R0929"
      },
      {
       "kind": "bound",
-      "name": "C14677",
-      "original_value": 0.0,
+      "var": 14676,
       "side": "lb",
-      "var": 14676
+      "name": "C14677"
      }
     ]
    }
@@ -3791,31 +3210,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C417845",
-      "original_value": 0.0,
+      "var": 417844,
       "side": "lb",
-      "var": 417844
+      "name": "C417845"
      },
      {
       "kind": "bound",
-      "name": "C550357",
-      "original_value": 1.0,
+      "var": 550356,
       "side": "ub",
-      "var": 550356
+      "name": "C550357"
      },
      {
       "kind": "bound",
-      "name": "C251488",
-      "original_value": 0.0,
+      "var": 251487,
       "side": "lb",
-      "var": 251487
+      "name": "C251488"
      },
      {
       "kind": "bound",
-      "name": "C550288",
-      "original_value": 0.0,
+      "var": 550287,
       "side": "lb",
-      "var": 550287
+      "name": "C550288"
      }
     ]
    }
@@ -3836,87 +3251,75 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C0399",
-      "original_value": 0.0,
+      "var": 398,
       "side": "lb",
-      "var": 398
+      "name": "C0399"
      },
      {
       "kind": "bound",
-      "name": "C0844",
-      "original_value": 0.0,
+      "var": 843,
       "side": "lb",
-      "var": 843
+      "name": "C0844"
      },
      {
       "kind": "bound",
-      "name": "C1242",
-      "original_value": 0.0,
+      "var": 1241,
       "side": "lb",
-      "var": 1241
+      "name": "C1242"
      },
      {
       "kind": "bound",
-      "name": "C0622",
-      "original_value": 0.0,
+      "var": 621,
       "side": "lb",
-      "var": 621
+      "name": "C0622"
      },
      {
       "kind": "bound",
-      "name": "C0873",
-      "original_value": 0.0,
+      "var": 872,
       "side": "lb",
-      "var": 872
+      "name": "C0873"
      },
      {
       "kind": "bound",
-      "name": "C0039",
-      "original_value": 0.0,
+      "var": 38,
       "side": "lb",
-      "var": 38
+      "name": "C0039"
      },
      {
       "kind": "bound",
-      "name": "C0759",
-      "original_value": 0.0,
+      "var": 758,
       "side": "lb",
-      "var": 758
+      "name": "C0759"
      },
      {
       "kind": "bound",
-      "name": "C0863",
-      "original_value": 0.0,
+      "var": 862,
       "side": "lb",
-      "var": 862
+      "name": "C0863"
      },
      {
       "kind": "bound",
-      "name": "C0927",
-      "original_value": 0.0,
+      "var": 926,
       "side": "lb",
-      "var": 926
+      "name": "C0927"
      },
      {
       "kind": "bound",
-      "name": "C1285",
-      "original_value": 0.0,
+      "var": 1284,
       "side": "lb",
-      "var": 1284
+      "name": "C1285"
      },
      {
       "kind": "bound",
-      "name": "C0446",
-      "original_value": 0.0,
+      "var": 445,
       "side": "lb",
-      "var": 445
+      "name": "C0446"
      },
      {
       "kind": "bound",
-      "name": "C0538",
-      "original_value": 0.0,
+      "var": 537,
       "side": "lb",
-      "var": 537
+      "name": "C0538"
      }
     ]
    }
@@ -3937,24 +3340,21 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C0466",
-      "original_value": 0.0,
+      "var": 465,
       "side": "lb",
-      "var": 465
+      "name": "C0466"
      },
      {
       "kind": "bound",
-      "name": "C0464",
-      "original_value": 1.0,
+      "var": 463,
       "side": "ub",
-      "var": 463
+      "name": "C0464"
      },
      {
       "kind": "bound",
-      "name": "C0463",
-      "original_value": 0.0,
+      "var": 462,
       "side": "lb",
-      "var": 462
+      "name": "C0463"
      }
     ]
    }
@@ -3975,98 +3375,64 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R5797",
-      "original_range": 0.0,
-      "original_rhs": 8.0,
-      "original_sense": "L",
-      "row": 5796
+      "row": 5796,
+      "name": "R5797"
      },
      {
       "kind": "row",
-      "name": "R0061",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 60
+      "row": 60,
+      "name": "R0061"
      },
      {
       "kind": "row",
-      "name": "R0036",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 35
+      "row": 35,
+      "name": "R0036"
      },
      {
       "kind": "bound",
-      "name": "C0241",
-      "original_value": 0.0,
+      "var": 240,
       "side": "lb",
-      "var": 240
+      "name": "C0241"
      },
      {
       "kind": "row",
-      "name": "R0079",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 78
+      "row": 78,
+      "name": "R0079"
      },
      {
       "kind": "row",
-      "name": "R0010",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 9
+      "row": 9,
+      "name": "R0010"
      },
      {
       "kind": "row",
-      "name": "R3195",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 3194
+      "row": 3194,
+      "name": "R3195"
      },
      {
       "kind": "row",
-      "name": "R3172",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 3171
+      "row": 3171,
+      "name": "R3172"
      },
      {
       "kind": "row",
-      "name": "R3169",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 3168
+      "row": 3168,
+      "name": "R3169"
      },
      {
       "kind": "row",
-      "name": "R5799",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 5798
+      "row": 5798,
+      "name": "R5799"
      },
      {
       "kind": "row",
-      "name": "R4222",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 4221
+      "row": 4221,
+      "name": "R4222"
      },
      {
       "kind": "row",
-      "name": "R5316",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "L",
-      "row": 5315
+      "row": 5315,
+      "name": "R5316"
      }
     ]
    }
@@ -4087,92 +3453,70 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R0536",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 535
+      "row": 535,
+      "name": "R0536"
      },
      {
       "kind": "row",
-      "name": "R0811",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 810
+      "row": 810,
+      "name": "R0811"
      },
      {
       "kind": "row",
-      "name": "R1251",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 1250
+      "row": 1250,
+      "name": "R1251"
      },
      {
       "kind": "bound",
-      "name": "C7670",
-      "original_value": 0.0,
+      "var": 7669,
       "side": "lb",
-      "var": 7669
+      "name": "C7670"
      },
      {
       "kind": "bound",
-      "name": "C54977",
-      "original_value": 0.0,
+      "var": 54976,
       "side": "lb",
-      "var": 54976
+      "name": "C54977"
      },
      {
       "kind": "bound",
-      "name": "C46277",
-      "original_value": 0.0,
+      "var": 46276,
       "side": "lb",
-      "var": 46276
+      "name": "C46277"
      },
      {
       "kind": "bound",
-      "name": "C21076",
-      "original_value": 0.0,
+      "var": 21075,
       "side": "lb",
-      "var": 21075
+      "name": "C21076"
      },
      {
       "kind": "bound",
-      "name": "C55210",
-      "original_value": 0.0,
+      "var": 55209,
       "side": "lb",
-      "var": 55209
+      "name": "C55210"
      },
      {
       "kind": "row",
-      "name": "R0003",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2
+      "row": 2,
+      "name": "R0003"
      },
      {
       "kind": "bound",
-      "name": "C4766",
-      "original_value": 0.0,
+      "var": 4765,
       "side": "lb",
-      "var": 4765
+      "name": "C4766"
      },
      {
       "kind": "row",
-      "name": "R0654",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 653
+      "row": 653,
+      "name": "R0654"
      },
      {
       "kind": "bound",
-      "name": "C49566",
-      "original_value": 0.0,
+      "var": 49565,
       "side": "lb",
-      "var": 49565
+      "name": "C49566"
      }
     ]
    }
@@ -4193,95 +3537,67 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R10920",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 10919
+      "row": 10919,
+      "name": "R10920"
      },
      {
       "kind": "row",
-      "name": "R11360",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 11359
+      "row": 11359,
+      "name": "R11360"
      },
      {
       "kind": "bound",
-      "name": "C5813",
-      "original_value": 0.0,
+      "var": 5812,
       "side": "lb",
-      "var": 5812
+      "name": "C5813"
      },
      {
       "kind": "row",
-      "name": "R11305",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 11304
+      "row": 11304,
+      "name": "R11305"
      },
      {
       "kind": "row",
-      "name": "R11315",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 11314
+      "row": 11314,
+      "name": "R11315"
      },
      {
       "kind": "bound",
-      "name": "C9581",
-      "original_value": 0.0,
+      "var": 9580,
       "side": "lb",
-      "var": 9580
+      "name": "C9581"
      },
      {
       "kind": "row",
-      "name": "R11311",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 11310
+      "row": 11310,
+      "name": "R11311"
      },
      {
       "kind": "row",
-      "name": "R10901",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 10900
+      "row": 10900,
+      "name": "R10901"
      },
      {
       "kind": "row",
-      "name": "R11298",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 11297
+      "row": 11297,
+      "name": "R11298"
      },
      {
       "kind": "bound",
-      "name": "C23082",
-      "original_value": 1.0,
+      "var": 23081,
       "side": "ub",
-      "var": 23081
+      "name": "C23082"
      },
      {
       "kind": "row",
-      "name": "R11324",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 11323
+      "row": 11323,
+      "name": "R11324"
      },
      {
       "kind": "bound",
-      "name": "C23117",
-      "original_value": 1.0,
+      "var": 23116,
       "side": "ub",
-      "var": 23116
+      "name": "C23117"
      }
     ]
    }
@@ -4302,98 +3618,64 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R1111",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1110
+      "row": 1110,
+      "name": "R1111"
      },
      {
       "kind": "row",
-      "name": "R1085",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1084
+      "row": 1084,
+      "name": "R1085"
      },
      {
       "kind": "row",
-      "name": "R0092",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 91
+      "row": 91,
+      "name": "R0092"
      },
      {
       "kind": "row",
-      "name": "R1080",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1079
+      "row": 1079,
+      "name": "R1080"
      },
      {
       "kind": "row",
-      "name": "R0121",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 120
+      "row": 120,
+      "name": "R0121"
      },
      {
       "kind": "row",
-      "name": "R2466",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2465
+      "row": 2465,
+      "name": "R2466"
      },
      {
       "kind": "row",
-      "name": "R0113",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 112
+      "row": 112,
+      "name": "R0113"
      },
      {
       "kind": "bound",
-      "name": "C84568",
-      "original_value": 1.0,
+      "var": 84567,
       "side": "ub",
-      "var": 84567
+      "name": "C84568"
      },
      {
       "kind": "row",
-      "name": "R0110",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 109
+      "row": 109,
+      "name": "R0110"
      },
      {
       "kind": "row",
-      "name": "R0101",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 100
+      "row": 100,
+      "name": "R0101"
      },
      {
       "kind": "row",
-      "name": "R0045",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 44
+      "row": 44,
+      "name": "R0045"
      },
      {
       "kind": "row",
-      "name": "R2382",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2381
+      "row": 2381,
+      "name": "R2382"
      }
     ]
    }
@@ -4414,93 +3696,69 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R0898",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 897
+      "row": 897,
+      "name": "R0898"
      },
      {
       "kind": "bound",
-      "name": "C10043",
-      "original_value": 0.0,
+      "var": 10042,
       "side": "lb",
-      "var": 10042
+      "name": "C10043"
      },
      {
       "kind": "row",
-      "name": "R1987",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 1986
+      "row": 1986,
+      "name": "R1987"
      },
      {
       "kind": "row",
-      "name": "R2005",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2004
+      "row": 2004,
+      "name": "R2005"
      },
      {
       "kind": "row",
-      "name": "R1070",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1069
+      "row": 1069,
+      "name": "R1070"
      },
      {
       "kind": "row",
-      "name": "R2076",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2075
+      "row": 2075,
+      "name": "R2076"
      },
      {
       "kind": "bound",
-      "name": "C10920",
-      "original_value": 0.0,
+      "var": 10919,
       "side": "lb",
-      "var": 10919
+      "name": "C10920"
      },
      {
       "kind": "row",
-      "name": "R2468",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2467
+      "row": 2467,
+      "name": "R2468"
      },
      {
       "kind": "bound",
-      "name": "C15031",
-      "original_value": 0.0,
+      "var": 15030,
       "side": "lb",
-      "var": 15030
+      "name": "C15031"
      },
      {
       "kind": "bound",
-      "name": "C13231",
-      "original_value": 0.0,
+      "var": 13230,
       "side": "lb",
-      "var": 13230
+      "name": "C13231"
      },
      {
       "kind": "bound",
-      "name": "C19869",
-      "original_value": 0.0,
+      "var": 19868,
       "side": "lb",
-      "var": 19868
+      "name": "C19869"
      },
      {
       "kind": "bound",
-      "name": "C23332",
-      "original_value": 0.0,
+      "var": 23331,
       "side": "lb",
-      "var": 23331
+      "name": "C23332"
      }
     ]
    }
@@ -4521,99 +3779,63 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R1086",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1085
+      "row": 1085,
+      "name": "R1086"
      },
      {
       "kind": "row",
-      "name": "R0276",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 275
+      "row": 275,
+      "name": "R0276"
      },
      {
       "kind": "row",
-      "name": "R0022",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 21
+      "row": 21,
+      "name": "R0022"
      },
      {
       "kind": "row",
-      "name": "R0935",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 934
+      "row": 934,
+      "name": "R0935"
      },
      {
       "kind": "row",
-      "name": "R1617",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1616
+      "row": 1616,
+      "name": "R1617"
      },
      {
       "kind": "row",
-      "name": "R1041",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1040
+      "row": 1040,
+      "name": "R1041"
      },
      {
       "kind": "row",
-      "name": "R0046",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 45
+      "row": 45,
+      "name": "R0046"
      },
      {
       "kind": "row",
-      "name": "R1250",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1249
+      "row": 1249,
+      "name": "R1250"
      },
      {
       "kind": "row",
-      "name": "R1640",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1639
+      "row": 1639,
+      "name": "R1640"
      },
      {
       "kind": "row",
-      "name": "R1042",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 1041
+      "row": 1041,
+      "name": "R1042"
      },
      {
       "kind": "row",
-      "name": "R2310",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2309
+      "row": 2309,
+      "name": "R2310"
      },
      {
       "kind": "row",
-      "name": "R0350",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 349
+      "row": 349,
+      "name": "R0350"
      }
     ]
    }
@@ -4634,93 +3856,69 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "R2231",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 2230
+      "row": 2230,
+      "name": "R2231"
      },
      {
       "kind": "row",
-      "name": "R2149",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 2148
+      "row": 2148,
+      "name": "R2149"
      },
      {
       "kind": "row",
-      "name": "R3316",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 3315
+      "row": 3315,
+      "name": "R3316"
      },
      {
       "kind": "row",
-      "name": "R3200",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 3199
+      "row": 3199,
+      "name": "R3200"
      },
      {
       "kind": "bound",
-      "name": "C7152",
-      "original_value": 0.0,
+      "var": 7151,
       "side": "lb",
-      "var": 7151
+      "name": "C7152"
      },
      {
       "kind": "bound",
-      "name": "C57658",
-      "original_value": 0.0,
+      "var": 57657,
       "side": "lb",
-      "var": 57657
+      "name": "C57658"
      },
      {
       "kind": "bound",
-      "name": "C12580",
-      "original_value": 0.0,
+      "var": 12579,
       "side": "lb",
-      "var": 12579
+      "name": "C12580"
      },
      {
       "kind": "bound",
-      "name": "C27488",
-      "original_value": 0.0,
+      "var": 27487,
       "side": "lb",
-      "var": 27487
+      "name": "C27488"
      },
      {
       "kind": "bound",
-      "name": "C5605",
-      "original_value": 0.0,
+      "var": 5604,
       "side": "lb",
-      "var": 5604
+      "name": "C5605"
      },
      {
       "kind": "bound",
-      "name": "C56203",
-      "original_value": 0.0,
+      "var": 56202,
       "side": "lb",
-      "var": 56202
+      "name": "C56203"
      },
      {
       "kind": "row",
-      "name": "R3718",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 3717
+      "row": 3717,
+      "name": "R3718"
      },
      {
       "kind": "row",
-      "name": "R3187",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 3186
+      "row": 3186,
+      "name": "R3187"
      }
     ]
    }
@@ -4741,89 +3939,73 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "v05WO1431",
-      "original_value": 0.0,
+      "var": 5169,
       "side": "lb",
-      "var": 5169
+      "name": "v05WO1431"
      },
      {
       "kind": "bound",
-      "name": "v09DO0209",
-      "original_value": 0.0,
+      "var": 1989,
       "side": "lb",
-      "var": 1989
+      "name": "v09DO0209"
      },
      {
       "kind": "row",
-      "name": "CTMNZO14",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "E",
-      "row": 832
+      "row": 832,
+      "name": "CTMNZO14"
      },
      {
       "kind": "bound",
-      "name": "v01DO0718",
-      "original_value": 0.0,
+      "var": 5499,
       "side": "lb",
-      "var": 5499
+      "name": "v01DO0718"
      },
      {
       "kind": "row",
-      "name": "CTMNVR02",
-      "original_range": 0.0,
-      "original_rhs": 5.0,
-      "original_sense": "E",
-      "row": 894
+      "row": 894,
+      "name": "CTMNVR02"
      },
      {
       "kind": "bound",
-      "name": "v10DI1829",
-      "original_value": 0.0,
+      "var": 2975,
       "side": "lb",
-      "var": 2975
+      "name": "v10DI1829"
      },
      {
       "kind": "bound",
-      "name": "v04MA2031",
-      "original_value": 0.0,
+      "var": 8737,
       "side": "lb",
-      "var": 8737
+      "name": "v04MA2031"
      },
      {
       "kind": "bound",
-      "name": "v03DO0114",
-      "original_value": 0.0,
+      "var": 8557,
       "side": "lb",
-      "var": 8557
+      "name": "v03DO0114"
      },
      {
       "kind": "bound",
-      "name": "v10DI2231",
-      "original_value": 0.0,
+      "var": 1605,
       "side": "lb",
-      "var": 1605
+      "name": "v10DI2231"
      },
      {
       "kind": "bound",
-      "name": "v01DO1831",
-      "original_value": 0.0,
+      "var": 1610,
       "side": "lb",
-      "var": 1610
+      "name": "v01DO1831"
      },
      {
       "kind": "bound",
-      "name": "v08DO1021",
-      "original_value": 0.0,
+      "var": 1997,
       "side": "lb",
-      "var": 1997
+      "name": "v08DO1021"
      },
      {
       "kind": "bound",
-      "name": "v06WO0621",
-      "original_value": 0.0,
+      "var": 1615,
       "side": "lb",
-      "var": 1615
+      "name": "v06WO0621"
      }
     ]
    }
@@ -4844,17 +4026,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C18259",
-      "original_value": 0.0,
+      "var": 18258,
       "side": "lb",
-      "var": 18258
+      "name": "C18259"
      },
      {
       "kind": "bound",
-      "name": "C8275",
-      "original_value": 0.0,
+      "var": 8274,
       "side": "lb",
-      "var": 8274
+      "name": "C8275"
      }
     ]
    }
@@ -4875,40 +4055,31 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C355357",
-      "original_value": 0.0,
+      "var": 355356,
       "side": "lb",
-      "var": 355356
+      "name": "C355357"
      },
      {
       "kind": "row",
-      "name": "R0032",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 31
+      "row": 31,
+      "name": "R0032"
      },
      {
       "kind": "row",
-      "name": "R0025",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 24
+      "row": 24,
+      "name": "R0025"
      },
      {
       "kind": "bound",
-      "name": "C349290",
-      "original_value": 0.0,
+      "var": 349289,
       "side": "lb",
-      "var": 349289
+      "name": "C349290"
      },
      {
       "kind": "bound",
-      "name": "C355358",
-      "original_value": 1.0,
+      "var": 355357,
       "side": "ub",
-      "var": 355357
+      "name": "C355358"
      }
     ]
    }
@@ -4929,41 +4100,30 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C3421",
-      "original_value": 0.0,
+      "var": 3420,
       "side": "lb",
-      "var": 3420
+      "name": "C3421"
      },
      {
       "kind": "bound",
-      "name": "C3193",
-      "original_value": 0.0,
+      "var": 3192,
       "side": "lb",
-      "var": 3192
+      "name": "C3193"
      },
      {
       "kind": "row",
-      "name": "R1590",
-      "original_range": 0.0,
-      "original_rhs": 2.0,
-      "original_sense": "G",
-      "row": 1589
+      "row": 1589,
+      "name": "R1590"
      },
      {
       "kind": "row",
-      "name": "R0791",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 790
+      "row": 790,
+      "name": "R0791"
      },
      {
       "kind": "row",
-      "name": "R0772",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 771
+      "row": 771,
+      "name": "R0772"
      }
     ]
    }
@@ -4984,88 +4144,74 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "YL1192T6",
-      "original_value": 0.0,
+      "var": 2735,
       "side": "ub",
-      "var": 2735
+      "name": "YL1192T6"
      },
      {
       "kind": "bound",
-      "name": "XL1392S5T15",
-      "original_value": 0.0,
+      "var": 996,
       "side": "lb",
-      "var": 996
+      "name": "XL1392S5T15"
      },
      {
       "kind": "bound",
-      "name": "YL1292T3",
-      "original_value": 0.0,
+      "var": 2727,
       "side": "ub",
-      "var": 2727
+      "name": "YL1292T3"
      },
      {
       "kind": "bound",
-      "name": "YL1392T1",
-      "original_value": 0.0,
+      "var": 2722,
       "side": "ub",
-      "var": 2722
+      "name": "YL1392T1"
      },
      {
       "kind": "bound",
-      "name": "XL1392S8T6",
-      "original_value": 0.0,
+      "var": 386,
       "side": "lb",
-      "var": 386
+      "name": "XL1392S8T6"
      },
      {
       "kind": "bound",
-      "name": "YL1192T2",
-      "original_value": 0.0,
+      "var": 2723,
       "side": "ub",
-      "var": 2723
+      "name": "YL1192T2"
      },
      {
       "kind": "bound",
-      "name": "YL1392T3",
-      "original_value": 0.0,
+      "var": 2728,
       "side": "lb",
-      "var": 2728
+      "name": "YL1392T3"
      },
      {
       "kind": "bound",
-      "name": "YL1292T13",
-      "original_value": 0.0,
+      "var": 2757,
       "side": "lb",
-      "var": 2757
+      "name": "YL1292T13"
      },
      {
       "kind": "bound",
-      "name": "YL1192T34",
-      "original_value": 0.0,
+      "var": 2819,
       "side": "lb",
-      "var": 2819
+      "name": "YL1192T34"
      },
      {
       "kind": "row",
-      "name": "R2754",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 2753
+      "row": 2753,
+      "name": "R2754"
      },
      {
       "kind": "bound",
-      "name": "XL1392S16T18",
-      "original_value": 0.0,
+      "var": 1209,
       "side": "lb",
-      "var": 1209
+      "name": "XL1392S16T18"
      },
      {
       "kind": "bound",
-      "name": "YL1192T1",
-      "original_value": 0.0,
+      "var": 2720,
       "side": "ub",
-      "var": 2720
+      "name": "YL1192T1"
      }
     ]
    }
@@ -5086,56 +4232,41 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C11055",
-      "original_value": 0.0,
+      "var": 11054,
       "side": "lb",
-      "var": 11054
+      "name": "C11055"
      },
      {
       "kind": "row",
-      "name": "R16395",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 16394
+      "row": 16394,
+      "name": "R16395"
      },
      {
       "kind": "row",
-      "name": "R0051",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 50
+      "row": 50,
+      "name": "R0051"
      },
      {
       "kind": "row",
-      "name": "R0039",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 38
+      "row": 38,
+      "name": "R0039"
      },
      {
       "kind": "row",
-      "name": "R16399",
-      "original_range": 0.0,
-      "original_rhs": -1.0,
-      "original_sense": "E",
-      "row": 16398
+      "row": 16398,
+      "name": "R16399"
      },
      {
       "kind": "bound",
-      "name": "C17083",
-      "original_value": 0.0,
+      "var": 17082,
       "side": "lb",
-      "var": 17082
+      "name": "C17083"
      },
      {
       "kind": "bound",
-      "name": "C14135",
-      "original_value": 0.0,
+      "var": 14134,
       "side": "lb",
-      "var": 14134
+      "name": "C14135"
      }
     ]
    }
@@ -5156,39 +4287,32 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "L53D7all",
-      "original_value": 0.0,
+      "var": 69565,
       "side": "lb",
-      "var": 69565
+      "name": "L53D7all"
      },
      {
       "kind": "bound",
-      "name": "C37R05D0701",
-      "original_value": 0.0,
+      "var": 83434,
       "side": "lb",
-      "var": 83434
+      "name": "C37R05D0701"
      },
      {
       "kind": "bound",
-      "name": "L53R5D71T",
-      "original_value": 0.0,
+      "var": 118139,
       "side": "lb",
-      "var": 118139
+      "name": "L53R5D71T"
      },
      {
       "kind": "bound",
-      "name": "L53D7pm3",
-      "original_value": 1.0,
+      "var": 69564,
       "side": "ub",
-      "var": 69564
+      "name": "L53D7pm3"
      },
      {
       "kind": "row",
-      "name": "C37",
-      "original_range": 0.0,
-      "original_rhs": 8.0,
-      "original_sense": "E",
-      "row": 36
+      "row": 36,
+      "name": "C37"
      }
     ]
    }
@@ -5209,17 +4333,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x546",
-      "original_value": 0.0,
+      "var": 545,
       "side": "lb",
-      "var": 545
+      "name": "x546"
      },
      {
       "kind": "bound",
-      "name": "x556",
-      "original_value": 1.0,
+      "var": 555,
       "side": "ub",
-      "var": 555
+      "name": "x556"
      }
     ]
    }
@@ -5240,31 +4362,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "rw(N26,26,26)",
-      "original_value": 0.0,
+      "var": 12896,
       "side": "lb",
-      "var": 12896
+      "name": "rw(N26,26,26)"
      },
      {
       "kind": "bound",
-      "name": "rw(N26,4,25)",
-      "original_value": 0.0,
+      "var": 20654,
       "side": "lb",
-      "var": 20654
+      "name": "rw(N26,4,25)"
      },
      {
       "kind": "bound",
-      "name": "rw(N26,4,27)",
-      "original_value": 1.0,
+      "var": 20656,
       "side": "ub",
-      "var": 20656
+      "name": "rw(N26,4,27)"
      },
      {
       "kind": "bound",
-      "name": "rw(N26,27,27)",
-      "original_value": 0.0,
+      "var": 12899,
       "side": "lb",
-      "var": 12899
+      "name": "rw(N26,27,27)"
      }
     ]
    }
@@ -5285,45 +4403,39 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "rw(N3,1,27)",
-      "original_value": 0.0,
+      "var": 11703,
       "side": "lb",
-      "var": 11703
+      "name": "rw(N3,1,27)"
      },
      {
       "kind": "bound",
-      "name": "rw(N3,16,27)",
-      "original_value": 1.0,
+      "var": 11898,
       "side": "ub",
-      "var": 11898
+      "name": "rw(N3,16,27)"
      },
      {
       "kind": "bound",
-      "name": "rw(N3,14,17)",
-      "original_value": 0.0,
+      "var": 23801,
       "side": "lb",
-      "var": 23801
+      "name": "rw(N3,14,17)"
      },
      {
       "kind": "bound",
-      "name": "rw(N3,16,26)",
-      "original_value": 0.0,
+      "var": 11897,
       "side": "lb",
-      "var": 11897
+      "name": "rw(N3,16,26)"
      },
      {
       "kind": "bound",
-      "name": "rw(N3,1,17)",
-      "original_value": 1.0,
+      "var": 11693,
       "side": "ub",
-      "var": 11693
+      "name": "rw(N3,1,17)"
      },
      {
       "kind": "bound",
-      "name": "rw(N3,14,26)",
-      "original_value": 1.0,
+      "var": 11884,
       "side": "ub",
-      "var": 11884
+      "name": "rw(N3,14,26)"
      }
     ]
    }
@@ -5344,31 +4456,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "rw(N0,4,27)",
-      "original_value": 0.0,
+      "var": 4369,
       "side": "lb",
-      "var": 4369
+      "name": "rw(N0,4,27)"
      },
      {
       "kind": "bound",
-      "name": "rw(N0,10,11)",
-      "original_value": 0.0,
+      "var": 3913,
       "side": "lb",
-      "var": 3913
+      "name": "rw(N0,10,11)"
      },
      {
       "kind": "bound",
-      "name": "rw(N0,4,11)",
-      "original_value": 1.0,
+      "var": 4353,
       "side": "ub",
-      "var": 4353
+      "name": "rw(N0,4,11)"
      },
      {
       "kind": "bound",
-      "name": "rw(N0,10,27)",
-      "original_value": 1.0,
+      "var": 4474,
       "side": "ub",
-      "var": 4474
+      "name": "rw(N0,10,27)"
      }
     ]
    }
@@ -5389,52 +4497,45 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "ww(N4,1,24)",
-      "original_value": 0.0,
+      "var": 2632,
       "side": "lb",
-      "var": 2632
+      "name": "ww(N4,1,24)"
      },
      {
       "kind": "bound",
-      "name": "ww(N4,17,17)",
-      "original_value": 0.0,
+      "var": 927,
       "side": "lb",
-      "var": 927
+      "name": "ww(N4,17,17)"
      },
      {
       "kind": "bound",
-      "name": "ww(N4,17,24)",
-      "original_value": 1.0,
+      "var": 934,
       "side": "ub",
-      "var": 934
+      "name": "ww(N4,17,24)"
      },
      {
       "kind": "bound",
-      "name": "ww(N4,6,17)",
-      "original_value": 1.0,
+      "var": 2695,
       "side": "ub",
-      "var": 2695
+      "name": "ww(N4,6,17)"
      },
      {
       "kind": "bound",
-      "name": "ww(N4,1,22)",
-      "original_value": 1.0,
+      "var": 2631,
       "side": "ub",
-      "var": 2631
+      "name": "ww(N4,1,22)"
      },
      {
       "kind": "bound",
-      "name": "ww(N4,14,22)",
-      "original_value": 0.0,
+      "var": 2783,
       "side": "lb",
-      "var": 2783
+      "name": "ww(N4,14,22)"
      },
      {
       "kind": "bound",
-      "name": "ww(N4,6,13)",
-      "original_value": 0.0,
+      "var": 2692,
       "side": "lb",
-      "var": 2692
+      "name": "ww(N4,6,13)"
      }
     ]
    }
@@ -5455,45 +4556,39 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "rw(N8,8,18)",
-      "original_value": 0.0,
+      "var": 9654,
       "side": "lb",
-      "var": 9654
+      "name": "rw(N8,8,18)"
      },
      {
       "kind": "bound",
-      "name": "rw(N8,9,19)",
-      "original_value": 0.0,
+      "var": 9672,
       "side": "lb",
-      "var": 9672
+      "name": "rw(N8,9,19)"
      },
      {
       "kind": "bound",
-      "name": "rw(N8,1,25)",
-      "original_value": 0.0,
+      "var": 5997,
       "side": "lb",
-      "var": 5997
+      "name": "rw(N8,1,25)"
      },
      {
       "kind": "bound",
-      "name": "rw(N8,1,18)",
-      "original_value": 1.0,
+      "var": 9535,
       "side": "ub",
-      "var": 9535
+      "name": "rw(N8,1,18)"
      },
      {
       "kind": "bound",
-      "name": "rw(N8,9,25)",
-      "original_value": 1.0,
+      "var": 9678,
       "side": "ub",
-      "var": 9678
+      "name": "rw(N8,9,25)"
      },
      {
       "kind": "bound",
-      "name": "rw(N8,8,19)",
-      "original_value": 1.0,
+      "var": 9655,
       "side": "ub",
-      "var": 9655
+      "name": "rw(N8,8,19)"
      }
     ]
    }
@@ -5514,93 +4609,69 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "c22",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 21
+      "row": 21,
+      "name": "c22"
      },
      {
       "kind": "row",
-      "name": "c31",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 30
+      "row": 30,
+      "name": "c31"
      },
      {
       "kind": "row",
-      "name": "c35",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 34
+      "row": 34,
+      "name": "c35"
      },
      {
       "kind": "row",
-      "name": "c28",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 27
+      "row": 27,
+      "name": "c28"
      },
      {
       "kind": "row",
-      "name": "c36",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 35
+      "row": 35,
+      "name": "c36"
      },
      {
       "kind": "bound",
-      "name": "x56099",
-      "original_value": 0.0,
+      "var": 56098,
       "side": "lb",
-      "var": 56098
+      "name": "x56099"
      },
      {
       "kind": "bound",
-      "name": "x12924",
-      "original_value": 0.0,
+      "var": 12923,
       "side": "lb",
-      "var": 12923
+      "name": "x12924"
      },
      {
       "kind": "bound",
-      "name": "x14489",
-      "original_value": 0.0,
+      "var": 14488,
       "side": "lb",
-      "var": 14488
+      "name": "x14489"
      },
      {
       "kind": "bound",
-      "name": "x67979",
-      "original_value": 0.0,
+      "var": 67978,
       "side": "lb",
-      "var": 67978
+      "name": "x67979"
      },
      {
       "kind": "bound",
-      "name": "x74921",
-      "original_value": 0.0,
+      "var": 74920,
       "side": "lb",
-      "var": 74920
+      "name": "x74921"
      },
      {
       "kind": "row",
-      "name": "c13",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 12
+      "row": 12,
+      "name": "c13"
      },
      {
       "kind": "bound",
-      "name": "x84899",
-      "original_value": 0.0,
+      "var": 84898,
       "side": "lb",
-      "var": 84898
+      "name": "x84899"
      }
     ]
    }
@@ -5621,17 +4692,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x398",
-      "original_value": 0.0,
+      "var": 394,
       "side": "lb",
-      "var": 394
+      "name": "x398"
      },
      {
       "kind": "bound",
-      "name": "x3053",
-      "original_value": 1.0,
+      "var": 3027,
       "side": "ub",
-      "var": 3027
+      "name": "x3053"
      }
     ]
    }
@@ -5652,31 +4721,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x108336",
-      "original_value": 0.0,
+      "var": 75841,
       "side": "lb",
-      "var": 75841
+      "name": "x108336"
      },
      {
       "kind": "bound",
-      "name": "x72230",
-      "original_value": 0.0,
+      "var": 22471,
       "side": "lb",
-      "var": 22471
+      "name": "x72230"
      },
      {
       "kind": "bound",
-      "name": "x118246",
-      "original_value": 0.0,
+      "var": 101327,
       "side": "lb",
-      "var": 101327
+      "name": "x118246"
      },
      {
       "kind": "bound",
-      "name": "x41597",
-      "original_value": 0.0,
+      "var": 29364,
       "side": "lb",
-      "var": 29364
+      "name": "x41597"
      }
     ]
    }
@@ -5697,17 +4762,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x23244",
-      "original_value": 1.0,
+      "var": 195,
       "side": "ub",
-      "var": 195
+      "name": "x23244"
      },
      {
       "kind": "bound",
-      "name": "x23256",
-      "original_value": 0.0,
+      "var": 207,
       "side": "lb",
-      "var": 207
+      "name": "x23256"
      }
     ]
    }
@@ -5728,93 +4791,69 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "p_lin_15336",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 15336
+      "row": 15336,
+      "name": "p_lin_15336"
      },
      {
       "kind": "row",
-      "name": "p_lin_109",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 109
+      "row": 109,
+      "name": "p_lin_109"
      },
      {
       "kind": "row",
-      "name": "p_lin_15341",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 15341
+      "row": 15341,
+      "name": "p_lin_15341"
      },
      {
       "kind": "row",
-      "name": "p_lin_15397",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 15397
+      "row": 15397,
+      "name": "p_lin_15397"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_32633_",
-      "original_value": 0.0,
+      "var": 11864,
       "side": "lb",
-      "var": 11864
+      "name": "X_INTRODUCED_32633_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_32612_",
-      "original_value": 0.0,
+      "var": 11843,
       "side": "lb",
-      "var": 11843
+      "name": "X_INTRODUCED_32612_"
      },
      {
       "kind": "row",
-      "name": "p_lin_9305",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 9305
+      "row": 9305,
+      "name": "p_lin_9305"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_32632_",
-      "original_value": 0.0,
+      "var": 11863,
       "side": "lb",
-      "var": 11863
+      "name": "X_INTRODUCED_32632_"
      },
      {
       "kind": "row",
-      "name": "p_lin_45",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "L",
-      "row": 45
+      "row": 45,
+      "name": "p_lin_45"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_7539_",
-      "original_value": 0.0,
+      "var": 181,
       "side": "lb",
-      "var": 181
+      "name": "X_INTRODUCED_7539_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_32237_",
-      "original_value": 0.0,
+      "var": 11468,
       "side": "lb",
-      "var": 11468
+      "name": "X_INTRODUCED_32237_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_23166_",
-      "original_value": 1.0,
+      "var": 6903,
       "side": "ub",
-      "var": 6903
+      "name": "X_INTRODUCED_23166_"
      }
     ]
    }
@@ -5835,45 +4874,39 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_61_",
-      "original_value": 0.0,
+      "var": 61,
       "side": "lb",
-      "var": 61
+      "name": "X_INTRODUCED_61_"
      },
      {
       "kind": "bound",
-      "name": "objective",
-      "original_value": 0.0,
+      "var": 90,
       "side": "lb",
-      "var": 90
+      "name": "objective"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_349876_",
-      "original_value": 0.0,
+      "var": 91209,
       "side": "lb",
-      "var": 91209
+      "name": "X_INTRODUCED_349876_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_348513_",
-      "original_value": 0.0,
+      "var": 89846,
       "side": "lb",
-      "var": 89846
+      "name": "X_INTRODUCED_348513_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_350232_",
-      "original_value": 1.0,
+      "var": 91565,
       "side": "ub",
-      "var": 91565
+      "name": "X_INTRODUCED_350232_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_349950_",
-      "original_value": 1.0,
+      "var": 91283,
       "side": "ub",
-      "var": 91283
+      "name": "X_INTRODUCED_349950_"
      }
     ]
    }
@@ -5894,45 +4927,39 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_384550_",
-      "original_value": 0.0,
+      "var": 99160,
       "side": "lb",
-      "var": 99160
+      "name": "X_INTRODUCED_384550_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_63_",
-      "original_value": 0.0,
+      "var": 63,
       "side": "lb",
-      "var": 63
+      "name": "X_INTRODUCED_63_"
      },
      {
       "kind": "bound",
-      "name": "objective",
-      "original_value": 0.0,
+      "var": 77,
       "side": "lb",
-      "var": 77
+      "name": "objective"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_385463_",
-      "original_value": 1.0,
+      "var": 100073,
       "side": "ub",
-      "var": 100073
+      "name": "X_INTRODUCED_385463_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_385471_",
-      "original_value": 1.0,
+      "var": 100081,
       "side": "ub",
-      "var": 100081
+      "name": "X_INTRODUCED_385471_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_386769_",
-      "original_value": 1.0,
+      "var": 101379,
       "side": "ub",
-      "var": 101379
+      "name": "X_INTRODUCED_386769_"
      }
     ]
    }
@@ -5953,46 +4980,38 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_64_",
-      "original_value": 0.0,
+      "var": 64,
       "side": "lb",
-      "var": 64
+      "name": "X_INTRODUCED_64_"
      },
      {
       "kind": "bound",
-      "name": "objective",
-      "original_value": 0.0,
+      "var": 77,
       "side": "lb",
-      "var": 77
+      "name": "objective"
      },
      {
       "kind": "row",
-      "name": "p_lin_202",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 202
+      "row": 202,
+      "name": "p_lin_202"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_379486_",
-      "original_value": 0.0,
+      "var": 99402,
       "side": "lb",
-      "var": 99402
+      "name": "X_INTRODUCED_379486_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_379737_",
-      "original_value": 1.0,
+      "var": 99653,
       "side": "ub",
-      "var": 99653
+      "name": "X_INTRODUCED_379737_"
      },
      {
       "kind": "bound",
-      "name": "X_INTRODUCED_377746_",
-      "original_value": 1.0,
+      "var": 97662,
       "side": "ub",
-      "var": 97662
+      "name": "X_INTRODUCED_377746_"
      }
     ]
    }
@@ -6013,95 +5032,67 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "X45860",
-      "original_value": 0.0,
+      "var": 45859,
       "side": "lb",
-      "var": 45859
+      "name": "X45860"
      },
      {
       "kind": "row",
-      "name": "R83",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 83
+      "row": 83,
+      "name": "R83"
      },
      {
       "kind": "row",
-      "name": "R188",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 188
+      "row": 188,
+      "name": "R188"
      },
      {
       "kind": "row",
-      "name": "R153",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 153
+      "row": 153,
+      "name": "R153"
      },
      {
       "kind": "row",
-      "name": "R74",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 74
+      "row": 74,
+      "name": "R74"
      },
      {
       "kind": "bound",
-      "name": "X31622",
-      "original_value": 0.0,
+      "var": 31621,
       "side": "lb",
-      "var": 31621
+      "name": "X31622"
      },
      {
       "kind": "row",
-      "name": "R442",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 442
+      "row": 442,
+      "name": "R442"
      },
      {
       "kind": "row",
-      "name": "R398",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 398
+      "row": 398,
+      "name": "R398"
      },
      {
       "kind": "bound",
-      "name": "X48842",
-      "original_value": 1.0,
+      "var": 48841,
       "side": "ub",
-      "var": 48841
+      "name": "X48842"
      },
      {
       "kind": "row",
-      "name": "R430",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 430
+      "row": 430,
+      "name": "R430"
      },
      {
       "kind": "row",
-      "name": "R495",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "G",
-      "row": 495
+      "row": 495,
+      "name": "R495"
      },
      {
       "kind": "bound",
-      "name": "X31828",
-      "original_value": 1.0,
+      "var": 31827,
       "side": "ub",
-      "var": 31827
+      "name": "X31828"
      }
     ]
    }
@@ -6122,92 +5113,70 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "z_606_263",
-      "original_value": 0.0,
+      "var": 3629,
       "side": "lb",
-      "var": 3629
+      "name": "z_606_263"
      },
      {
       "kind": "row",
-      "name": "sdef_5810",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 273
+      "row": 273,
+      "name": "sdef_5810"
      },
      {
       "kind": "bound",
-      "name": "z_632_374",
-      "original_value": 0.0,
+      "var": 4927,
       "side": "lb",
-      "var": 4927
+      "name": "z_632_374"
      },
      {
       "kind": "row",
-      "name": "sdef_10652",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 378
+      "row": 378,
+      "name": "sdef_10652"
      },
      {
       "kind": "bound",
-      "name": "z_316_267",
-      "original_value": 0.0,
+      "var": 1953,
       "side": "lb",
-      "var": 1953
+      "name": "z_316_267"
      },
      {
       "kind": "row",
-      "name": "sdef_2528",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 403
+      "row": 403,
+      "name": "sdef_2528"
      },
      {
       "kind": "row",
-      "name": "sdef_9348",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 263
+      "row": 263,
+      "name": "sdef_9348"
      },
      {
       "kind": "bound",
-      "name": "s_2520",
-      "original_value": 0.57,
+      "var": 33,
       "side": "ub",
-      "var": 33
+      "name": "s_2520"
      },
      {
       "kind": "bound",
-      "name": "z_380_633",
-      "original_value": 0.0,
+      "var": 3353,
       "side": "lb",
-      "var": 3353
+      "name": "z_380_633"
      },
      {
       "kind": "bound",
-      "name": "z_619_376",
-      "original_value": 0.0,
+      "var": 4129,
       "side": "lb",
-      "var": 4129
+      "name": "z_619_376"
      },
      {
       "kind": "row",
-      "name": "sdef_9349",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 264
+      "row": 264,
+      "name": "sdef_9349"
      },
      {
       "kind": "bound",
-      "name": "z_372_378",
-      "original_value": 0.0,
+      "var": 2690,
       "side": "lb",
-      "var": 2690
+      "name": "z_372_378"
      }
     ]
    }
@@ -6228,90 +5197,72 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "c6417",
-      "original_value": 0.0,
+      "var": 3974,
       "side": "lb",
-      "var": 3974
+      "name": "c6417"
      },
      {
       "kind": "row",
-      "name": "mindt0",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "G",
-      "row": 223
+      "row": 223,
+      "name": "mindt0"
      },
      {
       "kind": "bound",
-      "name": "c50578",
-      "original_value": 0.0,
+      "var": 33516,
       "side": "lb",
-      "var": 33516
+      "name": "c50578"
      },
      {
       "kind": "bound",
-      "name": "c33610",
-      "original_value": 0.0,
+      "var": 21929,
       "side": "lb",
-      "var": 21929
+      "name": "c33610"
      },
      {
       "kind": "bound",
-      "name": "c23030",
-      "original_value": 0.0,
+      "var": 14805,
       "side": "lb",
-      "var": 14805
+      "name": "c23030"
      },
      {
       "kind": "row",
-      "name": "s83",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 83
+      "row": 83,
+      "name": "s83"
      },
      {
       "kind": "bound",
-      "name": "c47945",
-      "original_value": 0.0,
+      "var": 32196,
       "side": "lb",
-      "var": 32196
+      "name": "c47945"
      },
      {
       "kind": "bound",
-      "name": "c26755",
-      "original_value": 0.0,
+      "var": 17168,
       "side": "lb",
-      "var": 17168
+      "name": "c26755"
      },
      {
       "kind": "bound",
-      "name": "c15795",
-      "original_value": 0.0,
+      "var": 8657,
       "side": "lb",
-      "var": 8657
+      "name": "c15795"
      },
      {
       "kind": "row",
-      "name": "s30",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 30
+      "row": 30,
+      "name": "s30"
      },
      {
       "kind": "bound",
-      "name": "c50023",
-      "original_value": 0.0,
+      "var": 33182,
       "side": "lb",
-      "var": 33182
+      "name": "c50023"
      },
      {
       "kind": "bound",
-      "name": "c28653",
-      "original_value": 0.0,
+      "var": 18549,
       "side": "lb",
-      "var": 18549
+      "name": "c28653"
      }
     ]
    }
@@ -6332,94 +5283,68 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "c6477",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 6476
+      "row": 6476,
+      "name": "c6477"
      },
      {
       "kind": "bound",
-      "name": "Atr_4_68tr_5_70_li0",
-      "original_value": 0.0,
+      "var": 4554,
       "side": "lb",
-      "var": 4554
+      "name": "Atr_4_68tr_5_70_li0"
      },
      {
       "kind": "bound",
-      "name": "Atr_27_74tr_30_79_li2",
-      "original_value": 0.0,
+      "var": 47726,
       "side": "lb",
-      "var": 47726
+      "name": "Atr_27_74tr_30_79_li2"
      },
      {
       "kind": "row",
-      "name": "c47",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 46
+      "row": 46,
+      "name": "c47"
      },
      {
       "kind": "row",
-      "name": "c5950",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 5949
+      "row": 5949,
+      "name": "c5950"
      },
      {
       "kind": "row",
-      "name": "c5801",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 5800
+      "row": 5800,
+      "name": "c5801"
      },
      {
       "kind": "bound",
-      "name": "Atr_7_31tr_5_35_li0",
-      "original_value": 0.0,
+      "var": 2371,
       "side": "lb",
-      "var": 2371
+      "name": "Atr_7_31tr_5_35_li0"
      },
      {
       "kind": "row",
-      "name": "c7696",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 7695
+      "row": 7695,
+      "name": "c7696"
      },
      {
       "kind": "bound",
-      "name": "Atr_6_67tr_8_72_li0",
-      "original_value": 0.0,
+      "var": 4519,
       "side": "lb",
-      "var": 4519
+      "name": "Atr_6_67tr_8_72_li0"
      },
      {
       "kind": "bound",
-      "name": "Atr_4_5tr_2_7_li0",
-      "original_value": 0.0,
+      "var": 343,
       "side": "lb",
-      "var": 343
+      "name": "Atr_4_5tr_2_7_li0"
      },
      {
       "kind": "row",
-      "name": "c42",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 41
+      "row": 41,
+      "name": "c42"
      },
      {
       "kind": "row",
-      "name": "c18",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "L",
-      "row": 17
+      "row": 17,
+      "name": "c18"
      }
     ]
    }
@@ -6440,98 +5365,64 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "w_s85_t8",
-      "original_value": 0.0,
+      "var": 1022,
       "side": "lb",
-      "var": 1022
+      "name": "w_s85_t8"
      },
      {
       "kind": "row",
-      "name": "c45357",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45356
+      "row": 45356,
+      "name": "c45357"
      },
      {
       "kind": "row",
-      "name": "c40785",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 40784
+      "row": 40784,
+      "name": "c40785"
      },
      {
       "kind": "row",
-      "name": "c45283",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45282
+      "row": 45282,
+      "name": "c45283"
      },
      {
       "kind": "row",
-      "name": "c45282",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45281
+      "row": 45281,
+      "name": "c45282"
      },
      {
       "kind": "row",
-      "name": "c45356",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45355
+      "row": 45355,
+      "name": "c45356"
      },
      {
       "kind": "row",
-      "name": "c42847",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 42846
+      "row": 42846,
+      "name": "c42847"
      },
      {
       "kind": "row",
-      "name": "c42846",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 42845
+      "row": 42845,
+      "name": "c42846"
      },
      {
       "kind": "row",
-      "name": "c45461",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45460
+      "row": 45460,
+      "name": "c45461"
      },
      {
       "kind": "row",
-      "name": "c45460",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45459
+      "row": 45459,
+      "name": "c45460"
      },
      {
       "kind": "row",
-      "name": "c45231",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45230
+      "row": 45230,
+      "name": "c45231"
      },
      {
       "kind": "row",
-      "name": "c45230",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 45229
+      "row": 45229,
+      "name": "c45230"
      }
     ]
    }
@@ -6552,31 +5443,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "ID10",
-      "original_value": 0.0,
+      "var": 5,
       "side": "lb",
-      "var": 5
+      "name": "ID10"
      },
      {
       "kind": "bound",
-      "name": "ID9",
-      "original_value": 2.312918330542743,
+      "var": 4,
       "side": "ub",
-      "var": 4
+      "name": "ID9"
      },
      {
       "kind": "bound",
-      "name": "ID57231",
-      "original_value": 1000.0,
+      "var": 56941,
       "side": "ub",
-      "var": 56941
+      "name": "ID57231"
      },
      {
       "kind": "bound",
-      "name": "ID57232",
-      "original_value": 1.0,
+      "var": 56942,
       "side": "ub",
-      "var": 56942
+      "name": "ID57232"
      }
     ]
    }
@@ -6597,45 +5484,39 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x10622",
-      "original_value": 0.0,
+      "var": 10621,
       "side": "lb",
-      "var": 10621
+      "name": "x10622"
      },
      {
       "kind": "bound",
-      "name": "x5009",
-      "original_value": 0.0,
+      "var": 5008,
       "side": "lb",
-      "var": 5008
+      "name": "x5009"
      },
      {
       "kind": "bound",
-      "name": "x10584",
-      "original_value": 0.0,
+      "var": 10583,
       "side": "lb",
-      "var": 10583
+      "name": "x10584"
      },
      {
       "kind": "bound",
-      "name": "x10609",
-      "original_value": 1.0,
+      "var": 10608,
       "side": "ub",
-      "var": 10608
+      "name": "x10609"
      },
      {
       "kind": "bound",
-      "name": "x5023",
-      "original_value": 1.0,
+      "var": 5022,
       "side": "ub",
-      "var": 5022
+      "name": "x5023"
      },
      {
       "kind": "bound",
-      "name": "x10591",
-      "original_value": 1.0,
+      "var": 10590,
       "side": "ub",
-      "var": 10590
+      "name": "x10591"
      }
     ]
    }
@@ -6656,31 +5537,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x10614",
-      "original_value": 0.0,
+      "var": 10613,
       "side": "lb",
-      "var": 10613
+      "name": "x10614"
      },
      {
       "kind": "bound",
-      "name": "x1855",
-      "original_value": 0.0,
+      "var": 1854,
       "side": "lb",
-      "var": 1854
+      "name": "x1855"
      },
      {
       "kind": "bound",
-      "name": "x1877",
-      "original_value": 1.0,
+      "var": 1876,
       "side": "ub",
-      "var": 1876
+      "name": "x1877"
      },
      {
       "kind": "bound",
-      "name": "x10611",
-      "original_value": 1.0,
+      "var": 10610,
       "side": "ub",
-      "var": 10610
+      "name": "x10611"
      }
     ]
    }
@@ -6701,39 +5578,32 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x6703",
-      "original_value": 0.0,
+      "var": 6702,
       "side": "lb",
-      "var": 6702
+      "name": "x6703"
      },
      {
       "kind": "row",
-      "name": "c46",
-      "original_range": 0.0,
-      "original_rhs": 4.0,
-      "original_sense": "G",
-      "row": 45
+      "row": 45,
+      "name": "c46"
      },
      {
       "kind": "bound",
-      "name": "x6700",
-      "original_value": 1.0,
+      "var": 6699,
       "side": "ub",
-      "var": 6699
+      "name": "x6700"
      },
      {
       "kind": "bound",
-      "name": "x12189",
-      "original_value": 0.0,
+      "var": 12188,
       "side": "lb",
-      "var": 12188
+      "name": "x12189"
      },
      {
       "kind": "bound",
-      "name": "x12191",
-      "original_value": 1.0,
+      "var": 12190,
       "side": "ub",
-      "var": 12190
+      "name": "x12191"
      }
     ]
    }
@@ -6754,31 +5624,27 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x1428",
-      "original_value": 0.0,
+      "var": 1427,
       "side": "lb",
-      "var": 1427
+      "name": "x1428"
      },
      {
       "kind": "bound",
-      "name": "x7276",
-      "original_value": 0.0,
+      "var": 7275,
       "side": "lb",
-      "var": 7275
+      "name": "x7276"
      },
      {
       "kind": "bound",
-      "name": "x7281",
-      "original_value": 1.0,
+      "var": 7280,
       "side": "ub",
-      "var": 7280
+      "name": "x7281"
      },
      {
       "kind": "bound",
-      "name": "x1427",
-      "original_value": 1.0,
+      "var": 1426,
       "side": "ub",
-      "var": 1426
+      "name": "x1427"
      }
     ]
    }
@@ -6799,38 +5665,33 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "tollCh@9",
-      "original_value": 0.0,
+      "var": 971,
       "side": "lb",
-      "var": 971
+      "name": "tollCh@9"
      },
      {
       "kind": "bound",
-      "name": "will@3cb",
-      "original_value": 0.0,
+      "var": 9,
       "side": "lb",
-      "var": 9
+      "name": "will@3cb"
      },
      {
       "kind": "bound",
-      "name": "tollCh@a",
-      "original_value": 0.0,
+      "var": 972,
       "side": "lb",
-      "var": 972
+      "name": "tollCh@a"
      },
      {
       "kind": "bound",
-      "name": "will@3cc",
-      "original_value": 0.0,
+      "var": 10,
       "side": "lb",
-      "var": 10
+      "name": "will@3cc"
      },
      {
       "kind": "bound",
-      "name": "will@62a",
-      "original_value": 1.0,
+      "var": 616,
       "side": "ub",
-      "var": 616
+      "name": "will@62a"
      }
     ]
    }
@@ -6851,89 +5712,73 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x923",
-      "original_value": 0.0,
+      "var": 922,
       "side": "lb",
-      "var": 922
+      "name": "x923"
      },
      {
       "kind": "bound",
-      "name": "x959",
-      "original_value": 255.0,
+      "var": 958,
       "side": "ub",
-      "var": 958
+      "name": "x959"
      },
      {
       "kind": "bound",
-      "name": "x957",
-      "original_value": 255.0,
+      "var": 956,
       "side": "ub",
-      "var": 956
+      "name": "x957"
      },
      {
       "kind": "bound",
-      "name": "x1019",
-      "original_value": 255.0,
+      "var": 1018,
       "side": "ub",
-      "var": 1018
+      "name": "x1019"
      },
      {
       "kind": "row",
-      "name": "c15843",
-      "original_range": 0.0,
-      "original_rhs": -42.0,
-      "original_sense": "G",
-      "row": 15842
+      "row": 15842,
+      "name": "c15843"
      },
      {
       "kind": "bound",
-      "name": "x983",
-      "original_value": 0.0,
+      "var": 982,
       "side": "lb",
-      "var": 982
+      "name": "x983"
      },
      {
       "kind": "bound",
-      "name": "x985",
-      "original_value": 0.0,
+      "var": 984,
       "side": "lb",
-      "var": 984
+      "name": "x985"
      },
      {
       "kind": "bound",
-      "name": "x919",
-      "original_value": 0.0,
+      "var": 918,
       "side": "lb",
-      "var": 918
+      "name": "x919"
      },
      {
       "kind": "bound",
-      "name": "x1016",
-      "original_value": 255.0,
+      "var": 1015,
       "side": "ub",
-      "var": 1015
+      "name": "x1016"
      },
      {
       "kind": "bound",
-      "name": "x949",
-      "original_value": 0.0,
+      "var": 948,
       "side": "lb",
-      "var": 948
+      "name": "x949"
      },
      {
       "kind": "row",
-      "name": "c15852",
-      "original_range": 0.0,
-      "original_rhs": 30.0,
-      "original_sense": "G",
-      "row": 15851
+      "row": 15851,
+      "name": "c15852"
      },
      {
       "kind": "bound",
-      "name": "x1022",
-      "original_value": 255.0,
+      "var": 1021,
       "side": "ub",
-      "var": 1021
+      "name": "x1022"
      }
     ]
    }
@@ -6954,17 +5799,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C3903(0,Inf)",
-      "original_value": 0.0,
+      "var": 3902,
       "side": "lb",
-      "var": 3902
+      "name": "C3903(0,Inf)"
      },
      {
       "kind": "bound",
-      "name": "C16596(0,Inf)",
-      "original_value": 0.0,
+      "var": 16595,
       "side": "lb",
-      "var": 16595
+      "name": "C16596(0,Inf)"
      }
     ]
    }
@@ -6985,93 +5828,69 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "B87414(4)",
-      "original_value": 0.0,
+      "var": 87414,
       "side": "lb",
-      "var": 87414
+      "name": "B87414(4)"
      },
      {
       "kind": "row",
-      "name": "c733",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 733
+      "row": 733,
+      "name": "c733"
      },
      {
       "kind": "row",
-      "name": "c532",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 532
+      "row": 532,
+      "name": "c532"
      },
      {
       "kind": "bound",
-      "name": "B31230(5)",
-      "original_value": 0.0,
+      "var": 31230,
       "side": "lb",
-      "var": 31230
+      "name": "B31230(5)"
      },
      {
       "kind": "bound",
-      "name": "B35177(6)",
-      "original_value": 0.0,
+      "var": 35177,
       "side": "lb",
-      "var": 35177
+      "name": "B35177(6)"
      },
      {
       "kind": "row",
-      "name": "c160",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 160
+      "row": 160,
+      "name": "c160"
      },
      {
       "kind": "bound",
-      "name": "B40333(4)",
-      "original_value": 0.0,
+      "var": 40333,
       "side": "lb",
-      "var": 40333
+      "name": "B40333(4)"
      },
      {
       "kind": "bound",
-      "name": "B58149(4)",
-      "original_value": 0.0,
+      "var": 58149,
       "side": "lb",
-      "var": 58149
+      "name": "B58149(4)"
      },
      {
       "kind": "bound",
-      "name": "B27474(5)",
-      "original_value": 0.0,
+      "var": 27474,
       "side": "lb",
-      "var": 27474
+      "name": "B27474(5)"
      },
      {
       "kind": "row",
-      "name": "c216",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 216
+      "row": 216,
+      "name": "c216"
      },
      {
       "kind": "row",
-      "name": "c217",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 217
+      "row": 217,
+      "name": "c217"
      },
      {
       "kind": "row",
-      "name": "c181",
-      "original_range": 0.0,
-      "original_rhs": 0.0,
-      "original_sense": "E",
-      "row": 181
+      "row": 181,
+      "name": "c181"
      }
     ]
    }
@@ -7092,17 +5911,15 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "C117143(25)",
-      "original_value": 0.0,
+      "var": 117143,
       "side": "lb",
-      "var": 117143
+      "name": "C117143(25)"
      },
      {
       "kind": "bound",
-      "name": "C39276(25)",
-      "original_value": 0.0,
+      "var": 39276,
       "side": "lb",
-      "var": 39276
+      "name": "C39276(25)"
      }
     ]
    }
@@ -7123,38 +5940,33 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x2676",
-      "original_value": 0.0,
+      "var": 2675,
       "side": "lb",
-      "var": 2675
+      "name": "x2676"
      },
      {
       "kind": "bound",
-      "name": "x28497",
-      "original_value": 0.0,
+      "var": 28496,
       "side": "lb",
-      "var": 28496
+      "name": "x28497"
      },
      {
       "kind": "bound",
-      "name": "x28010",
-      "original_value": 0.0,
+      "var": 28009,
       "side": "lb",
-      "var": 28009
+      "name": "x28010"
      },
      {
       "kind": "bound",
-      "name": "x55321",
-      "original_value": 1.0,
+      "var": 55320,
       "side": "ub",
-      "var": 55320
+      "name": "x55321"
      },
      {
       "kind": "bound",
-      "name": "x56594",
-      "original_value": 1.0,
+      "var": 56593,
       "side": "ub",
-      "var": 56593
+      "name": "x56594"
      }
     ]
    }
@@ -7175,94 +5987,68 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "c263",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 262
+      "row": 262,
+      "name": "c263"
      },
      {
       "kind": "bound",
-      "name": "x7674",
-      "original_value": 0.0,
+      "var": 7673,
       "side": "lb",
-      "var": 7673
+      "name": "x7674"
      },
      {
       "kind": "row",
-      "name": "c9",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 8
+      "row": 8,
+      "name": "c9"
      },
      {
       "kind": "bound",
-      "name": "x15710",
-      "original_value": 0.0,
+      "var": 15709,
       "side": "lb",
-      "var": 15709
+      "name": "x15710"
      },
      {
       "kind": "row",
-      "name": "c11",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 10
+      "row": 10,
+      "name": "c11"
      },
      {
       "kind": "row",
-      "name": "c318",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 317
+      "row": 317,
+      "name": "c318"
      },
      {
       "kind": "bound",
-      "name": "x19077",
-      "original_value": 0.0,
+      "var": 19076,
       "side": "lb",
-      "var": 19076
+      "name": "x19077"
      },
      {
       "kind": "row",
-      "name": "c106",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 105
+      "row": 105,
+      "name": "c106"
      },
      {
       "kind": "row",
-      "name": "c334",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 333
+      "row": 333,
+      "name": "c334"
      },
      {
       "kind": "row",
-      "name": "c101",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 100
+      "row": 100,
+      "name": "c101"
      },
      {
       "kind": "bound",
-      "name": "x17192",
-      "original_value": 0.0,
+      "var": 17191,
       "side": "lb",
-      "var": 17191
+      "name": "x17192"
      },
      {
       "kind": "bound",
-      "name": "x2710",
-      "original_value": 0.0,
+      "var": 2709,
       "side": "lb",
-      "var": 2709
+      "name": "x2710"
      }
     ]
    }
@@ -7283,75 +6069,61 @@
     "drops_head": [
      {
       "kind": "row",
-      "name": "Visit_Once_Network['Globe_Life_Park_in_Arlington']",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 2416
+      "row": 2416,
+      "name": "Visit_Once_Network['Globe_Life_Park_in_Arlington']"
      },
      {
       "kind": "row",
-      "name": "Visit_Once_Network['Kauffman_Stadium']",
-      "original_range": 0.0,
-      "original_rhs": 1.0,
-      "original_sense": "E",
-      "row": 2418
+      "row": 2418,
+      "name": "Visit_Once_Network['Kauffman_Stadium']"
      },
      {
       "kind": "bound",
-      "name": "UseArc[891,1004]",
-      "original_value": 0.0,
+      "var": 25826,
       "side": "lb",
-      "var": 25826
+      "name": "UseArc[891,1004]"
      },
      {
       "kind": "bound",
-      "name": "UseArc[881,891]",
-      "original_value": 0.0,
+      "var": 25530,
       "side": "lb",
-      "var": 25530
+      "name": "UseArc[881,891]"
      },
      {
       "kind": "bound",
-      "name": "UseArc[778,881]",
-      "original_value": 0.0,
+      "var": 22544,
       "side": "lb",
-      "var": 22544
+      "name": "UseArc[778,881]"
      },
      {
       "kind": "bound",
-      "name": "UseArc[946,1004]",
-      "original_value": 1.0,
+      "var": 27422,
       "side": "ub",
-      "var": 27422
+      "name": "UseArc[946,1004]"
      },
      {
       "kind": "bound",
-      "name": "UseArc[946,959]",
-      "original_value": 0.0,
+      "var": 27409,
       "side": "lb",
-      "var": 27409
+      "name": "UseArc[946,959]"
      },
      {
       "kind": "bound",
-      "name": "UseArc[923,2405]",
-      "original_value": 0.0,
+      "var": 71265,
       "side": "lb",
-      "var": 71265
+      "name": "UseArc[923,2405]"
      },
      {
       "kind": "bound",
-      "name": "UseArc[778,2405]",
-      "original_value": 1.0,
+      "var": 71120,
       "side": "ub",
-      "var": 71120
+      "name": "UseArc[778,2405]"
      },
      {
       "kind": "bound",
-      "name": "UseArc[923,959]",
-      "original_value": 1.0,
+      "var": 26742,
       "side": "ub",
-      "var": 26742
+      "name": "UseArc[923,959]"
      }
     ]
    }
@@ -7372,52 +6144,45 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "FlowVar0.25_205",
-      "original_value": 0.0,
+      "var": 64388,
       "side": "lb",
-      "var": 64388
+      "name": "FlowVar0.25_205"
      },
      {
       "kind": "bound",
-      "name": "FlowVar0.227_180",
-      "original_value": 0.0,
+      "var": 103803,
       "side": "lb",
-      "var": 103803
+      "name": "FlowVar0.227_180"
      },
      {
       "kind": "bound",
-      "name": "FlowVar0.29_115",
-      "original_value": 0.0,
+      "var": 65828,
       "side": "lb",
-      "var": 65828
+      "name": "FlowVar0.29_115"
      },
      {
       "kind": "bound",
-      "name": "FlowVar0.205_29",
-      "original_value": 0.0,
+      "var": 66009,
       "side": "lb",
-      "var": 66009
+      "name": "FlowVar0.205_29"
      },
      {
       "kind": "bound",
-      "name": "FlowVar0.115_227",
-      "original_value": 0.0,
+      "var": 93142,
       "side": "lb",
-      "var": 93142
+      "name": "FlowVar0.115_227"
      },
      {
       "kind": "bound",
-      "name": "EdgeVar227_180",
-      "original_value": 0.0,
+      "var": 50673,
       "side": "lb",
-      "var": 50673
+      "name": "EdgeVar227_180"
      },
      {
       "kind": "bound",
-      "name": "FlowVar0.180_25",
-      "original_value": 0.0,
+      "var": 64339,
       "side": "lb",
-      "var": 64339
+      "name": "FlowVar0.180_25"
      }
     ]
    }
@@ -7438,38 +6203,33 @@
     "drops_head": [
      {
       "kind": "bound",
-      "name": "x_proceso1#25",
-      "original_value": 0.0,
+      "var": 53,
       "side": "lb",
-      "var": 53
+      "name": "x_proceso1#25"
      },
      {
       "kind": "bound",
-      "name": "x_proceso1#415",
-      "original_value": 0.0,
+      "var": 833,
       "side": "lb",
-      "var": 833
+      "name": "x_proceso1#415"
      },
      {
       "kind": "bound",
-      "name": "x_proceso1#1,777",
-      "original_value": 0.0,
+      "var": 3556,
       "side": "lb",
-      "var": 3556
+      "name": "x_proceso1#1,777"
      },
      {
       "kind": "bound",
-      "name": "x_proceso1#2,508",
-      "original_value": 0.0,
+      "var": 5018,
       "side": "lb",
-      "var": 5018
+      "name": "x_proceso1#2,508"
      },
      {
       "kind": "bound",
-      "name": "x_proceso1#1,802",
-      "original_value": 0.0,
+      "var": 3606,
       "side": "lb",
-      "var": 3606
+      "name": "x_proceso1#1,802"
      }
     ]
    }

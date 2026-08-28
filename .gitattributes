@@ -1,0 +1,7 @@
+* text=auto eol=lf
+
+*.woff2 binary
+*.png   binary
+*.gz    binary
+
+fonts/LICENSE.txt -text

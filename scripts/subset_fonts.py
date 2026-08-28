@@ -13,8 +13,8 @@ stays beside them.
 Run offline, against a checkout of the upstream release; the result is
 committed. The build itself never runs this and takes no dependency on it.
 
-    pip install fonttools brotli
-    python scripts/subset_fonts.py --source-dir path/to/IBMPlex/woff2
+    pip install --group fonts
+    python -m scripts.subset_fonts --source-dir path/to/IBMPlex/woff2
 
 Upstream: https://github.com/IBM/plex, OFL 1.1.
 """
@@ -24,15 +24,12 @@ from __future__ import annotations
 import argparse
 import html
 import re
-import sys
 import tempfile
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from website import INDEX_FILE, MIPLIB_FILE, ROOT, assets
+from website import build as builder
 
-from website import assets, build_site
-
-ROOT = Path(__file__).resolve().parents[1]
 FONT_DIR = ROOT / "fonts"
 
 # (upstream file stem, family, style)
@@ -50,17 +47,40 @@ FACES = (
 # Kept beyond what the pages set today, so that one instance name with an
 # accent, or one more piece of punctuation in the prose, is a page edit rather
 # than a re-subset and a new set of binaries.
-MARGIN = "".join(chr(code) for code in (
-    *range(0x00C0, 0x0100),                    # the Latin-1 accented letters
-    0x00A0, 0x00AD,                            # no-break space, soft hyphen
-    0x00A9, 0x00AE, 0x00B0, 0x00B1, 0x00B7,    # (c) (r) degree plus-minus middot
-    0x00AB, 0x00BB, 0x2039, 0x203A,            # the angle quotation marks
-    0x2018, 0x201A, 0x201E,                    # the quotation marks not yet set
-    0x2020, 0x2021, 0x2022, 0x2030, 0x2044,    # dagger ddagger bullet permille slash
-    0x20AC, 0x2122,                            # euro, trademark
-    0x2191, 0x2205, 0x221E, 0x2248, 0x2260,    # up-arrow empty-set infinity approx ne
-    0x27E8, 0x27E9,                            # the mathematical angle brackets
-))
+MARGIN = "".join(
+    chr(code)
+    for code in (
+        *range(0x00C0, 0x0100),  # the Latin-1 accented letters
+        0x00A0,
+        0x00AD,  # no-break space, soft hyphen
+        0x00A9,
+        0x00AE,
+        0x00B0,
+        0x00B1,
+        0x00B7,  # (c) (r) degree plus-minus middot
+        0x00AB,
+        0x00BB,
+        0x2039,
+        0x203A,  # the angle quotation marks
+        0x2018,
+        0x201A,
+        0x201E,  # the quotation marks not yet set
+        0x2020,
+        0x2021,
+        0x2022,
+        0x2030,
+        0x2044,  # dagger ddagger bullet permille slash
+        0x20AC,
+        0x2122,  # euro, trademark
+        0x2191,
+        0x2205,
+        0x221E,
+        0x2248,
+        0x2260,  # up-arrow empty-set infinity approx ne
+        0x27E8,
+        0x27E9,  # the mathematical angle brackets
+    )
+)
 
 # The name records a subset keeps: the copyright, which the OFL requires to
 # travel, and the version. Every other record from the source, including the
@@ -70,9 +90,11 @@ _KEEP_FROM_SOURCE = (0, 5)
 
 # The upstream web faces carry no licence record, so the subset states it. The
 # full text stays beside the files, in fonts/LICENSE.txt.
-_LICENSE = ("This Font Software is licensed under the SIL Open Font License, "
-            "Version 1.1. This license is available with a FAQ at: "
-            "https://scripts.sil.org/OFL")
+_LICENSE = (
+    "This Font Software is licensed under the SIL Open Font License, "
+    "Version 1.1. This license is available with a FAQ at: "
+    "https://scripts.sil.org/OFL"
+)
 _LICENSE_URL = "https://scripts.sil.org/OFL"
 _WINDOWS_EN = (3, 1, 0x409)
 _MAC_EN = (1, 0, 0)
@@ -87,8 +109,9 @@ def rendered_characters(site_dir: Path) -> set[str]:
     """
     found: set[str] = set()
     for page in site_dir.rglob("*.html"):
-        text = re.sub(r"<(script|style)\b.*?</\1>", " ",
-                      page.read_text(encoding="utf-8"), flags=re.S)
+        text = re.sub(
+            r"<(script|style)\b.*?</\1>", " ", page.read_text(encoding="utf-8"), flags=re.S
+        )
         found |= set(html.unescape(re.sub(r"<[^>]+>", " ", text)))
     for sheet in (site_dir / "assets").glob("*.css"):
         for match in re.finditer(r'content:\s*"([^"]*)"', sheet.read_text(encoding="utf-8")):
@@ -105,13 +128,15 @@ def build_variants(into: Path) -> list[Path]:
     archive link came to be dropped from a subset taken from one of them.
     """
     published = into / "published"
-    build_site.build(build_site.DEFAULT_INDEX, published,
-                     release_base_url="https://example.invalid/dl",
-                     site_url="https://example.invalid/",
-                     miplib_path=build_site.DEFAULT_MIPLIB)
+    builder.build(
+        INDEX_FILE,
+        published,
+        release_base_url="https://example.invalid/dl",
+        site_url="https://example.invalid/",
+        miplib_path=MIPLIB_FILE,
+    )
     placeholders = into / "placeholders"
-    build_site.build(build_site.DEFAULT_INDEX, placeholders,
-                     miplib_path=build_site.DEFAULT_MIPLIB)
+    builder.build(INDEX_FILE, placeholders, miplib_path=MIPLIB_FILE)
     return [published, placeholders]
 
 
@@ -130,9 +155,17 @@ def _rename(font, family: str, style: str) -> None:
     table = font["name"]
     kept: list[NameRecord] = [r for r in table.names if r.nameID in _KEEP_FROM_SOURCE]
     table.names = kept
-    for name_id, value in ((1, family), (2, style), (3, f"{postscript}; subset"),
-                           (4, full), (6, postscript), (13, _LICENSE),
-                           (14, _LICENSE_URL), (16, family), (17, style)):
+    for name_id, value in (
+        (1, family),
+        (2, style),
+        (3, f"{postscript}; subset"),
+        (4, full),
+        (6, postscript),
+        (13, _LICENSE),
+        (14, _LICENSE_URL),
+        (16, family),
+        (17, style),
+    ):
         for platform, encoding, language in (_WINDOWS_EN, _MAC_EN):
             table.setName(value, name_id, platform, encoding, language)
 
@@ -151,10 +184,15 @@ def subset_face(source: Path, dest: Path, family: str, style: str, text: str) ->
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--source-dir", type=Path, required=True,
-                        help="a checkout of the upstream IBM Plex woff2 files")
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "--source-dir",
+        type=Path,
+        required=True,
+        help="a checkout of the upstream IBM Plex woff2 files",
+    )
     parser.add_argument("--out-dir", type=Path, default=FONT_DIR)
     args = parser.parse_args()
 
@@ -167,8 +205,9 @@ def main() -> None:
     for stem, family, style in FACES:
         source = args.source_dir / f"{stem}.woff2"
         if not source.is_file():
-            raise SystemExit(f"{source}: not found. --source-dir should hold the "
-                             "upstream woff2 files.")
+            raise SystemExit(
+                f"{source}: not found. --source-dir should hold the upstream woff2 files."
+            )
         dest = args.out_dir / assets.font_file(family, style)
         subset_face(source, dest, f"{assets.FONT_FAMILY} {family}", style, text)
         before += source.stat().st_size

@@ -1,6 +1,6 @@
 """Replace the NAME record of every published MPS with the file's own name.
 
-    python scripts/rewrite_mps_name.py [--dataset-dir dataset] [--check]
+    python -m scripts.rewrite_mps_name [--dataset-dir dataset] [--check]
 
 CPLEX writes whatever path it read into the NAME record, so every published file
 carried the absolute path of the build machine, username included, and named the
@@ -13,12 +13,11 @@ alone.
 
 import argparse
 import gzip
-import shutil
-import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.dataset import DatasetError, scan_dataset
+from website import DATASET_DIR
 
 
 def current_name(path):
@@ -28,7 +27,7 @@ def current_name(path):
             if line.startswith("NAME"):
                 return line[4:].strip()
             if not line.startswith("*") and line.strip():
-                return None      # NAME must come first; anything else means none
+                return None  # NAME must come first; anything else means none
     return None
 
 
@@ -37,48 +36,52 @@ def rewrite(path, stem):
     before = path.stat().st_size
     tmp = path.with_suffix(path.suffix + ".tmp")
     done = False
-    with gzip.open(path, "rt", errors="replace", newline="") as src, \
-            gzip.open(tmp, "wt", errors="replace", newline="") as dst:
+    with (
+        gzip.open(path, "rt", errors="replace", newline="") as src,
+        gzip.open(tmp, "wt", errors="replace", newline="") as dst,
+    ):
         for line in src:
             if not done and line.startswith("NAME"):
                 dst.write(f"NAME          {stem}\n")
                 done = True
             else:
                 dst.write(line)
-    if not done:                                  # no NAME line: leave the file alone
+    if not done:  # no NAME line: leave the file alone
         tmp.unlink(missing_ok=True)
         return before, before
-    shutil.move(str(tmp), str(path))
+    tmp.replace(path)
     return before, path.stat().st_size
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset-dir", type=Path,
-                        default=Path(__file__).resolve().parents[1] / "dataset")
-    parser.add_argument("--check", action="store_true",
-                        help="report what would change, write nothing")
+    parser.add_argument("--dataset-dir", type=Path, default=DATASET_DIR)
+    parser.add_argument(
+        "--check", action="store_true", help="report what would change, write nothing"
+    )
     args = parser.parse_args()
 
-    files = sorted(args.dataset_dir.glob("*/*.mps.gz"))
-    print(f"{len(files)} published files", flush=True)
-
-    leaked = [p for p in files if (current_name(p) or "").count("/") > 0]
-    print(f"  NAME records carrying a path: {len(leaked)}", flush=True)
+    try:
+        dataset = scan_dataset(args.dataset_dir)
+    except DatasetError as exc:
+        raise SystemExit(str(exc)) from exc
+    records = [(entry.mps, current_name(entry.mps), entry.stem) for entry in dataset]
+    changes = [record for record in records if record[1] != record[2]]
+    print(f"{len(dataset)} published files; {len(changes)} NAME records to rewrite", flush=True)
     if args.check:
-        for p in files[:3]:
-            print(f"    {p.name}: {current_name(p)!r} -> "
-                  f"{p.name.removesuffix('.mps.gz')!r}")
+        for path, name, stem in changes[:3]:
+            print(f"    {path.name}: {name!r} -> {stem!r}")
         return
 
     t0, delta = time.time(), 0
-    for n, p in enumerate(files, 1):
-        stem = p.name.removesuffix(".mps.gz")
-        b, a = rewrite(p, stem)
-        delta += a - b
-        if n % 25 == 0 or n == len(files):
-            print(f"  {n}/{len(files)}  ({time.time() - t0:.0f}s)", flush=True)
+    for n, (path, _, stem) in enumerate(changes, 1):
+        before, after = rewrite(path, stem)
+        delta += after - before
+        if n % 25 == 0 or n == len(changes):
+            print(f"  {n}/{len(changes)}  ({time.time() - t0:.0f}s)", flush=True)
     print(f"done; total size change {delta:+,} bytes")
+    if changes:
+        print("next: python -m scripts.add_checksums, then python -m scripts.build_site_index")
 
 
 if __name__ == "__main__":

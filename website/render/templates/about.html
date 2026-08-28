@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block main %}
+{% from "_macros.html" import miplib_citation %}
+<div class="masthead">
+  <span class="eyebrow">Background</span>
+  <h1>About this collection</h1>
+</div>
+<div class="section">
+  <h2>Primal-infeasible instances</h2>
+  <div class="prose">
+    <p>A CPLEX branch-and-bound run explores a MIPLIB 2017 instance with cuts,
+    presolve, probing and primal heuristics switched off. A callback follows the search
+    and re-solves the opposite side of every branch it takes; the sides with no feasible
+    point are written out. The bounds come from a branch the run actually took, not from
+    bounds tightened at random. Which nodes a tree contains depends on the solver that
+    built it, so reproducing this subset means reproducing that run.</p>
+  </div>
+</div>
+<div class="section">
+  <h2>Dual-infeasible instances</h2>
+  <div class="prose">
+    <p>Where the source LP relaxation is feasible with a bounded optimum, a CPLEX loop
+    drops bounds and constraints one at a time from the optimal dual support until the
+    objective goes unbounded, then restores every unnecessary drop, leaving an
+    inclusion-minimal set. A source relaxation that is already unbounded is published
+    without dropping anything. Relaxing a feasible problem cannot make it infeasible,
+    so each one is genuinely unbounded rather than empty.</p>
+  </div>
+</div>
+<div class="section">
+  <h2>What survives to publication</h2>
+  <div class="prose">
+    <p>A candidate is kept only if neither HiGHS nor Gurobi presolve settles it unaided:
+    whatever a presolver disposes of on its own is too easy to publish. One instance per
+    source instance per subset is then selected, reproducibly, from what survives.
+    Neither presolver contributes an instance.</p>
+  </div>
+</div>
+<div class="section">
+  <h2>Source and licence</h2>
+  <div class="prose">
+    {{ miplib_citation() }}
+    <p>The source instances do not all carry the same terms. Sources submitted through
+    the MIPLIB 2017 form carry
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> unless
+    their contributor chose otherwise; <span class="mono">adult-max5features</span>
+    carries BSD 3-Clause. Sources carried over from earlier MIPLIB editions carry no
+    licence of record because they predate the form and the licence it required.</p>
+    <p>To the extent this project holds copyright or related rights in them, its own work
+    and the linear programs derived from CC BY-SA sources are released under CC BY-SA
+    4.0. The carried-over sources are not: neither MIPLIB nor anyone else placed them
+    under it, so they are redistributed on the footing ZIB distributes them on, with the
+    source named and the contributor credited. Each instance page states the terms of
+    its own source; the BSD notice, the required attribution and the list of sources
+    without a licence of record are set out in
+    <a href="{{ licence_href }}">LICENSE</a>.</p>
+  </div>
+</div>
+{% endblock %}

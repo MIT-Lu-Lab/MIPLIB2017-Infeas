@@ -1,0 +1,9 @@
+{#- Markup two pages both ask for. A DOI or a title that changed on one page
+    and not the other would be worse than the repetition it replaces. -#}
+
+{% macro miplib_citation(css_class="") -%}
+<p{% if css_class %} class="{{ css_class }}"{% endif %}>Every instance derives from MIPLIB 2017. Please also cite
+<a href="https://doi.org/10.1007/s12532-020-00194-3">Gleixner et al.,
+&ldquo;MIPLIB 2017: Data-Driven Compilation of the 6th Mixed-Integer Programming
+Library&rdquo;</a>.</p>
+{%- endmacro %}

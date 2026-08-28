@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="masthead">
+  <span class="eyebrow">Reference</span>
+  <h1>Reading a file</h1>
+  <p class="sub">Every published instance is a gzipped MPS beside a
+  <span class="mono">.meta.json</span> sidecar recording how it was derived. The reference
+  below explains each field; the <a href="{{ schema_href }}">JSON Schema</a>
+  is the machine-readable contract.</p>
+</div>
+
+<div class="section">
+  <h2>Both subsets</h2>
+  <dl class="fields">
+    <dt><span class="mono">instance</span><span class="ftype">string</span></dt>
+    <dd>Name of the MIPLIB 2017 instance this one derives from. The published file is
+    that name plus <span class="mono">_if</span> or <span class="mono">_ub</span>.</dd>
+    <dt><span class="mono">sample_kind</span><span class="ftype">string</span></dt>
+    <dd>Which half the file belongs to:
+    <span class="mono">pruned_infeasible_sibling</span> for the primal set,
+    <span class="mono">lp_unbounded_after_drop</span> for the dual one. The first name is
+    older than the wording on these pages and claims more than the file records: what it
+    holds is the side of a branch the search did not explore.</dd>
+    <dt><span class="mono">n_vars, n_cons, nnz</span><span class="ftype">integer</span></dt>
+    <dd>Columns, rows and matrix nonzeros of the published file, counted from the file
+    itself rather than from the model that produced it. The objective row is not counted
+    in <span class="mono">n_cons</span>.</dd>
+    <dt><span class="mono">file_bytes</span><span class="ftype">integer</span></dt>
+    <dd>Exact byte length of the published <span class="mono">.mps.gz</span> file.</dd>
+    <dt><span class="mono">sha256</span><span class="ftype">string</span></dt>
+    <dd>Lowercase SHA-256 digest of the published <span class="mono">.mps.gz</span> file.
+    Use it with <span class="mono">file_bytes</span> to detect a truncated or corrupted
+    download.</dd>
+    <dt><span class="mono">source_terms</span><span class="ftype">object</span></dt>
+    <dd>Terms the source instance carries, which govern this file too.
+    <span class="mono">spdx</span> is an SPDX identifier, or
+    <span class="mono">null</span> for {{ imported_sources_note }} no licence at all. That
+    null is a finding, not a gap: <span class="mono">miplib_import</span> gives MIPLIB's
+    own sentence behind it. A file pulled out of an archive alone still says what may be
+    done with it.</dd>
+  </dl>
+</div>
+
+<div class="section">
+  <h2>Primal-infeasible</h2>
+  <dl class="fields">
+    <dt><span class="mono">depth</span><span class="ftype">integer</span></dt>
+    <dd>How deep in the branch-and-bound tree the node sits. The root is 0.</dd>
+    <dt><span class="mono">branch_var, branch_var_name</span><span class="ftype">integer, string</span></dt>
+    <dd>The branched column, as a 0-based index into the published file and as the name
+    that file gives it. Prefer the name: on some instances a column is literally called
+    <span class="mono">x91</span> while sitting at index 90, so an index read as a name
+    points at the wrong variable.</dd>
+    <dt><span class="mono">branch_sense, branch_value</span><span class="ftype">string, number</span></dt>
+    <dd>The bound that defines this side of the branch.
+    <span class="mono">&gt;=&#160;29</span> means the search took
+    <span class="mono">&lt;=&#160;28</span> and this file is the other side.</dd>
+    <dt><span class="mono">path_entries</span><span class="ftype">list of strings</span></dt>
+    <dd>Every bound the node tightens relative to the source instance, written
+    <span class="mono">x&lt;index&gt;&lt;sense&gt;&lt;value&gt;</span>, where
+    <span class="mono">sense</span> is <span class="mono">&lt;=</span> or
+    <span class="mono">&gt;=</span>. The index is 0-based into the published file, which
+    <span class="mono">path_entries_are_column_indices</span> records. This is the node's
+    whole bound box, not only the branch decisions on the path to it, so it is usually
+    far longer than the depth.</dd>
+    <dt><span class="mono">path_head_named</span><span class="ftype">list of strings</span></dt>
+    <dd>The first twelve entries with the column names resolved, which is what the page
+    shows.</dd>
+  </dl>
+</div>
+
+<div class="section">
+  <h2>Dual-infeasible</h2>
+  <dl class="fields">
+    <dt><span class="mono">n_dropped</span><span class="ftype">integer</span></dt>
+    <dd>How many elements were removed from the source relaxation.
+    <span class="mono">natural_unbounded</span> instances have zero: their relaxation was
+    already unbounded.</dd>
+    <dt><span class="mono">drops[]</span><span class="ftype">list of objects</span></dt>
+    <dd>One entry per removal. A bound drop carries
+    <span class="mono">kind: bound</span>, the column as <span class="mono">var</span>
+    (0-based index) and <span class="mono">name</span>, which
+    <span class="mono">side</span> was relaxed (<span class="mono">lb</span> for the lower bound
+    or <span class="mono">ub</span> for the upper bound), and the
+    <span class="mono">original_value</span> it held. A row drop carries
+    <span class="mono">kind: row</span>, the row index and name, and the
+    <span class="mono">original_sense</span>, <span class="mono">original_rhs</span> and
+    <span class="mono">original_range</span> it had. <b>A dropped row's coefficients are
+    not recorded</b>: restoring one means taking the row from the source instance.</dd>
+    <dt><span class="mono">natural_unbounded</span><span class="ftype">boolean</span></dt>
+    <dd>True when the source relaxation was already unbounded and nothing was removed.</dd>
+  </dl>
+</div>
+
+<div class="section">
+  <h2>Pipeline and versioning fields</h2>
+  <div class="prose">
+    <p class="muted">These fields identify record formats or trace a file back to the
+    run that made it. They are useful for reproducibility, but are not numerical
+    properties of the linear program or versions of the MPS format.</p>
+  </div>
+  <dl class="fields">
+    <dt><span class="mono">sample_id, sample_kind_version, schema_version, size</span><span class="ftype">various</span></dt>
+    <dd>Left over from the mining pipeline. <span class="mono">sample_id</span> indexes
+    the candidate pool the published file was drawn from, not this collection.
+    <span class="mono">sample_kind_version</span> and
+    <span class="mono">schema_version</span> identify mining-pipeline record formats;
+    neither is an MPS-format version. <span class="mono">size</span> is MIPLIB's own
+    difficulty class for the source and says nothing about the published file.</dd>
+    <dt><span class="mono">parent_uid, parent_depth</span><span class="ftype">integer</span></dt>
+    <dd>Solver-internal node identifiers from the run that produced the file.
+    <span class="mono">parent_depth</span> is always
+    <span class="mono">depth - 1</span>.</dd>
+    <dt><span class="mono">beta, n_rounds, picks, seed</span><span class="ftype">various</span></dt>
+    <dd>Parameters and the pre-pruning trace of the greedy search behind a
+    dual-infeasible file. <span class="mono">picks</span> lists what the search removed
+    before the pruning pass put most of it back, so it is much longer than
+    <span class="mono">drops</span> and is not the published removal set.</dd>
+  </dl>
+</div>
+{% endblock %}

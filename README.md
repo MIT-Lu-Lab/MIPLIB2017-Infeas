@@ -26,36 +26,9 @@ For 103 instances, bounds and constraints were dropped from a feasible, bounded 
 
 ## Download
 
-Everything is on the [release](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/tag/v1.0): [`primal-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/download/v1.0/primal-infeasible.zip) and [`dual-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/download/v1.0/dual-infeasible.zip) each hold a whole subset, laid out as `instances/infeasible/` and `instances/unbounded/`.
+Everything is on the [latest release](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/latest): [`primal-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/latest/download/primal-infeasible.zip) and [`dual-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/latest/download/dual-infeasible.zip) each hold a whole subset, laid out as `instances/infeasible/` and `instances/unbounded/`.
 
-To script against it, the site publishes the same catalogue as JSON.
-[`index.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/index.json) names both subsets and the release prefix;
-[`primal-infeasible.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/primal-infeasible.json) and
-[`dual-infeasible.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/dual-infeasible.json) list every instance with its
-dimensions, its SHA-256 and its filename. Join the prefix and a filename for a
-download URL. The `.csv` beside each one carries the same rows.
-
-## This repository
-
-The instances are release assets; what is tracked here is the site that presents
-them and the metadata it renders.
-
-```
-website/    the generator, standard library only
-metadata/   site-index.json, what the pages render, projected from the sidecars
-            miplib_meta.json, MIPLIB 2017's own entry for each source instance
-schema/     a JSON Schema for the .meta.json sidecars
-fonts/      the eight faces the site serves, OFL subsets of IBM Plex
-scripts/    tooling for the published set; only these read the instances
-```
-
-CI builds and checks the site for every proposed change, then deploys that same
-verified artifact from `main`; nothing generated is committed. To build it yourself:
-
-```bash
-python -m website.build_site --out-dir _site
-python -m http.server -d _site
-```
+To script against it, the site publishes the same catalogue as JSON. [`index.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/index.json) names both subsets and the release prefix; [`primal-infeasible.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/primal-infeasible.json) and [`dual-infeasible.json`](https://mit-lu-lab.github.io/MIPLIB2017-Infeas/dual-infeasible.json) list every instance with its dimensions, its SHA-256 and its filename. Join the prefix and a filename for a download URL. Each JSON document declares its `format_version`; the `.csv` beside each subset document carries the same rows.
 
 ## Citation
 
@@ -68,13 +41,11 @@ python -m http.server -d _site
 }
 ```
 
-Please also cite [Gleixner et al., “MIPLIB 2017: Data-Driven Compilation of the
-6th Mixed-Integer Programming Library”](https://doi.org/10.1007/s12532-020-00194-3).
+Please also cite [Gleixner et al., “MIPLIB 2017: Data-Driven Compilation of the 6th Mixed-Integer Programming Library”](https://doi.org/10.1007/s12532-020-00194-3).
 
 ## Licence
 
-The 262 MIPLIB 2017 instances adapted here do not all carry the same terms, and
-[LICENSE](LICENSE) sets out each case against MIPLIB's own submission records:
+The 262 MIPLIB 2017 instances adapted here do not all carry the same terms, and [LICENSE](LICENSE) sets out each case against MIPLIB's own submission records:
 
 | source instances | terms |
 | ---: | :--- |
@@ -82,11 +53,4 @@ The 262 MIPLIB 2017 instances adapted here do not all carry the same terms, and
 | 1 | BSD 3-Clause, for `adult-max5features`, whose notice is reproduced in full |
 | 130 | no licence of record: MIPLIB's own instance pages record these as imported from an earlier edition, which predates its licensing requirement |
 
-To the extent this project holds copyright or related rights in them, its own
-work (the derivation, the sidecars, the indexes, and the site and the code that
-builds it) is released under
-[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), as are the
-linear programs derived from the 131 instances that carry it. That licence is
-**not** applied to the 130, because neither MIPLIB nor anyone else ever placed
-them under it; they are redistributed on the footing ZIB distributes them on,
-with their source named and their contributor credited.
+To the extent this project holds copyright or related rights in them, its own work (the derivation, the sidecars, the indexes, and the site and the code that builds it) is released under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), as are the linear programs derived from the 131 instances that carry it. That licence is **not** applied to the 130, because neither MIPLIB nor anyone else ever placed them under it; they are redistributed on the footing ZIB distributes them on, with their source named and their contributor credited.

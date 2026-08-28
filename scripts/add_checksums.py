@@ -1,6 +1,6 @@
 """Record each published MPS file's SHA-256 in its sidecar.
 
-    python scripts/add_checksums.py [--dataset-dir dataset]
+    python -m scripts.add_checksums [--dataset-dir dataset]
 
 Byte sizes catch a truncated download; they do not catch a corrupted one. The
 sidecar carries the hash so the CSV indexes can publish it without the build
@@ -11,44 +11,37 @@ Run this after any change to the published files.
 
 import argparse
 import hashlib
-import json
-import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from scripts.dataset import DatasetError, read_entry_sidecar, replace_sidecar, scan_dataset
+from website import DATASET_DIR
 
 
-def sha256(path, chunk=8 << 20):
-    h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for block in iter(lambda: f.read(chunk), b""):
-            h.update(block)
-    return h.hexdigest()
-
-
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--dataset-dir", type=Path,
-                        default=Path(__file__).resolve().parents[1] / "dataset")
+    parser.add_argument("--dataset-dir", type=Path, default=DATASET_DIR)
     args = parser.parse_args()
 
-    files = sorted(args.dataset_dir.glob("*/*.mps.gz"))
-    print(f"hashing {len(files)} files", flush=True)
+    try:
+        dataset = scan_dataset(args.dataset_dir)
+    except DatasetError as exc:
+        raise SystemExit(str(exc)) from exc
+    print(f"hashing {len(dataset)} files", flush=True)
 
     t0 = time.time()
-    for n, mps in enumerate(files, 1):
-        meta_path = mps.with_name(mps.name.removesuffix(".mps.gz") + ".meta.json")
-        if not meta_path.exists():
-            raise SystemExit(f"{mps}: no sidecar beside it")
-        meta = json.loads(meta_path.read_text(encoding="utf-8"))
-        meta["sha256"] = sha256(mps)
-        meta["file_bytes"] = mps.stat().st_size
-        meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
-                             encoding="utf-8")
-        if n % 25 == 0 or n == len(files):
-            print(f"  {n}/{len(files)}  ({time.time() - t0:.0f}s)", flush=True)
-    print("done")
+    for n, entry in enumerate(dataset, 1):
+        try:
+            meta = read_entry_sidecar(entry)
+        except DatasetError as exc:
+            raise SystemExit(str(exc)) from exc
+        with entry.mps.open("rb") as stream:
+            meta["sha256"] = hashlib.file_digest(stream, "sha256").hexdigest()
+        meta["file_bytes"] = entry.mps.stat().st_size
+        replace_sidecar(entry.sidecar, meta)
+        if n % 25 == 0 or n == len(dataset):
+            print(f"  {n}/{len(dataset)}  ({time.time() - t0:.0f}s)", flush=True)
+    print("done; next: python -m scripts.build_site_index")
 
 
 if __name__ == "__main__":

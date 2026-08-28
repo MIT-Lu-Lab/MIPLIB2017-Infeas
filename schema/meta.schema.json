@@ -14,7 +14,8 @@
   "properties": {
     "instance": {
       "type": "string",
-      "description": "Name of the MIPLIB 2017 instance this derives from. The published filename is this plus _if or _ub."
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?$",
+      "description": "Name of the MIPLIB 2017 instance this derives from. The published filename is this plus _if or _ub. It is also the directory the site publishes the instance under, so a name carrying a path separator is not a name this collection can take."
     },
     "sample_kind": {
       "enum": [

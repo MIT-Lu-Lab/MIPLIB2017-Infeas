@@ -1,58 +1,4 @@
-"""The stylesheet and the client-side scripts, written out as two files."""
-
-import hashlib
-
-# The faces the stylesheet asks for, shipped with the site. build_site copies
-# fonts/ into the output, so a build is self-contained and a reader loads
-# nothing from a third party.
-#
-# These are subsets of IBM Plex, cut to the 191 glyphs the pages set, by
-# scripts/subset_fonts.py. They are not named "IBM Plex": the OFL counts
-# removing glyphs as a Modified Version, and the Reserved Font Name "Plex" may
-# not be used for one. The stacks below still name IBM Plex after this family,
-# which asks for an unmodified copy if the reader has one installed.
-#
-# The subset is not a font CDN's Latin one: the pages set U+2192, U+2193,
-# U+2264 and U+2265, which that subset drops, so the arrows and the
-# inequalities in every branch recipe used to fall back to whatever the reader
-# happened to have installed. A test holds every character the pages set
-# against what these files carry.
-FONT_FAMILY = "Infeas"
-
-# The card a shared link shows, drawn by scripts/make_og_image.py and published
-# at the site root. Its size is what the platforms crop to, and is declared in
-# the head so they need not fetch it to lay out the card.
-OG_IMAGE = "og.png"
-OG_IMAGE_SIZE = (1200, 630)
-
-FONT_FACES = (
-    ("Mono", "Regular", 400), ("Mono", "Medium", 500), ("Mono", "SemiBold", 600),
-    ("Sans", "Regular", 400), ("Sans", "Medium", 500), ("Sans", "SemiBold", 600),
-    ("Serif", "Regular", 400), ("Serif", "SemiBold", 600),
-)
-
-
-def font_file(family: str, style: str) -> str:
-    """The shipped file for one face, relative to fonts/."""
-    return f"{FONT_FAMILY}{family}-{style}.woff2"
-
-
-def font_face(up=""):
-    """The @font-face rules, with paths relative to a page `up` levels down."""
-    return "".join(
-        f"@font-face{{font-family:'{FONT_FAMILY} {family}';font-style:normal;"
-        f"font-weight:{weight};font-display:swap;"
-        f"src:url({up}fonts/{font_file(family, style)}) format('woff2')}}"
-        for family, style, weight in FONT_FACES)
-
-
-STYLESHEET = """
-/* One value per token, not three. The dark palette was written out twice, once
-   under prefers-color-scheme and once under [data-theme="dark"], and the light
-   one had to be repeated in the guard between them. light-dark() resolves
-   against the used colour scheme, so a manual override is the scheme itself.
-   Nothing sets data-theme today; the two lines below are what a toggle would
-   need, instead of a third copy of the palette. */
+/* The OG renderer uses data-theme for its deterministic dark capture. */
 :root{
   color-scheme:light dark;
 
@@ -71,23 +17,15 @@ STYLESHEET = """
   --shared-wash:light-dark(#E8F3EB,#13251A);
   --on-view:light-dark(#FFFFFF,#0F1116);
 
-  /* light-dark() takes a colour, and a shadow is a list, so the two colours in
-     it are the tokens and the geometry is stated once */
+  /* light-dark() cannot select a complete shadow list. */
   --shadow-near:light-dark(rgba(20,22,29,.05),rgba(0,0,0,.4));
   --shadow-far:light-dark(rgba(20,22,29,.25),rgba(0,0,0,.8));
   --shadow:0 1px 2px var(--shadow-near),0 8px 24px -16px var(--shadow-far);
 
-  /* the top bar's height, which the sticky offsets below are measured from */
+  /* Shared by the top bar and desktop sticky offsets. */
   --topbar-h:56px;
 
-  /* One column width, shared by the top bar and the pages that fill it, so the
-     wordmark sits over the heading below it and the bar does not jump sideways
-     from page to page. The number is what the widest browse table needs: its
-     columns come to 992px, and the facet rail, the gap and the page's padding
-     add 272 more. The rest is slack, because a browser lays text out slightly
-     wider than the font metrics add up to. Under this the table scrolls inside
-     .table-wrap with its last column off-screen. The reading pages take a
-     narrower column of their own inside the same bar. */
+  /* Shared by the top bar and pages; narrower tables scroll inside .table-wrap. */
   --page:1320px;
 
   --f-serif:"Infeas Serif","IBM Plex Serif",Georgia,"Times New Roman",serif;
@@ -96,14 +34,9 @@ STYLESHEET = """
   --f-mono:"Infeas Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,
     monospace;
 }
-:root[data-theme="light"]{color-scheme:light}
 :root[data-theme="dark"]{color-scheme:dark}
 
-/* min-width:0 below is on flex and grid items only. A grid or flex item's
-   automatic minimum is its content's min-content, which is what kept the browse
-   column from shrinking under the browse table and pushed the page sideways.
-   On anything that is not such an item the property does nothing, and ten of
-   them were doing nothing. */
+/* Grid and flex children need an explicit zero minimum to shrink around long content. */
 *{box-sizing:border-box}
 html,body{max-width:100%}
 body{
@@ -114,13 +47,10 @@ body{
   font-size:15px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  overflow-x:clip;
 }
 a{color:inherit}
 
-/* Blue names the primal half, orange the dual half, green what belongs to both.
-   Every accent below resolves through --view, so a control takes the colour of
-   the set it acts on instead of whichever the stylesheet reached for first. */
+/* Blue is primal, orange dual, and green shared. */
 body{--view:var(--shared);--view-wash:var(--shared-wash)}
 body[data-view="primal"]{--view:var(--primal);--view-wash:var(--primal-wash)}
 body[data-view="dual"]{--view:var(--dual);--view-wash:var(--dual-wash)}
@@ -131,7 +61,7 @@ h1,h2,h3{font-family:var(--f-serif);text-wrap:balance;margin:0;font-weight:600;l
   position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0,0,0,0);white-space:nowrap;border:0;
 }
-html{scroll-padding-top:72px}
+html{scroll-padding-top:calc(var(--topbar-h) + 16px)}
 :focus-visible{outline:2px solid var(--view);outline-offset:2px;border-radius:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
@@ -151,14 +81,13 @@ html{scroll-padding-top:72px}
 .skip-link:focus{transform:none}
 .topbar-inner{
   max-width:var(--page);margin:0 auto;padding:0 24px;
-  height:var(--topbar-h);display:flex;align-items:center;gap:28px;min-width:0;
+  height:var(--topbar-h);display:flex;align-items:center;gap:28px;
 }
 .wordmark{font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
 .wordmark .dash{color:var(--muted)}
 nav.top{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap;min-width:0}
 nav.top a{
-  font:inherit;font-size:13.5px;color:var(--muted);text-decoration:none;
-  background:none;border:0;cursor:pointer;
+  font-size:13.5px;color:var(--muted);text-decoration:none;
   padding:7px 11px;border-radius:5px;transition:color .12s,background .12s;
 }
 nav.top a:hover{color:var(--ink);background:var(--rule-soft)}
@@ -171,12 +100,7 @@ nav.top a[aria-current="page"]{color:var(--ink);font-weight:500}
 body[data-view="primal"] .hairline span:first-child{background:var(--primal)}
 body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
 
-/* One line length for running text, owned by the column rather than restated by
-   every block that wants one. A wide page caps a line; a narrow page already is
-   the cap. The number is in rem, not ch, so one measure is one column: ch
-   resolves against the element's own font, so the same 66ch handed each text
-   size a different width, and every block needed its own opt-out of the cap on
-   a narrow page. The citation note never got one, and wrapped short. */
+/* One reading measure for prose; narrow pages already provide their own cap. */
 main{--measure:34rem;width:100%;max-width:var(--page);margin:0 auto;padding:44px 24px 96px}
 main.narrow{--measure:none;--page:900px}
 .prose,.note,.cite-note,.masthead .sub,.browse-head .desc{
@@ -194,7 +118,6 @@ main.narrow{--measure:none;--page:900px}
 }
 
 /* ---------- home ---------- */
-/* the following block owns the gap; the masthead adding its own stacked the two */
 .masthead{display:flex;flex-direction:column;gap:14px}
 .masthead + .pair{margin-top:32px}
 .masthead + .section{margin-top:38px}
@@ -204,9 +127,7 @@ main.narrow{--measure:none;--page:900px}
 .masthead .sub a:hover{border-bottom-color:var(--view)}
 
 
-/* The raised surface: a bordered, rounded panel on the page's ground. Five
-   blocks carried these three declarations verbatim; each still adds its own
-   padding, radius override or overflow below. */
+/* Shared raised surface. */
 .subset,.file,.table-wrap,.panel,.card{
   border:1px solid var(--rule);border-radius:8px;background:var(--raise);
 }
@@ -216,13 +137,13 @@ main.narrow{--measure:none;--page:900px}
 .pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;margin:34px 0}
 .subset{
   padding:20px 22px 18px;display:flex;flex-direction:column;gap:11px;
-  border-top:3px solid var(--accent);text-align:left;font:inherit;color:var(--ink);cursor:pointer;
+  border-top:3px solid var(--accent);color:var(--ink);
   text-decoration:none;transition:box-shadow .14s,transform .14s;min-width:0;
 }
 .subset:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
 .subset.p{--accent:var(--primal)}
 .subset.d{--accent:var(--dual)}
-.subset h2,.subset h3{font-size:20px}
+.subset h2{font-size:20px}
 .subset .count{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--accent);font-weight:500}
 .subset p{margin:0;font-size:14px;color:var(--muted);line-height:1.55}
 .subset .go{font-size:13px;color:var(--accent);font-weight:500;margin-top:auto}
@@ -249,14 +170,13 @@ main.narrow{--measure:none;--page:900px}
 .browse-head > *{min-width:0}
 .browse-head h1{font-size:29px}
 .browse-head .desc{font-size:14px;color:var(--muted);margin-top:5px}
-/* minmax(0,...), not a bare 1fr: a track's automatic minimum is its content's
-   min-content, and a browse table's is the full width of its columns, so the
-   column refused to shrink below that and took the whole page sideways. The
-   table is meant to scroll inside .table-wrap instead, taking neither the
-   sticky facets nor the header out of view with it. */
+/* The table scrolls inside its zero-minimum track instead of widening the page. */
 .browse{display:grid;grid-template-columns:196px minmax(0,1fr);gap:28px;align-items:start}
 .browse > *{min-width:0}
-.facets{position:sticky;top:calc(var(--topbar-h) + 22px);min-width:0}
+.facets{
+  position:sticky;top:calc(var(--topbar-h) + 22px);
+  max-height:calc(100dvh - var(--topbar-h) - 44px);overflow-y:auto;
+}
 .facets > summary{display:none}
 .facet-groups{display:flex;flex-direction:column;gap:22px}
 .facet{border:0;margin:0;padding:0;min-inline-size:0}
@@ -277,14 +197,9 @@ main.narrow{--measure:none;--page:900px}
 .table-wrap{max-width:100%;overflow-x:auto}
 .table-wrap:focus-visible{outline-offset:3px}
 table{border-collapse:collapse;width:100%;font-size:13.5px}
-/* A heading wraps; the numbers under it do not. "Bounds tightened" held its
-   column open to 149px while the widest count in it wanted 83, and the two
-   dual headings did the same, so a table 990px wide carried about a hundred
-   pixels of heading and its last column fell off a 1280px screen. Bottom
-   aligned, so a heading that takes two lines still sits on the line its
-   neighbours sit on. */
+/* Headings may wrap while the numeric body cells remain on one line. */
 thead th{
-  position:sticky;top:var(--topbar-h);z-index:5;background:var(--raise);
+  position:static;background:var(--raise);
   font-family:var(--f-sans);font-weight:500;font-size:11.5px;letter-spacing:.05em;
   text-transform:uppercase;color:var(--muted);text-align:left;vertical-align:bottom;
   padding:11px 13px;border-bottom:1px solid var(--rule);
@@ -297,10 +212,9 @@ thead th.r{text-align:right}
 thead th.r .sort-button{margin-left:auto}
 .sort-button:hover{color:var(--ink)}
 .sort-button:focus-visible{outline-offset:3px}
-/* a no-break space, so the arrow cannot come to rest alone on a heading's
-   second line, now that a heading has one */
-thead th[aria-sort="ascending"] .sort-button::after{content:"\\00a0\\2191"}
-thead th[aria-sort="descending"] .sort-button::after{content:"\\00a0\\2193"}
+/* Keep the sort arrow with the heading. */
+thead th[aria-sort="ascending"] .sort-button::after{content:"\00a0\2191"}
+thead th[aria-sort="descending"] .sort-button::after{content:"\00a0\2193"}
 tbody th,tbody td{padding:9px 13px;border-bottom:1px solid var(--rule-soft);white-space:nowrap}
 tbody th{font-weight:400;text-align:left}
 tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
@@ -331,8 +245,8 @@ th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .badge.n{--accent:var(--rule);--wash:transparent;color:var(--muted)}
 
 .detail{display:grid;grid-template-columns:minmax(0,1fr) 292px;gap:30px;align-items:start}
-.detail > *,.aside{min-width:0}
-.panel{min-width:0;margin-bottom:18px;overflow:hidden}
+.detail > *{min-width:0}
+.panel{margin-bottom:18px;overflow:hidden}
 .panel > header{
   padding:13px 18px;border-bottom:1px solid var(--rule-soft);
   display:flex;align-items:baseline;justify-content:space-between;gap:12px;
@@ -342,7 +256,7 @@ th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .panel .body{padding:16px 18px}
 .lede{margin:0 0 13px;font-size:13.5px;color:var(--muted)}
 
-.kv{display:grid;grid-template-columns:minmax(0,max-content) minmax(0,1fr);gap:0;min-width:0}
+.kv{display:grid;grid-template-columns:minmax(0,max-content) minmax(0,1fr);gap:0}
 .kv dt{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--rule-soft)}
 .kv dd{
   margin:0;padding:7px 0;text-align:right;border-bottom:1px solid var(--rule-soft);
@@ -359,13 +273,11 @@ th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
 .recipe .k{color:var(--muted)}
 .recipe b{font-weight:600}
 
-/* intrinsic: at most three columns, none narrower than a bound entry, so
-   the count follows the space instead of three viewport breakpoints */
+/* Intrinsic columns avoid viewport-specific path breakpoints. */
 .path{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;columns:11rem 3;column-gap:22px}
 .path span{display:block;color:var(--muted);overflow-wrap:anywhere;break-inside:avoid}
 .path span b{color:var(--ink);font-weight:500}
 .more{font-size:12.5px;color:var(--muted);margin-top:12px;border-top:1px solid var(--rule-soft);padding-top:11px}
-.more a{color:var(--view)}
 
 .aside{position:sticky;top:calc(var(--topbar-h) + 22px);display:flex;flex-direction:column;gap:18px}
 .card{min-width:0;overflow:hidden}
@@ -378,7 +290,7 @@ th.name a:hover{border-bottom-color:var(--view);color:var(--view)}
   display:flex;align-items:center;justify-content:space-between;gap:10px;
   text-decoration:none;font-size:13.5px;font-weight:500;
   padding:11px 14px;border-radius:6px;border:1px solid var(--view);
-  min-width:0;color:var(--on-view);background:var(--view);transition:filter .12s;
+  color:var(--on-view);background:var(--view);transition:filter .12s;
 }
 .btn-label{min-width:0;overflow-wrap:anywhere}
 .btn:hover{filter:brightness(1.08)}
@@ -403,7 +315,7 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 /* no opacity here: muted already carries the de-emphasis, and multiplying the
    two put this below the contrast floor */
 .credit{font-size:11.5px;font-style:italic;color:var(--muted-strong);margin-top:6px}
-.src-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;min-width:0;font-size:13px;padding:5px 0}
+.src-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-size:13px;padding:5px 0}
 .src-row span:first-child{flex:none;color:var(--muted)}
 .src-row span:last-child{min-width:0;text-align:right;overflow-wrap:anywhere;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 /* the Terms row's value: mono like the rest of the column, a link when the
@@ -418,7 +330,7 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 }
 .extlink:hover{border-bottom-color:var(--view)}
 .crosslink{
-  display:flex;align-items:center;flex-wrap:wrap;gap:10px;min-width:0;text-decoration:none;
+  display:flex;align-items:center;flex-wrap:wrap;gap:10px;text-decoration:none;
   border:1px solid var(--rule);border-left:3px solid var(--to);border-radius:0 6px 6px 0;
   background:var(--raise);padding:12px 15px;font-size:13.5px;
 }
@@ -441,13 +353,21 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   th.name a{display:inline-block;padding:6px 0}
   .extlink{display:inline-flex;align-items:center;min-height:44px}
 }
+/* Sticky table headers are enabled only when the wrapper needs no overflow. */
+@media (min-width:1200px){
+  .table-wrap{overflow:visible}
+  thead th{position:sticky;top:var(--topbar-h);z-index:5}
+}
 @media (max-width:880px){
   .detail{grid-template-columns:minmax(0,1fr)}
   .aside{position:static}
 }
 @media (max-width:COMPACT_PX){
   .browse{grid-template-columns:minmax(0,1fr)}
-  .facets{position:static;border:1px solid var(--rule);border-radius:8px;background:var(--raise)}
+  .facets{
+    position:static;max-height:none;overflow:visible;
+    border:1px solid var(--rule);border-radius:8px;background:var(--raise);
+  }
   .facets > summary{
     display:flex;align-items:center;gap:10px;min-height:46px;padding:10px 14px;
     cursor:pointer;list-style:none;font-weight:500;
@@ -457,7 +377,6 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   .facets[open] > summary{border-bottom:1px solid var(--rule-soft)}
   .facets[open] > summary::after{content:"-"}
   .facet-groups{gap:18px;padding:14px 16px 16px}
-  thead th{position:static}
   html{scroll-padding-top:0}
   .topbar{position:static}
   .topbar-inner{
@@ -482,223 +401,3 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
 @media (max-width:460px){
   .kv{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 }
-"""
-
-# The rail is a plain list on a wide screen and a disclosure on a narrow one. The
-# width at which that changes is COMPACT_PX, filled in below: a media query cannot
-# read a custom property, so the stylesheet and this script each name the same
-# placeholder instead of each carrying the number.
-DISCLOSURE_SCRIPT = """
-const compactFacets = matchMedia('(max-width: COMPACT_PX)');
-
-function setFacetDisclosure(compact){
-  for(const facets of document.querySelectorAll('.facets')){
-    // collapsing the rail with the focus inside it would drop the caret on a
-    // hidden control, so the summary that replaces it takes the focus first
-    if(compact && facets.contains(document.activeElement)){
-      facets.querySelector('summary')?.focus();
-    }
-    facets.open = !compact;
-  }
-}
-
-// The desktop rail stays open. On a phone it collapses into a native disclosure
-// as soon as the deferred script runs, leaving the table in the first viewport
-// without making filtering depend on a custom button implementation.
-setFacetDisclosure(compactFacets.matches);
-compactFacets.addEventListener('change', (event) => setFacetDisclosure(event.matches));
-"""
-
-# The table is rendered by the build and is never re-rendered here. The page
-# ships the values behind its rows and the facet declaration they are filtered
-# by; this decides which rows to show and in what order, and moves the elements
-# the build produced. One renderer, and it is in Python.
-BROWSE_SCRIPT = """
-// The mirror of Range.holds and Term.holds in website/facets.py. A bucket is
-// that declaration serialised: a range carries lo and hi, a term the value it
-// selects, and a field holding a list is held by any term the list contains.
-function bucketHolds(bucket, value){
-  if(value === undefined || value === null) return false;
-  if(bucket.kind === 'term'){
-    return Array.isArray(value) ? value.includes(bucket.value) : value === bucket.value;
-  }
-  return (bucket.lo === undefined || value >= bucket.lo)
-      && (bucket.hi === undefined || value < bucket.hi);
-}
-
-function setUpBrowseTable(payload){
-  // The rail, the table, the search field and the count are rendered by the
-  // same template as this payload. None of them is checked for: if one is
-  // missing that is a build error, and it should say so here rather than leave
-  // a page that quietly filters nothing.
-  const rail = document.querySelector('.facets');
-  const table = document.querySelector('.table-wrap table');
-  const body = table.tBodies[0];
-  // the build emits one row per entry, in this order; the pairing is made once
-  // and after that the elements are only hidden and moved
-  const rows = [...body.rows].map((element, index) => ({
-    element, values: payload.rows[index],
-  }));
-  // a checkbox's data-k is its facet and its bucket, which is also how the two
-  // appear in the query string; both are carried here so neither has to be
-  // parsed back out of the key
-  const selectable = new Map();
-  for(const facet of payload.facets){
-    for(const bucket of facet.buckets){
-      selectable.set(`${facet.param}-${bucket.value}`,
-                     {param: facet.param, value: bucket.value, field: facet.field, bucket});
-    }
-  }
-  const result = document.querySelector('.result-count');
-  const selectedLabel = rail.querySelector('.facet-selected');
-  // a name is what a reader arrives knowing, so searching for one is another
-  // condition on the same rows rather than a mechanism of its own
-  const search = document.getElementById('instance-search');
-  document.querySelector('.table-search').hidden = false;
-  let sortedBy = null;
-  let ascending = true;
-
-  function checkedByParam(){
-    const chosen = new Map();
-    for(const box of rail.querySelectorAll('input[data-k]:checked')){
-      const entry = selectable.get(box.dataset.k);
-      if(!entry) continue;
-      if(!chosen.has(entry.param)) chosen.set(entry.param, []);
-      chosen.get(entry.param).push(entry.value);
-    }
-    return chosen;
-  }
-
-  /* A filtered, sorted table is a view worth sending to someone, so it has an
-     address. replaceState rather than pushState: Back should leave the page
-     rather than undo a checkbox, and what a reader wants to keep is the link. */
-  function writeUrl(){
-    const params = new URLSearchParams();
-    const term = search.value.trim();
-    if(term) params.set('q', term);
-    for(const [param, values] of checkedByParam()) params.set(param, values.join(','));
-    if(sortedBy){
-      params.set('sort', sortedBy);
-      if(!ascending) params.set('dir', 'desc');
-    }
-    const query = params.toString();
-    history.replaceState(null, '', query ? `?${query}` : location.pathname);
-  }
-
-  // The address is what the page opens as, so a box the query does not name is
-  // cleared rather than left as the browser restored it.
-  function readUrl(){
-    const params = new URLSearchParams(location.search);
-    const wanted = new Set();
-    search.value = params.get('q') ?? '';
-    for(const [param, value] of params){
-      if(param === 'q' || param === 'sort' || param === 'dir') continue;
-      for(const one of value.split(',')) wanted.add(`${param}-${one}`);
-    }
-    for(const box of rail.querySelectorAll('input[data-k]')){
-      box.checked = wanted.has(box.dataset.k);
-    }
-    const field = params.get('sort');
-    return field ? {field, ascending: params.get('dir') !== 'desc'} : null;
-  }
-
-  function checkedIn(group){
-    return [...group.querySelectorAll('input[data-k]:checked')]
-      .map((box) => selectable.get(box.dataset.k))
-      .filter(Boolean);
-  }
-
-  function apply(){
-    const term = search.value.trim().toLowerCase();
-    const groups = [...rail.querySelectorAll('.facet')].map(checkedIn)
-      .filter((selected) => selected.length > 0);
-    let shown = 0;
-    for(const row of rows){
-      // a row has to carry the term, and satisfy every group that has a box
-      // checked, by any one of that group's checked buckets
-      const ok = (!term || row.values.instance.toLowerCase().includes(term))
-        && groups.every((selected) =>
-          selected.some(({field, bucket}) => bucketHolds(bucket, row.values[field])));
-      row.element.hidden = !ok;
-      if(ok) shown++;
-    }
-    const checked = rail.querySelectorAll('input[data-k]:checked').length;
-    selectedLabel.textContent = checked ? `${checked} selected` : 'None selected';
-    const total = result.dataset.total;
-    if(!groups.length && !term){
-      result.textContent = `${total} ${total === '1' ? 'instance' : 'instances'}.`;
-    }else if(shown === 0){
-      result.textContent = 'No instances match these filters.';
-    }else{
-      result.textContent = `${shown} of ${total} instances shown.`;
-    }
-  }
-
-  function sortTo(field, ascendingNow){
-    const button = table.querySelector(`button[data-sort="${CSS.escape(field)}"]`);
-    if(!button) return;
-    sortedBy = field;
-    ascending = ascendingNow;
-    rows.sort((a, b) => {
-      const x = a.values[field], y = b.values[field];
-      return (x < y ? -1 : x > y ? 1 : 0) * (ascending ? 1 : -1);
-    });
-    // one mutation, not one per row
-    body.append(...rows.map((row) => row.element));
-    const th = button.closest('th');
-    for(const cell of th.parentNode.cells) cell.removeAttribute('aria-sort');
-    th.setAttribute('aria-sort', ascending ? 'ascending' : 'descending');
-  }
-
-  table.addEventListener('click', (event) => {
-    // A native button supplies Enter and Space without a second key handler that
-    // would fire once here and once again through the button's synthetic click.
-    const button = event.target.closest('button[data-sort]');
-    if(!button) return;
-    const field = button.dataset.sort;
-    sortTo(field, field === sortedBy ? !ascending : true);
-    writeUrl();
-  });
-  function narrow(){
-    apply();
-    writeUrl();
-  }
-
-  rail.addEventListener('change', narrow);
-  // 229 rows is a filter per keystroke, not a reason for a debounce
-  search.addEventListener('input', narrow);
-  // Browsers restore checkbox state on reload and when the page comes back from
-  // the back/forward cache, so the table has to be brought in line with the boxes
-  // before the first change event. pageshow covers both; DOMContentLoaded misses
-  // the cache.
-  window.addEventListener('pageshow', apply);
-
-  const opening = readUrl();
-  apply();
-  if(opening) sortTo(opening.field, opening.ascending);
-}
-
-const browseData = document.getElementById('browse-data');
-if(browseData) setUpBrowseTable(JSON.parse(browseData.textContent));
-"""
-
-# The one width at which the layout stops being a desktop layout. Both the
-# stylesheet and the script have to know it and neither can read the other's
-# copy, so each writes COMPACT_PX and it is filled in once, here.
-COMPACT_WIDTH = 780
-
-
-def _fill(text: str) -> str:
-    return text.replace("COMPACT_PX", f"{COMPACT_WIDTH}px")
-
-
-SITE_CSS = _fill(font_face("../") + STYLESHEET)
-SITE_JS = _fill(DISCLOSURE_SCRIPT + BROWSE_SCRIPT)
-
-
-def _digest(text: str) -> str:
-    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:12]
-
-
-CSS_NAME = f"site.{_digest(SITE_CSS)}.css"
-JS_NAME = f"site.{_digest(SITE_JS)}.js"

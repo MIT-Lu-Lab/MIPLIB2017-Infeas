@@ -6,19 +6,21 @@ actual files rather than a manifest of what the subsetter meant to keep.
 """
 
 import re
-import sys
 from pathlib import Path
 
 import pytest
-from fontTools.ttLib import TTFont
 
+from scripts import subset_fonts
 from website import assets as A
 
 ROOT = Path(__file__).resolve().parents[1]
 FONTS = ROOT / "fonts"
-sys.path.insert(0, str(ROOT / "scripts"))
 
-import subset_fonts  # noqa: E402
+# The subsetter's own dependency, and the only way to read back what it
+# wrote. Asked for the way the schema tests ask for jsonschema: a checkout
+# without it still runs everything else, and CI installs it and fails on any
+# skip, so a missing one cannot go unnoticed where it matters.
+TTFont = pytest.importorskip("fontTools.ttLib").TTFont
 
 INDEX = ROOT / "metadata" / "site-index.json"
 pytestmark = pytest.mark.skipif(not INDEX.is_file(), reason="site index not present")
@@ -40,7 +42,7 @@ def _shipped():
 
 
 def test_the_stylesheet_asks_for_the_files_that_ship():
-    asked = set(re.findall(r"url\(fonts/([^)]+)\)", A.font_face()))
+    asked = set(re.findall(r"url\(\.\./fonts/([^)]+)\)", A.SITE_CSS))
     shipped = {path.name for path in FONTS.glob("*.woff2")}
     assert asked == shipped
 

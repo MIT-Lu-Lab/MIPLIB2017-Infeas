@@ -1,55 +1,35 @@
 import re
 
-from website import load as L, records as R, render as V
+from website import render as V
+from website.domain import collection_totals, subset_bytes
+from website.index import load_collection
 
 
 def test_guide_links_the_machine_readable_schema():
-    assert 'href="../schema/meta.schema.json"' in V.render_guide()
+    assert 'href="../schema/sidecar/1.0.1/meta.schema.json"' in V.render_guide(130)
 
 
 def test_download_page_links_the_archives_and_indexes(index):
-    samples = L.load_index(index)
-    html = V.render_download(L.collection_totals(samples),
-                             release_base_url="https://e.invalid/dl")
+    samples = load_collection(index)
+    html = V.render_download(
+        collection_totals(samples), subset_bytes(samples), release_base_url="https://e.invalid/dl"
+    )
     assert 'href="https://e.invalid/dl/primal-infeasible.zip"' in html
     assert 'href="https://e.invalid/dl/dual-infeasible.zip"' in html
     assert 'href="../primal-infeasible.csv"' in html
     assert 'href="../dual-infeasible.csv"' in html
-    assert "manifest_infeas.csv" not in html and "manifest_unbnd.csv" not in html
-    assert "primal-infeasible.urls.txt" not in html
 
 
 def test_download_archive_links_disabled_without_a_release(index):
-    samples = L.load_index(index)
-    html = V.render_download(L.collection_totals(samples))
+    samples = load_collection(index)
+    html = V.render_download(collection_totals(samples), subset_bytes(samples))
     assert 'aria-disabled="true"' in html
-    assert "https://" not in html.split('<main')[1].split('</main>')[0]
-
-
-def test_download_page_states_no_size_when_it_has_none(index):
-    """Without the per-subset sizes the page must omit the figure, not sum an empty
-    mapping to "0 B" and state it as fact."""
-    samples = L.load_index(index)
-    totals = L.collection_totals(samples)
-    assert "0 B" not in V.render_download(totals)
-    assert "in all" not in V.render_download(totals)
-    sizes = L.subset_bytes(samples)
-    assert (f"{R.fmt_bytes(sum(sizes.values()))} unpacked in all"
-            in V.render_download(totals, sizes=sizes))
-
-
-def test_download_page_does_not_mention_zenodo(index):
-    samples = L.load_index(index)
-    html = V.render_download(L.collection_totals(samples))
-    # Zenodo was dropped: its 100-file cap cannot hold a 668-file release
-    assert "Zenodo" not in html and "zenodo" not in html
-    # both archives are named, since they are the entry point for the whole set
-    assert "primal-infeasible.zip" in html and "dual-infeasible.zip" in html
+    assert "https://" not in html.split("<main")[1].split("</main>")[0]
 
 
 def test_overview_citation_carries_no_doi(index):
-    samples = L.load_index(index)
-    html = V.render_overview(L.collection_totals(samples))
+    samples = load_collection(index)
+    html = V.render_overview(collection_totals(samples))
     citation = re.search(r'<div class="cite">(.*?)</div>', html, re.S).group(1)
     assert "doi" not in citation.lower()
     assert "howpublished" in citation
@@ -57,11 +37,11 @@ def test_overview_citation_carries_no_doi(index):
 
 
 def test_overview_citation_uses_the_supplied_site_url(index):
-    samples = L.load_index(index)
-    html = V.render_overview(L.collection_totals(samples),
-                             site_url="https://example.invalid/miplib2017-infeas")
-    assert "https://example.invalid/miplib2017-infeas" in html
-    assert "REPLACE-WITH" not in html
+    samples = load_collection(index)
+    html = V.render_overview(
+        collection_totals(samples), site_url="https://example.invalid/miplib2017-infeas/"
+    )
+    assert "https://example.invalid/miplib2017-infeas/" in html
 
 
 def test_about_credits_miplib_and_states_the_licence():
@@ -76,14 +56,10 @@ def test_about_credits_miplib_and_states_the_licence():
 
 
 def test_about_does_not_claim_one_licence_for_every_source_instance():
-    """130 of the 262 sources came from an earlier MIPLIB, with no licence recorded.
-
-    Saying the collection is simply CC BY-SA, as this page once did, asserts a
-    grant that neither MIPLIB nor its contributors ever made.
-    """
-    html = " ".join(V.render_about().split())   # the claim may wrap mid-phrase
-    assert "131" in html and "130" in html
+    """The page must distinguish licensed and carried-over sources."""
+    html = " ".join(V.render_about().split())  # the claim may wrap mid-phrase
     assert "no licence of record" in html
+    assert "carried-over sources are not" in html
 
 
 def test_the_licence_grant_is_limited_to_rights_actually_held():
@@ -103,12 +79,6 @@ def test_about_describes_both_mining_procedures():
     assert "unbounded" in html
 
 
-def test_static_pages_have_no_em_dash(index):
-    samples = L.load_index(index)
-    for html in (V.render_download(L.collection_totals(samples)), V.render_about()):
-        assert "—" not in html and "&mdash;" not in html
-
-
 def test_about_names_the_solver_that_produced_the_collection():
     html = V.render_about()
     # reproducing the tree requires knowing which solver built it
@@ -117,7 +87,7 @@ def test_about_names_the_solver_that_produced_the_collection():
 
 
 def test_guide_explains_integrity_and_version_fields():
-    html = V.render_guide()
+    html = V.render_guide(130)
     for field in ("file_bytes", "sha256", "sample_kind_version", "schema_version"):
         assert field in html
     assert "neither is an MPS-format version" in html

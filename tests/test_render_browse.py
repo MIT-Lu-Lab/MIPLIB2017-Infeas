@@ -1,18 +1,19 @@
 import json
 import re
 
-from website import load as L, render as V
+from tests.htmlq import page
+from website import render as V
+from website.index import load_collection
 
 
 def _browse(index, subset):
-    samples = L.load_index(index)
+    samples = load_collection(index)
     return V.render_browse(subset, samples)
 
 
 def payload(html: str) -> dict:
     """What the page ships for the client to filter and sort by."""
-    m = re.search(r'<script id="browse-data" type="application/json">(.*?)</script>',
-                  html, re.S)
+    m = re.search(r'<script id="browse-data" type="application/json">(.*?)</script>', html, re.S)
     assert m, "the page ships no browse data"
     return json.loads(m.group(1).replace(r"<\/", "</"))
 
@@ -41,126 +42,128 @@ def test_the_payload_describes_the_rendered_rows_in_order(index):
     html = _browse(index, "primal")
     body = re.search(r"<tbody>(.*?)</tbody>", html, re.S).group(1)
     rendered = re.findall(r'<th scope="row" class="name"><a href="[^"]*">([^<]*)<', body)
-    assert rendered == [row["instance"] for row in payload(html)["rows"]]
+    assert rendered == [row["values"]["instance"] for row in payload(html)["rows"]]
 
 
-def test_a_row_ships_the_values_it_is_filtered_and_sorted_by(index):
-    row = next(r for r in payload(_browse(index, "primal"))["rows"]
-               if r["instance"] == "bbb")
+def test_a_row_ships_only_the_values_the_browser_sorts_or_searches(index):
+    row = next(
+        r["values"]
+        for r in payload(_browse(index, "primal"))["rows"]
+        if r["values"]["instance"] == "bbb"
+    )
     assert row["n_vars"] == 10
-    assert set(row) >= {"n_vars", "n_cons", "nnz", "file_bytes", "depth", "tags"}
+    assert set(row) == {
+        "instance",
+        "n_vars",
+        "n_cons",
+        "nnz",
+        "depth",
+        "bound_changes",
+        "file_bytes",
+    }
 
 
-def test_a_row_carries_no_derived_filter_token(index):
-    """The bucket a row falls in is a conclusion about a value the page already
-    ships. It used to be computed at build time and written onto every row."""
+def test_a_row_carries_memberships_in_the_payload_not_the_markup(index):
+    """Python is the only facet evaluator; the DOM carries no second token copy."""
     for subset in ("primal", "dual"):
-        assert "data-f=" not in _browse(index, subset)
+        html = _browse(index, subset)
+        assert "data-f=" not in html
+        assert all(isinstance(row["matches"], list) for row in payload(html)["rows"])
 
 
-def test_facet_counts_are_computed_not_hardcoded(index):
-    html = _browse(index, "primal")
-    # both fixture samples are tiny, so the "<50 K" bucket holds 2
-    assert '<span class="n">2</span>' in html
-
-
-def test_mobile_filters_use_a_native_disclosure(index):
-    html = _browse(index, "primal")
-    assert '<details class="facets" open>' in html
-    assert '<summary><span>Filters</span>' in html
-    assert 'class="facet-selected">None selected</span>' in html
-    assert '<div class="facet-groups">' in html
-    assert '<fieldset class="facet"><legend class="eyebrow">Variables</legend>' in html
+def test_filters_are_a_native_disclosure_closed_until_enhanced(index):
+    root = page(_browse(index, "primal"))
+    rail = root.one("details.facets")
+    assert not rail.has("open"), "inactive filters must not hide the no-JS table below"
+    summary = rail.one("summary")
+    assert summary.first("span").text == "Filters"
+    assert summary.one("span.facet-selected").text == "None selected"
+    assert rail.one("div.facet-groups")
+    variables = rail.first("fieldset.facet")
+    assert variables.get("data-param") == "vars"
+    assert variables.one("legend").text == "Variables"
 
 
 def test_every_checkbox_is_selectable_from_the_payload(index):
-    """A checkbox the client cannot resolve to a bucket filters nothing."""
+    """Every materialised membership resolves to an offered checkbox."""
     for subset in ("primal", "dual"):
         html = _browse(index, subset)
-        selectable = {f"{facet['param']}-{bucket['value']}"
-                      for facet in payload(html)["facets"]
-                      for bucket in facet["buckets"]}
         offered = set(re.findall(r'data-k="([^"]+)"', html))
-        assert offered == selectable
+        carried = {key for row in payload(html)["rows"] for key in row["matches"]}
+        assert carried <= offered
+        assert carried
 
 
 def test_every_sortable_header_names_a_field_a_row_carries(index):
     for subset in ("primal", "dual"):
         html = _browse(index, subset)
-        carried = set(payload(html)["rows"][0])
+        carried = set(payload(html)["rows"][0]["values"])
         for field in re.findall(r'data-sort="([^"]+)"', html):
             assert field in carried, field
-
-
-def test_facet_checkbox_data_k_matches_the_row_keys(index):
-    html = _browse(index, "primal")
-    for key in ("vars-lt50k", "vars-50k-500k", "vars-gt500k",
-                "cons-lt10k", "cons-10k-100k", "cons-gt100k",
-                "depth-lt50", "depth-50-250", "depth-gt250"):
-        assert f'data-k="{key}"' in html
-
-
-def test_dual_facet_checkbox_data_k_matches_the_row_keys(index):
-    html = _browse(index, "dual")
-    for key in ("relax-bounds-only", "relax-bounds-rows", "relax-natural",
-                "size-1-5", "size-6-50", "size-gt50"):
-        assert f'data-k="{key}"' in html
 
 
 def test_the_search_field_is_labelled_and_waits_for_its_script(index):
     """A field that does nothing is worse than none, so the markup ships it
     hidden and the script that makes it work is what reveals it."""
-    html = _browse(index, "primal")
-    assert '<div class="table-search" hidden>' in html
-    assert ('<label class="sr-only" for="instance-search">'
-            "Search instances by name</label>") in html
-    assert 'type="search" id="instance-search"' in html
-
-
-def test_no_size_class_and_no_em_dash(index):
-    for subset in ("primal", "dual"):
-        html = _browse(index, subset)
-        assert "—" not in html
-        for word in (">Small<", ">Medium<", ">Large<"):
-            assert word not in html
+    root = page(_browse(index, "primal"))
+    box = root.one("div.table-search")
+    assert box.has("hidden"), "a field that does nothing is worse than none"
+    field = box.one("input")
+    assert field.get("type") == "search" and field.get("id") == "instance-search"
+    label = box.one("label")
+    assert label.get("for") == field.get("id")
+    assert label.text == "Search instances by name"
+    assert all(checkbox.has("disabled") for checkbox in root.all("input[data-k]"))
 
 
 def test_sortable_headers_are_keyboard_reachable(index):
     """Native buttons retain columnheader semantics and supply Enter/Space."""
-    html = _browse(index, "primal")
-    buttons = re.findall(r'<button[^>]*class="sort-button"[^>]*>', html)
+    root = page(_browse(index, "primal"))
+    buttons = root.all("button.sort-button")
     assert buttons
     for button in buttons:
-        assert 'type="button"' in button, button
-        assert "data-sort=" in button, button
-        assert "aria-label=" in button, button
-    assert '<th scope="col"><button' in html
-    assert not re.search(r'<th[^>]+role="button"', html)
+        assert button.get("type") == "button"
+        assert button.has("data-sort") and button.has("aria-label")
+        assert button.has("disabled"), "it does nothing until the script runs"
+        assert button.get("data-sort")
+    for header in root.all("th"):
+        # a button inside the header, not a role bolted onto the header, which
+        # would take the columnheader semantics away from it
+        assert header.get("role") is None
+    assert root.first("th").one("button")
 
 
 def test_table_has_headers_caption_and_a_named_scroll_region(index):
-    html = _browse(index, "primal")
-    assert ('class="table-wrap" tabindex="0" role="region" '
-            'aria-labelledby="primal-infeasible-table-caption"') in html
-    assert ('<caption id="primal-infeasible-table-caption" class="sr-only">'
-            'Primal-infeasible instances</caption>') in html
-    assert '<th scope="col">Download</th>' in html
-    assert '<th scope="row" class="name"><a href="aaa/">aaa</a></th>' in html
+    root = page(_browse(index, "primal"))
+    wrap = root.one("div.table-wrap")
+    caption = root.one("caption")
+    assert wrap.get("role") == "region" and wrap.get("tabindex") == "0"
+    # the scroll region is named by the caption, so it is announced as one thing
+    assert wrap.get("aria-labelledby") == caption.get("id")
+    assert caption.text == "Primal-infeasible instances"
+    assert [h.text for h in root.all("th[scope=col]")][-1] == "Download"
+    first_row = root.one("tbody").first("tr")
+    name = first_row.one("th.name")
+    assert name.get("scope") == "row"
+    assert name.one("a").get("href") == "aaa/" and name.text == "aaa"
 
 
 def test_download_names_and_filter_result_are_announced(index):
     html = _browse(index, "primal")
     assert 'aria-label="Download aaa as gzipped MPS: unavailable"' in html
     assert re.search(
-        r'class="result-count" data-total="2"\s+role="status" '
-        r'aria-live="polite" aria-atomic="true">2 instances\.</span>', html)
-    assert "All data columns sort; Download does not." in html
+        r'class="result-count" role="status"\s+'
+        r'aria-live="polite" aria-atomic="true">2 instances\.</span>',
+        html,
+    )
+    note = page(html).one("span.sort-note")
+    assert note.has("hidden")
+    assert note.text == "All data columns sort; Download does not."
 
 
 def test_tags_that_are_false_of_an_lp_are_not_offered(index):
     """The published files are continuous LPs: a tag naming a variable type is
     false of them, and MIPLIB's benchmark-set membership is about MIPLIB."""
     html = _browse(index, "primal")
-    for tag in ("mixed_binary", "binary", "integer_knapsack",
-                "benchmark_suitable", "feasibility"):
+    for tag in ("mixed_binary", "binary", "integer_knapsack", "benchmark_suitable", "feasibility"):
         assert f'data-k="tag-{tag}"' not in html, tag

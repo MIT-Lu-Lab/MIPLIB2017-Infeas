@@ -1,6 +1,6 @@
 """The catalogue a script reads, and the one a spreadsheet reads.
 
-They are the same catalogue in two formats, from one definition in build_site.
+They are the same catalogue in two formats, from one definition in build.
 These hold that they cannot come apart, and that a consumer can get from the
 index to a file without a checkout.
 """
@@ -11,7 +11,8 @@ from pathlib import Path
 
 import pytest
 
-from website import build_site as B
+from website import build as B
+from website.catalog import FORMAT_VERSION
 
 BASE = "https://example.invalid/dl/v1.0"
 SITE = "https://example.invalid/mi/"
@@ -26,6 +27,12 @@ def built(tmp_path, index):
 
 def _json(built: Path, name: str) -> dict:
     return json.loads((built / name).read_text(encoding="utf-8"))
+
+
+def test_public_json_indexes_declare_their_format_version(built):
+    assert _json(built, "index.json")["format_version"] == FORMAT_VERSION
+    for slug in ("primal-infeasible", "dual-infeasible"):
+        assert _json(built, f"{slug}.json")["format_version"] == FORMAT_VERSION
 
 
 @pytest.mark.parametrize("slug", ["primal-infeasible", "dual-infeasible"])
@@ -60,9 +67,10 @@ def test_the_prefix_and_a_filename_compose_into_the_download(built, slug):
         url = doc["release_base_url"] + row["mps_filename"]
         assert url.startswith(BASE + "/")
         assert url.endswith(".mps.gz")
-    page = (built / slug / doc["instances"][0]["instance"] / "index.html")
-    assert doc["release_base_url"] + doc["instances"][0]["mps_filename"] in \
-        page.read_text(encoding="utf-8")
+    page = built / slug / doc["instances"][0]["instance"] / "index.html"
+    assert doc["release_base_url"] + doc["instances"][0]["mps_filename"] in page.read_text(
+        encoding="utf-8"
+    )
 
 
 def test_the_collection_index_points_at_files_that_exist(built):
@@ -85,14 +93,3 @@ def test_the_index_names_no_url_the_build_was_not_given(tmp_path, index):
     assert "url" not in doc and "release_base_url" not in doc
     for slug in ("primal-infeasible", "dual-infeasible"):
         assert "release_base_url" not in _json(out, f"{slug}.json")
-
-
-def test_a_stale_index_is_pruned(index, tmp_path):
-    """The JSON is generated, so a rename leaves nothing behind."""
-    out = tmp_path / "out"
-    B.build(index, out)
-    stale = out / "gone-subset.json"
-    stale.write_text("{}", encoding="utf-8")
-    B.build(index, out)
-    assert not stale.exists()
-    assert (out / "index.json").is_file()

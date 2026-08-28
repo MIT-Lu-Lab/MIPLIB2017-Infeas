@@ -1,9 +1,31 @@
-# Tool configuration. This repository is not a distributable package: the
-# generator is run in place, out of a checkout, with `python -m website.build_site`.
+# Tool and dependency configuration. This is not a distributable package:
+# the generator runs in place, out of a checkout, with `python -m website.build`.
 #
-# It is standard library only, and needs Python 3.10 or later for the `X | Y`
-# annotations. Keep both properties: the site has to be buildable from a bare
-# checkout years from now, with nothing to resolve at build time.
+# Each runnable concern declares the smallest dependency group it needs. The
+# development group includes those runtime groups so CI exercises the same
+# imports as a checkout build.
+
+[dependency-groups]
+site = ["jinja2>=3.1"]
+# Sidecar projection and release verification both validate against published
+# JSON Schemas instead of restating their structures in Python.
+contracts = ["jsonschema>=4"]
+fonts = ["fonttools>=4.50", "brotli>=1.1"]
+# What a full `pytest` and lint run needs. CI fails on a skipped test, so every
+# runtime needed by a test is included instead of being silently optional.
+dev = [
+    "pytest>=7",
+    "ruff>=0.5",
+    "pyright>=1.1",
+    "beautifulsoup4>=4.12",
+    {include-group = "site"},
+    {include-group = "contracts"},
+    {include-group = "fonts"},
+]
+# scripts/make_og_image.py drives a headless Chrome to redraw the sharing
+# card. Nothing else uses it, no test covers it, and its output is committed,
+# so it is asked for only by someone rerunning that script.
+og = ["websocket-client>=1.7", {include-group = "site"}]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -11,27 +33,24 @@ pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100
-target-version = "py310"
+target-version = "py314"
 extend-exclude = ["fonts"]
 
+# Layout is the formatter's, so it is not argued about in review or hand-kept
+# per file. `ruff format --check` runs in CI, which is what makes that true
+# rather than merely intended.
+[tool.ruff.format]
+docstring-code-format = true
+
 [tool.ruff.lint]
-select = ["E", "F", "W", "B", "SIM", "C4", "UP", "RET", "ARG", "PIE", "RUF"]
+# "I" is here because the formatter does not order imports and nothing else
+# would; the rest are about what the code does rather than how it is laid out.
+select = ["E", "F", "W", "I", "B", "SIM", "C4", "UP", "RET", "ARG", "PIE", "RUF"]
 # The en dash is typography, not a mistyped hyphen: it is what a numeric range
 # takes, and these labels are rendered text. Em dashes remain banned, by a test.
 allowed-confusables = ["–", "≤", "≥", "×"]
 
-[tool.ruff.lint.per-file-ignores]
-# The stylesheet and the client-side scripts are emitted verbatim; breaking a CSS
-# declaration across lines to please the linter would only make it harder to read.
-"website/assets.py" = ["E501"]
-# One BibTeX field per line, each padded with &nbsp; so it lines up in the
-# rendered block. Wrapping the source would put whitespace inside the citation.
-"website/render/overview.py" = ["E501"]
-# Both reach the package by path before importing it.
-"scripts/*.py" = ["E402"]
-"tests/test_build_site_index.py" = ["E402"]
-
 [tool.pyright]
 include = ["website", "scripts"]
 exclude = ["**/__pycache__"]
-pythonVersion = "3.10"
+pythonVersion = "3.14"

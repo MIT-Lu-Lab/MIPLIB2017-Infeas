@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="browse-head">
+  <div>
+    <span class="eyebrow">Subset</span>
+    <h1>{{ info.label }}</h1>
+    <p class="desc">{{ blurb }}</p>
+  </div>
+  {% if archive_href %}
+  <a class="dl" href="{{ archive_href }}">{{ archive_label }} ↓</a>
+  {% else %}
+  <span class="dl" role="link" aria-disabled="true"
+    aria-label="{{ info.label }} archive: unavailable">{{ archive_label }}</span>
+  {% endif %}
+</div>
+<div class="browse">
+  <details class="facets">
+    <summary><span>Filters</span><span class="facet-selected">None selected</span></summary>
+    <div class="facet-groups">
+      {% for facet in facet_groups %}
+      <fieldset class="facet" data-param="{{ facet.param }}">
+        <legend class="eyebrow">{{ facet.label }}</legend>
+        {% for bucket in facet.buckets %}
+        <label><input type="checkbox" data-k="{{ bucket.key }}" disabled>
+          {{ bucket.label }} <span class="n">{{ bucket.count }}</span></label>
+        {% endfor %}
+      </fieldset>
+      {% endfor %}
+    </div>
+  </details>
+  <div>
+    <!-- hidden until the script that makes it work has run: a search field that
+         does nothing is worse than none -->
+    <div class="table-search" hidden>
+      <label class="sr-only" for="instance-search">Search instances by name</label>
+      <input type="search" id="instance-search" class="search-input"
+        placeholder="Search by name" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="table-wrap" tabindex="0" role="region" aria-labelledby="{{ table_id }}"><table>
+      <caption id="{{ table_id }}" class="sr-only">{{ info.label }} instances</caption>
+      <thead><tr>
+        <th scope="col"><button type="button" class="sort-button" data-sort="instance"
+          aria-label="Sort by instance" disabled>Instance</button></th>
+        {% for column in columns %}<th scope="col" class="r"><button type="button"
+          class="sort-button" data-sort="{{ column.field }}"
+          aria-label="Sort by {{ column.label | lower }}" disabled>{{ column.label }}</button></th>{% endfor %}
+        <th scope="col">Download</th>
+      </tr></thead>
+      <tbody>{% for row in table_rows %}<tr>
+        <th scope="row" class="name"><a href="{{ row.name }}/">{{ row.name }}</a></th>
+        {% for cell in row.cells %}<td class="num">{{ cell }}</td>{% endfor %}
+        <td>{% if row.download_href %}<a class="dl" href="{{ row.download_href }}"
+          aria-label="{{ row.download_label }}">.mps.gz</a>{% else %}<span class="dl"
+          role="link" aria-disabled="true"
+          aria-label="{{ row.download_label }}: unavailable">pending</span>{% endif %}</td>
+      </tr>{% endfor %}</tbody>
+    </table></div>
+    <p class="table-foot"><span class="result-count" role="status"
+      aria-live="polite" aria-atomic="true">{{ total_label }}.</span>
+      <span class="sort-note" hidden>All data columns sort; Download does not.</span></p>
+  </div>
+</div>
+<script id="browse-data" type="application/json">{{ browse_data | tojson }}</script>
+{% endblock %}

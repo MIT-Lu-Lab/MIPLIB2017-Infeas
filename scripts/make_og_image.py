@@ -17,8 +17,8 @@ two colours the site uses to tell its halves apart.
 Run offline; the result is committed. The build copies it and takes no
 dependency on this.
 
-    pip install websocket-client        # and a Chrome to drive
-    python scripts/make_og_image.py
+    pip install --group og              # and a Chrome to drive
+    python -m scripts.make_og_image
 
 The template links the built stylesheet, so the card is drawn with the same
 tokens, the same typefaces and the same hairline as the pages.
@@ -30,22 +30,19 @@ import argparse
 import base64
 import json
 import subprocess
-import sys
 import tempfile
 import time
 import urllib.request
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from website import INDEX_FILE, MIPLIB_FILE, ROOT, assets, content
+from website import build as builder
 
-from website import assets, build_site, content
-
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUT = ROOT / "og.png"
+DEFAULT_OUT = ROOT / assets.OG_IMAGE
 
 # What a card is expected to be. Platforms crop to about 1.91:1 and downscale,
 # so it is drawn at twice this and declared at this.
-WIDTH, HEIGHT = 1200, 630
+WIDTH, HEIGHT = assets.OG_IMAGE_SIZE
 SCALE = 2
 
 TEMPLATE = """<!doctype html>
@@ -89,12 +86,13 @@ TEMPLATE = """<!doctype html>
 def _wait_for_target(port: int) -> dict:
     for _ in range(200):
         try:
-            with urllib.request.urlopen(f"http://127.0.0.1:{port}/json/list",
-                                        timeout=0.5) as response:
+            with urllib.request.urlopen(
+                f"http://127.0.0.1:{port}/json/list", timeout=0.5
+            ) as response:
                 for target in json.load(response):
                     if target.get("type") == "page":
                         return target
-        except (OSError, ValueError):
+        except OSError, ValueError:
             pass
         time.sleep(0.05)
     raise SystemExit("Chrome did not open a DevTools target")
@@ -102,26 +100,22 @@ def _wait_for_target(port: int) -> dict:
 
 class _DevTools:
     def __init__(self, url: str) -> None:
-        # The only third-party import in this repository, and only in this
-        # script, which is run by hand and whose result is committed. CI never
-        # runs it and so does not install it, which is why the type checker is
-        # told not to look for it here rather than the package being added to a
-        # build that is otherwise standard library only.
+        # websocket-client is used only by this manual script, whose result is
+        # committed. It is not part of the site build or CI environment, so the
+        # type checker does not require it there.
         try:
             from websocket import (  # pyright: ignore[reportMissingImports]
                 create_connection,
             )
         except ImportError:
-            raise SystemExit("this script needs websocket-client: "
-                             "pip install websocket-client") from None
+            raise SystemExit("this script needs websocket-client: pip install --group og") from None
 
         self.socket = create_connection(url, timeout=20, suppress_origin=True)
         self.count = 0
 
     def call(self, method: str, params: dict | None = None) -> dict:
         self.count += 1
-        self.socket.send(json.dumps({"id": self.count, "method": method,
-                                     "params": params or {}}))
+        self.socket.send(json.dumps({"id": self.count, "method": method, "params": params or {}}))
         while True:
             message = json.loads(self.socket.recv())
             if message.get("id") != self.count:
@@ -131,9 +125,10 @@ class _DevTools:
             return message.get("result", {})
 
     def evaluate(self, expression: str) -> object:
-        result = self.call("Runtime.evaluate",
-                           {"expression": expression, "returnByValue": True,
-                            "awaitPromise": True})
+        result = self.call(
+            "Runtime.evaluate",
+            {"expression": expression, "returnByValue": True, "awaitPromise": True},
+        )
         if "exceptionDetails" in result:
             raise SystemExit(str(result["exceptionDetails"]))
         return result["result"].get("value")
@@ -142,26 +137,41 @@ class _DevTools:
 def _card_html() -> str:
     host = content.PUBLIC_SITE_URL.split("//", 1)[-1].rstrip("/")
     name = content.NAME.replace("-", '<span class="dash">-</span>')
-    return TEMPLATE.format(css=assets.CSS_NAME, width=WIDTH, height=HEIGHT,
-                           name=name, tagline=content.TAGLINE, host=host)
+    return TEMPLATE.format(
+        css=assets.CSS_NAME,
+        width=WIDTH,
+        height=HEIGHT,
+        name=name,
+        tagline=content.TAGLINE,
+        host=host,
+    )
 
 
 def render(chrome: Path, out: Path, port: int) -> None:
     with tempfile.TemporaryDirectory() as tmp:
         site = Path(tmp) / "site"
-        build_site.build(build_site.DEFAULT_INDEX, site,
-                         miplib_path=build_site.DEFAULT_MIPLIB)
+        builder.build(INDEX_FILE, site, miplib_path=MIPLIB_FILE)
         card = site / "_og-card.html"
         card.write_text(_card_html(), encoding="utf-8", newline="\n")
 
         profile = Path(tmp) / "profile"
         process = subprocess.Popen(
-            [str(chrome), "--headless=new", "--disable-gpu", "--no-first-run",
-             "--no-default-browser-check", "--disable-background-networking",
-             f"--remote-debugging-port={port}", "--remote-allow-origins=*",
-             f"--user-data-dir={profile}", "about:blank"],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+            [
+                str(chrome),
+                "--headless=new",
+                "--disable-gpu",
+                "--no-first-run",
+                "--no-default-browser-check",
+                "--disable-background-networking",
+                f"--remote-debugging-port={port}",
+                "--remote-allow-origins=*",
+                f"--user-data-dir={profile}",
+                "about:blank",
+            ],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        )
         try:
             devtools = _DevTools(str(_wait_for_target(port)["webSocketDebuggerUrl"]))
             devtools.call("Page.enable")
@@ -169,14 +179,15 @@ def render(chrome: Path, out: Path, port: int) -> None:
             # layout in CSS pixels, and let the capture do the scaling: a
             # deviceScaleFactor here plus fromSurface returns a partly painted
             # buffer under headless
-            devtools.call("Emulation.setDeviceMetricsOverride",
-                          {"width": WIDTH, "height": HEIGHT,
-                           "deviceScaleFactor": 1, "mobile": False})
+            devtools.call(
+                "Emulation.setDeviceMetricsOverride",
+                {"width": WIDTH, "height": HEIGHT, "deviceScaleFactor": 1, "mobile": False},
+            )
             devtools.call("Page.navigate", {"url": card.as_uri()})
             for _ in range(400):
                 ready = devtools.evaluate(
-                    "document.readyState === 'complete' &&"
-                    " document.fonts.status === 'loaded'")
+                    "document.readyState === 'complete' && document.fonts.status === 'loaded'"
+                )
                 if ready:
                     break
                 time.sleep(0.02)
@@ -184,9 +195,12 @@ def render(chrome: Path, out: Path, port: int) -> None:
                 raise SystemExit("the card never finished loading its fonts")
             shot = devtools.call(
                 "Page.captureScreenshot",
-                {"format": "png", "captureBeyondViewport": True,
-                 "clip": {"x": 0, "y": 0, "width": WIDTH, "height": HEIGHT,
-                          "scale": SCALE}})
+                {
+                    "format": "png",
+                    "captureBeyondViewport": True,
+                    "clip": {"x": 0, "y": 0, "width": WIDTH, "height": HEIGHT, "scale": SCALE},
+                },
+            )
             out.write_bytes(base64.b64decode(str(shot["data"])))
         finally:
             process.terminate()
@@ -197,19 +211,27 @@ def render(chrome: Path, out: Path, port: int) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__,
-                                     formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--chrome", type=Path,
-                        default=Path(r"C:\Program Files\Google\Chrome"
-                                     r"\Application\chrome.exe"))
+    parser = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    parser.add_argument(
+        "--chrome",
+        type=Path,
+        default=Path(
+            r"C:\Program Files\Google\Chrome"
+            r"\Application\chrome.exe"
+        ),
+    )
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--port", type=int, default=9422)
     args = parser.parse_args()
     if not args.chrome.is_file():
         raise SystemExit(f"{args.chrome}: no Chrome there. Pass --chrome.")
     render(args.chrome, args.out, args.port)
-    print(f"{args.out}: {args.out.stat().st_size:,} bytes, "
-          f"{WIDTH * SCALE}x{HEIGHT * SCALE} for a {WIDTH}x{HEIGHT} card")
+    print(
+        f"{args.out}: {args.out.stat().st_size:,} bytes, "
+        f"{WIDTH * SCALE}x{HEIGHT * SCALE} for a {WIDTH}x{HEIGHT} card"
+    )
 
 
 if __name__ == "__main__":
