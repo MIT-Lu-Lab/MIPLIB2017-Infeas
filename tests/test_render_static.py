@@ -1,8 +1,12 @@
 import re
+from pathlib import Path
 
+from website import content
 from website import render as V
 from website.domain import collection_totals, subset_bytes
 from website.index import load_collection
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_guide_links_the_machine_readable_schema():
@@ -84,6 +88,24 @@ def test_about_names_the_solver_that_produced_the_collection():
     # reproducing the tree requires knowing which solver built it
     assert "CPLEX" in html
     assert "HiGHS" in html and "Gurobi" in html
+
+
+def test_about_states_a_version_for_every_program_that_produced_the_files():
+    """Naming a solver is half the answer; a tree is the tree its version built."""
+    html = V.render_about()
+    for tool in content.SOFTWARE:
+        assert f'<span class="mono">{tool.name}</span>' in html
+        assert f'<span class="ftype">{tool.version}</span>' in html
+        assert tool.role in html
+
+
+def test_the_readme_states_the_versions_the_site_states():
+    """Two places, one source. A version bumped on the page and not in the
+    README would leave a reader repeating the run against the wrong release,
+    and nothing but a reader would notice."""
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    for tool in content.SOFTWARE:
+        assert f"| {tool.name} | {tool.version} | {tool.role} |" in readme
 
 
 def test_guide_explains_integrity_and_version_fields():

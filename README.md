@@ -24,6 +24,17 @@ A branch-and-bound search splits on a variable and explores one side of the spli
 
 For 103 instances, bounds and constraints were dropped from a feasible, bounded root LP relaxation until its objective became unbounded; every unnecessary drop was then restored. The other two root relaxations were already unbounded and therefore required no drops.
 
+## Software
+
+These are the versions that produced the published files. A solver named without its version describes a run nobody can repeat: which nodes a tree holds depends on the solver that built it, and what a presolve run disposes of changes between releases.
+
+| software | version | what it did |
+| :--- | :--- | :--- |
+| CPLEX | 22.1.2.1 | Built the branch-and-bound trees the primal-infeasible set is taken from, and ran the loop that drops bounds and constraints for the dual-infeasible one. |
+| HiGHS | 1.14.0 | The first presolver a candidate had to survive, reached through the highspy bindings. |
+| Gurobi | 12.0.3 | The second presolver a candidate had to survive. |
+| Python | 3.11.9 | Ran the mining code driving all three: the callback that follows the search, the drop loop, and the selection. |
+
 ## Download
 
 Everything is on the [latest release](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/latest): [`primal-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/latest/download/primal-infeasible.zip) and [`dual-infeasible.zip`](https://github.com/MIT-Lu-Lab/MIPLIB2017-Infeas/releases/latest/download/dual-infeasible.zip) each hold a whole subset, laid out as `instances/infeasible/` and `instances/unbounded/`.

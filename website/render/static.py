@@ -70,5 +70,6 @@ def render_about(site_url: str | None = None) -> str:
         narrow=True,
         description=content.ABOUT_DESCRIPTION,
         site_url=site_url,
+        software=content.SOFTWARE,
         licence_href=rel(ABOUT_PAGE, "LICENSE.txt"),
     )

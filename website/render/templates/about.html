@@ -37,6 +37,21 @@
   </div>
 </div>
 <div class="section">
+  <h2>Software</h2>
+  <div class="prose">
+    <p>These are the versions that produced the published files. A solver named without
+    its version describes a run nobody can repeat: which nodes a tree holds depends on
+    the solver that built it, and what a presolve run disposes of changes between
+    releases.</p>
+  </div>
+  <dl class="fields">
+    {%- for tool in software %}
+    <dt><span class="mono">{{ tool.name }}</span><span class="ftype">{{ tool.version }}</span></dt>
+    <dd>{{ tool.role }}</dd>
+    {%- endfor %}
+  </dl>
+</div>
+<div class="section">
   <h2>Source and licence</h2>
   <div class="prose">
     {{ miplib_citation() }}

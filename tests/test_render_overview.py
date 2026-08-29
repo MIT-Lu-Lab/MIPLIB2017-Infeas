@@ -11,16 +11,10 @@ from website.index import load_collection
 from website.render.shell import page as render_page
 
 
-def test_page_shell_has_lang_title_and_the_shared_assets():
+def test_page_shell_has_lang_title_and_the_shared_assets(shell):
     from website.assets import CSS_NAME, JS_NAME
 
-    html = render_page(
-        "about.html",
-        "Example",
-        active="overview",
-        page_rel="index.html",
-        licence_href="LICENSE.txt",
-    )
+    html = shell(active="overview", page_rel="index.html")
     assert html.startswith("<!doctype html>")
     root = page(html)
     assert root.one("html").get("lang") == "en"
@@ -34,15 +28,8 @@ def test_page_shell_has_lang_title_and_the_shared_assets():
     assert "--primal:#3B4CC0" not in html
 
 
-def test_page_shell_has_skip_link_and_landmarks():
-    html = render_page(
-        "about.html",
-        "Example",
-        active="overview",
-        page_rel="index.html",
-        description="Example page",
-        licence_href="LICENSE.txt",
-    )
+def test_page_shell_has_skip_link_and_landmarks(shell):
+    html = shell(active="overview", page_rel="index.html", description="Example page")
     root = page(html)
     main = root.one("main")
     skip = root.one("a.skip-link")
@@ -54,26 +41,15 @@ def test_page_shell_has_skip_link_and_landmarks():
     assert root.one("nav.top").get("aria-label") == "Primary navigation"
 
 
-def test_short_nav_labels_keep_the_full_accessible_name():
-    html = render_page(
-        "about.html",
-        "Example",
-        active="overview",
-        page_rel="index.html",
-        description="Example page",
-        licence_href="LICENSE.txt",
-    )
+def test_short_nav_labels_keep_the_full_accessible_name(shell):
+    html = shell(active="overview", page_rel="index.html", description="Example page")
     assert 'aria-label="Primal-infeasible"' in html
     assert 'aria-label="Dual-infeasible"' in html
 
 
-def test_page_shell_links_resolve_by_depth():
-    root = render_page(
-        "about.html", "A", active="overview", page_rel="index.html", licence_href="LICENSE.txt"
-    )
-    deep = render_page(
-        "about.html",
-        "A",
+def test_page_shell_links_resolve_by_depth(shell):
+    root = shell(active="overview", page_rel="index.html")
+    deep = shell(
         active="overview",
         page_rel="dual-infeasible/aaa/index.html",
         licence_href="../../LICENSE.txt",
@@ -81,9 +57,7 @@ def test_page_shell_links_resolve_by_depth():
     assert 'href="primal-infeasible/"' in root
     assert 'href="../../primal-infeasible/"' in deep
     # a link takes the direct route rather than going to the root and back
-    own = render_page(
-        "about.html",
-        "A",
+    own = shell(
         active="primal",
         page_rel="primal-infeasible/aaa/index.html",
         licence_href="../../LICENSE.txt",
@@ -92,28 +66,18 @@ def test_page_shell_links_resolve_by_depth():
     assert "../../primal-infeasible/" not in own
 
 
-def test_active_nav_item_is_marked():
-    html = render_page(
-        "about.html", "A", active="dual", page_rel="index.html", licence_href="LICENSE.txt"
-    )
+def test_active_nav_item_is_marked(shell):
+    html = shell(active="dual", page_rel="index.html")
     # The current-page state belongs to the primary navigation only.
     nav = page(html).one("nav.top")
     current = [link for link in nav.all("a") if link.has("aria-current")]
     assert [link.text for link in current] == ["Dual-infeasible Dual"]
 
 
-def test_only_the_long_nav_labels_carry_a_short_form():
+def test_only_the_long_nav_labels_carry_a_short_form(shell):
     """Both forms ship and the stylesheet hides one, so a name that outgrows a
     phone cell is shortened rather than overlapping its neighbour."""
-    nav = page(
-        render_page(
-            "about.html",
-            "A",
-            active="overview",
-            page_rel="index.html",
-            licence_href="LICENSE.txt",
-        )
-    ).one("nav.top")
+    nav = page(shell(active="overview", page_rel="index.html")).one("nav.top")
     pairs = {
         link.one("span.nav-full").text: link.one("span.nav-short").text
         for link in nav.all("a")

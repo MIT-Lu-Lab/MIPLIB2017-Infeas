@@ -11,7 +11,6 @@ from website import content
 from website import render as V
 from website.domain import collection_totals, subset_bytes
 from website.index import load_collection
-from website.render.shell import page as render_page
 
 
 def _head(html: str) -> str:
@@ -127,16 +126,9 @@ def test_the_description_of_an_instance_leads_with_its_name(index):
     assert description.startswith(s.instance)
 
 
-def test_a_description_is_escaped_for_its_attribute():
+def test_a_description_is_escaped_for_its_attribute(shell):
     hostile = 'x" onload="alert(1)'
-    html = render_page(
-        "about.html",
-        "t",
-        active="about",
-        page_rel="index.html",
-        description=hostile,
-        licence_href="LICENSE.txt",
-    )
+    html = shell("t", active="about", page_rel="index.html", description=hostile)
     description = page(_head(html)).one('meta[name="description"]')
     assert description.get("content") == hostile
     assert description.get("onload") is None

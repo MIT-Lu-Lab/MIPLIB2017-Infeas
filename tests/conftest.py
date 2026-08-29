@@ -4,6 +4,7 @@ import pytest
 
 from website.domain import source_terms
 from website.index import INDEX_VERSION, to_record
+from website.render.shell import page as render_page
 from website.sidecar import sample_from_meta
 
 # Sidecars as the miners write them. The fixture projects them the way
@@ -91,3 +92,19 @@ def write_index(path, sidecars=None):
 def index(tmp_path):
     """A tiny two-instance, two-subset site index under tmp_path."""
     return write_index(tmp_path / "site-index.json")
+
+
+@pytest.fixture
+def shell():
+    """Render the document shell around a stand-in body.
+
+    Some tests are about the document rather than the page inside it: the nav,
+    the head, the skip link. about.html is only the body they hang on, so what
+    that body needs is supplied here and a field added to the page is not
+    added to every one of them.
+    """
+
+    def render(title: str = "Example", *, licence_href: str = "LICENSE.txt", **context) -> str:
+        return render_page("about.html", title, licence_href=licence_href, software=(), **context)
+
+    return render

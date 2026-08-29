@@ -3,11 +3,14 @@
 Markup lives in render/templates. Here are the sentences that have to count
 something before they can be written, the descriptions a page declares to a
 search engine rather than shows, the names this collection is published
-under, and two editorial rules: which MIPLIB tags mean nothing once
-integrality is dropped, and how long a description may run.
+under, the software that produced the files, and two editorial rules: which
+MIPLIB tags mean nothing once integrality is dropped, and how long a
+description may run.
 """
 
 from __future__ import annotations
+
+from dataclasses import dataclass
 
 from .domain import CollectionTotals, Subset
 
@@ -53,6 +56,46 @@ NAME = "MIPLIB2017-Infeas"
 PUBLIC_SITE_URL = "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/"
 SIDECAR_SCHEMA_PATH = "schema/sidecar/1.0.1/meta.schema.json"
 TAGLINE = "A benchmark of primal- and dual-infeasible linear programs"
+
+
+@dataclass(frozen=True)
+class Software:
+    """One program that produced the published files, and what it did."""
+
+    name: str
+    version: str
+    role: str
+
+
+# Naming a solver without its version describes a run nobody can repeat: which
+# nodes a branch-and-bound tree holds depends on the solver that built it, and
+# what a presolve run disposes of changes between releases. The about page
+# renders these and a test holds the README to the same versions, so the two
+# cannot come apart.
+SOFTWARE = (
+    Software(
+        "CPLEX",
+        "22.1.2.1",
+        "Built the branch-and-bound trees the primal-infeasible set is taken from, and "
+        "ran the loop that drops bounds and constraints for the dual-infeasible one.",
+    ),
+    Software(
+        "HiGHS",
+        "1.14.0",
+        "The first presolver a candidate had to survive, reached through the highspy bindings.",
+    ),
+    Software(
+        "Gurobi",
+        "12.0.3",
+        "The second presolver a candidate had to survive.",
+    ),
+    Software(
+        "Python",
+        "3.11.9",
+        "Ran the mining code driving all three: the callback that follows the search, "
+        "the drop loop, and the selection.",
+    ),
+)
 
 # One sentence each, the shortest true statement of what a subset holds. The
 # browse page shows this and the meta description quotes it.
