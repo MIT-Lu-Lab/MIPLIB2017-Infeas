@@ -19,7 +19,7 @@ WIDTH = 620.0
 # box, not the branches taken to reach it, so a ladder of twelve steps would
 # claim an order nothing in the sidecar recorded.
 SPINE_X, FORK_DX = 310.0, 160.0
-ROOT_Y, PARENT_Y, ELBOW_Y, CHILD_Y = 30.0, 170.0, 208.0, 234.0
+ROOT_Y, RUN_Y, PARENT_Y, ELBOW_Y, CHILD_Y = 30.0, 100.0, 170.0, 208.0, 234.0
 BRANCH_Y, ROLE_Y = 266.0, 290.0
 # The variable both sides split, on the last line: it is the one label wide
 # enough to reach the spine, and the spine ends above it.
@@ -90,6 +90,19 @@ def branch_diagram(sample: Sample) -> str:
         el("circle", class_="node", cx=SPINE_X, cy=ROOT_Y, r=NODE_R),
         el("text", "root", class_="dim", x=SPINE_X + LABEL_DX, y=ROOT_Y + 6),
         el("circle", class_="node", cx=SPINE_X, cy=PARENT_Y, r=NODE_R),
+        # "in the run", because the count is the whole search's and not this
+        # path's: the tree holds far more nodes than the path down to one.
+        (
+            el(
+                "text",
+                f"{fmt_int(sample.search_nodes)} nodes in the run",
+                class_="dim",
+                x=SPINE_X + LABEL_DX,
+                y=RUN_Y,
+            )
+            if sample.search_nodes is not None
+            else ""
+        ),
         # Depth, and only depth: it is what the sidecar records. How many
         # branchings the search performed is not in the data and is not this
         # number, a tree of depth n holding up to 2^n of them.

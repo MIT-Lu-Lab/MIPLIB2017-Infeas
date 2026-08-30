@@ -210,6 +210,40 @@ def test_one_removed_element_uses_the_singular():
     assert "1 entry" in html and "1 entries" not in html
 
 
+def test_a_primal_page_states_the_work_as_well_as_the_place(index):
+    """Depth says where the node sits; it does not say how much searching
+    found it. Two nodes at the same depth can come from runs orders of
+    magnitude apart."""
+    sample = replace(_samples(index)[("primal", "aaa")], search_nodes=8_421)
+    text = " ".join(page(_render(sample)).all("dl.kv")[1].text.split())
+    # the run first, then where in it this node sits
+    assert text.index("Nodes the run processed 8,421") < text.index("Depth in the tree")
+    assert f"Depth in the tree {sample.primal.depth}" in text
+
+
+def test_a_primal_page_omits_a_node_count_it_was_not_given(index):
+    """The count comes from the miners' log, not the published file."""
+    assert "Nodes the run" not in _render(_samples(index)[("primal", "aaa")])
+
+
+def test_a_dual_page_separates_what_was_tried_from_what_was_kept(index):
+    """The greedy search removes far more than it leaves, and the two numbers
+    are the whole point of calling the result inclusion-minimal."""
+    sample = _samples(index)[("dual", "aaa")]
+    # the first list is the instance's own dimensions; the provenance is next
+    text = " ".join(page(_render(sample)).all("dl.kv")[1].text.split())
+    assert f"Rounds run {sample.dual.rounds}" in text
+    assert f"Bounds dropped {sample.dual.bounds_dropped}" in text
+    assert f"Rows dropped {sample.dual.rows_dropped}" in text
+
+
+def test_a_dual_page_omits_rounds_the_sidecar_did_not_record(index):
+    """Absent is not zero: the published schema does not require n_rounds."""
+    sample = _samples(index)[("dual", "aaa")]
+    silent = replace(sample, provenance=replace(sample.dual, rounds=None))
+    assert "Rounds run" not in _render(silent)
+
+
 def test_the_page_points_at_its_own_nonzero_pattern(index):
     """One raster per instance, named for the file it describes. It is a mask,
     so the card would be a solid square if the URL missed."""

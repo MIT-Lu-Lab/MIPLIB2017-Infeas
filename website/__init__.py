@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATASET_DIR = ROOT / "dataset"
 INDEX_FILE = ROOT / "metadata" / "site-index.json"
 MIPLIB_FILE = ROOT / "metadata" / "miplib_meta.json"
+SEARCH_FILE = ROOT / "metadata" / "search_meta.json"
 PATTERN_DIR = ROOT / "patterns"
 
-__all__ = ["DATASET_DIR", "INDEX_FILE", "MIPLIB_FILE", "PATTERN_DIR", "ROOT"]
+__all__ = ["DATASET_DIR", "INDEX_FILE", "MIPLIB_FILE", "PATTERN_DIR", "ROOT", "SEARCH_FILE"]

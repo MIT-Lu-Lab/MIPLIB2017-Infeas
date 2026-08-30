@@ -93,11 +93,16 @@ def render_sample(
             "bound_changes": content.fmt_int(provenance.bound_changes),
             "path_shown": content.fmt_int(len(provenance.path_head)),
             "path_count": _entry_count(provenance.bound_changes),
+            # what the run did, beside where in it this node sits
+            "nodes": (
+                None if sample.search_nodes is None else content.fmt_int(sample.search_nodes)
+            ),
         }
     else:
         details = {
             "bounds_dropped": content.fmt_int(provenance.bounds_dropped),
             "rows_dropped": content.fmt_int(provenance.rows_dropped),
+            "rounds": (None if provenance.rounds is None else content.fmt_int(provenance.rounds)),
             "drops_shown": content.fmt_int(len(provenance.drops_head)),
             "total_dropped": content.fmt_int(provenance.total_dropped),
             "drop_count": _entry_count(provenance.total_dropped),

@@ -110,6 +110,8 @@ def sample_from_meta(meta: object, file_bytes: int, meta_bytes: int) -> Sample:
                 rows_dropped=len(drops) - bounds_dropped,
                 natural_unbounded=doc["natural_unbounded"],
                 drops_head=drops[:HEAD_LIMIT],
+                # optional in the published schema, so absent stays absent
+                rounds=doc.get("n_rounds"),
             )
         sample = Sample(
             instance=doc["instance"],

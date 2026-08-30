@@ -151,8 +151,17 @@ class DualProvenance:
     rows_dropped: int
     natural_unbounded: bool = False
     drops_head: tuple[Drop, ...] = ()
+    # How many rounds the greedy search ran, against what survived its pruning
+    # pass: the median instance tried 185 and kept six. None where the sidecar
+    # does not say, which the published schema permits and which is not zero.
+    rounds: int | None = None
 
     def __post_init__(self) -> None:
+        if self.rounds is not None:
+            if self.rounds < self.total_dropped:
+                raise DomainError("rounds cannot be fewer than the removals that survived them")
+            if self.natural_unbounded and self.rounds:
+                raise DomainError("a relaxation unbounded as given ran no rounds")
         if len(self.drops_head) > HEAD_LIMIT:
             raise DomainError(f"drops_head cannot contain more than {HEAD_LIMIT} entries")
         if len(self.drops_head) > self.total_dropped:
@@ -205,8 +214,17 @@ class Sample:
     source_group: str | None = None
     imported_from: str | None = None
     sha256: str | None = None
+    # Nodes the branch-and-bound run processed, from the miners' log rather
+    # than from the file: how much searching found this node, which its depth
+    # does not say. Only a primal file comes out of such a run.
+    search_nodes: int | None = None
 
     def __post_init__(self) -> None:
+        if self.search_nodes is not None:
+            if self.subset != "primal":
+                raise DomainError("only a primal-infeasible file comes from a search")
+            if self.search_nodes < 1:
+                raise DomainError("a search that produced a file processed at least one node")
         if (
             isinstance(self.provenance, PrimalProvenance)
             and self.provenance.branch_var >= self.n_vars

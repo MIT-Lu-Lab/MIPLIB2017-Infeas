@@ -55,6 +55,7 @@ _SIDECARS = [
             "n_cons": 1,
             "nnz": 5,
             "natural_unbounded": False,
+            "n_rounds": 9,
             "drops": [
                 {
                     "kind": "row",

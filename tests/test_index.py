@@ -143,6 +143,7 @@ def test_records_round_trip_through_the_index(index):
             "bounds_dropped",
             "rows_dropped",
             "natural_unbounded",
+            "rounds",
             "drops_head",
         },
     }

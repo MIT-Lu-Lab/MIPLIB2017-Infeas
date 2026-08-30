@@ -88,7 +88,9 @@ def _overflows(svg: str) -> list[str]:
 
 @pytest.fixture(scope="module")
 def samples():
-    return load_collection("metadata/site-index.json")
+    # with the search metadata: without it every node count is None and the
+    # widest label in the branch drawing is never measured at all
+    return load_collection("metadata/site-index.json", search_path="metadata/search_meta.json")
 
 
 def test_the_check_reads_every_label_including_the_powers_of_ten(samples):
@@ -125,6 +127,7 @@ def test_no_drops_diagram_writes_outside_its_own_drawing(samples):
                     rows_dropped=0,
                     natural_unbounded=True,
                     drops_head=(),
+                    rounds=0,
                 ),
             )
         )

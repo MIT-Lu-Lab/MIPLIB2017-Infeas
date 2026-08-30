@@ -38,6 +38,9 @@
           <span class="k">at depth {{ details.depth }}</span>
         </div>
         <dl class="kv">
+          {% if details.nodes %}
+          <dt>Nodes the run processed</dt><dd>{{ details.nodes }}</dd>
+          {% endif %}
           <dt>Depth in the tree</dt><dd>{{ details.depth }}</dd>
           <dt>Bounds tightened vs. source</dt><dd>{{ details.bound_changes }}</dd>
           <dt>Branch variable</dt><dd>{{ details.branch.var }}</dd>
@@ -67,6 +70,9 @@
         any one of them back makes it bounded again.</p>
         <div class="drawing" aria-hidden="true">{{ derivation }}</div>
         <dl class="kv">
+          {% if details.rounds %}
+          <dt>Rounds run</dt><dd>{{ details.rounds }}</dd>
+          {% endif %}
           <dt>Bounds dropped</dt><dd>{{ details.bounds_dropped }}</dd>
           <dt>Rows dropped</dt><dd>{{ details.rows_dropped }}</dd>
         </dl>

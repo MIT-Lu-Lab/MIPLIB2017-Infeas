@@ -7,7 +7,16 @@ from collections.abc import Sequence
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
-from . import INDEX_FILE, MIPLIB_FILE, PATTERN_DIR, ROOT, assets, catalog, render
+from . import (
+    INDEX_FILE,
+    MIPLIB_FILE,
+    PATTERN_DIR,
+    ROOT,
+    SEARCH_FILE,
+    assets,
+    catalog,
+    render,
+)
 from .domain import (
     OTHER_SUBSET,
     SUBSET_SPECS,
@@ -66,11 +75,12 @@ def build(
     release_base_url: str | None = None,
     site_url: str | None = None,
     miplib_path: Path | str | None = None,
+    search_path: Path | str | None = None,
 ) -> int:
     """Build the complete site and replace an owned output tree atomically."""
     site_url = normalize_site_url(site_url)
     release_base_url = normalize_release_base_url(release_base_url)
-    samples = load_collection(index_path, miplib_path)
+    samples = load_collection(index_path, miplib_path, search_path)
     totals = collection_totals(samples)
     sizes = subset_bytes(samples)
     by_key = {(sample.subset, sample.instance): sample for sample in samples}
@@ -152,6 +162,12 @@ def main() -> None:
         help="cached MIPLIB 2017 attribution and description metadata",
     )
     parser.add_argument(
+        "--search",
+        type=Path,
+        default=SEARCH_FILE,
+        help="node counts per instance; python -m scripts.build_search_meta writes them",
+    )
+    parser.add_argument(
         "--site-url",
         help="public base URL, for example https://ORG.github.io/REPO",
     )
@@ -163,6 +179,7 @@ def main() -> None:
             release_base_url=args.release_base_url,
             site_url=args.site_url,
             miplib_path=args.miplib,
+            search_path=args.search,
         )
     except (OSError, OutputError, ValueError) as exc:
         parser.error(str(exc))

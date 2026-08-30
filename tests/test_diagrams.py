@@ -33,7 +33,14 @@ def _dropping(sample, *, bounds: int, rows: int):
     """The same instance with a known removal, head cleared to match."""
     return replace(
         sample,
-        provenance=replace(sample.dual, bounds_dropped=bounds, rows_dropped=rows, drops_head=()),
+        provenance=replace(
+            sample.dual,
+            bounds_dropped=bounds,
+            rows_dropped=rows,
+            drops_head=(),
+            # a search cannot keep more than it tried
+            rounds=max(bounds + rows, sample.dual.rounds or 0),
+        ),
     )
 
 
@@ -42,7 +49,12 @@ def _natural(sample):
     return replace(
         sample,
         provenance=replace(
-            sample.dual, bounds_dropped=0, rows_dropped=0, natural_unbounded=True, drops_head=()
+            sample.dual,
+            bounds_dropped=0,
+            rows_dropped=0,
+            natural_unbounded=True,
+            drops_head=(),
+            rounds=0,
         ),
     )
 
@@ -157,6 +169,15 @@ def test_a_long_variable_name_neither_overflows_nor_collides(index):
     assert "…" in svg
     for text in re.findall(r"<text[^>]*>([^<]*)</text>", svg):
         assert len(text) <= D.NAME_LIMIT + len("branching on ")
+
+
+def test_the_branch_diagram_names_the_run_the_count_belongs_to(index):
+    """A count beside a spine reads as a count along it unless it says
+    otherwise, and the run holds far more nodes than one path down it."""
+    sample = next(s for s in load_collection(index) if s.subset == "primal")
+    counted = replace(sample, search_nodes=866_531)
+    assert "866,531 nodes in the run" in D.branch_diagram(counted)
+    assert "nodes" not in D.branch_diagram(sample)  # none given, none claimed
 
 
 def test_the_branch_diagram_does_not_draw_the_path_it_does_not_have(index):

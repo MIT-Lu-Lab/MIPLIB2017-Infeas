@@ -1,0 +1,689 @@
+{
+ "30n20b8": {
+  "nodes": 413
+ },
+ "academictimetablebig": {
+  "nodes": 148
+ },
+ "academictimetablesmall": {
+  "nodes": 95
+ },
+ "adult-max5features": {
+  "nodes": 105
+ },
+ "allcolor58": {
+  "nodes": 4772
+ },
+ "app1-2": {
+  "nodes": 8
+ },
+ "atlanta-ip": {
+  "nodes": 42
+ },
+ "bab1": {
+  "nodes": 1585
+ },
+ "bab2": {
+  "nodes": 776
+ },
+ "bab3": {
+  "nodes": 1325
+ },
+ "bab5": {
+  "nodes": 177
+ },
+ "bab6": {
+  "nodes": 148
+ },
+ "blp-ar98": {
+  "nodes": 675
+ },
+ "blp-ic97": {
+  "nodes": 457
+ },
+ "blp-ic98": {
+  "nodes": 283
+ },
+ "brazil3": {
+  "nodes": 247
+ },
+ "circ10-3": {
+  "nodes": 194
+ },
+ "cmflsp40-24-10-7": {
+  "nodes": 193
+ },
+ "cmflsp40-36-2-10": {
+  "nodes": 359
+ },
+ "cmflsp50-24-8-8": {
+  "nodes": 1345
+ },
+ "cmflsp60-36-2-6": {
+  "nodes": 1338
+ },
+ "co-100": {
+  "nodes": 8028
+ },
+ "cryptanalysiskb128n5obj16": {
+  "nodes": 48
+ },
+ "d20200": {
+  "nodes": 478
+ },
+ "ds": {
+  "nodes": 94
+ },
+ "dws008-03": {
+  "nodes": 306
+ },
+ "dws012-01": {
+  "nodes": 37
+ },
+ "dws012-02": {
+  "nodes": 219
+ },
+ "dws012-03": {
+  "nodes": 152
+ },
+ "eilA101-2": {
+  "nodes": 71
+ },
+ "eilC76-2": {
+  "nodes": 1258
+ },
+ "eva1aprime6x6opt": {
+  "nodes": 365
+ },
+ "ex10": {
+  "nodes": 8
+ },
+ "ex9": {
+  "nodes": 17
+ },
+ "fastxgemm-n3r21s3t6": {
+  "nodes": 3539
+ },
+ "fastxgemm-n3r22s4t6": {
+  "nodes": 1260
+ },
+ "fastxgemm-n3r23s5t6": {
+  "nodes": 1413
+ },
+ "fhnw-binschedule0": {
+  "nodes": 473
+ },
+ "fhnw-binschedule2": {
+  "nodes": 494
+ },
+ "genus-sym-g62-2": {
+  "nodes": 112
+ },
+ "ger50-17-trans-dfn-3t": {
+  "nodes": 1356
+ },
+ "ger50-17-trans-pop-3t": {
+  "nodes": 40528
+ },
+ "germanrr": {
+  "nodes": 116
+ },
+ "gfd-schedulen180f7d50m30k18": {
+  "nodes": 581
+ },
+ "gmut-75-50": {
+  "nodes": 2524
+ },
+ "gmut-76-40": {
+  "nodes": 5131
+ },
+ "gmut-76-50": {
+  "nodes": 367
+ },
+ "graph20-80-1rand": {
+  "nodes": 541
+ },
+ "graphdraw-opmanager": {
+  "nodes": 3185
+ },
+ "hgms30": {
+  "nodes": 321
+ },
+ "hgms62": {
+  "nodes": 44
+ },
+ "hypothyroid-k1": {
+  "nodes": 17
+ },
+ "k1mushroom": {
+  "nodes": 41
+ },
+ "leo1": {
+  "nodes": 146801
+ },
+ "lr1dr04vc05v17a-t360": {
+  "nodes": 3055
+ },
+ "lr2-22dr3-333vc4v17a-t60": {
+  "nodes": 1062
+ },
+ "momentum1": {
+  "nodes": 49
+ },
+ "mzzv11": {
+  "nodes": 292
+ },
+ "mzzv42z": {
+  "nodes": 193
+ },
+ "neos-1122047": {
+  "nodes": 39
+ },
+ "neos-1354092": {
+  "nodes": 8731
+ },
+ "neos-1367061": {
+  "nodes": 255
+ },
+ "neos-1593097": {
+  "nodes": 8
+ },
+ "neos-2669500-cust": {
+  "nodes": 1431
+ },
+ "neos-2991472-kalu": {
+  "nodes": 1339
+ },
+ "neos-3025225-shelon": {
+  "nodes": 80
+ },
+ "neos-3209462-rhin": {
+  "nodes": 84
+ },
+ "neos-3237086-abava": {
+  "nodes": 103
+ },
+ "neos-3372571-onahau": {
+  "nodes": 14398
+ },
+ "neos-3402294-bobin": {
+  "nodes": 743
+ },
+ "neos-3555904-turama": {
+  "nodes": 869
+ },
+ "neos-3695882-vesdre": {
+  "nodes": 1302
+ },
+ "neos-3740487-motru": {
+  "nodes": 1548
+ },
+ "neos-4260495-otere": {
+  "nodes": 1421
+ },
+ "neos-4295773-pissa": {
+  "nodes": 303
+ },
+ "neos-4300652-rahue": {
+  "nodes": 2445
+ },
+ "neos-4306827-ravan": {
+  "nodes": 380
+ },
+ "neos-4321076-ruwer": {
+  "nodes": 95
+ },
+ "neos-4322846-ryton": {
+  "nodes": 1325
+ },
+ "neos-4332801-seret": {
+  "nodes": 376
+ },
+ "neos-4355351-swalm": {
+  "nodes": 894
+ },
+ "neos-4359986-taipa": {
+  "nodes": 46
+ },
+ "neos-4360552-sangro": {
+  "nodes": 37
+ },
+ "neos-4391920-timok": {
+  "nodes": 1888
+ },
+ "neos-4408804-prosna": {
+  "nodes": 8812
+ },
+ "neos-4409277-trave": {
+  "nodes": 2902
+ },
+ "neos-4413714-turia": {
+  "nodes": 11421
+ },
+ "neos-4533806-waima": {
+  "nodes": 12
+ },
+ "neos-4555749-wards": {
+  "nodes": 66
+ },
+ "neos-4562542-watut": {
+  "nodes": 7
+ },
+ "neos-4647027-thurso": {
+  "nodes": 3366
+ },
+ "neos-4647030-tutaki": {
+  "nodes": 4984
+ },
+ "neos-4647032-veleka": {
+  "nodes": 8703
+ },
+ "neos-4722843-widden": {
+  "nodes": 85
+ },
+ "neos-4724674-aorere": {
+  "nodes": 473
+ },
+ "neos-4797081-pakoka": {
+  "nodes": 1709
+ },
+ "neos-4805882-barwon": {
+  "nodes": 98
+ },
+ "neos-4954274-beardy": {
+  "nodes": 76
+ },
+ "neos-4966258-blicks": {
+  "nodes": 129
+ },
+ "neos-4972437-bojana": {
+  "nodes": 64
+ },
+ "neos-4972461-bolong": {
+  "nodes": 52
+ },
+ "neos-4976951-bunnoo": {
+  "nodes": 38
+ },
+ "neos-498623": {
+  "nodes": 5752
+ },
+ "neos-5041822-cockle": {
+  "nodes": 20
+ },
+ "neos-5049753-cuanza": {
+  "nodes": 194
+ },
+ "neos-5104907-jarama": {
+  "nodes": 130
+ },
+ "neos-5106984-jizera": {
+  "nodes": 111
+ },
+ "neos-5108386-kalang": {
+  "nodes": 47
+ },
+ "neos-5116085-kenana": {
+  "nodes": 9478
+ },
+ "neos-5118834-korana": {
+  "nodes": 52
+ },
+ "neos-5118851-kowhai": {
+  "nodes": 14
+ },
+ "neos-5123665-limmat": {
+  "nodes": 74
+ },
+ "neos-5129192-manaia": {
+  "nodes": 5
+ },
+ "neos-5138690-middle": {
+  "nodes": 53
+ },
+ "neos-5188808-nattai": {
+  "nodes": 38
+ },
+ "neos-5193246-nerang": {
+  "nodes": 45
+ },
+ "neos-5195221-niemur": {
+  "nodes": 34
+ },
+ "neos-5196530-nuhaka": {
+  "nodes": 90
+ },
+ "neos-5221106-oparau": {
+  "nodes": 186
+ },
+ "neos-5266653-tugela": {
+  "nodes": 14
+ },
+ "neos-578379": {
+  "nodes": 88
+ },
+ "neos-662469": {
+  "nodes": 3171
+ },
+ "neos-738098": {
+  "nodes": 238
+ },
+ "neos-860300": {
+  "nodes": 240
+ },
+ "neos-872648": {
+  "nodes": 568
+ },
+ "neos-873061": {
+  "nodes": 631
+ },
+ "neos-876808": {
+  "nodes": 56
+ },
+ "neos-885524": {
+  "nodes": 7319
+ },
+ "neos-948346": {
+  "nodes": 25279
+ },
+ "neos-950242": {
+  "nodes": 234
+ },
+ "neos-953928": {
+  "nodes": 3817
+ },
+ "neos-956971": {
+  "nodes": 12627
+ },
+ "neos6": {
+  "nodes": 199
+ },
+ "neos8": {
+  "nodes": 150
+ },
+ "netdiversion": {
+  "nodes": 926
+ },
+ "ns1111636": {
+  "nodes": 3639
+ },
+ "ns1116954": {
+  "nodes": 262
+ },
+ "ns1430538": {
+  "nodes": 1031
+ },
+ "ns1456591": {
+  "nodes": 95
+ },
+ "ns1631475": {
+  "nodes": 398
+ },
+ "ns1760995": {
+  "nodes": 489
+ },
+ "ns1828997": {
+  "nodes": 263
+ },
+ "ns1830653": {
+  "nodes": 67
+ },
+ "ns1856153": {
+  "nodes": 1320
+ },
+ "ns1905797": {
+  "nodes": 502
+ },
+ "ns1952667": {
+  "nodes": 100
+ },
+ "ns2122698": {
+  "nodes": 5176
+ },
+ "ns2124243": {
+  "nodes": 45180
+ },
+ "ns930473": {
+  "nodes": 162
+ },
+ "nsrand-ipx": {
+  "nodes": 866531
+ },
+ "nucorsav": {
+  "nodes": 9
+ },
+ "nursesched-medium-hint03": {
+  "nodes": 2634
+ },
+ "nursesched-medium04": {
+  "nodes": 1959
+ },
+ "nursesched-sprint-hidden09": {
+  "nodes": 733
+ },
+ "nursesched-sprint-late03": {
+  "nodes": 575
+ },
+ "nursesched-sprint02": {
+  "nodes": 667
+ },
+ "nw04": {
+  "nodes": 110
+ },
+ "pb-fit2d": {
+  "nodes": 54639
+ },
+ "pb-grow22": {
+  "nodes": 91
+ },
+ "physiciansched3-3": {
+  "nodes": 270
+ },
+ "physiciansched3-4": {
+  "nodes": 144
+ },
+ "physiciansched5-3": {
+  "nodes": 25885
+ },
+ "physiciansched6-1": {
+  "nodes": 401
+ },
+ "physiciansched6-2": {
+  "nodes": 644
+ },
+ "piperout-d20": {
+  "nodes": 82
+ },
+ "piperout-d27": {
+  "nodes": 30
+ },
+ "proteindesign121hz512p9": {
+  "nodes": 1704
+ },
+ "proteindesign121pgb11p9": {
+  "nodes": 20
+ },
+ "proteindesign122trx11p8": {
+  "nodes": 802
+ },
+ "radiationm40-10-02": {
+  "nodes": 1412
+ },
+ "rail01": {
+  "nodes": 80
+ },
+ "rd-rplusc-21": {
+  "nodes": 34
+ },
+ "reblock420": {
+  "nodes": 10
+ },
+ "rmine11": {
+  "nodes": 8926
+ },
+ "rmine13": {
+  "nodes": 945
+ },
+ "rmine15": {
+  "nodes": 1248
+ },
+ "rocII-10-11": {
+  "nodes": 29
+ },
+ "rocII-5-11": {
+  "nodes": 66
+ },
+ "rocII-8-11": {
+  "nodes": 60
+ },
+ "rvb-sub": {
+  "nodes": 332
+ },
+ "s100": {
+  "nodes": 176
+ },
+ "s250r10": {
+  "nodes": 185
+ },
+ "satellites2-25": {
+  "nodes": 51
+ },
+ "satellites2-40": {
+  "nodes": 106
+ },
+ "satellites2-60-fs": {
+  "nodes": 74
+ },
+ "satellites3-25": {
+  "nodes": 11
+ },
+ "satellites4-25": {
+  "nodes": 17
+ },
+ "sct32": {
+  "nodes": 1157
+ },
+ "sct5": {
+  "nodes": 11715
+ },
+ "seqsolve1": {
+  "nodes": 4867
+ },
+ "seqsolve2short4288": {
+  "nodes": 10261
+ },
+ "seqsolve3short4288excess384": {
+  "nodes": 178
+ },
+ "shipsched": {
+  "nodes": 94
+ },
+ "shs1014": {
+  "nodes": 792
+ },
+ "shs1023": {
+  "nodes": 751
+ },
+ "shs1042": {
+  "nodes": 230
+ },
+ "sing326": {
+  "nodes": 16486
+ },
+ "sing44": {
+  "nodes": 159678
+ },
+ "sp97ar": {
+  "nodes": 176508
+ },
+ "sp98ar": {
+  "nodes": 395721
+ },
+ "splice1k1": {
+  "nodes": 1096
+ },
+ "square23": {
+  "nodes": 14
+ },
+ "square31": {
+  "nodes": 77
+ },
+ "square37": {
+  "nodes": 51
+ },
+ "square41": {
+  "nodes": 24
+ },
+ "square47": {
+  "nodes": 30
+ },
+ "stockholm": {
+  "nodes": 27
+ },
+ "supportcase23": {
+  "nodes": 306
+ },
+ "supportcase33": {
+  "nodes": 62
+ },
+ "supportcase37": {
+  "nodes": 1228
+ },
+ "supportcase39": {
+  "nodes": 260
+ },
+ "supportcase41": {
+  "nodes": 102
+ },
+ "supportcase6": {
+  "nodes": 609
+ },
+ "supportcase7": {
+  "nodes": 18
+ },
+ "t1717": {
+  "nodes": 27529
+ },
+ "t1722": {
+  "nodes": 11695
+ },
+ "tbfp-network": {
+  "nodes": 206
+ },
+ "thor50dday": {
+  "nodes": 2038
+ },
+ "triptim1": {
+  "nodes": 118
+ },
+ "triptim2": {
+  "nodes": 78
+ },
+ "triptim4": {
+  "nodes": 51
+ },
+ "triptim7": {
+  "nodes": 60
+ },
+ "triptim8": {
+  "nodes": 110
+ },
+ "uccase7": {
+  "nodes": 127633
+ },
+ "uccase8": {
+  "nodes": 516591
+ },
+ "uccase9": {
+  "nodes": 55992
+ },
+ "unitcal_7": {
+  "nodes": 73
+ },
+ "vpphard": {
+  "nodes": 2730
+ },
+ "vpphard2": {
+  "nodes": 5117
+ }
+}

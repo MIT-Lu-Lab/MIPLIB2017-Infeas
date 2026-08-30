@@ -14,6 +14,7 @@
     "bounds_dropped": 51,
     "rows_dropped": 4,
     "natural_unbounded": false,
+    "rounds": 171,
     "drops_head": [
      {
       "kind": "bound",
@@ -103,6 +104,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 165,
     "drops_head": [
      {
       "kind": "bound",
@@ -132,6 +134,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 438,
     "drops_head": [
      {
       "kind": "bound",
@@ -173,6 +176,7 @@
     "bounds_dropped": 5,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 847,
     "drops_head": [
      {
       "kind": "bound",
@@ -225,6 +229,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 138,
     "drops_head": [
      {
       "kind": "bound",
@@ -266,6 +271,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 3,
     "natural_unbounded": false,
+    "rounds": 101,
     "drops_head": [
      {
       "kind": "row",
@@ -316,6 +322,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 110,
     "drops_head": [
      {
       "kind": "row",
@@ -367,6 +374,7 @@
     "bounds_dropped": 17,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 29,
     "drops_head": [
      {
       "kind": "row",
@@ -455,6 +463,7 @@
     "bounds_dropped": 12,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 21,
     "drops_head": [
      {
       "kind": "row",
@@ -543,6 +552,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 271,
     "drops_head": [
      {
       "kind": "row",
@@ -577,6 +587,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 454,
     "drops_head": [
      {
       "kind": "bound",
@@ -611,6 +622,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 337,
     "drops_head": [
      {
       "kind": "row",
@@ -662,6 +674,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 595,
     "drops_head": [
      {
       "kind": "bound",
@@ -696,6 +709,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 111,
     "drops_head": [
      {
       "kind": "row",
@@ -730,6 +744,7 @@
     "bounds_dropped": 5,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 104,
     "drops_head": [
      {
       "kind": "bound",
@@ -777,6 +792,7 @@
     "bounds_dropped": 261,
     "rows_dropped": 126,
     "natural_unbounded": false,
+    "rounds": 538,
     "drops_head": [
      {
       "kind": "bound",
@@ -863,6 +879,7 @@
     "bounds_dropped": 9,
     "rows_dropped": 3,
     "natural_unbounded": false,
+    "rounds": 576,
     "drops_head": [
      {
       "kind": "bound",
@@ -949,6 +966,7 @@
     "bounds_dropped": 8,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 259,
     "drops_head": [
      {
       "kind": "bound",
@@ -1024,6 +1042,7 @@
     "bounds_dropped": 6,
     "rows_dropped": 3,
     "natural_unbounded": false,
+    "rounds": 513,
     "drops_head": [
      {
       "kind": "bound",
@@ -1092,6 +1111,7 @@
     "bounds_dropped": 7,
     "rows_dropped": 3,
     "natural_unbounded": false,
+    "rounds": 359,
     "drops_head": [
      {
       "kind": "bound",
@@ -1166,6 +1186,7 @@
     "bounds_dropped": 78,
     "rows_dropped": 23,
     "natural_unbounded": false,
+    "rounds": 151,
     "drops_head": [
      {
       "kind": "bound",
@@ -1255,6 +1276,7 @@
     "bounds_dropped": 54,
     "rows_dropped": 20,
     "natural_unbounded": false,
+    "rounds": 105,
     "drops_head": [
      {
       "kind": "bound",
@@ -1343,6 +1365,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 244,
     "drops_head": [
      {
       "kind": "bound",
@@ -1383,6 +1406,7 @@
     "bounds_dropped": 53,
     "rows_dropped": 14,
     "natural_unbounded": false,
+    "rounds": 175,
     "drops_head": [
      {
       "kind": "bound",
@@ -1470,6 +1494,7 @@
     "bounds_dropped": 201,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 517,
     "drops_head": [
      {
       "kind": "bound",
@@ -1559,6 +1584,7 @@
     "bounds_dropped": 1,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 1,
     "drops_head": [
      {
       "kind": "bound",
@@ -1582,6 +1608,7 @@
     "bounds_dropped": 1,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 4,
     "drops_head": [
      {
       "kind": "bound",
@@ -1605,6 +1632,7 @@
     "bounds_dropped": 368,
     "rows_dropped": 135,
     "natural_unbounded": false,
+    "rounds": 503,
     "drops_head": [
      {
       "kind": "row",
@@ -1688,6 +1716,7 @@
     "bounds_dropped": 372,
     "rows_dropped": 188,
     "natural_unbounded": false,
+    "rounds": 565,
     "drops_head": [
      {
       "kind": "bound",
@@ -1770,6 +1799,7 @@
     "bounds_dropped": 384,
     "rows_dropped": 135,
     "natural_unbounded": false,
+    "rounds": 692,
     "drops_head": [
      {
       "kind": "bound",
@@ -1855,6 +1885,7 @@
     "bounds_dropped": 63,
     "rows_dropped": 37,
     "natural_unbounded": false,
+    "rounds": 248,
     "drops_head": [
      {
       "kind": "row",
@@ -1940,6 +1971,7 @@
     "bounds_dropped": 31,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 56,
     "drops_head": [
      {
       "kind": "bound",
@@ -2029,6 +2061,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 123,
     "drops_head": [
      {
       "kind": "bound",
@@ -2070,6 +2103,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 58,
     "drops_head": [
      {
       "kind": "bound",
@@ -2111,6 +2145,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 729,
     "drops_head": [
      {
       "kind": "bound",
@@ -2146,6 +2181,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 3,
     "natural_unbounded": false,
+    "rounds": 149,
     "drops_head": [
      {
       "kind": "bound",
@@ -2196,6 +2232,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 795,
     "drops_head": [
      {
       "kind": "bound",
@@ -2247,6 +2284,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 115,
     "drops_head": [
      {
       "kind": "bound",
@@ -2276,6 +2314,7 @@
     "bounds_dropped": 219,
     "rows_dropped": 204,
     "natural_unbounded": false,
+    "rounds": 432,
     "drops_head": [
      {
       "kind": "row",
@@ -2359,6 +2398,7 @@
     "bounds_dropped": 11,
     "rows_dropped": 4,
     "natural_unbounded": false,
+    "rounds": 240,
     "drops_head": [
      {
       "kind": "bound",
@@ -2445,6 +2485,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 53,
     "drops_head": [
      {
       "kind": "bound",
@@ -2474,6 +2515,7 @@
     "bounds_dropped": 218,
     "rows_dropped": 9,
     "natural_unbounded": false,
+    "rounds": 227,
     "drops_head": [
      {
       "kind": "row",
@@ -2558,6 +2600,7 @@
     "bounds_dropped": 0,
     "rows_dropped": 0,
     "natural_unbounded": true,
+    "rounds": 0,
     "drops_head": []
    }
   },
@@ -2574,6 +2617,7 @@
     "bounds_dropped": 0,
     "rows_dropped": 0,
     "natural_unbounded": true,
+    "rounds": 0,
     "drops_head": []
    }
   },
@@ -2590,6 +2634,7 @@
     "bounds_dropped": 62,
     "rows_dropped": 35,
     "natural_unbounded": false,
+    "rounds": 150,
     "drops_head": [
      {
       "kind": "row",
@@ -2672,6 +2717,7 @@
     "bounds_dropped": 24,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 26,
     "drops_head": [
      {
       "kind": "bound",
@@ -2759,6 +2805,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 445,
     "drops_head": [
      {
       "kind": "bound",
@@ -2800,6 +2847,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 228,
     "drops_head": [
      {
       "kind": "bound",
@@ -2846,6 +2894,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 172,
     "drops_head": [
      {
       "kind": "bound",
@@ -2886,6 +2935,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 523,
     "drops_head": [
      {
       "kind": "bound",
@@ -2932,6 +2982,7 @@
     "bounds_dropped": 218,
     "rows_dropped": 55,
     "natural_unbounded": false,
+    "rounds": 273,
     "drops_head": [
      {
       "kind": "row",
@@ -3017,6 +3068,7 @@
     "bounds_dropped": 8,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 80,
     "drops_head": [
      {
       "kind": "bound",
@@ -3082,6 +3134,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 235,
     "drops_head": [
      {
       "kind": "row",
@@ -3121,6 +3174,7 @@
     "bounds_dropped": 245,
     "rows_dropped": 106,
     "natural_unbounded": false,
+    "rounds": 351,
     "drops_head": [
      {
       "kind": "bound",
@@ -3207,6 +3261,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 6,
     "drops_head": [
      {
       "kind": "bound",
@@ -3248,6 +3303,7 @@
     "bounds_dropped": 143,
     "rows_dropped": 8,
     "natural_unbounded": false,
+    "rounds": 151,
     "drops_head": [
      {
       "kind": "bound",
@@ -3337,6 +3393,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 54,
     "drops_head": [
      {
       "kind": "bound",
@@ -3372,6 +3429,7 @@
     "bounds_dropped": 767,
     "rows_dropped": 165,
     "natural_unbounded": false,
+    "rounds": 935,
     "drops_head": [
      {
       "kind": "row",
@@ -3450,6 +3508,7 @@
     "bounds_dropped": 229,
     "rows_dropped": 165,
     "natural_unbounded": false,
+    "rounds": 394,
     "drops_head": [
      {
       "kind": "row",
@@ -3534,6 +3593,7 @@
     "bounds_dropped": 213,
     "rows_dropped": 220,
     "natural_unbounded": false,
+    "rounds": 433,
     "drops_head": [
      {
       "kind": "row",
@@ -3615,6 +3675,7 @@
     "bounds_dropped": 172,
     "rows_dropped": 328,
     "natural_unbounded": false,
+    "rounds": 502,
     "drops_head": [
      {
       "kind": "row",
@@ -3693,6 +3754,7 @@
     "bounds_dropped": 303,
     "rows_dropped": 451,
     "natural_unbounded": false,
+    "rounds": 756,
     "drops_head": [
      {
       "kind": "row",
@@ -3776,6 +3838,7 @@
     "bounds_dropped": 273,
     "rows_dropped": 434,
     "natural_unbounded": false,
+    "rounds": 708,
     "drops_head": [
      {
       "kind": "row",
@@ -3853,6 +3916,7 @@
     "bounds_dropped": 277,
     "rows_dropped": 437,
     "natural_unbounded": false,
+    "rounds": 715,
     "drops_head": [
      {
       "kind": "row",
@@ -3936,6 +4000,7 @@
     "bounds_dropped": 203,
     "rows_dropped": 43,
     "natural_unbounded": false,
+    "rounds": 246,
     "drops_head": [
      {
       "kind": "bound",
@@ -4023,6 +4088,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 284,
     "drops_head": [
      {
       "kind": "bound",
@@ -4052,6 +4118,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 52,
     "drops_head": [
      {
       "kind": "bound",
@@ -4097,6 +4164,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 3,
     "natural_unbounded": false,
+    "rounds": 228,
     "drops_head": [
      {
       "kind": "bound",
@@ -4141,6 +4209,7 @@
     "bounds_dropped": 242,
     "rows_dropped": 66,
     "natural_unbounded": false,
+    "rounds": 309,
     "drops_head": [
      {
       "kind": "bound",
@@ -4229,6 +4298,7 @@
     "bounds_dropped": 3,
     "rows_dropped": 4,
     "natural_unbounded": false,
+    "rounds": 298,
     "drops_head": [
      {
       "kind": "bound",
@@ -4284,6 +4354,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 134,
     "drops_head": [
      {
       "kind": "bound",
@@ -4330,6 +4401,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 38,
     "drops_head": [
      {
       "kind": "bound",
@@ -4359,6 +4431,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 242,
     "drops_head": [
      {
       "kind": "bound",
@@ -4400,6 +4473,7 @@
     "bounds_dropped": 6,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 865,
     "drops_head": [
      {
       "kind": "bound",
@@ -4453,6 +4527,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 262,
     "drops_head": [
      {
       "kind": "bound",
@@ -4494,6 +4569,7 @@
     "bounds_dropped": 7,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 253,
     "drops_head": [
      {
       "kind": "bound",
@@ -4553,6 +4629,7 @@
     "bounds_dropped": 6,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 376,
     "drops_head": [
      {
       "kind": "bound",
@@ -4606,6 +4683,7 @@
     "bounds_dropped": 16,
     "rows_dropped": 9,
     "natural_unbounded": false,
+    "rounds": 40,
     "drops_head": [
      {
       "kind": "row",
@@ -4689,6 +4767,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 2,
     "drops_head": [
      {
       "kind": "bound",
@@ -4718,6 +4797,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 7,
     "drops_head": [
      {
       "kind": "bound",
@@ -4759,6 +4839,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 6,
     "drops_head": [
      {
       "kind": "bound",
@@ -4788,6 +4869,7 @@
     "bounds_dropped": 177,
     "rows_dropped": 111,
     "natural_unbounded": false,
+    "rounds": 288,
     "drops_head": [
      {
       "kind": "row",
@@ -4871,6 +4953,7 @@
     "bounds_dropped": 6,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 85,
     "drops_head": [
      {
       "kind": "bound",
@@ -4924,6 +5007,7 @@
     "bounds_dropped": 6,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 72,
     "drops_head": [
      {
       "kind": "bound",
@@ -4977,6 +5061,7 @@
     "bounds_dropped": 5,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 74,
     "drops_head": [
      {
       "kind": "bound",
@@ -5029,6 +5114,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 8,
     "natural_unbounded": false,
+    "rounds": 132,
     "drops_head": [
      {
       "kind": "bound",
@@ -5110,6 +5196,7 @@
     "bounds_dropped": 18,
     "rows_dropped": 17,
     "natural_unbounded": false,
+    "rounds": 122,
     "drops_head": [
      {
       "kind": "bound",
@@ -5194,6 +5281,7 @@
     "bounds_dropped": 121,
     "rows_dropped": 54,
     "natural_unbounded": false,
+    "rounds": 185,
     "drops_head": [
      {
       "kind": "bound",
@@ -5280,6 +5368,7 @@
     "bounds_dropped": 393,
     "rows_dropped": 140,
     "natural_unbounded": false,
+    "rounds": 534,
     "drops_head": [
      {
       "kind": "row",
@@ -5362,6 +5451,7 @@
     "bounds_dropped": 73,
     "rows_dropped": 54,
     "natural_unbounded": false,
+    "rounds": 184,
     "drops_head": [
      {
       "kind": "bound",
@@ -5440,6 +5530,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 25,
     "drops_head": [
      {
       "kind": "bound",
@@ -5481,6 +5572,7 @@
     "bounds_dropped": 6,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 189,
     "drops_head": [
      {
       "kind": "bound",
@@ -5534,6 +5626,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 104,
     "drops_head": [
      {
       "kind": "bound",
@@ -5575,6 +5668,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 1,
     "natural_unbounded": false,
+    "rounds": 135,
     "drops_head": [
      {
       "kind": "bound",
@@ -5621,6 +5715,7 @@
     "bounds_dropped": 4,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 143,
     "drops_head": [
      {
       "kind": "bound",
@@ -5662,6 +5757,7 @@
     "bounds_dropped": 5,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 323,
     "drops_head": [
      {
       "kind": "bound",
@@ -5709,6 +5805,7 @@
     "bounds_dropped": 18,
     "rows_dropped": 8,
     "natural_unbounded": false,
+    "rounds": 70,
     "drops_head": [
      {
       "kind": "bound",
@@ -5796,6 +5893,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 5,
     "drops_head": [
      {
       "kind": "bound",
@@ -5825,6 +5923,7 @@
     "bounds_dropped": 167,
     "rows_dropped": 69,
     "natural_unbounded": false,
+    "rounds": 236,
     "drops_head": [
      {
       "kind": "bound",
@@ -5908,6 +6007,7 @@
     "bounds_dropped": 2,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 11,
     "drops_head": [
      {
       "kind": "bound",
@@ -5937,6 +6037,7 @@
     "bounds_dropped": 5,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 251,
     "drops_head": [
      {
       "kind": "bound",
@@ -5984,6 +6085,7 @@
     "bounds_dropped": 93,
     "rows_dropped": 39,
     "natural_unbounded": false,
+    "rounds": 132,
     "drops_head": [
      {
       "kind": "row",
@@ -6066,6 +6168,7 @@
     "bounds_dropped": 8,
     "rows_dropped": 2,
     "natural_unbounded": false,
+    "rounds": 975,
     "drops_head": [
      {
       "kind": "row",
@@ -6141,6 +6244,7 @@
     "bounds_dropped": 7,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 157,
     "drops_head": [
      {
       "kind": "bound",
@@ -6200,6 +6304,7 @@
     "bounds_dropped": 5,
     "rows_dropped": 0,
     "natural_unbounded": false,
+    "rounds": 7,
     "drops_head": [
      {
       "kind": "bound",

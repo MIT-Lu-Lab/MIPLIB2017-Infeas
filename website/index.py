@@ -171,6 +171,7 @@ def to_record(sample: Sample) -> dict[str, object]:
             "bounds_dropped": provenance.bounds_dropped,
             "rows_dropped": provenance.rows_dropped,
             "natural_unbounded": provenance.natural_unbounded,
+            "rounds": provenance.rounds,
             "drops_head": provenance.drops_head,
         }
     return {
@@ -252,7 +253,7 @@ def from_record(record: object) -> Sample:
         else:
             _exact_keys(
                 provenance_obj,
-                {"bounds_dropped", "rows_dropped", "natural_unbounded", "drops_head"},
+                {"bounds_dropped", "rows_dropped", "natural_unbounded", "rounds", "drops_head"},
                 where,
             )
             drops = tuple(
@@ -268,6 +269,11 @@ def from_record(record: object) -> Sample:
                 rows_dropped=_integer(provenance_obj["rows_dropped"], f"{where}.rows_dropped"),
                 natural_unbounded=_boolean(
                     provenance_obj["natural_unbounded"], f"{where}.natural_unbounded"
+                ),
+                rounds=(
+                    None
+                    if provenance_obj["rounds"] is None
+                    else _integer(provenance_obj["rounds"], f"{where}.rounds")
                 ),
                 drops_head=drops,
             )
@@ -312,8 +318,20 @@ def with_source_metadata(sample: Sample, miplib: object | None) -> Sample:
     )
 
 
+def with_search_metadata(sample: Sample, entry: object | None) -> Sample:
+    """Attach the node count of the run that produced a primal file."""
+
+    if entry is None:
+        return sample
+    context = f"search metadata for {sample.instance!r}"
+    values = _mapping(entry, context)
+    return replace(sample, search_nodes=_integer(values["nodes"], f"{context}.nodes", minimum=1))
+
+
 def load_collection(
-    index_path: Path | str, miplib_path: Path | str | None = None
+    index_path: Path | str,
+    miplib_path: Path | str | None = None,
+    search_path: Path | str | None = None,
 ) -> tuple[Sample, ...]:
     """Load, validate, de-duplicate, and deterministically order a site index."""
 
@@ -341,6 +359,12 @@ def load_collection(
         if not metadata_path.exists():
             raise SiteIndexError(f"{metadata_path}: metadata cache does not exist")
         miplib = _mapping(read_json(metadata_path, error_type=SiteIndexError), str(metadata_path))
+    search: Mapping[str, object] = {}
+    if search_path is not None:
+        search_file = Path(search_path)
+        if not search_file.exists():
+            raise SiteIndexError(f"{search_file}: search metadata does not exist")
+        search = _mapping(read_json(search_file, error_type=SiteIndexError), str(search_file))
     samples: list[Sample] = []
     keys: set[tuple[Subset, str]] = set()
     page_paths: set[str] = set()
@@ -349,6 +373,8 @@ def load_collection(
             sample = from_record(raw_record)
             source = miplib.get(sample.instance)
             sample = with_source_metadata(sample, source)
+            if sample.subset == "primal":
+                sample = with_search_metadata(sample, search.get(sample.instance))
             key = (sample.subset, sample.instance)
             if key in keys:
                 raise SiteIndexError(f"duplicate sample {sample.subset}/{sample.instance}")

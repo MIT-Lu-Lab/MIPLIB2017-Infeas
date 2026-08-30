@@ -9,3 +9,8 @@ website/_out/
 
 # a checkout of the published files, for regenerating the site index
 dataset/
+
+# the miners' run logs. They are an input to scripts/build_search_meta.py and
+# never an artefact of this repository: what the site states out of them is
+# committed as metadata/search_meta.json.
+run_log*.csv
