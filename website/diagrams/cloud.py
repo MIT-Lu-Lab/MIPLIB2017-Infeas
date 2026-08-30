@@ -24,10 +24,14 @@ LIMITS = (18.0, 4.0e7)
 # The plot is square in user units: a decade is the same distance either way,
 # whatever width the page gives the drawing. The padding holds the tick labels.
 PLOT = 1000.0
+
+# The locator is drawn into an aside 292 pixels wide, where a thousand-unit
+# plot leaves the tick labels under six pixels tall. Type does not shrink with
+# the drawing: it is set in user units, so a smaller plot is a larger label.
+# The padding does not scale with it, because the padding exists to hold that
+# same unscaled text.
+LOCATOR_PLOT = 480.0
 PAD_LEFT, PAD_RIGHT, PAD_TOP, PAD_BOTTOM = 108.0, 18.0, 18.0, 84.0
-WIDTH = PAD_LEFT + PLOT + PAD_RIGHT
-HEIGHT = PAD_TOP + PLOT + PAD_BOTTOM
-RIGHT, BOTTOM = PAD_LEFT + PLOT, PAD_TOP + PLOT
 
 # Decade gridlines, the ones that fall inside LIMITS.
 DECADES = tuple(10**e for e in range(2, 8))
@@ -52,7 +56,13 @@ def _clamp(value: float, low: float, high: float) -> float:
     return min(max(value, low), high)
 
 
-def position(n_vars: int | float, n_cons: int | float) -> tuple[float, float]:
+def size(plot: float) -> tuple[float, float]:
+    """The viewBox a plot of this side needs, padding included."""
+
+    return PAD_LEFT + plot + PAD_RIGHT, PAD_TOP + plot + PAD_BOTTOM
+
+
+def position(n_vars: int | float, n_cons: int | float, plot: float = PLOT) -> tuple[float, float]:
     """Where an instance of this shape sits, in user units.
 
     Clamped to the frame. Nothing published falls outside LIMITS, but a drawing
@@ -62,9 +72,10 @@ def position(n_vars: int | float, n_cons: int | float) -> tuple[float, float]:
 
     lo, hi = (math.log10(limit) for limit in LIMITS)
     span = hi - lo
-    x = PAD_LEFT + (math.log10(n_vars) - lo) / span * PLOT
-    y = BOTTOM - (math.log10(n_cons) - lo) / span * PLOT
-    return _clamp(x, PAD_LEFT, RIGHT), _clamp(y, PAD_TOP, BOTTOM)
+    right, bottom = PAD_LEFT + plot, PAD_TOP + plot
+    x = PAD_LEFT + (math.log10(n_vars) - lo) / span * plot
+    y = bottom - (math.log10(n_cons) - lo) / span * plot
+    return _clamp(x, PAD_LEFT, right), _clamp(y, PAD_TOP, bottom)
 
 
 def radius(nnz: int) -> float:
@@ -73,17 +84,19 @@ def radius(nnz: int) -> float:
     return max(R_MIN, R_BASE + R_PER_DECADE * (math.log10(nnz) - NZ_REF))
 
 
-def _frame() -> str:
+def _frame(plot: float) -> str:
     """The box, its decade grid and the axis labels, under everything else."""
 
-    parts = [el("rect", class_="frame", x=PAD_LEFT, y=PAD_TOP, width=PLOT, height=PLOT)]
+    _, height = size(plot)
+    right, bottom = PAD_LEFT + plot, PAD_TOP + plot
+    parts = [el("rect", class_="frame", x=PAD_LEFT, y=PAD_TOP, width=plot, height=plot)]
     for decade in DECADES:
-        x, y = position(decade, decade)
+        x, y = position(decade, decade, plot)
         exponent = int(math.log10(decade))
         parts += [
-            el("line", class_="grid", x1=x, y1=PAD_TOP, x2=x, y2=BOTTOM),
-            el("line", class_="grid", x1=PAD_LEFT, y1=y, x2=RIGHT, y2=y),
-            group("text", power_of_ten(exponent), class_="tick x", x=x, y=BOTTOM + TICK_DROP),
+            el("line", class_="grid", x1=x, y1=PAD_TOP, x2=x, y2=bottom),
+            el("line", class_="grid", x1=PAD_LEFT, y1=y, x2=right, y2=y),
+            group("text", power_of_ten(exponent), class_="tick x", x=x, y=bottom + TICK_DROP),
             group(
                 "text",
                 power_of_ten(exponent),
@@ -93,12 +106,12 @@ def _frame() -> str:
             ),
         ]
     parts += [
-        el("text", "# variables", class_="axis-label x", x=PAD_LEFT + PLOT / 2, y=HEIGHT - 8),
+        el("text", "# variables", class_="axis-label x", x=PAD_LEFT + plot / 2, y=height - 8),
         el(
             "text",
             "# constraints",
             class_="axis-label y",
-            x=-(PAD_TOP + PLOT / 2),
+            x=-(PAD_TOP + plot / 2),
             y=30,
             transform="rotate(-90)",
         ),
@@ -147,8 +160,8 @@ def _legend(samples: Sequence[Sample]) -> str:
     return "".join(parts)
 
 
-def _dot(sample: Sample, page_rel: str, here: bool, linked: bool) -> str:
-    x, y = position(sample.n_vars, sample.n_cons)
+def _dot(sample: Sample, page_rel: str, here: bool, linked: bool, plot: float) -> str:
+    x, y = position(sample.n_vars, sample.n_cons, plot)
     tone = "p" if sample.subset == "primal" else "d"
     mark = el(
         "circle",
@@ -179,17 +192,19 @@ def cloud(
 ) -> str:
     """Every instance as a dot, optionally marking one and linking them all."""
 
+    plot = PLOT if linked else LOCATOR_PLOT
     ordered = [s for s in samples if s is not current]
     if current is not None:
         ordered.append(current)  # last, so the mark is not buried under the cloud
-    dots = "".join(_dot(sample, page_rel, sample is current, linked) for sample in ordered)
+    dots = "".join(_dot(sample, page_rel, sample is current, linked, plot) for sample in ordered)
     # A cloud nobody can click locates one instance rather than dividing the
     # collection again, so the stylesheet greys the rest of it out and the key
     # to the two colours would explain a distinction it is no longer making.
+    width, height = size(plot)
     return svg(
-        _frame() + dots + (_legend(samples) if linked else ""),
-        WIDTH,
-        HEIGHT,
+        _frame(plot) + dots + (_legend(samples) if linked else ""),
+        width,
+        height,
         class_="cloud" if linked else "cloud locator",
     )
 

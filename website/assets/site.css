@@ -186,6 +186,9 @@ main.narrow{--measure:none;--page:900px}
 .figure figcaption{font-size:13.5px;line-height:1.65;color:var(--muted)}
 .figure figcaption a{color:var(--view)}
 .cloud{width:100%;max-width:560px;height:auto;align-self:center;overflow:visible}
+/* the locator is an inset: let it fill the 292px aside, but not stretch to
+   the full width of a phone, where its labels would tower over the card */
+.cloud.locator{max-width:320px}
 .figure.inset{gap:8px}
 .figure.inset figcaption{font-size:12.5px}
 .cloud .frame{fill:none;stroke:var(--rule)}
