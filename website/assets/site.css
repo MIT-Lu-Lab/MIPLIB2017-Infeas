@@ -266,7 +266,7 @@ main.narrow{--measure:none;--page:900px}
 /* file cards */
 .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:18px}
 .file{padding:16px 18px;min-width:0}
-.file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--view);margin-bottom:9px;overflow-wrap:anywhere}
+.file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--ink);margin-bottom:9px;overflow-wrap:anywhere}
 .file p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.55}
 
 .cite{
