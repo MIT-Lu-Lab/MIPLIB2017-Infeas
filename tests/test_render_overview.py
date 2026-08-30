@@ -6,7 +6,6 @@ from jinja2 import UndefinedError
 from tests.htmlq import page
 from website import render as V
 from website.content import NAME
-from website.domain import collection_totals
 from website.index import load_collection
 from website.render.shell import page as render_page
 
@@ -96,7 +95,7 @@ def test_templates_fail_when_required_context_is_missing():
 
 def test_overview_reports_real_counts_and_ranges(index):
     samples = load_collection(index)
-    html = V.render_overview(collection_totals(samples))
+    html = V.render_overview(samples)
     text = " ".join(html.split())  # the prose wraps, so normalise whitespace
     assert "3 linear programs" in text  # total
     assert "2 have no feasible point; 1 is unbounded" in text
@@ -105,7 +104,7 @@ def test_overview_reports_real_counts_and_ranges(index):
 
 def test_overview_uses_the_public_instance_vocabulary(index):
     samples = load_collection(index)
-    html = V.render_overview(collection_totals(samples))
+    html = V.render_overview(samples)
     low = html.lower()
     # published items are called instances, the word this field uses; "sample" was the
     # mining pipeline's internal vocabulary and must not reach the page
@@ -115,7 +114,7 @@ def test_overview_uses_the_public_instance_vocabulary(index):
 
 def test_overview_names_the_maintainers_and_authors(index):
     samples = load_collection(index)
-    html = V.render_overview(collection_totals(samples))
+    html = V.render_overview(samples)
     assert "Bo Tang" in html and "Haihao Lu" in html
     assert "MIT-Lu-Lab/MIPLIB2017-Infeas/issues" in html
     assert "author" in html  # the citation must be attributable
@@ -124,7 +123,7 @@ def test_overview_names_the_maintainers_and_authors(index):
 def test_overview_says_the_files_are_pure_lps(index):
     """Whether integrality survived decides which claims about these files hold."""
     samples = load_collection(index)
-    text = " ".join(V.render_overview(collection_totals(samples)).split())
+    text = " ".join(V.render_overview(samples).split())
     assert "integrality dropped" in text
 
 
@@ -138,28 +137,32 @@ def test_the_wordmark_is_the_collection_name(shell):
 def test_the_citation_title_leads_with_the_collection_name(index):
     """The name a reader sees and the name they would cite are one string."""
     samples = load_collection(index)
-    citation = re.search(
-        r'<div class="cite">(.*?)</div>', V.render_overview(collection_totals(samples)), re.S
-    ).group(1)
+    citation = re.search(r'<div class="cite">(.*?)</div>', V.render_overview(samples), re.S).group(
+        1
+    )
     assert f"title{'&nbsp;' * 8}= {{{NAME}:" in citation
 
 
-def test_overview_ships_the_figure_for_both_media(index):
-    """One figure per medium, each with the same description.
+def test_the_overview_can_show_one_half_of_the_cloud(index):
+    """Three radios and a stylesheet, so the figure filters with no script.
+    The inputs have to be siblings of the drawing for the rules to reach it."""
+    from website import assets as A
 
-    A reader who cannot see either one gets the alt text, and a reader printing
-    the page gets the light figure rather than a black rectangle.
-    """
+    figure = page(V.render_overview(load_collection(index))).one("figure.figure")
+    ids = [node.get("id") for node in figure.all("input")]
+    assert ids == ["cloud-both", "cloud-p", "cloud-d"]
+    assert figure.all("input")[0].has("checked"), "the whole cloud is the default"
+    assert [label.get("for") for label in figure.all("label")] == ids
+    for rule in ("#cloud-p:checked ~ .cloud a .d", "#cloud-d:checked ~ .cloud a .p"):
+        assert rule in A.SITE_CSS
+
+
+def test_the_overview_cloud_links_every_instance(index):
+    """The figure is the collection, so every dot in it is a way in."""
     samples = load_collection(index)
-    html = V.render_overview(collection_totals(samples))
-    root = page(html).one("figure.figure")
-    images = root.all("img")
-    assert [image.get("class") for image in images] == ["on-screen", "on-paper"]
-    assert [image.get("src") for image in images] == [
-        "figures/size-scatter.svg",
-        "figures/size-scatter-print.svg",
-    ]
-    assert all(image.get("alt") for image in images)
+    root = page(V.render_overview(samples)).one("figure.figure")
+    links = [link.get("href") for link in root.all("a")]
+    assert links == [sample.page_path for sample in samples]
     assert root.one("figcaption").text
 
 
@@ -170,7 +173,7 @@ def test_overview_carries_a_machine_readable_dataset_description(index):
     import json
 
     html = V.render_overview(
-        collection_totals(load_collection(index)),
+        load_collection(index),
         site_url="https://example.invalid/mi/",
         release_base_url="https://e.invalid/dl",
     )
@@ -202,16 +205,14 @@ def test_the_dataset_description_points_at_the_notice_absolutely(index):
     samples = load_collection(index)
 
     doc = json.loads(
-        re.search(
-            r'ld\+json">(.*?)</script>', V.render_overview(collection_totals(samples)), re.S
-        ).group(1)
+        re.search(r'ld\+json">(.*?)</script>', V.render_overview(samples), re.S).group(1)
     )
     assert "usageInfo" not in doc
 
     doc = json.loads(
         re.search(
             r'ld\+json">(.*?)</script>',
-            V.render_overview(collection_totals(samples), site_url="https://example.invalid/mi/"),
+            V.render_overview(samples, site_url="https://example.invalid/mi/"),
             re.S,
         ).group(1)
     )
@@ -222,7 +223,7 @@ def test_the_dataset_description_points_at_the_notice_absolutely(index):
 def test_the_dataset_description_omits_downloads_it_does_not_have(index):
     import json
 
-    html = V.render_overview(collection_totals(load_collection(index)))
+    html = V.render_overview(load_collection(index))
     doc = json.loads(re.search(r'ld\+json">(.*?)</script>', html, re.S).group(1))
     assert "distribution" not in doc
     assert "url" not in doc

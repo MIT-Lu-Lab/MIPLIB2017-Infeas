@@ -12,11 +12,18 @@
   and {{ max_cons }} constraints.</p>
 </div>
 <figure class="figure">
-  <img class="on-screen" src="{{ figure_screen }}" alt="{{ figure_alt }}"
-    width="320" height="315" decoding="async">
-  <img class="on-paper" src="{{ figure_print }}" alt="{{ figure_alt }}"
-    width="320" height="315" decoding="async">
-  <figcaption>{{ figure_caption }}</figcaption>
+  {#- the inputs are siblings of the drawing because that is what lets the
+      stylesheet hide half of it; no script is involved -#}
+  <input class="sr-only" type="radio" name="cloud-view" id="cloud-both" checked>
+  <input class="sr-only" type="radio" name="cloud-view" id="cloud-p">
+  <input class="sr-only" type="radio" name="cloud-view" id="cloud-d">
+  <div class="cloud-filter">
+    <label for="cloud-both">Both</label>
+    <label for="cloud-p">Infeasible</label>
+    <label for="cloud-d">Unbounded</label>
+  </div>
+  {{ cloud }}
+  <figcaption>{{ figure_caption }} Every dot is a link to its instance.</figcaption>
 </figure>
 <div class="pair">
   {% for card in cards %}<a class="subset {{ card.tone }}" href="{{ card.slug }}/">

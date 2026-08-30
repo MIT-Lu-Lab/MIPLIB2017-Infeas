@@ -178,19 +178,76 @@ main.narrow{--measure:none;--page:900px}
 .section > h2{font-size:24px;margin-bottom:6px}
 .section > .eyebrow{margin-bottom:10px}
 
-/* The collection's portrait, in one file per medium: the screen gets the dark
-   figure the rest of the site is drawn in, paper gets the light one, for the
-   same reason the palette above keeps a light set for print. */
+/* The collection's portrait. It is markup, not an image, so it takes the
+   palette above and needs no second file for the printed page. */
 .figure{margin:0;display:flex;flex-direction:column;gap:12px}
 .masthead + .figure{margin-top:34px}
 .figure + .pair{margin-top:30px}
-.figure img{width:100%;max-width:560px;height:auto;align-self:center}
-.figure .on-paper{display:none}
 .figure figcaption{font-size:13.5px;line-height:1.65;color:var(--muted)}
-@media print{
-  .figure .on-screen{display:none}
-  .figure .on-paper{display:block}
+.figure figcaption a{color:var(--view)}
+.cloud{width:100%;max-width:560px;height:auto;align-self:center;overflow:visible}
+.figure.inset{gap:8px}
+.figure.inset figcaption{font-size:12.5px}
+.cloud .frame{fill:none;stroke:var(--rule)}
+.cloud .grid{stroke:var(--rule-soft)}
+.cloud .tick,.cloud .axis-label{fill:var(--muted);font-family:var(--f-mono)}
+.cloud .tick{font-size:26px}
+.cloud .tick.x{text-anchor:middle}
+.cloud .tick.y{text-anchor:end}
+.cloud .exp{font-size:19px}
+.cloud .axis-label{font-size:30px;text-anchor:middle}
+.cloud .p{fill:var(--primal)}
+.cloud .d{fill:var(--dual)}
+.cloud circle{opacity:.62;transition:opacity .12s}
+/* what catches the pointer is the stroke box, which costs no markup: a dot is
+   two or three pixels across and nobody can hit that */
+.cloud a circle{stroke:none;stroke-width:22;pointer-events:all}
+.cloud a:hover circle{opacity:1}
+.cloud .here{fill:var(--view);stroke:var(--paper);stroke-width:5;opacity:1}
+/* the locator says where one instance sits; the rest is context, not a
+   second telling of which half each one belongs to */
+.cloud.locator circle{fill:var(--muted);opacity:.3}
+.cloud.locator .here{fill:var(--view);opacity:1}
+.cloud .key{fill:var(--ink);font-family:var(--f-mono);font-size:28px}
+.cloud .key.dim{fill:var(--muted);font-size:24px}
+.cloud .key-dot{fill:var(--muted);opacity:.5}
+
+/* Showing one half of the cloud, with no script: the radios above the drawing
+   are what the selectors below reach back to. A hidden dot stops catching the
+   pointer too, so what is filtered out is not clickable either. */
+.cloud-filter{display:flex;gap:6px;align-self:center}
+.cloud-filter label{
+  font-family:var(--f-mono);font-size:12px;color:var(--muted);cursor:pointer;
+  padding:5px 11px;border:1px solid var(--rule);border-radius:99px;
+  transition:color .12s,border-color .12s,background .12s;
 }
+.cloud-filter label:hover{color:var(--ink)}
+#cloud-both:checked ~ .cloud-filter label[for="cloud-both"],
+#cloud-p:checked ~ .cloud-filter label[for="cloud-p"],
+#cloud-d:checked ~ .cloud-filter label[for="cloud-d"]{
+  color:var(--ink);border-color:var(--muted);background:var(--rule-soft);
+}
+#cloud-both:focus-visible ~ .cloud-filter label[for="cloud-both"],
+#cloud-p:focus-visible ~ .cloud-filter label[for="cloud-p"],
+#cloud-d:focus-visible ~ .cloud-filter label[for="cloud-d"]{
+  outline:2px solid var(--view);outline-offset:2px;
+}
+#cloud-p:checked ~ .cloud a .d,#cloud-p:checked ~ .cloud .key-d{display:none}
+#cloud-d:checked ~ .cloud a .p,#cloud-d:checked ~ .cloud .key-p{display:none}
+
+/* A drawing beside prose that states the same thing: it carries no labels a
+   reader would miss, and aria-hidden keeps it out of the reading order. */
+.drawing{margin:4px 0 16px}
+.prov{width:100%;max-width:420px;height:auto}
+.prov .spine,.prov .fork{fill:none;stroke:var(--rule);stroke-width:3}
+.prov .fork.here{stroke:var(--view)}
+.prov .node{fill:var(--rule)}
+.prov .lbl{fill:var(--ink);font-family:var(--f-mono);font-size:19px}
+.prov .lbl.here{fill:var(--view)}
+.prov .dim{fill:var(--muted);font-family:var(--f-mono);font-size:16px}
+.prov .dim.here{fill:var(--view)}
+.prov .node.here{fill:var(--view)}
+.prov .gone{fill:var(--view)}
 
 /* file cards */
 .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:18px}

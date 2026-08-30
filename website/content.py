@@ -63,17 +63,9 @@ PUBLIC_SITE_URL = "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/"
 SIDECAR_SCHEMA_PATH = "schema/sidecar/1.0.1/meta.schema.json"
 TAGLINE = "A benchmark of primal- and dual-infeasible linear programs"
 
-# The collection's own portrait, drawn by scripts/plot_size_scatter.py from the
-# same index the pages are built from, and committed. The site is dark, so the
-# screen figure is the dark one; the light one is what a printed page gets,
-# for the reason the stylesheet keeps a light palette for print.
-FIGURE_SCREEN = "figures/size-scatter.svg"
-FIGURE_PRINT = "figures/size-scatter-print.svg"
-FIGURE_ALT = (
-    "Scatter of every published instance, variables against constraints on "
-    "logarithmic axes, coloured by class, with mark area scaled by the "
-    "nonzero count."
-)
+# The collection's own portrait, drawn by website.diagrams from the same index
+# the pages are built from. It is markup rather than an image, so it carries no
+# file of its own and no alternative for print.
 FIGURE_CAPTION = (
     "Every published instance, on logarithmic axes, with mark area scaled by "
     "the nonzero count. Infeasible instances preserve the variable-to-constraint "

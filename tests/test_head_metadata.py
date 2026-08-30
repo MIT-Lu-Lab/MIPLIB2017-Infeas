@@ -31,7 +31,7 @@ def test_every_page_type_carries_a_description(index):
     totals = collection_totals(samples)
     sizes = subset_bytes(samples)
     pages = [
-        V.render_overview(totals),
+        V.render_overview(samples),
         V.render_browse("primal", samples),
         V.render_sample(samples[0], None),
         V.render_guide(130),
@@ -56,7 +56,7 @@ def test_a_description_fits_what_a_result_shows(index):
     sizes = subset_bytes(samples)
     longest = max(samples, key=lambda s: len(s.instance))
     pages = [
-        V.render_overview(totals),
+        V.render_overview(samples),
         V.render_browse("primal", samples),
         V.render_sample(longest, None),
         V.render_guide(130),
@@ -87,13 +87,12 @@ def test_the_card_a_shared_link_shows(index):
     """Slack, X and the rest draw og:image above the title. Without one, a link
     to a published dataset looks like a pasted URL."""
     samples = load_collection(index)
-    totals = collection_totals(samples)
 
-    head = _head(V.render_overview(totals))
+    head = _head(V.render_overview(samples))
     assert "og:image" not in head
     assert _meta(head, "twitter:card") == "summary"
 
-    head = _head(V.render_overview(totals, site_url="https://example.invalid/mi/"))
+    head = _head(V.render_overview(samples, site_url="https://example.invalid/mi/"))
     assert _meta(head, "og:image", attr="property") == "https://example.invalid/mi/og.png"
     width, height = A.OG_IMAGE_SIZE
     assert _meta(head, "og:image:width", attr="property") == str(width)

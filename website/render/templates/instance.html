@@ -29,6 +29,7 @@
         <p class="lede">A branch-and-bound run reached this node's parent and split on a
         variable. This instance is the side the search did not explore, and it has no
         feasible point.</p>
+        <div class="drawing" aria-hidden="true">{{ derivation }}</div>
         <div class="recipe">
           <span class="k">branch taken by the search</span><br>
           {{ details.branch.var }} {{ details.branch.taken_sense }} {{ details.branch.taken_value }}<br>
@@ -54,7 +55,8 @@
     {% elif provenance.natural_unbounded %}
     <div class="panel">
       <header><h2>Where it comes from</h2><span class="eyebrow">provenance</span></header>
-      <div class="body"><p class="lede">The source instance's LP relaxation is unbounded as given. Nothing was removed to produce this instance.</p></div>
+      <div class="body"><p class="lede">The source instance's LP relaxation is unbounded as given. Nothing was removed to produce this instance.</p>
+        <div class="drawing" aria-hidden="true">{{ derivation }}</div></div>
     </div>
     {% else %}
     <div class="panel">
@@ -63,6 +65,7 @@
         <p class="lede">The source instance's LP relaxation is feasible with a bounded
         optimum. Removing the elements below makes the objective unbounded, and putting
         any one of them back makes it bounded again.</p>
+        <div class="drawing" aria-hidden="true">{{ derivation }}</div>
         <dl class="kv">
           <dt>Bounds dropped</dt><dd>{{ details.bounds_dropped }}</dd>
           <dt>Rows dropped</dt><dd>{{ details.rows_dropped }}</dd>
@@ -85,7 +88,17 @@
     </a>
     {% endif %}
   </div>
-  <aside class="aside" aria-label="Downloads and source">
+  <aside class="aside" aria-label="Context, downloads and source">
+    <div class="card">
+      <header><h2 class="eyebrow">Where it sits</h2></header>
+      <div class="body">
+        <figure class="figure inset">
+          {{ cloud }}
+          <figcaption>Every published instance by size, this one marked.
+          <a href="{{ up_href }}">Browse them all</a>.</figcaption>
+        </figure>
+      </div>
+    </div>
     <div class="card">
       <header><h2 class="eyebrow">Download</h2></header>
       <div class="body">

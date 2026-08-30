@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Sequence
 
-from .. import content
+from .. import content, diagrams
 from ..domain import SUBSET_SPECS, Drop, PrimalProvenance, Sample
 from ..urls import rel
 from .shell import page
@@ -54,6 +55,8 @@ def render_sample(
     cross: Sample | None,
     site_url: str | None = None,
     release_base_url: str | None = None,
+    *,
+    samples: Sequence[Sample] = (),
 ) -> str:
     """Render one sample page; ``cross`` is its counterpart in the other subset."""
 
@@ -142,4 +145,12 @@ def render_sample(
         shown_tags=tuple(tag for tag in sample.tags if tag not in content.NON_LP_TAGS),
         source_tokens=_source_tokens(sample.source_description or ""),
         details=details,
+        # the collection with this instance marked, and the operation that
+        # produced it: both drawn from what the page already states
+        cloud=diagrams.cloud(samples or (sample,), here, sample, linked=False),
+        derivation=(
+            diagrams.branch_diagram(sample)
+            if isinstance(provenance, PrimalProvenance)
+            else diagrams.drops_diagram(sample)
+        ),
     )

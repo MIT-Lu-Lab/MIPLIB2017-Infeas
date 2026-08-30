@@ -205,7 +205,11 @@ def test_detail_page_labels_breadcrumb_and_sidebar(index):
     root = page(V.render_sample(_samples(index)[("primal", "aaa")], None))
     assert root.one("nav.crumb").get("aria-label") == "Breadcrumb"
     aside = root.one("aside.aside")
-    assert aside.get("aria-label") == "Downloads and source"
+    assert aside.get("aria-label") == "Context, downloads and source"
     # each card in it is headed, so the two are distinguishable in a list of
     # landmarks rather than being two unnamed boxes
-    assert [h.text for h in aside.all("h2.eyebrow")] == ["Download", "Source instance"]
+    assert [h.text for h in aside.all("h2.eyebrow")] == [
+        "Where it sits",
+        "Download",
+        "Source instance",
+    ]

@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
-from .. import content
-from ..domain import SUBSET_SPECS, CollectionTotals
-from ..urls import rel, site_file
+from collections.abc import Sequence
+
+from .. import content, diagrams
+from ..domain import SUBSET_SPECS, CollectionTotals, Sample, collection_totals
+from ..urls import site_file
 from .shell import page
 
 PAGE = "index.html"
@@ -53,10 +55,13 @@ def _dataset_jsonld(
 
 
 def render_overview(
-    totals: CollectionTotals, site_url: str | None = None, release_base_url: str | None = None
+    samples: Sequence[Sample],
+    site_url: str | None = None,
+    release_base_url: str | None = None,
 ) -> str:
     """Render the site root."""
 
+    totals = collection_totals(samples)
     counts = totals["counts"]
     primal = counts["primal"]
     dual = counts["dual"]
@@ -78,9 +83,7 @@ def render_overview(
         dual_verb="is" if dual == 1 else "are",
         max_vars=content.fmt_int(totals["max_vars"]),
         max_cons=content.fmt_int(totals["max_cons"]),
-        figure_screen=rel(PAGE, content.FIGURE_SCREEN),
-        figure_print=rel(PAGE, content.FIGURE_PRINT),
-        figure_alt=content.FIGURE_ALT,
+        cloud=diagrams.cloud(samples, PAGE),
         figure_caption=content.FIGURE_CAPTION,
         cards=tuple(
             {

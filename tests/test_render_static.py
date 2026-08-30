@@ -33,7 +33,7 @@ def test_download_archive_links_disabled_without_a_release(index):
 
 def test_overview_citation_carries_no_doi(index):
     samples = load_collection(index)
-    html = V.render_overview(collection_totals(samples))
+    html = V.render_overview(samples)
     citation = re.search(r'<div class="cite">(.*?)</div>', html, re.S).group(1)
     assert "doi" not in citation.lower()
     assert "howpublished" in citation
@@ -42,9 +42,7 @@ def test_overview_citation_carries_no_doi(index):
 
 def test_overview_citation_uses_the_supplied_site_url(index):
     samples = load_collection(index)
-    html = V.render_overview(
-        collection_totals(samples), site_url="https://example.invalid/miplib2017-infeas/"
-    )
+    html = V.render_overview(samples, site_url="https://example.invalid/miplib2017-infeas/")
     assert "https://example.invalid/miplib2017-infeas/" in html
 
 

@@ -112,10 +112,12 @@ def test_dual_copy_accounts_for_both_derivation_paths(built):
 def test_every_page_has_unique_discovery_metadata_matching_the_sitemap(built):
     titles, descriptions, canonicals = [], [], []
     for page in sorted(built.rglob("index.html")):
-        html = page.read_text(encoding="utf-8")
-        title = re.findall(r"<title>(.*?)</title>", html)
-        description = re.findall(r'<meta name="description" content="([^"]+)">', html)
-        canonical = re.findall(r'<link rel="canonical" href="([^"]+)">', html)
+        # the head only: a drawing in the body carries a <title> of its own for
+        # every dot it holds, and none of those is what a search result shows
+        head = page.read_text(encoding="utf-8").split("</head>", 1)[0]
+        title = re.findall(r"<title>(.*?)</title>", head)
+        description = re.findall(r'<meta name="description" content="([^"]+)">', head)
+        canonical = re.findall(r'<link rel="canonical" href="([^"]+)">', head)
         assert len(title) == len(description) == len(canonical) == 1, page
         page_rel = page.relative_to(built).as_posix()
         assert canonical[0] == PUBLIC_BASE + page_rel.removesuffix("index.html")

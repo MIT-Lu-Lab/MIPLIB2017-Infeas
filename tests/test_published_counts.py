@@ -86,12 +86,12 @@ def test_every_count_a_page_states_is_the_count_the_collection_has():
         assert str(natural) in said
     # the total belongs to the page around them, and is on it
     assert str(len(dual)) in B.render_browse("dual", samples)
-    assert str(len(dual)) in O.render_overview(totals)
+    assert str(len(dual)) in O.render_overview(samples)
 
     guide = S.render_guide(imported)
     assert f"the {imported} sources imported" in guide
 
-    overview = O.render_overview(totals)
+    overview = O.render_overview(samples)
     assert str(totals["n_samples"]) in overview
     assert str(len(dual) - natural) in overview
     browse = B.render_browse("dual", samples)

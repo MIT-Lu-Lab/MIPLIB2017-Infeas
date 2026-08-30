@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
-from . import FIGURE_DIR, INDEX_FILE, MIPLIB_FILE, ROOT, assets, catalog, render
+from . import INDEX_FILE, MIPLIB_FILE, ROOT, assets, catalog, render
 from .domain import (
     OTHER_SUBSET,
     SUBSET_SPECS,
@@ -26,16 +26,13 @@ _OG_IMAGE_FILE = ROOT / "og.png"
 
 
 def _static_files() -> list[tuple[str, bytes]]:
-    if not all(directory.is_dir() for directory in (_FONT_DIR, _SCHEMA_DIR, FIGURE_DIR)):
-        raise ValueError("the fonts, schema, and figures directories must be present")
+    if not _FONT_DIR.is_dir() or not _SCHEMA_DIR.is_dir():
+        raise ValueError("the fonts and schema directories must be present")
 
     files: list[tuple[str, bytes]] = []
     for path in sorted(_FONT_DIR.iterdir(), key=lambda item: item.name):
         if path.is_file():
             files.append((f"fonts/{path.name}", path.read_bytes()))
-    for path in sorted(FIGURE_DIR.iterdir(), key=lambda item: item.name):
-        if path.is_file():
-            files.append((f"figures/{path.name}", path.read_bytes()))
     for path in sorted(_SCHEMA_DIR.rglob("*")):
         if path.is_file():
             relative = path.relative_to(_SCHEMA_DIR).as_posix()
@@ -81,7 +78,7 @@ def build(
         files.append((path, html.encode("utf-8")))
         pages.append(path)
 
-    emit_page("index.html", render.render_overview(totals, site_url, release_base_url))
+    emit_page("index.html", render.render_overview(samples, site_url, release_base_url))
     emit_page(
         "download/index.html",
         render.render_download(totals, sizes, release_base_url, site_url),
@@ -101,7 +98,7 @@ def build(
             cross = by_key.get((OTHER_SUBSET[subset], sample.instance))
             emit_page(
                 sample.page_path + "index.html",
-                render.render_sample(sample, cross, site_url, release_base_url),
+                render.render_sample(sample, cross, site_url, release_base_url, samples=samples),
             )
         files.extend(
             (
