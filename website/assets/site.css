@@ -1,25 +1,25 @@
-/* The OG renderer uses data-theme for its deterministic dark capture. */
+/* One theme. The site is dark; @media print restores the light palette below,
+   because an instance page is a table of numbers someone will put on paper. */
 :root{
-  color-scheme:light dark;
+  color-scheme:dark;
 
-  --paper:light-dark(#FAFAFB,#0F1116);
-  --raise:light-dark(#FFFFFF,#161922);
-  --ink:light-dark(#14161D,#E6E8EF);
-  --muted:light-dark(#676C7C,#959BAC);
-  --muted-strong:light-dark(#4E5361,#B2B8C7);
-  --rule:light-dark(#DEE0E7,#272B37);
-  --rule-soft:light-dark(#EBECF1,#1E222C);
-  --primal:light-dark(#3B4CC0,#8B99EC);
-  --primal-wash:light-dark(#EEF0FC,#1B1F35);
-  --dual:light-dark(#B45309,#E0A458);
-  --dual-wash:light-dark(#FBF1E5,#2A2015);
-  --shared:light-dark(#166534,#6BD48F);
-  --shared-wash:light-dark(#E8F3EB,#13251A);
-  --on-view:light-dark(#FFFFFF,#0F1116);
+  --paper:#0F1116;
+  --raise:#161922;
+  --ink:#E6E8EF;
+  --muted:#959BAC;
+  --muted-strong:#B2B8C7;
+  --rule:#272B37;
+  --rule-soft:#1E222C;
+  --primal:#8B99EC;
+  --primal-wash:#1B1F35;
+  --dual:#E0A458;
+  --dual-wash:#2A2015;
+  --shared:#6BD48F;
+  --shared-wash:#13251A;
+  --on-view:#0F1116;
 
-  /* light-dark() cannot select a complete shadow list. */
-  --shadow-near:light-dark(rgba(20,22,29,.05),rgba(0,0,0,.4));
-  --shadow-far:light-dark(rgba(20,22,29,.25),rgba(0,0,0,.8));
+  --shadow-near:rgba(0,0,0,.4);
+  --shadow-far:rgba(0,0,0,.8);
   --shadow:0 1px 2px var(--shadow-near),0 8px 24px -16px var(--shadow-far);
 
   /* Shared by the top bar and desktop sticky offsets. */
@@ -34,7 +34,34 @@
   --f-mono:"Infeas Mono","IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,
     monospace;
 }
-:root[data-theme="dark"]{color-scheme:dark}
+
+/* Paper is not a screen. Printing the dark palette either burns ink or gets
+   force-inverted into something no one chose, and these pages are mostly
+   tables. Every colour token is restated here, so a token added above and not
+   here prints as whatever it happens to inherit. */
+@media print{
+  :root{
+    color-scheme:light;
+
+    --paper:#FAFAFB;
+    --raise:#FFFFFF;
+    --ink:#14161D;
+    --muted:#676C7C;
+    --muted-strong:#4E5361;
+    --rule:#DEE0E7;
+    --rule-soft:#EBECF1;
+    --primal:#3B4CC0;
+    --primal-wash:#EEF0FC;
+    --dual:#B45309;
+    --dual-wash:#FBF1E5;
+    --shared:#166534;
+    --shared-wash:#E8F3EB;
+    --on-view:#FFFFFF;
+
+    --shadow-near:rgba(20,22,29,.05);
+    --shadow-far:rgba(20,22,29,.25);
+  }
+}
 
 /* Grid and flex children need an explicit zero minimum to shrink around long content. */
 *{box-sizing:border-box}

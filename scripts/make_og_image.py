@@ -4,10 +4,8 @@ Slack, X, LinkedIn, Discord and the rest read og:image and draw it above the
 title. Without one a link to a published dataset looks like a pasted URL, which
 is most of what a reader sees before deciding whether to open it.
 
-The site follows the reader's colour scheme; a card cannot, so it is drawn
-dark. data-theme is what a manual choice sets, and light-dark() resolves the
-same tokens against it, so the card takes the site's own dark palette rather
-than a second set of colours.
+The card is drawn from the site's own stylesheet, so it carries the site's
+palette rather than a second set of colours.
 
 The card carries no counts. A number rendered into a committed PNG goes stale
 the moment the collection changes, and no test can read it back out, so what is
@@ -46,7 +44,7 @@ WIDTH, HEIGHT = assets.OG_IMAGE_SIZE
 SCALE = 2
 
 TEMPLATE = """<!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="assets/{css}">
