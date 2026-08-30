@@ -128,6 +128,22 @@ def test_overview_says_the_files_are_pure_lps(index):
     assert "integrality dropped" in text
 
 
+def test_the_wordmark_is_the_collection_name(shell):
+    """A rename left it behind once, showing a name the project no longer had,
+    and nothing on the page or in the suite said so."""
+    html = shell(active="overview", page_rel="index.html")
+    assert f'<a class="wordmark" href="./">{NAME}</a>' in html
+
+
+def test_the_citation_title_leads_with_the_collection_name(index):
+    """The name a reader sees and the name they would cite are one string."""
+    samples = load_collection(index)
+    citation = re.search(
+        r'<div class="cite">(.*?)</div>', V.render_overview(collection_totals(samples)), re.S
+    ).group(1)
+    assert f"title{'&nbsp;' * 8}= {{{NAME}:" in citation
+
+
 def test_overview_ships_the_figure_for_both_media(index):
     """One figure per medium, each with the same description.
 

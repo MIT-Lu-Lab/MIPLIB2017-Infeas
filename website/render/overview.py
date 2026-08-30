@@ -92,5 +92,6 @@ def render_overview(
             }
             for subset, info in SUBSET_SPECS.items()
         ),
+        citation_title=content.CITATION_TITLE,
         citation_url=site_url or content.PUBLIC_SITE_URL,
     )

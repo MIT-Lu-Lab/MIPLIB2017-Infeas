@@ -111,7 +111,6 @@ html{scroll-padding-top:calc(var(--topbar-h) + 16px)}
   height:var(--topbar-h);display:flex;align-items:center;gap:28px;
 }
 .wordmark{font-family:var(--f-mono);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;white-space:nowrap}
-.wordmark .dash{color:var(--muted)}
 nav.top{display:flex;gap:2px;margin-left:auto;flex-wrap:wrap;min-width:0}
 nav.top a{
   font-size:13.5px;color:var(--muted);text-decoration:none;
@@ -179,7 +178,6 @@ main.narrow{--measure:none;--page:900px}
 .section > h2{font-size:24px;margin-bottom:6px}
 .section > .eyebrow{margin-bottom:10px}
 
-/* file cards */
 /* The collection's portrait, in one file per medium: the screen gets the dark
    figure the rest of the site is drawn in, paper gets the light one, for the
    same reason the palette above keeps a light set for print. */
@@ -194,6 +192,7 @@ main.narrow{--measure:none;--page:900px}
   .figure .on-paper{display:block}
 }
 
+/* file cards */
 .files{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px;margin-top:18px}
 .file{padding:16px 18px;min-width:0}
 .file .fn{font-family:var(--f-mono);font-size:12.5px;color:var(--view);margin-bottom:9px;overflow-wrap:anywhere}

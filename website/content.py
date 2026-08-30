@@ -52,7 +52,13 @@ def fmt_bytes(n: int) -> str:
 # to it rather than leaving it to whoever writes the next one.
 META_LIMIT = 160
 
-NAME = "MIPLIB2017-Infeas"
+# What the collection is called, everywhere a person or a catalogue reads it:
+# the wordmark, the headings, the citation, the JSON indexes. The compact form
+# stays where a name has to survive being typed or resolved rather than read,
+# which is the repository, the URLs, the published filenames, and the dataset
+# identifier the release manifest pins.
+NAME = "MIPLIB 2017 Infeas"
+CITATION_TITLE = f"{NAME}: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017"
 PUBLIC_SITE_URL = "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/"
 SIDECAR_SCHEMA_PATH = "schema/sidecar/1.0.1/meta.schema.json"
 TAGLINE = "A benchmark of primal- and dual-infeasible linear programs"

@@ -1,4 +1,4 @@
-# MIPLIB2017-Infeas
+# MIPLIB 2017 Infeas
 
 [![Licence: see LICENSE](https://img.shields.io/badge/Licence-see%20LICENSE-lightgrey.svg)](LICENSE)
 
@@ -46,7 +46,7 @@ To script against it, the site publishes the same catalogue as JSON. [`index.jso
 ```bibtex
 @misc{miplib2017_infeas,
   author       = {Haihao Lu and Bo Tang},
-  title        = {MIPLIB2017-Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},
+  title        = {MIPLIB 2017 Infeas: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017},
   howpublished = {\url{https://mit-lu-lab.github.io/MIPLIB2017-Infeas}},
   year         = {2026}
 }

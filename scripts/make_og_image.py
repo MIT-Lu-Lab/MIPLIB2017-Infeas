@@ -62,7 +62,6 @@ TEMPLATE = """<!doctype html>
            gap:30px;padding:0 88px}}
   .og-name{{font-family:var(--f-mono);font-weight:600;font-size:82px;
            letter-spacing:-.03em;color:var(--ink)}}
-  .og-name .dash{{color:var(--muted)}}
   .og-tagline{{font-family:var(--f-serif);font-size:40px;line-height:1.25;
               color:var(--muted);max-width:940px;margin:0}}
   .og-foot{{font-family:var(--f-mono);font-size:24px;color:var(--muted);
@@ -134,12 +133,11 @@ class _DevTools:
 
 def _card_html() -> str:
     host = content.PUBLIC_SITE_URL.split("//", 1)[-1].rstrip("/")
-    name = content.NAME.replace("-", '<span class="dash">-</span>')
     return TEMPLATE.format(
         css=assets.CSS_NAME,
         width=WIDTH,
         height=HEIGHT,
-        name=name,
+        name=content.NAME,
         tagline=content.TAGLINE,
         host=host,
     )

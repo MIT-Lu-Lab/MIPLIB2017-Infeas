@@ -22,7 +22,7 @@
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="wordmark" href="{{ root_href }}">MIPLIB<span class="dash">-</span>Infeas</a>
+    <a class="wordmark" href="{{ root_href }}">{{ site_name }}</a>
     <nav class="top" aria-label="Primary navigation">
       {% for item in nav %}
       <a href="{{ item.href }}"{% if item.current %} aria-current="page"{% endif %}{% if item.short %} aria-label="{{ item.label }}"{% endif %}>{% if item.short %}<span class="nav-full">{{ item.label }}</span><span class="nav-short">{{ item.short }}</span>{% else %}{{ item.label }}{% endif %}</a>
