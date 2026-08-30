@@ -90,6 +90,14 @@ def test_every_internal_link_resolves(built):
             assert target.exists(), f"{page}: dead link {href}"
 
 
+def test_every_pattern_a_page_asks_for_was_published(built):
+    """The pattern is reached from a style attribute, not an href, so the link
+    check above walks straight past a missing one."""
+    for page in built.rglob("*/*/index.html"):
+        for url in re.findall(r"--pattern:url\('([^']+)'\)", page.read_text(encoding="utf-8")):
+            assert (page.parent / url).resolve().exists(), f"{page}: no pattern {url}"
+
+
 def test_overview_reports_the_real_totals(built):
     text = " ".join((built / "index.html").read_text(encoding="utf-8").split())
     assert "334 linear programs" in text

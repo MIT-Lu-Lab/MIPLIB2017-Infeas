@@ -235,6 +235,20 @@ main.narrow{--measure:none;--page:900px}
 #cloud-p:checked ~ .cloud a .d,#cloud-p:checked ~ .cloud .key-d{display:none}
 #cloud-d:checked ~ .cloud a .p,#cloud-d:checked ~ .cloud .key-p{display:none}
 
+/* The nonzero pattern is a raster: it cannot be markup. Carried in the alpha
+   channel and used as a mask, it still takes its colour from the palette, so
+   one file serves the dark page and the printed one. */
+/* The border goes on a wrapper: a mask applies to the whole element, border
+   included, so a frame on the masked box would be masked away with it. It sits
+   exactly on the matrix, which is what tells a reader where the matrix ends. */
+.framed{width:100%;max-width:260px;align-self:center;border:1px solid var(--rule)}
+.pattern{
+  display:block;width:100%;aspect-ratio:1;
+  background:var(--view);
+  -webkit-mask:var(--pattern) center/contain no-repeat;
+  mask:var(--pattern) center/contain no-repeat;
+}
+
 /* A drawing beside prose that states the same thing: it carries no labels a
    reader would miss, and aria-hidden keeps it out of the reading order. */
 .drawing{margin:4px 0 16px}

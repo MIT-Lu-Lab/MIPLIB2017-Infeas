@@ -13,6 +13,15 @@ from website.domain import collection_totals, subset_bytes
 from website.index import load_collection
 
 
+def _render(sample, cross=None, *args, **kwargs):
+    """A page rendered with the one instance it is about.
+
+    These tests are about what a page says, not about the cloud it draws, so
+    the collection they hand it is that instance alone.
+    """
+    return V.render_sample(sample, cross, *args, samples=[sample], **kwargs)
+
+
 def _head(html: str) -> str:
     return html.split("</head>", 1)[0]
 
@@ -33,7 +42,7 @@ def test_every_page_type_carries_a_description(index):
     pages = [
         V.render_overview(samples),
         V.render_browse("primal", samples),
-        V.render_sample(samples[0], None),
+        _render(samples[0], None),
         V.render_guide(130),
         V.render_download(totals, sizes),
         V.render_about(),
@@ -58,7 +67,7 @@ def test_a_description_fits_what_a_result_shows(index):
     pages = [
         V.render_overview(samples),
         V.render_browse("primal", samples),
-        V.render_sample(longest, None),
+        _render(longest, None),
         V.render_guide(130),
         V.render_download(totals, sizes),
         V.render_about(),
@@ -72,12 +81,12 @@ def test_the_canonical_url_is_absent_until_the_build_knows_the_origin(index):
     """A guessed canonical points readers and crawlers at a URL that may not
     exist, which is worse than none."""
     samples = load_collection(index)
-    head = _head(V.render_sample(samples[0], None))
+    head = _head(_render(samples[0], None))
     assert "canonical" not in head
     assert 'property="og:url"' not in head
 
     site = "https://example.invalid/mi/"
-    head = _head(V.render_sample(samples[0], None, site))
+    head = _head(_render(samples[0], None, site))
     url = site + samples[0].page_path
     assert page(head).one('link[rel="canonical"]').get("href") == url
     assert _meta(head, "og:url", attr="property") == url
@@ -121,7 +130,7 @@ def test_the_description_of_an_instance_leads_with_its_name(index):
     """A search result and a shared link are both read name-first."""
     samples = load_collection(index)
     s = next(x for x in samples if x.subset == "primal")
-    description = _meta(_head(V.render_sample(s, None)), "description")
+    description = _meta(_head(_render(s, None)), "description")
     assert description.startswith(s.instance)
 
 

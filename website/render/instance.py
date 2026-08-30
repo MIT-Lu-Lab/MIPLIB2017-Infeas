@@ -56,9 +56,15 @@ def render_sample(
     site_url: str | None = None,
     release_base_url: str | None = None,
     *,
-    samples: Sequence[Sample] = (),
+    samples: Sequence[Sample],
 ) -> str:
-    """Render one sample page; ``cross`` is its counterpart in the other subset."""
+    """Render one sample page.
+
+    ``cross`` is its counterpart in the other subset, and ``samples`` the whole
+    collection, which the page draws itself inside. That one is required: a
+    default would let a caller render a locator holding a single dot, and the
+    page would look finished rather than wrong.
+    """
 
     info = SUBSET_SPECS[sample.subset]
     here = sample.page_path + "index.html"
@@ -147,7 +153,8 @@ def render_sample(
         details=details,
         # the collection with this instance marked, and the operation that
         # produced it: both drawn from what the page already states
-        cloud=diagrams.cloud(samples or (sample,), here, sample, linked=False),
+        cloud=diagrams.cloud(samples, here, sample, linked=False),
+        pattern_href=rel(here, f"patterns/{sample.stem}.png"),
         derivation=(
             diagrams.branch_diagram(sample)
             if isinstance(provenance, PrimalProvenance)
