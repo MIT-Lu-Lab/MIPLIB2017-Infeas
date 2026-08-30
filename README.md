@@ -18,11 +18,11 @@ Each instance is a gzipped MPS file holding continuous variables only. Beside it
 
 ## Primal-infeasible
 
-A branch-and-bound search splits on a variable and explores one side of the split. These instances are the other side, taken at nodes where that side turns out to have no feasible point.
+A branch-and-bound search splits on a variable and explores one side of the split. These instances are the other side, taken at nodes where that side has no feasible point.
 
 ## Dual-infeasible
 
-For 103 instances, bounds and constraints were dropped from a feasible, bounded root LP relaxation until its objective became unbounded; every unnecessary drop was then restored. The other two root relaxations were already unbounded and therefore required no drops.
+A greedy search drops bounds and constraints from a feasible, bounded root LP relaxation until its objective becomes unbounded, then restores every unnecessary drop. 103 instances come from that search; the other 2 root relaxations were unbounded as given.
 
 ## Software
 

@@ -31,12 +31,11 @@
   <h2>Two files</h2>
   <div class="files">
     <div class="file"><div class="fn">&lt;name&gt;.mps.gz</div>
-      <p>The linear program, gzipped MPS, continuous variables only. Nothing to
-      reconstruct before handing it to a solver.</p></div>
+      <p>The linear program, gzipped MPS, continuous variables only, ready to solve
+      as published.</p></div>
     <div class="file"><div class="fn">&lt;name&gt;.meta.json</div>
-      <p>How that program was derived from its source instance: the recorded branch
-      for a primal-infeasible file; for a dual-infeasible file, either the bounds and
-      constraints removed or that the source relaxation was already unbounded.</p></div>
+      <p>The provenance, JSON: the branch behind a primal-infeasible file, the
+      relaxation behind a dual-infeasible one.</p></div>
   </div>
 </div>
 <div class="section">

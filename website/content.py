@@ -71,14 +71,14 @@ FIGURE_SCREEN = "figures/size-scatter.svg"
 FIGURE_PRINT = "figures/size-scatter-print.svg"
 FIGURE_ALT = (
     "Scatter of every published instance, variables against constraints on "
-    "logarithmic axes, coloured by class, with the mark area growing with the "
+    "logarithmic axes, coloured by class, with mark area scaled by the "
     "nonzero count."
 )
 FIGURE_CAPTION = (
-    "Every published instance, on logarithmic axes. The mark area grows with "
-    "the nonzero count. Infeasible instances keep the aspect ratio of the "
-    "source model; unbounded ones are far wider than they are tall, because "
-    "relaxing removes constraints and leaves the variables in place."
+    "Every published instance, on logarithmic axes, with mark area scaled by "
+    "the nonzero count. Infeasible instances preserve the variable-to-constraint "
+    "ratio of their source model; in unbounded ones it is far higher, because "
+    "relaxation removes constraints and leaves the variables in place."
 )
 
 
@@ -127,9 +127,10 @@ SUBSET_SUMMARY = {
     "primal": "Linear programs with no feasible point. Each is the side of a branch "
     "that a branch-and-bound search did not explore, on a distinct MIPLIB "
     "2017 instance.",
-    # a definition with no counts in it; how the set divides is dual_derivation(),
-    # which depends on how many relaxations were already unbounded
-    "dual": "Linear programs whose objective is unbounded.",
+    # the same two sentences, definition then origin. What the origin then did
+    # to it divides a count, so it is dual_derivation() and not written here
+    "dual": "Linear programs whose objective is unbounded. Each is the root LP "
+    "relaxation of a distinct MIPLIB 2017 instance.",
 }
 
 # Under META_LIMIT with the count in front, for a search result. The page-visible
@@ -137,17 +138,23 @@ SUBSET_SUMMARY = {
 SUBSET_META_SUMMARY = {
     "primal": "linear programs with no feasible point, each from the unexplored side "
     "of a branch in a branch-and-bound search.",
-    "dual": "linear programs with an unbounded objective, derived from MIPLIB 2017 "
-    "root relaxations.",
+    "dual": "linear programs with an unbounded objective, each a MIPLIB 2017 root "
+    "relaxation with bounds and constraints removed.",
 }
 
-# The same fact with room to say how, for the overview cards.
+# The same fact with room to say how, for the overview cards: what a run does,
+# then what the set keeps of it. The dual card has to divide a count, so it is
+# written by dual_card().
 SUBSET_CARD = {
     "primal": "A branch-and-bound run splits on a variable and explores one side of "
     "the split. This set collects the other side, at nodes where that side "
     "has no feasible point.",
-    # the dual half is dual_derivation(), as above
 }
+
+DUAL_SEARCH = (
+    "A greedy search drops bounds and constraints from a feasible, bounded root "
+    "relaxation until its objective is unbounded."
+)
 
 OVERVIEW_DESCRIPTION = (
     "{n} linear programs with no optimal solution, derived from "
@@ -171,22 +178,38 @@ def dual_derivation(dual: int, natural: int) -> str:
     """Describe the dual subset's derivation paths from supplied counts."""
     if not dual:
         return ""
-    removed = (
-        "removing an inclusion-minimal set of bounds and constraints from a "
-        "feasible, bounded root relaxation"
-    )
+    relaxed = "an inclusion-minimal set of bounds and constraints removed"
     constructed = dual - natural
     if not natural:
-        each = "The one comes" if dual == 1 else "Each comes"
-        return f"{each} from {removed}."
+        each = "The one had" if dual == 1 else "Each had"
+        return f"{each} {relaxed}."
     if not constructed:
         each = "The one was" if dual == 1 else "Each was"
-        return f"{each} already unbounded, with nothing removed."
+        return f"{each} unbounded as given, with nothing removed."
     # a lone one reads as a word: "the other 1 was" is a line of a table, not a
     # sentence
-    made = "one comes" if constructed == 1 else f"{fmt_int(constructed)} come"
+    made = "one had" if constructed == 1 else f"{fmt_int(constructed)} had"
     rest = "the other was" if natural == 1 else f"the other {fmt_int(natural)} were"
-    return f"Of those, {made} from {removed}; {rest} already unbounded."
+    return f"Of those, {made} {relaxed}; {rest} unbounded as given."
+
+
+def dual_card(dual: int, natural: int) -> str:
+    """The dual overview card, to the shape of the primal one above."""
+    if not dual:
+        return ""
+    constructed = dual - natural
+    if not constructed:
+        each = "The one was" if dual == 1 else "Each was"
+        return (
+            "Some MIPLIB 2017 root relaxations have an unbounded objective as given. "
+            f"{each} published with nothing removed."
+        )
+    if not natural:
+        every = "The one instance here comes" if dual == 1 else "Every instance here comes"
+        return f"{DUAL_SEARCH} {every} from that search."
+    came = "One instance comes" if constructed == 1 else f"{fmt_int(constructed)} instances come"
+    rest = "the other was" if natural == 1 else f"the other {fmt_int(natural)} were"
+    return f"{DUAL_SEARCH} {came} from that search; {rest} unbounded as given."
 
 
 def collection_summary(totals: CollectionTotals) -> str:
@@ -233,7 +256,7 @@ def subset_card(subset: Subset, count: int, natural_unbounded: int = 0) -> str:
     """The blurb on an overview card."""
     if subset != "dual":
         return SUBSET_CARD[subset]
-    return dual_derivation(count, natural_unbounded)
+    return dual_card(count, natural_unbounded)
 
 
 def imported_sources_note(imported: int) -> str:
@@ -249,8 +272,8 @@ def subset_description(subset: Subset, count: int, natural_unbounded: int = 0) -
         constructed = count - natural_unbounded
         return (
             f"{fmt_int(count)} linear programs with an unbounded objective: "
-            f"{fmt_int(constructed)} use an inclusion-minimal relaxation; "
-            f"{fmt_int(natural_unbounded)} were unbounded as given."
+            f"{fmt_int(constructed)} come from an inclusion-minimal relaxation of "
+            f"a bounded root LP; {fmt_int(natural_unbounded)} were unbounded as given."
         )
     return f"{fmt_int(count)} {SUBSET_META_SUMMARY[subset]}"
 
