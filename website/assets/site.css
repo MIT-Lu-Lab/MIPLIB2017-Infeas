@@ -206,7 +206,7 @@ main.narrow{--measure:none;--page:900px}
 .cloud .here{fill:var(--view);stroke:var(--paper);stroke-width:5;opacity:1}
 /* the locator says where one instance sits; the rest is context, not a
    second telling of which half each one belongs to */
-.cloud.locator circle{fill:var(--muted);opacity:.3}
+.cloud.locator circle{fill:var(--muted);opacity:.2}
 .cloud.locator .here{fill:var(--view);opacity:1}
 .cloud .key{fill:var(--ink);font-family:var(--f-mono);font-size:28px}
 .cloud .key.dim{fill:var(--muted);font-size:24px}
