@@ -245,8 +245,8 @@ main.narrow{--measure:none;--page:900px}
 .pattern{
   display:block;width:100%;aspect-ratio:1;
   background:var(--view);
-  -webkit-mask:var(--pattern) center/contain no-repeat;
-  mask:var(--pattern) center/contain no-repeat;
+  -webkit-mask-position:center;-webkit-mask-size:contain;-webkit-mask-repeat:no-repeat;
+  mask-position:center;mask-size:contain;mask-repeat:no-repeat;
 }
 
 /* A drawing beside prose that states the same thing: it carries no labels a

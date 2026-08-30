@@ -93,9 +93,31 @@ def test_every_internal_link_resolves(built):
 def test_every_pattern_a_page_asks_for_was_published(built):
     """The pattern is reached from a style attribute, not an href, so the link
     check above walks straight past a missing one."""
+    seen = 0
     for page in built.rglob("*/*/index.html"):
-        for url in re.findall(r"--pattern:url\('([^']+)'\)", page.read_text(encoding="utf-8")):
+        for url in re.findall(r"mask-image:url\('([^']+)'\)", page.read_text(encoding="utf-8")):
             assert (page.parent / url).resolve().exists(), f"{page}: no pattern {url}"
+            seen += 1
+    # a page carries two, one prefixed for older engines; a rename of the
+    # property would otherwise leave this finding nothing and passing
+    assert seen == 2 * len(load_collection(INDEX))
+
+
+def test_no_relative_url_hides_inside_a_custom_property(built):
+    """A url() inside a custom property is resolved against the stylesheet that
+    substitutes it, not against the page that declared it.
+
+    Both resolve alike when the site is served from the root of a host, which
+    is how it is served in development, so the pattern masks looked right here
+    and loaded nothing once published under a directory.
+    """
+    from website import assets as A
+
+    sources = [A.SITE_CSS] + [
+        page.read_text(encoding="utf-8") for page in built.rglob("*/*/index.html")
+    ]
+    for text in sources:
+        assert not re.search(r"--[a-z-]+\s*:\s*url\(", text)
 
 
 def test_overview_reports_the_real_totals(built):

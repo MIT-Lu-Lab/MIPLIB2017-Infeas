@@ -93,8 +93,11 @@
       <header><h2 class="eyebrow">Nonzero entries</h2></header>
       <div class="body">
         <figure class="figure inset">
+          {#- the mask URL is written here, not into a custom property: a url()
+              inside one is resolved against the stylesheet that uses it, which
+              is a directory the page does not sit in -#}
           <div class="framed"><div class="pattern" role="img"
-            style="--pattern:url('{{ pattern_href }}')"
+            style="-webkit-mask-image:url('{{ pattern_href }}');mask-image:url('{{ pattern_href }}')"
             aria-label="Nonzero entries of {{ sample.instance }} on a 128 by 128 grid"></div></div>
           <figcaption>128 &times; 128 grid, darker where denser.</figcaption>
         </figure>
