@@ -26,10 +26,6 @@ dev = [
 # card. Nothing else uses it, no test covers it, and its output is committed,
 # so it is asked for only by someone rerunning that script.
 og = ["websocket-client>=1.7", {include-group = "site"}]
-# scripts/plot_size_scatter.py redraws the figure the overview page shows. Its
-# output is committed too, and the build only copies it, so building the site
-# takes no dependency on a plotting stack.
-figure = ["matplotlib>=3.8", "SciencePlots>=2.1"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
