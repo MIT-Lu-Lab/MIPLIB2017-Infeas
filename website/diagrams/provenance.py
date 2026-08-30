@@ -19,15 +19,19 @@ WIDTH = 620.0
 # box, not the branches taken to reach it, so a ladder of twelve steps would
 # claim an order nothing in the sidecar recorded.
 SPINE_X, FORK_DX = 310.0, 160.0
-ROOT_Y, PARENT_Y, VAR_Y, ELBOW_Y, CHILD_Y = 30.0, 170.0, 202.0, 226.0, 252.0
-MIDDLE_Y, BRANCH_Y, ROLE_Y = 106.0, 284.0, 308.0
+ROOT_Y, PARENT_Y, ELBOW_Y, CHILD_Y = 30.0, 170.0, 208.0, 234.0
+BRANCH_Y, ROLE_Y = 266.0, 290.0
+# The variable both sides split, on the last line: it is the one label wide
+# enough to reach the spine, and the spine ends above it.
+VAR_Y = 332.0
 LABEL_DX, NODE_R = 24.0, 7.0
-BRANCH_HEIGHT = 320.0
+BRANCH_HEIGHT = 346.0
 
 # Branch variable names run to fifty-four characters here, and the drawing has
 # one line to hold one, shared with the words in front of it. Past this the
-# name is cut: the panel beside the drawing states it in full, twice.
-NAME_LIMIT = 34
+# name is cut: the panel beside the drawing states it in full, twice. The
+# layout guard is what fixes this number; it fails if the line stops fitting.
+NAME_LIMIT = 44
 
 # The state drawing: what the relaxation was, what was taken out, what it is.
 BOX_W, BOX_H, BOX_Y = 180.0, 64.0, 54.0
@@ -85,33 +89,16 @@ def branch_diagram(sample: Sample) -> str:
         el("line", class_="spine", x1=SPINE_X, y1=ROOT_Y, x2=SPINE_X, y2=PARENT_Y),
         el("circle", class_="node", cx=SPINE_X, cy=ROOT_Y, r=NODE_R),
         el("text", "root", class_="dim", x=SPINE_X + LABEL_DX, y=ROOT_Y + 6),
-    ]
-    if branch.depth > 1:
-        parts.append(
-            el(
-                "text",
-                f"{parent_depth} branchings",
-                class_="dim",
-                x=SPINE_X + LABEL_DX,
-                y=MIDDLE_Y,
-            )
-        )
-    parts += [
         el("circle", class_="node", cx=SPINE_X, cy=PARENT_Y, r=NODE_R),
+        # Depth, and only depth: it is what the sidecar records. How many
+        # branchings the search performed is not in the data and is not this
+        # number, a tree of depth n holding up to 2^n of them.
         el(
             "text",
             f"parent, depth {parent_depth}",
             class_="dim",
             x=SPINE_X + LABEL_DX,
             y=PARENT_Y + 6,
-        ),
-        el(
-            "text",
-            f"branching on {_clip(branch.branch_label)}",
-            class_="lbl",
-            x=WIDTH / 2,
-            y=VAR_Y,
-            text_anchor="middle",
         ),
         _child(
             SPINE_X - FORK_DX,
@@ -124,6 +111,15 @@ def branch_diagram(sample: Sample) -> str:
             f"{branch.branch_sense} {fmt_int(published)}",
             "this file",
             here=True,
+        ),
+        el(
+            "text",
+            f"branching on {_clip(branch.branch_label)}",
+            # an annotation, like root and parent: the bounds are the subject
+            class_="dim",
+            x=WIDTH / 2,
+            y=VAR_Y,
+            text_anchor="middle",
         ),
     ]
     return svg("".join(parts), WIDTH, BRANCH_HEIGHT, class_="prov")
