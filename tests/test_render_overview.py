@@ -40,10 +40,19 @@ def test_page_shell_has_skip_link_and_landmarks(shell):
     assert root.one("nav.top").get("aria-label") == "Primary navigation"
 
 
-def test_short_nav_labels_keep_the_full_accessible_name(shell):
-    html = shell(active="overview", page_rel="index.html", description="Example page")
-    assert 'aria-label="Primal-infeasible"' in html
-    assert 'aria-label="Dual-infeasible"' in html
+def test_the_two_halves_share_one_nav_entry(shell):
+    """Which half you are looking at is the page's own business. The site's
+    navigation offers the collection once, and the page switches inside it."""
+    nav = page(shell(active="overview", page_rel="index.html")).one("nav.top")
+    assert [link.text for link in nav.all("a")] == [
+        "Overview",
+        "Instances",
+        "Guide",
+        "Download",
+        "About",
+    ]
+    instances = next(link for link in nav.all("a") if link.text == "Instances")
+    assert instances.get("href") == "primal-infeasible/"
 
 
 def test_page_shell_links_resolve_by_depth(shell):
@@ -65,27 +74,22 @@ def test_page_shell_links_resolve_by_depth(shell):
     assert "../../primal-infeasible/" not in own
 
 
-def test_active_nav_item_is_marked(shell):
-    html = shell(active="dual", page_rel="index.html")
+@pytest.mark.parametrize("active", ["primal", "dual", "guide"])
+def test_active_nav_item_is_marked(shell, active):
+    """Either half marks the one entry that holds both."""
+    html = shell(active=active, page_rel="index.html")
     # The current-page state belongs to the primary navigation only.
     nav = page(html).one("nav.top")
     current = [link for link in nav.all("a") if link.has("aria-current")]
-    assert [link.text for link in current] == ["Dual-infeasible Dual"]
+    expected = "Guide" if active == "guide" else "Instances"
+    assert [link.text for link in current] == [expected]
 
 
-def test_only_the_long_nav_labels_carry_a_short_form(shell):
-    """Both forms ship and the stylesheet hides one, so a name that outgrows a
-    phone cell is shortened rather than overlapping its neighbour."""
+def test_nav_labels_are_short_enough_to_need_no_second_form(shell):
+    """Every label fits a phone cell, so no link ships a spare short spelling
+    for the stylesheet to swap in."""
     nav = page(shell(active="overview", page_rel="index.html")).one("nav.top")
-    pairs = {
-        link.one("span.nav-full").text: link.one("span.nav-short").text
-        for link in nav.all("a")
-        if link.all("span.nav-short")
-    }
-    assert pairs == {"Primal-infeasible": "Primal", "Dual-infeasible": "Dual"}
-    # a name that fits keeps one label and no spans at all
-    guide = next(link for link in nav.all("a") if link.text == "Guide")
-    assert guide.children == []
+    assert [link.children for link in nav.all("a")] == [[]] * 5
 
 
 def test_templates_fail_when_required_context_is_missing():

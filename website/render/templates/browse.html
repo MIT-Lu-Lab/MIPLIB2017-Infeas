@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 {% block main %}
 <div class="browse-head">
-  <div>
-    <span class="eyebrow">Subset</span>
-    <h1>{{ info.label }}</h1>
-    <p class="desc">{{ blurb }}</p>
+  <span class="eyebrow">Instances</span>
+  <div class="subset-tabs">
+    {%- for tab in tabs %}
+    {%- if tab.href %}
+    <a class="tab {{ tab.tone }}" href="{{ tab.href }}"><span
+      class="tab-name">{{ tab.label }}</span> <span class="tab-n">{{ tab.count }}</span></a>
+    {%- else %}
+    <h1 class="tab {{ tab.tone }} on"><span
+      class="tab-name">{{ tab.label }}</span> <span class="tab-n">{{ tab.count }}</span></h1>
+    {%- endif %}
+    {%- endfor %}
   </div>
+</div>
+<div class="browse-sub">
+  <p class="desc">{{ blurb }}</p>
   {% if archive_href %}
   <a class="dl" href="{{ archive_href }}">{{ archive_label }} ↓</a>
   {% else %}

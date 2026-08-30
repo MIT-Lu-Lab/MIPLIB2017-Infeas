@@ -167,3 +167,30 @@ def test_tags_that_are_false_of_an_lp_are_not_offered(index):
     html = _browse(index, "primal")
     for tag in ("mixed_binary", "binary", "integer_knapsack", "benchmark_suitable", "feasibility"):
         assert f'data-k="tag-{tag}"' not in html, tag
+
+
+def test_the_head_offers_both_halves_in_a_fixed_order(index):
+    """Primal left, dual right, on both pages: the hairline under the top bar
+    already lights those two positions, so the switch does not move under you."""
+    for subset in ("primal", "dual"):
+        tabs = page(_browse(index, subset)).one(".subset-tabs").children
+        assert [tab.one(".tab-name").text for tab in tabs] == [
+            "Primal-infeasible",
+            "Dual-infeasible",
+        ]
+
+
+def test_the_half_you_are_on_is_the_heading_and_the_other_is_a_link(index):
+    """What marks the current half is that it is the page's own title. Nothing
+    else has to say so, and there is no link that goes where you already are."""
+    here, away = page(_browse(index, "dual")).one(".subset-tabs").children
+    assert away.tag.name == "h1" and not away.has("href")
+    assert here.tag.name == "a" and here.get("href") == "../primal-infeasible/"
+
+
+def test_each_half_carries_its_own_count_and_tone(index):
+    tabs = page(_browse(index, "primal")).one(".subset-tabs").children
+    assert [tab.one(".tab-n").text for tab in tabs] == ["2 instances", "1 instance"]
+    # each half keeps its own colour, so the one you are not on can hint at where
+    # it goes rather than borrowing the colour of the one you are on
+    assert [tab.classes - {"tab", "on"} for tab in tabs] == [{"p"}, {"d"}]

@@ -7,6 +7,7 @@ from dataclasses import dataclass
 
 from .. import content
 from ..domain import SUBSET_SPECS, Sample, Subset
+from ..urls import rel
 from .facets import facets_for, memberships_for, row_values
 from .shell import page
 
@@ -49,6 +50,30 @@ def page_rel(subset: Subset) -> str:
     return f"{SUBSET_SPECS[subset].slug}/index.html"
 
 
+def _instances(count: int) -> str:
+    return f"{content.fmt_int(count)} {'instance' if count == 1 else 'instances'}"
+
+
+def _tabs(subset: Subset, samples: Sequence[Sample]) -> tuple[dict[str, object], ...]:
+    """Both halves of the collection, primal first.
+
+    The order is the order of the two-colour hairline under the top bar, so the
+    switch sits where the site already says each half lives. The half being
+    rendered has no href: it is the page's own heading, and a link to where you
+    already are is one more thing to read past.
+    """
+
+    return tuple(
+        {
+            "label": spec.label,
+            "tone": spec.tone,
+            "count": _instances(sum(1 for sample in samples if sample.subset == other)),
+            "href": None if other == subset else rel(page_rel(subset), f"{spec.slug}/"),
+        }
+        for other, spec in SUBSET_SPECS.items()
+    )
+
+
 def render_browse(
     subset: Subset,
     samples: Sequence[Sample],
@@ -65,7 +90,7 @@ def render_browse(
     facets = facets_for(subset, values)
     memberships = [memberships_for(facets, value) for value in values]
     client_fields = ("instance", *(column.field for column in columns))
-    count = f"{content.fmt_int(len(rows))} {'instance' if len(rows) == 1 else 'instances'}"
+    count = _instances(len(rows))
     archive_label = (
         f"{count}, {content.fmt_bytes(sum(sample.total_bytes for sample in rows))} unpacked"
     )
@@ -78,6 +103,7 @@ def render_browse(
         description=content.subset_description(subset, len(rows), natural),
         site_url=site_url,
         info=info,
+        tabs=_tabs(subset, samples),
         blurb=content.subset_summary(subset, len(rows), natural),
         table_id=f"{info.slug}-table-caption",
         total_label=count,

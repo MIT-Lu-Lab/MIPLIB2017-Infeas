@@ -118,8 +118,6 @@ nav.top a{
 }
 nav.top a:hover{color:var(--ink);background:var(--rule-soft)}
 nav.top a[aria-current="page"]{color:var(--ink);font-weight:500}
-/* both labels ship on every link that has two; only one is ever displayed */
-.nav-short{display:none}
 /* the duality hairline: which side of the pair you are looking at */
 .hairline{height:2px;display:flex}
 .hairline span{flex:1;background:var(--rule);transition:background .2s}
@@ -129,7 +127,7 @@ body[data-view="dual"] .hairline span:last-child{background:var(--dual)}
 /* One reading measure for prose; narrow pages already provide their own cap. */
 main{--measure:34rem;width:100%;max-width:var(--page);margin:0 auto;padding:44px 24px 96px}
 main.narrow{--measure:none;--page:900px}
-.prose,.note,.cite-note,.masthead .sub,.browse-head .desc{
+.prose,.note,.cite-note,.masthead .sub,.browse-sub .desc{
   max-width:var(--measure);overflow-wrap:break-word;
 }
 .prose p{margin:0 0 14px}
@@ -280,10 +278,34 @@ main.narrow{--measure:none;--page:900px}
 }
 
 /* ---------- browse ---------- */
-.browse-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:22px}
-.browse-head > *{min-width:0}
-.browse-head h1{font-size:29px}
-.browse-head .desc{font-size:14px;color:var(--muted);margin-top:5px}
+.browse-head > .eyebrow{display:block;margin-bottom:11px}
+/* Primal left, dual right, the order of the hairline under the top bar. The
+   half you are on is the page's h1; the other is a link to its sibling, and it
+   keeps its own colour so it can say where it goes rather than borrowing the
+   colour of the half you are already looking at. */
+.subset-tabs{display:flex;gap:36px;border-bottom:1px solid var(--rule);overflow-x:auto}
+.tab{
+  --tone:var(--muted);
+  flex:none;margin:0 0 -1px;padding:0 0 13px;border-bottom:2px solid transparent;
+  font-family:var(--f-serif);font-size:29px;font-weight:600;letter-spacing:-.01em;
+  color:var(--muted);text-decoration:none;transition:color .14s,border-color .14s;
+}
+.tab.p{--tone:var(--primal)}
+.tab.d{--tone:var(--dual)}
+.tab.on{color:var(--ink);border-bottom-color:var(--tone)}
+a.tab:hover{color:var(--tone);border-bottom-color:var(--rule)}
+.tab-name{display:block}
+.tab-n{
+  display:block;margin-top:6px;font-family:var(--f-mono);font-variant-numeric:tabular-nums;
+  font-size:12px;font-weight:400;letter-spacing:0;color:var(--muted);
+}
+a.tab:hover .tab-n{color:var(--muted-strong)}
+.browse-sub{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:20px;flex-wrap:wrap;margin:18px 0 24px;
+}
+.browse-sub > *{min-width:0}
+.browse-sub .desc{font-size:14px;color:var(--muted);margin:0}
 /* The table scrolls inside its zero-minimum track instead of widening the page. */
 .browse{display:grid;grid-template-columns:196px minmax(0,1fr);gap:28px;align-items:start}
 .browse > *{min-width:0}
@@ -500,18 +522,24 @@ padding:3px 7px;border-radius:3px;background:var(--rule-soft);color:var(--muted-
   .wordmark{display:block;width:max-content;max-width:100%;justify-self:start}
   nav.top{
     width:100%;margin:0;display:grid;
-    grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;
+    grid-template-columns:repeat(auto-fit,minmax(56px,1fr));gap:2px;
   }
   nav.top a{
     min-width:0;min-height:44px;padding:10px 2px;
     display:flex;align-items:center;justify-content:center;
     font-size:clamp(11px,3.2vw,12.5px);line-height:1.2;white-space:nowrap;
   }
-  nav.top .nav-full{display:none}
-  nav.top .nav-short{display:inline}
   main{padding:32px 16px 72px}
 }
-@media (max-width:640px){.masthead h1{font-size:32px}}
+@media (max-width:640px){
+  .masthead h1{font-size:32px}
+  .subset-tabs{gap:24px}
+  .tab{font-size:21px;padding-bottom:11px}
+}
 @media (max-width:460px){
   .kv{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  /* Both names stay on one line down to the narrowest phone, so the half you
+     are on is never the half scrolled off the side of the switch. */
+  .subset-tabs{gap:18px}
+  .tab{font-size:18px}
 }

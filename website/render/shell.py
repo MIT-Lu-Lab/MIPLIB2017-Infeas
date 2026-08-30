@@ -11,13 +11,15 @@ from ..content import NAME, TAGLINE
 from ..domain import SUBSET_SPECS
 from ..urls import page_url, rel, site_file
 
+# The two halves are one destination. Which half you are looking at is the
+# browse page's own business, so the nav names the collection once and the entry
+# stays current across both halves and every instance page under them.
 _NAV = (
-    ("overview", "", "Overview", ""),
-    ("primal", SUBSET_SPECS["primal"].slug + "/", SUBSET_SPECS["primal"].label, "Primal"),
-    ("dual", SUBSET_SPECS["dual"].slug + "/", SUBSET_SPECS["dual"].label, "Dual"),
-    ("guide", "guide/", "Guide", ""),
-    ("download", "download/", "Download", ""),
-    ("about", "about/", "About", ""),
+    (("overview",), "", "Overview"),
+    (("primal", "dual"), SUBSET_SPECS["primal"].slug + "/", "Instances"),
+    (("guide",), "guide/", "Guide"),
+    (("download",), "download/", "Download"),
+    (("about",), "about/", "About"),
 )
 
 _ENV = Environment(
@@ -62,10 +64,9 @@ def page(
             {
                 "href": rel(page_rel, href),
                 "label": label,
-                "short": short,
-                "current": key == active,
+                "current": active in keys,
             }
-            for key, href, label, short in _NAV
+            for keys, href, label in _NAV
         ),
     )
     return _ENV.get_template(template_name).render(context)
