@@ -18,11 +18,16 @@ WIDTH = 620.0
 # The rungs between are not drawn. path_head records the node's whole bound
 # box, not the branches taken to reach it, so a ladder of twelve steps would
 # claim an order nothing in the sidecar recorded.
-SPINE_X, FORK_DX = 200.0, 110.0
-ROOT_Y, PARENT_Y, ELBOW_Y, CHILD_Y = 30.0, 170.0, 210.0, 236.0
-MIDDLE_Y, BRANCH_Y, ROLE_Y = 106.0, 268.0, 292.0
+SPINE_X, FORK_DX = 310.0, 160.0
+ROOT_Y, PARENT_Y, VAR_Y, ELBOW_Y, CHILD_Y = 30.0, 170.0, 202.0, 226.0, 252.0
+MIDDLE_Y, BRANCH_Y, ROLE_Y = 106.0, 284.0, 308.0
 LABEL_DX, NODE_R = 24.0, 7.0
-BRANCH_HEIGHT = 300.0
+BRANCH_HEIGHT = 320.0
+
+# Branch variable names run to fifty-four characters here, and the drawing has
+# one line to hold one, shared with the words in front of it. Past this the
+# name is cut: the panel beside the drawing states it in full, twice.
+NAME_LIMIT = 34
 
 # The state drawing: what the relaxation was, what was taken out, what it is.
 BOX_W, BOX_H, BOX_Y = 180.0, 64.0, 54.0
@@ -42,8 +47,19 @@ def taken_side(sense: str, value: int) -> tuple[str, int]:
     return ("<=", value - 1) if sense == ">=" else (">=", value + 1)
 
 
+def _clip(name: str) -> str:
+    """A branch variable, short enough to sit on one line."""
+
+    return name if len(name) <= NAME_LIMIT else name[: NAME_LIMIT - 1] + "…"
+
+
 def _child(x: float, label: str, role: str, here: bool) -> str:
-    """One side of the fork: the bound it carries, and whose side it is."""
+    """One side of the fork: the bound it carries, and whose side it is.
+
+    The variable is named once, above the fork, because both sides split the
+    same one. Repeating it here is what used to run the two labels into each
+    other, and off the drawing, whenever a name was long.
+    """
 
     suffix = " here" if here else ""
     return (
@@ -89,15 +105,23 @@ def branch_diagram(sample: Sample) -> str:
             x=SPINE_X + LABEL_DX,
             y=PARENT_Y + 6,
         ),
+        el(
+            "text",
+            f"branching on {_clip(branch.branch_label)}",
+            class_="lbl",
+            x=WIDTH / 2,
+            y=VAR_Y,
+            text_anchor="middle",
+        ),
         _child(
             SPINE_X - FORK_DX,
-            f"{branch.branch_label} {taken} {fmt_int(taken_int)}",
+            f"{taken} {fmt_int(taken_int)}",
             "the search went here",
             here=False,
         ),
         _child(
             SPINE_X + FORK_DX,
-            f"{branch.branch_label} {branch.branch_sense} {fmt_int(published)}",
+            f"{branch.branch_sense} {fmt_int(published)}",
             "this file",
             here=True,
         ),

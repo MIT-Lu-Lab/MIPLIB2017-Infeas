@@ -138,9 +138,25 @@ def test_the_branch_diagram_states_both_sides_of_the_split(index):
     # a branch splits an integer, so the sibling sits at the adjacent one
     assert taken_value == published - 1 or taken_value == published + 1
     # the drawing is XML, so these arrive escaped
-    assert f"{branch.branch_label} {escape(branch.branch_sense)} {published}" in svg
-    assert f"{branch.branch_label} {escape(taken)} {taken_value}" in svg
+    assert f">{escape(branch.branch_sense)} {published}<" in svg
+    assert f">{escape(taken)} {taken_value}<" in svg
+    # named once, above the fork: both sides split the same variable
+    assert svg.count(branch.branch_label) == 1
     assert str(branch.depth) in svg
+
+
+def test_a_long_variable_name_neither_overflows_nor_collides(index):
+    """Branch names run to fifty-four characters. Drawn on both sides of the
+    fork, a long one ran into its neighbour and off the left of the picture."""
+    sample = next(s for s in load_collection(index) if s.subset == "primal")
+    long = replace(
+        sample,
+        provenance=replace(sample.primal, branch_var_name="x(" + "Ledn.Vl.1.1.0," * 6 + ")"),
+    )
+    svg = D.branch_diagram(long)
+    assert "…" in svg
+    for text in re.findall(r"<text[^>]*>([^<]*)</text>", svg):
+        assert len(text) <= D.NAME_LIMIT + len("branching on ")
 
 
 def test_the_branch_diagram_does_not_draw_the_path_it_does_not_have(index):

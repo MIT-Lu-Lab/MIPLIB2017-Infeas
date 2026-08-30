@@ -38,10 +38,11 @@ from .cloud import (
     radius,
 )
 from .markup import num
-from .provenance import taken_side
+from .provenance import NAME_LIMIT, taken_side
 
 __all__ = [
     "LIMITS",
+    "NAME_LIMIT",
     "PAD_BOTTOM",
     "PAD_LEFT",
     "PAD_RIGHT",
