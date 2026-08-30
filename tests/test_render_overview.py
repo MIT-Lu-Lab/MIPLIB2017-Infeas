@@ -128,6 +128,25 @@ def test_overview_says_the_files_are_pure_lps(index):
     assert "integrality dropped" in text
 
 
+def test_overview_ships_the_figure_for_both_media(index):
+    """One figure per medium, each with the same description.
+
+    A reader who cannot see either one gets the alt text, and a reader printing
+    the page gets the light figure rather than a black rectangle.
+    """
+    samples = load_collection(index)
+    html = V.render_overview(collection_totals(samples))
+    root = page(html).one("figure.figure")
+    images = root.all("img")
+    assert [image.get("class") for image in images] == ["on-screen", "on-paper"]
+    assert [image.get("src") for image in images] == [
+        "figures/size-scatter.svg",
+        "figures/size-scatter-print.svg",
+    ]
+    assert all(image.get("alt") for image in images)
+    assert root.one("figcaption").text
+
+
 def test_overview_carries_a_machine_readable_dataset_description(index):
     """Dataset search engines read the JSON-LD and nothing else on the page.
     Without it the collection is a web page that happens to mention linear

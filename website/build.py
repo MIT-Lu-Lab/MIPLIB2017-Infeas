@@ -7,7 +7,7 @@ from collections.abc import Sequence
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
-from . import INDEX_FILE, MIPLIB_FILE, ROOT, assets, catalog, render
+from . import FIGURE_DIR, INDEX_FILE, MIPLIB_FILE, ROOT, assets, catalog, render
 from .domain import (
     OTHER_SUBSET,
     SUBSET_SPECS,
@@ -26,13 +26,16 @@ _OG_IMAGE_FILE = ROOT / "og.png"
 
 
 def _static_files() -> list[tuple[str, bytes]]:
-    if not _FONT_DIR.is_dir() or not _SCHEMA_DIR.is_dir():
-        raise ValueError("the fonts and schema directories must be present")
+    if not all(directory.is_dir() for directory in (_FONT_DIR, _SCHEMA_DIR, FIGURE_DIR)):
+        raise ValueError("the fonts, schema, and figures directories must be present")
 
     files: list[tuple[str, bytes]] = []
     for path in sorted(_FONT_DIR.iterdir(), key=lambda item: item.name):
         if path.is_file():
             files.append((f"fonts/{path.name}", path.read_bytes()))
+    for path in sorted(FIGURE_DIR.iterdir(), key=lambda item: item.name):
+        if path.is_file():
+            files.append((f"figures/{path.name}", path.read_bytes()))
     for path in sorted(_SCHEMA_DIR.rglob("*")):
         if path.is_file():
             relative = path.relative_to(_SCHEMA_DIR).as_posix()

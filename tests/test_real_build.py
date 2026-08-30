@@ -76,9 +76,12 @@ def test_no_page_mentions_a_size_class(built):
 
 
 def test_every_internal_link_resolves(built):
+    """Both what a page links to and what it loads: a figure that did not ship
+    is a broken image rather than a dead link, and nothing else would say so."""
     for page in built.rglob("index.html"):
         base = page.parent
-        for href in re.findall(r'href="([^"]+)"', page.read_text(encoding="utf-8")):
+        text = page.read_text(encoding="utf-8")
+        for href in re.findall(r'(?:href|src)="([^"]+)"', text):
             if href.startswith(("http", "#", "mailto:")):
                 continue
             target = (base / href).resolve()

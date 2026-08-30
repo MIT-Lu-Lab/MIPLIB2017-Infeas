@@ -11,6 +11,13 @@
   {{ n_dual }} {{ dual_verb }} unbounded. They run up to {{ max_vars }} variables
   and {{ max_cons }} constraints.</p>
 </div>
+<figure class="figure">
+  <img class="on-screen" src="{{ figure_screen }}" alt="{{ figure_alt }}"
+    width="320" height="315" decoding="async">
+  <img class="on-paper" src="{{ figure_print }}" alt="{{ figure_alt }}"
+    width="320" height="315" decoding="async">
+  <figcaption>{{ figure_caption }}</figcaption>
+</figure>
 <div class="pair">
   {% for card in cards %}<a class="subset {{ card.tone }}" href="{{ card.slug }}/">
     <h2>{{ card.label }}</h2>

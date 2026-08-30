@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from .. import content
 from ..domain import SUBSET_SPECS, CollectionTotals
-from ..urls import site_file
+from ..urls import rel, site_file
 from .shell import page
 
 PAGE = "index.html"
@@ -78,6 +78,10 @@ def render_overview(
         dual_verb="is" if dual == 1 else "are",
         max_vars=content.fmt_int(totals["max_vars"]),
         max_cons=content.fmt_int(totals["max_cons"]),
+        figure_screen=rel(PAGE, content.FIGURE_SCREEN),
+        figure_print=rel(PAGE, content.FIGURE_PRINT),
+        figure_alt=content.FIGURE_ALT,
+        figure_caption=content.FIGURE_CAPTION,
         cards=tuple(
             {
                 "tone": info.tone,
