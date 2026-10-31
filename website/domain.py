@@ -199,7 +199,7 @@ def validate_drop_indices(drops: Sequence[Drop], *, n_vars: int, source_rows: in
 
 @dataclass(frozen=True)
 class Sample:
-    """One published LP together with its derivation and source metadata."""
+    """One published instance together with its derivation and source metadata."""
 
     instance: str
     n_vars: int

@@ -30,6 +30,7 @@ def test_build_writes_the_expected_tree(tmp_path, index):
         "schema/meta.schema.json",
         "schema/sidecar/1.0.0/meta.schema.json",
         "schema/sidecar/1.0.1/meta.schema.json",
+        "schema/sidecar/1.1.0/meta.schema.json",
         "schema/release-manifest/1.0.0/manifest.schema.json",
         ".nojekyll",
         "site-build.json",

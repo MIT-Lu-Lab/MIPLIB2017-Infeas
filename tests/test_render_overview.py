@@ -101,7 +101,7 @@ def test_overview_reports_real_counts_and_ranges(index):
     samples = load_collection(index)
     html = V.render_overview(samples)
     text = " ".join(html.split())  # the prose wraps, so normalise whitespace
-    assert "3 linear programs" in text  # total
+    assert "3 mixed-integer programs" in text  # total
     assert "2 have no feasible point; 1 is unbounded" in text
     assert "up to 10 variables and 4 constraints" in text
 
@@ -124,11 +124,11 @@ def test_overview_names_the_maintainers_and_authors(index):
     assert "author" in html  # the citation must be attributable
 
 
-def test_overview_says_the_files_are_pure_lps(index):
+def test_overview_says_the_files_keep_integrality(index):
     """Whether integrality survived decides which claims about these files hold."""
     samples = load_collection(index)
     text = " ".join(V.render_overview(samples).split())
-    assert "integrality dropped" in text
+    assert "keeping its integrality" in text
 
 
 def test_the_wordmark_is_the_collection_name(shell):
@@ -197,7 +197,7 @@ def test_overview_carries_a_machine_readable_dataset_description(index):
         "https://e.invalid/dl/dual-infeasible.zip",
     ]
     # the counts in it have to be the real ones, not a number typed into a template
-    assert "3 linear programs" in doc["description"]
+    assert "3 mixed-integer programs" in doc["description"]
 
 
 def test_the_dataset_description_points_at_the_notice_absolutely(index):

@@ -4,8 +4,8 @@ Markup lives in render/templates. Here are the sentences that have to count
 something before they can be written, the descriptions a page declares to a
 search engine rather than shows, the names this collection is published
 under, the software that produced the files, and two editorial rules: which
-MIPLIB tags mean nothing once integrality is dropped, and how long a
-description may run.
+MIPLIB tags describe the source's curation rather than the instance, and how
+long a description may run.
 """
 
 from __future__ import annotations
@@ -14,16 +14,7 @@ from dataclasses import dataclass
 
 from .domain import CollectionTotals, Subset
 
-NON_LP_TAGS = frozenset(
-    {
-        "binary",
-        "mixed_binary",
-        "integer_knapsack",
-        "benchmark",
-        "benchmark_suitable",
-        "feasibility",
-    }
-)
+NON_LP_TAGS = frozenset({"benchmark", "benchmark_suitable", "feasibility"})
 
 
 def fmt_int(n: int) -> str:
@@ -58,10 +49,10 @@ META_LIMIT = 160
 # which is the repository, the URLs, the published filenames, and the dataset
 # identifier the release manifest pins.
 NAME = "MIPLIB 2017 Infeas"
-CITATION_TITLE = f"{NAME}: Primal- and Dual-Infeasible Linear Programs from MIPLIB 2017"
+CITATION_TITLE = f"{NAME}: Primal- and Dual-Infeasible Mixed-Integer Programs from MIPLIB 2017"
 PUBLIC_SITE_URL = "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/"
-SIDECAR_SCHEMA_PATH = "schema/sidecar/1.0.1/meta.schema.json"
-TAGLINE = "A benchmark of primal- and dual-infeasible linear programs"
+SIDECAR_SCHEMA_PATH = "schema/sidecar/1.1.0/meta.schema.json"
+TAGLINE = "A benchmark of primal- and dual-infeasible mixed-integer programs"
 
 # The collection's own portrait, drawn by website.diagrams from the same index
 # the pages are built from. It is markup rather than an image, so it carries no
@@ -98,7 +89,8 @@ SOFTWARE = (
     Software(
         "HiGHS",
         "1.14.0",
-        "The first presolver a candidate had to survive, reached through the highspy bindings.",
+        "The first presolver a candidate had to survive, reached through the highspy "
+        "bindings. It also wrote the v1.1 files, with the integrality of each source restored.",
     ),
     Software(
         "Gurobi",
@@ -116,22 +108,22 @@ SOFTWARE = (
 # One sentence each, the shortest true statement of what a subset holds. The
 # browse page shows this and the meta description quotes it.
 SUBSET_SUMMARY = {
-    "primal": "Linear programs with no feasible point. Each is the side of a branch "
+    "primal": "Mixed-integer programs with no feasible point. Each is the side of a branch "
     "that a branch-and-bound search did not explore, on a distinct MIPLIB "
     "2017 instance.",
     # the same two sentences, definition then origin. What the origin then did
     # to it divides a count, so it is dual_derivation() and not written here
-    "dual": "Linear programs whose objective is unbounded. Each is the root LP "
-    "relaxation of a distinct MIPLIB 2017 instance.",
+    "dual": "Mixed-integer programs whose objective is unbounded. Each derives from "
+    "a distinct MIPLIB 2017 instance.",
 }
 
 # Under META_LIMIT with the count in front, for a search result. The page-visible
 # summary above says the same thing at reading length and does not fit.
 SUBSET_META_SUMMARY = {
-    "primal": "linear programs with no feasible point, each from the unexplored side "
+    "primal": "mixed-integer programs with no feasible point, each from the unexplored side "
     "of a branch in a branch-and-bound search.",
-    "dual": "linear programs with an unbounded objective, each a MIPLIB 2017 root "
-    "relaxation with bounds and constraints removed.",
+    "dual": "mixed-integer programs with an unbounded objective, each a MIPLIB 2017 "
+    "instance with bounds and constraints removed.",
 }
 
 # The same fact with room to say how, for the overview cards: what a run does,
@@ -149,7 +141,7 @@ DUAL_SEARCH = (
 )
 
 OVERVIEW_DESCRIPTION = (
-    "{n} linear programs with no optimal solution, derived from "
+    "{n} mixed-integer programs with no optimal solution, derived from "
     "MIPLIB 2017 instances: {primal} primal-infeasible and {dual} "
     "dual-infeasible."
 )
@@ -212,8 +204,8 @@ def collection_summary(totals: CollectionTotals) -> str:
     natural = totals["natural_unbounded"]
     primal_verb = "has" if primal == 1 else "have"
     return (
-        f"{fmt_int(totals['n_samples'])} linear programs with no optimal solution, "
-        "each derived from a MIPLIB 2017 instance with its integrality dropped. "
+        f"{fmt_int(totals['n_samples'])} mixed-integer programs with no optimal solution, "
+        "each derived from a MIPLIB 2017 instance and keeping its integrality. "
         f"{fmt_int(primal)} {primal_verb} no feasible point, each from the "
         "unexplored side of a branch in a branch-and-bound search, and "
         f"{fmt_int(dual)} have an unbounded objective. "
@@ -263,7 +255,7 @@ def subset_description(subset: Subset, count: int, natural_unbounded: int = 0) -
     if subset == "dual" and natural_unbounded:
         constructed = count - natural_unbounded
         return (
-            f"{fmt_int(count)} linear programs with an unbounded objective: "
+            f"{fmt_int(count)} mixed-integer programs with an unbounded objective: "
             f"{fmt_int(constructed)} come from an inclusion-minimal relaxation of "
             f"a bounded root LP; {fmt_int(natural_unbounded)} were unbounded as given."
         )
@@ -273,7 +265,7 @@ def subset_description(subset: Subset, count: int, natural_unbounded: int = 0) -
 def instance_description(instance: str, label: str, n_vars: int, n_cons: int) -> str:
     """The meta description of one instance page, led by its name."""
     return (
-        f"{instance}: a {label.lower()} linear program with "
+        f"{instance}: a {label.lower()} mixed-integer program with "
         f"{fmt_int(n_vars)} variables and {fmt_int(n_cons)} constraints, "
         "from MIPLIB 2017."
     )

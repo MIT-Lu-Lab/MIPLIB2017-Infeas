@@ -11,7 +11,7 @@ from scripts.release_contract import parse_manifest
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY = ROOT / "schema" / "meta.schema.json"
 SIDECAR_V1 = ROOT / "schema" / "sidecar" / "1.0.0" / "meta.schema.json"
-SIDECAR_NEWEST = ROOT / "schema" / "sidecar" / "1.0.1" / "meta.schema.json"
+SIDECAR_NEWEST = ROOT / "schema" / "sidecar" / "1.1.0" / "meta.schema.json"
 MANIFEST_V1 = ROOT / "schema" / "release-manifest" / "1.0.0" / "manifest.schema.json"
 SHA_A = "a" * 64
 SHA_B = "b" * 64
@@ -29,13 +29,14 @@ def test_the_unversioned_schema_is_the_newest_frozen_one():
     comparable["$id"] = living["$id"]
     comparable["title"] = living["title"]
     assert comparable == living
-    assert newest["$id"].endswith("/schema/sidecar/1.0.1/meta.schema.json")
+    assert newest["$id"].endswith("/schema/sidecar/1.1.0/meta.schema.json")
 
 
 def test_an_earlier_version_keeps_saying_what_it_said():
     """1.0.0 is published at its own URL, so it is not edited in place: 1.0.1
-    corrected it by being another document. Which constraint moved is written
-    down, so a version that quietly gains or loses one fails here."""
+    corrected it by being another document, and 1.1.0 added integrality. Which
+    constraint moved is written down, so a version that quietly gains or loses
+    one fails here."""
     jsonschema = pytest.importorskip("jsonschema")
     first = json.loads(SIDECAR_V1.read_text(encoding="utf-8"))
     newest = json.loads(SIDECAR_NEWEST.read_text(encoding="utf-8"))
@@ -46,7 +47,7 @@ def test_an_earlier_version_keeps_saying_what_it_said():
         for name in set(first["properties"]) | set(newest["properties"])
         if first["properties"].get(name) != newest["properties"].get(name)
     }
-    assert moved == {"instance"}
+    assert moved == {"instance", "integrality"}
     # 1.0.0 called any string a name, including one carrying a path separator
     assert "pattern" not in first["properties"]["instance"]
     assert "pattern" in newest["properties"]["instance"]

@@ -5,9 +5,9 @@
 <div class="masthead">
   <span class="eyebrow">{{ tagline }}</span>
   <h1>{{ name }}</h1>
-  <p class="sub">{{ n_samples }} linear programs with no optimal solution, each
-  derived from a <a href="https://miplib.zib.de/">MIPLIB 2017</a> instance with its
-  integrality dropped. {{ n_primal }} {{ primal_verb }} no feasible point;
+  <p class="sub">{{ n_samples }} mixed-integer programs with no optimal solution, each
+  derived from a <a href="https://miplib.zib.de/">MIPLIB 2017</a> instance and keeping
+  its integrality. {{ n_primal }} {{ primal_verb }} no feasible point;
   {{ n_dual }} {{ dual_verb }} unbounded. They run up to {{ max_vars }} variables
   and {{ max_cons }} constraints.</p>
 </div>
@@ -38,8 +38,8 @@
   <h2>Two files</h2>
   <div class="files">
     <div class="file"><div class="fn">&lt;name&gt;.mps.gz</div>
-      <p>The linear program, gzipped MPS, continuous variables only, ready to solve
-      as published.</p></div>
+      <p>The mixed-integer program, gzipped MPS, with its source's integrality, ready
+      to solve as published.</p></div>
     <div class="file"><div class="fn">&lt;name&gt;.meta.json</div>
       <p>The provenance, JSON: the branch behind a primal-infeasible file, the
       relaxation behind a dual-infeasible one.</p></div>

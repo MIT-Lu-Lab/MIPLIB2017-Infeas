@@ -161,11 +161,10 @@ def test_download_names_and_filter_result_are_announced(index):
     assert note.text == "All data columns sort; Download does not."
 
 
-def test_tags_that_are_false_of_an_lp_are_not_offered(index):
-    """The published files are continuous LPs: a tag naming a variable type is
-    false of them, and MIPLIB's benchmark-set membership is about MIPLIB."""
+def test_tags_about_miplib_curation_are_not_offered(index):
+    """MIPLIB's benchmark-set membership is about MIPLIB, not the published file."""
     html = _browse(index, "primal")
-    for tag in ("mixed_binary", "binary", "integer_knapsack", "benchmark_suitable", "feasibility"):
+    for tag in ("benchmark", "benchmark_suitable", "feasibility"):
         assert f'data-k="tag-{tag}"' not in html, tag
 
 

@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mit-lu-lab.github.io/MIPLIB2017-Infeas/schema/sidecar/1.1.0/meta.schema.json",
+  "title": "MIPLIB2017-Infeas sidecar schema 1.1.0",
+  "description": "The .meta.json published beside each .mps.gz, recording how that mixed-integer program was derived from its MIPLIB 2017 source instance. The site's Reading a file guide explains the fields in prose; this says which are required and what shape they take, so a consumer can check a file rather than trust the page.",
+  "type": "object",
+  "required": [
+    "instance",
+    "sample_kind",
+    "n_vars",
+    "n_cons",
+    "nnz"
+  ],
+  "properties": {
+    "instance": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9._-]*[A-Za-z0-9])?$",
+      "description": "Name of the MIPLIB 2017 instance this derives from. The published filename is this plus _if or _ub. It is also the directory the site publishes the instance under, so a name carrying a path separator is not a name this collection can take."
+    },
+    "sample_kind": {
+      "enum": [
+        "pruned_infeasible_sibling",
+        "lp_unbounded_after_drop"
+      ],
+      "description": "Which half of the collection this belongs to. It decides which of the two field sets below applies."
+    },
+    "n_vars": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "n_cons": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Rows of the published file, counted from the file itself. The objective row is not counted."
+    },
+    "nnz": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "file_bytes": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Size of the .mps.gz. A byte count catches a truncated download."
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 of the .mps.gz. Only a hash catches a corrupted one."
+    },
+    "integrality": {
+      "type": "object",
+      "description": "How the source's integrality was put back on the file, new in release v1.1. Integer columns keep the bounds the derivation left them, so a binary whose bound was removed returns as a general integer.",
+      "required": [
+        "n_int",
+        "lp_sha256"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "n_int": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Integer columns, binaries included, as declared by the source instance."
+        },
+        "lp_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "SHA-256 of the v1.0 file, the same program with integrality dropped."
+        },
+        "ranged_rows_split": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Ranged rows written as two inequalities, the second named <row>_lo. Absent when none."
+        },
+        "tiny_coefs_dropped": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Matrix coefficients of magnitude at most 1e-9 removed. Absent when none."
+        },
+        "feasible_point": {
+          "enum": [
+            "miplib_solution",
+            "gurobi_solution"
+          ],
+          "description": "dual only. A known integer point of the source, its MIPLIB solution or else one Gurobi found, is feasible for this file, so with an unbounded relaxation the program is unbounded. Absent when no such point is known."
+        }
+      }
+    },
+    "depth": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "primal only. How deep in the branch-and-bound tree the node sits; the root is 0."
+    },
+    "branch_var": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "primal only. The branched column, as a 0-based index into the published file. Prefer branch_var_name: on 23 instances a column is literally named x<digits> at a different index, so reading this as a name points at the wrong variable."
+    },
+    "branch_var_name": {
+      "type": "string",
+      "description": "primal only. The name the published file gives the branched column."
+    },
+    "branch_sense": {
+      "enum": [
+        ">=",
+        "<="
+      ],
+      "description": "primal only. The bound defining this side of the branch. >= 29 means the search took <= 28 and this file is the other side."
+    },
+    "branch_value": {
+      "type": "number",
+      "description": "primal only."
+    },
+    "path_entries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "primal only. Every bound the node tightens relative to the source, written x<index><=<value>. This is the node's whole bound box, not only the branch decisions on the path to it, so it is usually far longer than depth, and it is what makes these files large."
+    },
+    "path_entries_are_column_indices": {
+      "type": "boolean",
+      "description": "primal only. True when the indices in path_entries are 0-based into the published file."
+    },
+    "path_head_named": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "primal only. The first twelve path_entries with column names resolved. This is what the instance page shows."
+    },
+    "natural_unbounded": {
+      "type": "boolean",
+      "description": "dual only. True when the source relaxation was already unbounded and nothing was removed."
+    },
+    "n_dropped": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "dual only. How many elements were removed. Zero when natural_unbounded."
+    },
+    "drops": {
+      "type": "array",
+      "description": "dual only. One entry per removal. A dropped row's coefficients are NOT recorded: restoring one means taking the row from the source instance.",
+      "items": {
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "kind": {
+                "const": "bound"
+              },
+              "var": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "name": {
+                "type": "string"
+              },
+              "side": {
+                "enum": [
+                  "lb",
+                  "ub"
+                ]
+              },
+              "original_value": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "kind",
+              "var",
+              "side",
+              "original_value"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "kind": {
+                "const": "row"
+              },
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "name": {
+                "type": "string"
+              },
+              "original_sense": {
+                "type": "string"
+              },
+              "original_rhs": {
+                "type": "number"
+              },
+              "original_range": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "kind",
+              "row",
+              "original_sense",
+              "original_rhs"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "sample_id": {
+      "type": "integer",
+      "description": "Pipeline artefact. Indexes the candidate pool this file was drawn from, not this collection."
+    },
+    "sample_kind_version": {
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "integer"
+    },
+    "size": {
+      "type": "string",
+      "description": "Pipeline artefact. MIPLIB's own difficulty class for the SOURCE instance. It says nothing about the published file and the site does not show it."
+    },
+    "parent_uid": {
+      "type": "integer",
+      "description": "Pipeline artefact, primal only."
+    },
+    "parent_depth": {
+      "type": "integer",
+      "description": "Pipeline artefact, primal only. Always depth - 1."
+    },
+    "beta": {
+      "type": "number",
+      "description": "Pipeline artefact, dual only."
+    },
+    "n_rounds": {
+      "type": "integer",
+      "description": "Pipeline artefact, dual only."
+    },
+    "seed": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "description": "Pipeline artefact, dual only."
+    },
+    "picks": {
+      "type": "array",
+      "description": "Pipeline artefact, dual only. What the greedy search removed BEFORE the pruning pass put most of it back, so it is much longer than drops and is not the published removal set."
+    },
+    "source_terms": {
+      "type": "object",
+      "description": "Terms the MIPLIB 2017 source instance carries, which govern this derived file too. The 262 sources are not uniform: most were submitted to MIPLIB 2017 under its default licence, one contributor chose BSD 3-Clause, and 130 were imported from an earlier MIPLIB edition that predates the submission form and carry no licence at all.",
+      "required": [
+        "spdx",
+        "summary"
+      ],
+      "properties": {
+        "spdx": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "CC-BY-SA-4.0",
+            "BSD-3-Clause",
+            null
+          ],
+          "description": "SPDX identifier, or null where no licence was ever granted. Null is the honest value and not a missing one: it says the terms are unknown because none exist on record."
+        },
+        "summary": {
+          "type": "string",
+          "description": "The same fact in words, as the instance page shows it."
+        },
+        "miplib_import": {
+          "type": "string",
+          "description": "Present only when spdx is null: MIPLIB's own sentence recording which earlier edition the source came from. It is the evidence for the null."
+        },
+        "notice": {
+          "type": "string",
+          "description": "URL of the full notice, so a sidecar travels self-contained."
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "sample_kind": {
+            "const": "pruned_infeasible_sibling"
+          }
+        },
+        "required": [
+          "sample_kind"
+        ]
+      },
+      "then": {
+        "required": [
+          "depth",
+          "branch_var",
+          "branch_sense",
+          "branch_value",
+          "path_entries"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "sample_kind": {
+            "const": "lp_unbounded_after_drop"
+          }
+        },
+        "required": [
+          "sample_kind"
+        ]
+      },
+      "then": {
+        "required": [
+          "drops",
+          "natural_unbounded"
+        ]
+      }
+    }
+  ]
+}

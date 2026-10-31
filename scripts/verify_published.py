@@ -4,8 +4,10 @@
 
 The dual-infeasible miner already re-read each MPS before publishing it; the
 primal-infeasible miner never did. This closes that gap for the whole release:
-each file is read back from disk as an LP and solved, and the status is checked
-against the subset it was published under.
+each file is read back from disk, its LP relaxation is solved, and the status is
+checked against the subset it was published under. The relaxation is what the
+status rests on: an infeasible relaxation makes the program infeasible, and an
+unbounded one makes a feasible program unbounded.
 
 Verification uses HiGHS, not the CPLEX that produced the collection. A solver
 confirming its own output proves little; an independent one confirming it is
@@ -92,7 +94,7 @@ class CheckRow:
 
 
 def classify(mps_path: Path, time_limit: float) -> SolveResult:
-    """Solve one published file as an LP with a fresh HiGHS instance."""
+    """Solve one published file's LP relaxation with a fresh HiGHS instance."""
     # highspy comes with a licensed HiGHS install rather than from PyPI alone, and
     # nothing else in the repository needs a solver, so CI has none to resolve it
     # against. The import is local for the same reason: importing this module
@@ -118,6 +120,7 @@ def classify(mps_path: Path, time_limit: float) -> SolveResult:
         if status not in (highspy.HighsStatus.kOk, highspy.HighsStatus.kWarning):
             return SolveResult(error=f"readModel returned {status}")
         warned = status == highspy.HighsStatus.kWarning
+        h.setOptionValue("solve_relaxation", True)
         h.run()
         ms = h.getModelStatus()
         S = highspy.HighsModelStatus
@@ -235,7 +238,7 @@ def main():
         "--jobs",
         type=int,
         default=4,
-        help="parallel solves; each holds one LP in memory, and the "
+        help="parallel solves; each holds one relaxation in memory, and the "
         "largest published file is 362 MB, so keep this modest",
     )
     parser.add_argument(

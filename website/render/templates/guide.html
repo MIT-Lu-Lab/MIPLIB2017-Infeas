@@ -31,6 +31,17 @@
     <dd>Lowercase SHA-256 digest of the published <span class="mono">.mps.gz</span> file.
     Use it with <span class="mono">file_bytes</span> to detect a truncated or corrupted
     download.</dd>
+    <dt><span class="mono">integrality</span><span class="ftype">object</span></dt>
+    <dd>How the source's integer columns were put back on the file, from release v1.1.
+    <span class="mono">n_int</span> counts them, and <span class="mono">lp_sha256</span>
+    is the digest of the v1.0 file, the same program with integrality dropped. A column
+    keeps the bounds the derivation left it. A binary whose bounds the derivation
+    changed, fixed by a branch or freed by a drop, returns as a general integer with
+    those bounds; every other column keeps its source type. <span class="mono">ranged_rows_split</span> and
+    <span class="mono">tiny_coefs_dropped</span> count the few rewrites the MPS
+    writer made, and appear only when nonzero. On a dual file,
+    <span class="mono">feasible_point</span> says an integer point of the source is
+    feasible here, its MIPLIB solution or else one Gurobi found, which with an unbounded relaxation makes the program unbounded.</dd>
     <dt><span class="mono">source_terms</span><span class="ftype">object</span></dt>
     <dd>Terms the source instance carries, which govern this file too.
     <span class="mono">spdx</span> is an SPDX identifier, or
@@ -96,7 +107,7 @@
   <div class="prose">
     <p class="muted">These fields identify record formats or trace a file back to the
     run that made it. They serve reproducibility, and are neither properties of the
-    linear program nor versions of the MPS format.</p>
+    program nor versions of the MPS format.</p>
   </div>
   <dl class="fields">
     <dt><span class="mono">sample_id, sample_kind_version, schema_version, size</span><span class="ftype">various</span></dt>

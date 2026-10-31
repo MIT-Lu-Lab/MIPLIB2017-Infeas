@@ -70,7 +70,7 @@ class Facet:
         return bucket.holds(values[self.field])
 
 
-# Variables and Constraints describe any linear program, so both subsets share
+# Variables and Constraints describe any program, so both subsets share
 # one definition rather than each carrying a copy that could drift.
 _SIZE_FACETS = (
     Facet(

@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_guide_links_the_machine_readable_schema():
-    assert 'href="../schema/sidecar/1.0.1/meta.schema.json"' in V.render_guide(130)
+    assert 'href="../schema/sidecar/1.1.0/meta.schema.json"' in V.render_guide(130)
 
 
 def test_download_page_links_the_archives_and_indexes(index):

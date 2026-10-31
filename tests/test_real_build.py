@@ -122,7 +122,7 @@ def test_no_relative_url_hides_inside_a_custom_property(built):
 
 def test_overview_reports_the_real_totals(built):
     text = " ".join((built / "index.html").read_text(encoding="utf-8").split())
-    assert "334 linear programs" in text
+    assert "334 mixed-integer programs" in text
     assert "229 have no feasible point; 105 are unbounded" in text
     assert "up to 20,682,487 variables and 19,912,111 constraints" in text
 
